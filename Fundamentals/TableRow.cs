@@ -1,89 +1,94 @@
 using System;
+using System.Collections.Generic;
 
-// A table row definition
-public abstract class TableRow
+namespace TravellerTools.Fundamentals
 {
-	// Methods
-	public abstract bool Matches( int result );
-	public abstract List<int> FullRange();
-
-	// Properties
-	string Text;
-	string UID;
-}
-
-// A single entry table row
-public class TableRowSingle : TableRow
-{
-	TableRow( int number, string text, string uid )
+	// A table row definition
+	public abstract class TableRow
 	{
-		Number = number;
-		Text = text;
-		UID = uid;
+		// Methods
+		public abstract bool Matches(int result);
+		public abstract List<int> FullRange();
+
+		// Properties
+		public string Text;
+		public string UID;
 	}
 
-	// Methods
-	public bool Matches( int result )
+	// A single entry table row
+	public class TableRowSingle : TableRow
 	{
-		return (result == Number);
-	}
-
-	public List<int> FullRange()
-	{
-		List<int> result = new List<int>();
-		result.add( Number );
-		return result;
-	}
-
-	// Properties
-	int Number;
-}
-
-A table row with a value range
-public class TableRowRange : TableRow
-{
-	private string INVALID_RANGE = "The Start of the range is greater than the End.";
-
-	// Constructor
-	// Assumes that start must be <= end
-	TableRowRange( int start, int end, string text, string uid )
-	{
-		Start = start;
-		End = end;
-		Text = text;
-		UID = uid;
-	}
-
-	// Methods
-
-	// Can throw ArgumentOutofRangeException if the table row has a Start > End
-	public bool Matches( int result )
-	{
-		if( start > end )
+		// Constructor
+		TableRowSingle(int number, string text, string uid)
 		{
-			throw new ArgumentOutofRangeException( INVALID_RANGE );
+			Number = number;
+			Text = text;
+			UID = uid;
 		}
 
-		return ( (start <= result) && ( result <= end ) ); 
+		// Methods
+		public override bool Matches(int result)
+		{
+			return (result == Number);
+		}
+
+		public override List<int> FullRange()
+		{
+			List<int> result = new List<int>();
+			result.Add(Number);
+			return result;
+		}
+
+		// Properties
+		public int Number;
 	}
 
-	// Can throw ArgumentOutofRangeException if the table row has a Start > End
-	public List<int> FullRange()
+	//A table row with a value range
+	public class TableRowRange : TableRow
 	{
-		if( start > end )
+		private string INVALID_RANGE = "The Start of the range is greater than the End.";
+
+		// Constructor
+		// Assumes that start must be <= end
+		TableRowRange(int start, int end, string text, string uid)
 		{
-			throw new ArgumentOutofRangeException( INVALID_RANGE );
+			Start = start;
+			End = end;
+			Text = text;
+			UID = uid;
 		}
 
-		List<int> result = new List<int>();
-		for( int i = Start ; i <= End ; i++ )
+		// Methods
+
+		// Can throw ArgumentOutOfRangeException if the table row has a Start > End
+		public override bool Matches(int result)
 		{
-			result.add( i );
+			if (Start > End)
+			{
+				throw new ArgumentOutOfRangeException(INVALID_RANGE);
+			}
+
+			return ((Start <= result) && (result <= End));
 		}
-		return result;
+
+		// Can throw ArgumentOutOfRangeException if the table row has a Start > End
+		public override List<int> FullRange()
+		{
+			if (Start > End)
+			{
+				throw new ArgumentOutOfRangeException(INVALID_RANGE);
+			}
+
+			List<int> result = new List<int>();
+			for (int i = Start; i <= End; i++)
+			{
+				result.Add(i);
+			}
+			return result;
+		}
+
+		// Properties
+		public int Start;
+		public int End;
 	}
-
-	// Properties
-	int Start;
-	int End;
 }

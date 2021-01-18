@@ -1,0 +1,14 @@
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\bin\Debug\CharGen.exe.config
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\bin\Debug\CharGen.exe
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\bin\Debug\CharGen.pdb
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.csprojAssemblyReference.cache
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.Properties.Resources.resources
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.csproj.GenerateResource.cache
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.csproj.CoreCompileInputs.cache
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.exe
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.pdb
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\TravellerTools.CharGen.CharGenMainForm.resources
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\bin\Debug\Fundamentals.dll
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\bin\Debug\Fundamentals.pdb
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\CharGen.csproj.CopyComplete
+C:\Users\Dave\Documents\GitHub\TravellerTools\CharGen\obj\Debug\TravellerTools.CharGen.GeneralSettings.resources

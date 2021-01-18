@@ -1,76 +1,81 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
-// A table definition
-public class RPGTable
+namespace TravellerTools.Fundamentals
 {
 
-	private List<TableRow> rows;
-
-	//Constructor
-	RPGTable()
+	// A table definition
+	public class RPGTable
 	{
-		rows = new List<TableRow>;
-	}
 
-	// Methods
+		private List<TableRow> rows;
 
-	Returns true if the row is added
-	Returns false if the row already existings in the table.
-	  This is checked my matching the UID
-	public boolAddRow( TableRow row )
-	{
-		bool exists = false;
-		foreach( tableRow in rows )
+		//Constructor
+		RPGTable()
 		{
-			exists &&= (row.UID == tableRow.UID );
-		}
-		
-		if( !exists )
-		{
-			rows.add( row );
+			rows = new List<TableRow>();
 		}
 
-		return exists;
-	}
-	
-	// Returns the row that matches diceRoll, or null if no matches are found
-	public TableRow RollOnTable( int diceRoll )
-	{
-		TableRow result = null;
-		foreach( row in rows )
+		// Methods
+
+		// Returns true if the row is added
+		// Returns false if the row already existings in the table.
+		//   This is checked my matching the UID
+		public bool AddRow(TableRow row)
 		{
-			if( row.Matches( diceRoll) )
+			bool exists = false;
+			foreach (TableRow tableRow in rows)
 			{
-				result = row;
-				break;
+				exists = exists && (row.UID == tableRow.UID);
 			}
-		}
-		return row;
-	}
 
-	// Can throw ArgumentOutofRangeException if any of the RangeRows in rows are not configured correctly.
-	// Returns true if there are no number gaps in the table
-	// Returns false if there are gaps.
-	public bool IsUniqueAndContiguous()
-	{
-		List<int> fullRange = new List<int>();
-		foreach( TableRow row in rows )
-		{
-			List<int> rowRange = row.FullRange();
-			foreach( int entry in rowRange )
+			if (!exists)
 			{
-				fullRange.add( entry );
+				rows.Add(row);
 			}
-		}
-		fullRange.Sort();
 
-		bool result = true;
-		for( int i = 0; (i < (fullRange.Length-1) ) && (result = true) ; i++ )
+			return exists;
+		}
+
+		// Returns the row that matches diceRoll, or null if no matches are found
+		public TableRow RollOnTable(int diceRoll)
 		{
-			result &&= ( fullRange[i] == fullRange[i+1] );
+			TableRow result = null;
+			foreach (TableRow row in rows)
+			{
+				if (row.Matches(diceRoll))
+				{
+					result = row;
+					break;
+				}
+			}
+			return result;
 		}
-		return result;
-	}
 
+		// Can throw ArgumentOutofRangeException if any of the RangeRows in rows are not configured correctly.
+		// Returns true if there are no number gaps in the table
+		// Returns false if there are gaps.
+		public bool IsUniqueAndContiguous()
+		{
+			List<int> fullRange = new List<int>();
+			foreach (TableRow row in rows)
+			{
+				List<int> rowRange = row.FullRange();
+				foreach (int entry in rowRange)
+				{
+					fullRange.Add(entry);
+				}
+			}
+			fullRange.Sort();
+
+			bool result = true;
+			for (int i = 0; (i < (fullRange.Count - 1)) && (result = true); i++)
+			{
+				result = result && (fullRange[i] == fullRange[i + 1]);
+			}
+			return result;
+		}
+
+	}
 }
