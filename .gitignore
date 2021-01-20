@@ -3,6 +3,7 @@ packages
 # User files
 *.user
 .vs/
+bin/
 
 # Build results
 [Dd]ebug/
