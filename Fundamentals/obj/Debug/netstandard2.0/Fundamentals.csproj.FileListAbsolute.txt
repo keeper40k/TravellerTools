@@ -1,9 +1,0 @@
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\bin\Debug\netstandard2.0\Fundamentals.deps.json
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\bin\Debug\netstandard2.0\Fundamentals.dll
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\bin\Debug\netstandard2.0\Fundamentals.pdb
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.csprojAssemblyReference.cache
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.AssemblyInfoInputs.cache
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.AssemblyInfo.cs
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.csproj.CoreCompileInputs.cache
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.dll
-C:\Users\Dave\Documents\GitHub\TravellerTools\Fundamentals\obj\Debug\netstandard2.0\Fundamentals.pdb
