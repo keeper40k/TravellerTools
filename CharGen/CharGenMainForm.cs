@@ -18,13 +18,15 @@ namespace TravellerTools.CharGen
         private static string NEW_CHAR_SURE_TITLE = "Create New Character";
 
         // Protected member variables
-
-        protected CharGenDataBlock data = null;
+        protected CharGenSettings m_settings = null;
+        protected CharGenDataBlock m_data = null;
 
         public CharGenMainForm()
         {
             InitializeComponent();
-            data = new CharGenDataBlock();
+            m_settings = new CharGenSettings();
+            m_settings.LoadSettings();
+            m_data = new CharGenDataBlock();
             RefreshCharacterDisplay();
             UpdateInputBoxes();
         }
@@ -33,17 +35,21 @@ namespace TravellerTools.CharGen
 
         protected void RefreshCharacterDisplay()
         {
-            characterDisplay.Text = data.Character.ToString();
+            characterDisplay.Text = m_data.Character.ToString();
         }
 
         protected void UpdateInputBoxes()
         {
+            // Roll Button
+            autoCreate.Enabled = m_settings.AllowReroll;
+            autoCreateLabel.Enabled = m_settings.AllowReroll;
+
             // Title Combo and Use Title
-            useTitleCheckBox.Checked = data.Character.UseTitle;
-            if (data.Character.SOC >= 11)
+            useTitleCheckBox.Checked = m_data.Character.UseTitle;
+            if (m_data.Character.SOC >= 11)
             {
                 titleBox.Items.Clear();
-                titleBox.Items.AddRange(data.Character.AvailableTitles().ToArray());
+                titleBox.Items.AddRange(m_data.Character.AvailableTitles().ToArray());
                 titleBox.SelectedIndex = 0;
                 titleBox.Enabled = true;
                 useTitleCheckBox.Enabled = true;
@@ -56,46 +62,56 @@ namespace TravellerTools.CharGen
                 useTitleCheckBox.Enabled = false;
             }
             // Rank Box and Use Rank
-            rankBox.Text = data.Character.Rank;
-            if( data.Character.Rank != string.Empty )
+            rankBox.Text = m_data.Character.Rank;
+            if( m_data.Character.Rank != string.Empty )
             {
                 useRankCheckBox.Enabled = true;
-                useRankCheckBox.Checked = data.Character.UseRank;
+                useRankCheckBox.Checked = m_data.Character.UseRank;
             }
             else
             {
                 useRankCheckBox.Enabled = false;
             }
             // Name Box
-            nameBox.Text = data.Character.Name;
+            nameBox.Text = m_data.Character.Name;
         }
 
         // Events
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show( NEW_CHAR_SURE, NEW_CHAR_SURE_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2 );
+            DialogResult result = DialogResult.Yes;
+            if( m_settings.PromptOnNewChar )
+            {
+                result = MessageBox.Show(NEW_CHAR_SURE, NEW_CHAR_SURE_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            }
+            
             if( result == DialogResult.Yes )
             {
-                data = new CharGenDataBlock();
+                m_data = new CharGenDataBlock();
                 autoCreate.Enabled = true;
+                RefreshCharacterDisplay();
+                UpdateInputBoxes();
             }
         }
 
         private void autoCreate_Click(object sender, EventArgs e)
         {
-            if(data != null)
+            if(m_data != null)
             {
-                data.Character.RollRandomCharacteristics();
+                m_data.Character.RollRandomCharacteristics();
                 UpdateInputBoxes();
                 RefreshCharacterDisplay();
-                autoCreate.Enabled = false;
+                if (!m_settings.AllowReroll)
+                {
+                    autoCreate.Enabled = false;
+                }
             }
         }
 
         private void nameBox_TextChanged(object sender, EventArgs e)
         {
-            data.Character.Name = nameBox.Text;
+            m_data.Character.Name = nameBox.Text;
             RefreshCharacterDisplay();
         }
 
@@ -106,26 +122,28 @@ namespace TravellerTools.CharGen
 
         private void titleBox_TextChanged(object sender, EventArgs e)
         {
-            data.Character.Title = titleBox.Text;
+            m_data.Character.Title = titleBox.Text;
             RefreshCharacterDisplay();
         }
 
         private void useTitleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            data.Character.UseTitle = useTitleCheckBox.Checked;
+            m_data.Character.UseTitle = useTitleCheckBox.Checked;
             RefreshCharacterDisplay();
         }
 
         private void useRankCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            data.Character.UseRank = useRankCheckBox.Checked;
+            m_data.Character.UseRank = useRankCheckBox.Checked;
             RefreshCharacterDisplay();
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GeneralSettings settingsForm = new GeneralSettings();
+            GeneralSettings settingsForm = new GeneralSettings( m_settings );
             settingsForm.ShowDialog();
+            m_settings = settingsForm.Settings;
+            UpdateInputBoxes();
         }
     }
 }

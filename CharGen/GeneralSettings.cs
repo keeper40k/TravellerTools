@@ -7,35 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+
 
 namespace TravellerTools.CharGen
 {
     public partial class GeneralSettings : Form
     {
-        public GeneralSettings()
+        // Constructor
+
+        public GeneralSettings( CharGenSettings settings )
         {
             InitializeComponent();
-            LoadSettings();
+            if (settings == null)
+            {
+                Settings = new CharGenSettings();
+                Settings.LoadSettings();
+            }
+            else
+            {
+                Settings = settings;
+            }
+
+            promptOnNewCheckBox.Checked = Settings.PromptOnNewChar;
+            allowRerollCheckBox.Checked = Settings.AllowReroll;
         }
 
-        // Protected Methods
-
-        protected void LoadSettings()
-        {
-
-        }
-
-        protected void SaveSettings()
-        {
-            
-        }
+        // Public Methods
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            SaveSettings();
+            Settings.SaveSettings();
             this.Close();
         }
 
+        // Public Properties
+
+        public CharGenSettings Settings = null;
+
+        private void promptOnNewCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.PromptOnNewChar = promptOnNewCheckBox.Checked;
+        }
+
+        private void allowRerollCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.AllowReroll = allowRerollCheckBox.Checked;
+        }
     }
 }

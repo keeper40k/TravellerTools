@@ -32,6 +32,7 @@ namespace TravellerTools.CharGen
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettings));
             this.closeButton = new System.Windows.Forms.Button();
             this.promptOnNewCheckBox = new System.Windows.Forms.CheckBox();
+            this.allowRerollCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // closeButton
@@ -54,12 +55,25 @@ namespace TravellerTools.CharGen
             this.promptOnNewCheckBox.TabIndex = 2;
             this.promptOnNewCheckBox.Text = "Prompt on New Character";
             this.promptOnNewCheckBox.UseVisualStyleBackColor = true;
+            this.promptOnNewCheckBox.CheckedChanged += new System.EventHandler(this.promptOnNewCheckBox_CheckedChanged);
+            // 
+            // allowRerollCheckBox
+            // 
+            this.allowRerollCheckBox.AutoSize = true;
+            this.allowRerollCheckBox.Location = new System.Drawing.Point(12, 35);
+            this.allowRerollCheckBox.Name = "allowRerollCheckBox";
+            this.allowRerollCheckBox.Size = new System.Drawing.Size(242, 17);
+            this.allowRerollCheckBox.TabIndex = 3;
+            this.allowRerollCheckBox.Text = "Allow Reroll without creating a New Character";
+            this.allowRerollCheckBox.UseVisualStyleBackColor = true;
+            this.allowRerollCheckBox.CheckedChanged += new System.EventHandler(this.allowRerollCheckBox_CheckedChanged);
             // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 131);
+            this.Controls.Add(this.allowRerollCheckBox);
             this.Controls.Add(this.promptOnNewCheckBox);
             this.Controls.Add(this.closeButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -74,5 +88,6 @@ namespace TravellerTools.CharGen
 
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.CheckBox promptOnNewCheckBox;
+        private System.Windows.Forms.CheckBox allowRerollCheckBox;
     }
 }

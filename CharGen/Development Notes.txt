@@ -1,12 +1,5 @@
 ﻿NEXT STEPS: (Updated 18th Jan 2021)
 
-Application Settings:
-Need to add:
-  Settings Class and connect to CharGenMainForm
-  Use first setting
-  Feed settings into Settings Dialog and allow load/save to interact with settings data storage
-  Add file-based persistance to settings
-
 Data for Character:
   Need to add:
 	Age

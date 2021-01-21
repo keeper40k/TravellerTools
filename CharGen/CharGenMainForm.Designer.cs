@@ -37,6 +37,8 @@ namespace TravellerTools.CharGen
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.characterDisplayLabel = new System.Windows.Forms.Label();
             this.autoCreate = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@ namespace TravellerTools.CharGen
             this.useRankCheckBox = new System.Windows.Forms.CheckBox();
             this.rankLabel = new System.Windows.Forms.Label();
             this.rankBox = new System.Windows.Forms.TextBox();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,20 +83,20 @@ namespace TravellerTools.CharGen
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // editToolStripMenuItem
@@ -110,6 +110,21 @@ namespace TravellerTools.CharGen
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -128,7 +143,7 @@ namespace TravellerTools.CharGen
             // 
             // autoCreate
             // 
-            this.autoCreate.Location = new System.Drawing.Point(246, 32);
+            this.autoCreate.Location = new System.Drawing.Point(326, 32);
             this.autoCreate.Name = "autoCreate";
             this.autoCreate.Size = new System.Drawing.Size(75, 23);
             this.autoCreate.TabIndex = 3;
@@ -139,11 +154,11 @@ namespace TravellerTools.CharGen
             // autoCreateLabel
             // 
             this.autoCreateLabel.AutoSize = true;
-            this.autoCreateLabel.Location = new System.Drawing.Point(50, 37);
+            this.autoCreateLabel.Location = new System.Drawing.Point(160, 37);
             this.autoCreateLabel.Name = "autoCreateLabel";
-            this.autoCreateLabel.Size = new System.Drawing.Size(193, 13);
+            this.autoCreateLabel.Size = new System.Drawing.Size(160, 13);
             this.autoCreateLabel.TabIndex = 4;
-            this.autoCreateLabel.Text = "Roll New Automatic Traveller Character";
+            this.autoCreateLabel.Text = "Re-Roll Traveller Character UPP";
             // 
             // characterDisplay
             // 
@@ -228,21 +243,6 @@ namespace TravellerTools.CharGen
             this.rankBox.Name = "rankBox";
             this.rankBox.Size = new System.Drawing.Size(291, 20);
             this.rankBox.TabIndex = 14;
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // CharGenMainForm
             // 
