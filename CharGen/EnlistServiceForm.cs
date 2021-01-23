@@ -12,12 +12,14 @@ namespace TravellerTools.CharGen
 {
     public partial class EnlistServiceForm : Form
     {
-
+        
         // Constructor 
 
         public EnlistServiceForm( TravellerCharacter character )
         {
             Character = character;
+            Services = new TravellerServices();
+            Services.LoadSettings();
             InitializeComponent();
             RefreshCharacterDisplay();
         }
@@ -26,10 +28,11 @@ namespace TravellerTools.CharGen
         protected void RefreshCharacterDisplay()
         {
             characterDisplay.Text = Character.ShortStringFormat();
+            serviceRecommendationsBox.Text = Services.RecommendText( Character );
         }
-        
-        // Public Properties
 
+        // Public Properties
+        public TravellerServices Services;
         public TravellerCharacter Character;
 
     }

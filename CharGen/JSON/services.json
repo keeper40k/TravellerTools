@@ -1,0 +1,172 @@
+{
+  "Services": [
+    {
+      "Name": "Navy",
+      "Enlistment": { "Target": 8 },
+      "EnlistmentPlusOne": {
+        "Stat": "INT",
+        "Target": 8
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "EDU",
+        "Target": 9
+      },
+      "Survival": { "Target": 5 },
+      "SurvivalPlusTwo": {
+        "Stat": "INT",
+        "Target": 7
+      },
+      "Commission": { "Target": 10 },
+      "CommissionPlusOne": {
+        "Stat": "SOC",
+        "Target": 9
+      },
+      "Promotion": { "Target": 8 },
+      "PromotionPlusOne": {
+        "Stat": "EDU",
+        "Target": 8
+      },
+      "Reenlist": { "Target": 6 }
+    },
+    {
+      "Name": "Marines",
+      "Enlistment": { "Target": 9 },
+      "EnlistmentPlusOne": {
+        "Stat": "INT",
+        "Target": 8
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "STR",
+        "Target": 8
+      },
+      "Survival": { "Target": 6 },
+      "SurvivalPlusTwo": {
+        "Stat": "END",
+        "Target": 8
+      },
+      "Commission": { "Target": 9 },
+      "CommissionPlusOne": {
+        "Stat": "EDU",
+        "Target": 7
+      },
+      "Promotion": { "Target": 9 },
+      "PromotionPlusOne": {
+        "Stat": "SOC",
+        "Target": 8
+      },
+      "Reenlist": { "Target": 6 }
+    },
+    {
+      "Name": "Army",
+      "Enlistment": { "Target": 5 },
+      "EnlistmentPlusOne": {
+        "Stat": "DEX",
+        "Target": 6
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "END",
+        "Target": 5
+      },
+      "Survival": { "Target": 5 },
+      "SurvivalPlusTwo": {
+        "Stat": "EDU",
+        "Target": 6
+      },
+      "Commission": { "Target": 5 },
+      "CommissionPlusOne": {
+        "Stat": "END",
+        "Target": 7
+      },
+      "Promotion": { "Target": 6 },
+      "PromotionPlusOne": {
+        "Stat": "EDU",
+        "Target": 7
+      },
+      "Reenlist": { "Target": 7 }
+    },
+    {
+      "Name": "Scouts",
+      "Enlistment": { "Target": 7 },
+      "EnlistmentPlusOne": {
+        "Stat": "INT",
+        "Target": 6
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "STR",
+        "Target": 8
+      },
+      "Survival": { "Target": 7 },
+      "SurvivalPlusTwo": {
+        "Stat": "END",
+        "Target": 9
+      },
+      "Commission": { "Target": 99 },
+      "CommissionPlusOne": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "Promotion": { "Target": 99 },
+      "PromotionPlusOne": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "Reenlist": { "Target": 3 }
+    },
+    {
+      "Name": "Merchants",
+      "Enlistment": { "Target": 7 },
+      "EnlistmentPlusOne": {
+        "Stat": "STR",
+        "Target": 7
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "INT",
+        "Target": 6
+      },
+      "Survival": { "Target": 5 },
+      "SurvivalPlusTwo": {
+        "Stat": "INT",
+        "Target": 7
+      },
+      "Commission": { "Target": 4 },
+      "CommissionPlusOne": {
+        "Stat": "INT",
+        "Target": 6
+      },
+      "Promotion": { "Target": 10 },
+      "PromotionPlusOne": {
+        "Stat": "INT",
+        "Target": 9
+      },
+      "Reenlist": { "Target": 4 }
+    },
+    {
+      "Name": "Other",
+      "Enlistment": { "Target": 3 },
+      "EnlistmentPlusOne": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "EnlistmentPlusTwo": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "Survival": { "Target": 5 },
+      "SurvivalPlusTwo": {
+        "Stat": "INT",
+        "Target": 9
+      },
+      "Commission": { "Target": 99 },
+      "CommissionPlusOne": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "Promotion": { "Target": 99 },
+      "PromotionPlusOne": {
+        "Stat": "NONE",
+        "Target": 99
+      },
+      "Reenlist": { "Target": 5 }
+    }
+  ]
+}

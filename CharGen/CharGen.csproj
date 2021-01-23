@@ -121,6 +121,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="JSON\services.json" />
+    <None Include="JSON\settings.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -146,5 +148,11 @@
       <Name>Fundamentals</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)JSON\services.json $(TargetDir)\services.json
+copy $(ProjectDir)JSON\settings.json $(Targetdir)\settings.json
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

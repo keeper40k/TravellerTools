@@ -16,10 +16,11 @@ namespace TravellerTools.CharGen
 
         // Properties
 
+        public String Name { get; set; }
         public TravellerRollTarget Enlistment { get; set; }
         public TravellerCharacteristicRollTarget EnlistmentPlusOne { get; set; }
         public TravellerCharacteristicRollTarget EnlistmentPlusTwo { get; set; }
-        public TravellerRollTarget Survial { get; set; }
+        public TravellerRollTarget Survival { get; set; }
         public TravellerCharacteristicRollTarget SurvivalPlusTwo { get; set; }
         public TravellerRollTarget Commission { get; set; }
         public TravellerCharacteristicRollTarget CommissionPlusOne { get; set; }

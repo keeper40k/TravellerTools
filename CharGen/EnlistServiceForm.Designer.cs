@@ -77,10 +77,9 @@ namespace TravellerTools.CharGen
             // 
             // serviceRecommendationsBox
             // 
-            this.serviceRecommendationsBox.Enabled = false;
             this.serviceRecommendationsBox.Location = new System.Drawing.Point(407, 94);
             this.serviceRecommendationsBox.Name = "serviceRecommendationsBox";
-            this.serviceRecommendationsBox.Size = new System.Drawing.Size(381, 93);
+            this.serviceRecommendationsBox.Size = new System.Drawing.Size(381, 315);
             this.serviceRecommendationsBox.TabIndex = 9;
             this.serviceRecommendationsBox.Text = "";
             // 

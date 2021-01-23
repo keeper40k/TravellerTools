@@ -7,6 +7,9 @@ namespace TravellerTools.CharGen
     public class CharGenSettings
     {
 
+        // static strings
+        private static string SETTINGS_FILE = "settings.json";
+
         // Constructor
 
         public CharGenSettings()
@@ -17,9 +20,9 @@ namespace TravellerTools.CharGen
         // Public Methods
         public void LoadSettings()
         {
-            if (File.Exists("settings.json"))
+            if (File.Exists(SETTINGS_FILE))
             {
-                string json = File.ReadAllText("settings.json");
+                string json = File.ReadAllText(SETTINGS_FILE);
                 CharGenSettings settings = JsonSerializer.Deserialize<CharGenSettings>(json);
                 Duplicate( settings );
             }
@@ -28,7 +31,7 @@ namespace TravellerTools.CharGen
         public void SaveSettings()
         {
             string json = JsonSerializer.Serialize(this);
-            File.WriteAllText("settings.json", json);
+            File.WriteAllText(SETTINGS_FILE, json);
         }
 
         // Protected Methods

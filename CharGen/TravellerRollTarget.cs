@@ -9,8 +9,9 @@ namespace TravellerTools.CharGen
     public class TravellerRollTarget
     {
         // Constructor
-        public TravellerRollTarget()
+        public TravellerRollTarget( decimal target )
         {
+            Target = target;
         }
 
         // Properties
