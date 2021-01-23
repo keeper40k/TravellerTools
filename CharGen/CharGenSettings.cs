@@ -37,17 +37,20 @@ namespace TravellerTools.CharGen
         {
             PromptOnNewChar = true;
             AllowReroll = false;
+            AllowAgeEditing = false;
         }
 
         protected void Duplicate( CharGenSettings settings )
         {
             PromptOnNewChar = settings.PromptOnNewChar;
             AllowReroll = settings.AllowReroll;
+            AllowAgeEditing = settings.AllowAgeEditing;
         }
 
         // Public Properties
 
         public bool PromptOnNewChar { get; set; }
         public bool AllowReroll { get; set; }
+        public bool AllowAgeEditing { get; set; }
     }
 }

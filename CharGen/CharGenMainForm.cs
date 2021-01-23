@@ -74,6 +74,9 @@ namespace TravellerTools.CharGen
             }
             // Name Box
             nameBox.Text = m_data.Character.Name;
+            // Age Box
+            ageNumberBox.Value = m_data.Character.Age;
+            ageNumberBox.Enabled = m_settings.AllowAgeEditing;
         }
 
         // Events
@@ -144,6 +147,32 @@ namespace TravellerTools.CharGen
             settingsForm.ShowDialog();
             m_settings = settingsForm.Settings;
             UpdateInputBoxes();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ageNumberBox_ValueChanged(object sender, EventArgs e)
+        {
+            m_data.Character.Age = ageNumberBox.Value;
+            RefreshCharacterDisplay();
+        }
+
+        private void serviceBox_TextChanged(object sender, EventArgs e)
+        {
+            m_data.Character.Service = serviceBox.Text;
+            RefreshCharacterDisplay();
+        }
+
+        private void enlistButton_Click(object sender, EventArgs e)
+        {
+            EnlistServiceForm enlistForm = new EnlistServiceForm( m_data.Character );
+            enlistForm.ShowDialog();
+            m_data.Character = enlistForm.Character;
+            UpdateInputBoxes();
+            RefreshCharacterDisplay();
         }
     }
 }

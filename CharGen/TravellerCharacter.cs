@@ -37,11 +37,13 @@ namespace TravellerTools.CharGen
         {
             // Temporary Initialisaton
             Name = "Bob";
+            Age = 18;
             Title = string.Empty;
             UseTitle = true;
             Rank = string.Empty;
             UseRank = true;
             RollRandomCharacteristics();
+            Service = string.Empty;
         }
 
 
@@ -94,12 +96,12 @@ namespace TravellerTools.CharGen
             {
                 case 11:
                 {
-                    titles.Add( KNIGHT );
-                    titles.Add( KNIGHTESS );
-                    titles.Add( DAME );
-                        titles.Add(SIR);
-                        titles.Add(LADY);
-                        break;
+                    titles.Add(KNIGHT);
+                    titles.Add(KNIGHTESS);
+                    titles.Add(DAME);
+                    titles.Add(SIR);
+                    titles.Add(LADY);
+                    break;
                 }
                 case 12:
                 {
@@ -146,7 +148,7 @@ namespace TravellerTools.CharGen
                 {
                     titles.Add(string.Empty);
                     break;
-                    }
+                }
             }
             return titles;
         }
@@ -154,16 +156,26 @@ namespace TravellerTools.CharGen
         // Override Methods
         public override string ToString()
         {
+            string result = ShortStringFormat();
+            if (Service != string.Empty)
+            {
+                result += "\nService: " + Service;
+            }
+            return result;
+        }
+
+        public string ShortStringFormat()
+        {
             string result = "";
-            if ( (Title != string.Empty) && UseTitle )
+            if ((Title != string.Empty) && UseTitle)
             {
                 result += Title + " ";
             }
-            if( (Rank != string.Empty) && UseRank )
+            if ((Rank != string.Empty) && UseRank)
             {
                 result += Rank + " ";
             }
-            result += Name + "\t" + UPP;
+            result += Name + "\t" + UPP + "\tAge " + Age;
             return result;
         }
 
@@ -214,5 +226,8 @@ namespace TravellerTools.CharGen
                 return upp;
             }
         }
+
+        public decimal Age;
+        public string Service;
     }
 }

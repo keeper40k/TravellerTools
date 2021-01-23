@@ -81,6 +81,16 @@
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CharGenSettings.cs" />
+    <Compile Include="TravellerCharacteristicRollTarget.cs" />
+    <Compile Include="TravellerRollTarget.cs" />
+    <Compile Include="TravellerService.cs" />
+    <Compile Include="TravellerServices.cs" />
+    <Compile Include="EnlistServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnlistServiceForm.Designer.cs">
+      <DependentUpon>EnlistServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="CharGenMainForm.resx">
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnlistServiceForm.resx">
+      <DependentUpon>EnlistServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
@@ -123,8 +136,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TCG.ico" />
     <Content Include="Development Notes.txt" />
+    <Content Include="Images\TravellerIcon.ico" />
+    <Content Include="Images\TravellerIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fundamentals\Fundamentals.csproj">

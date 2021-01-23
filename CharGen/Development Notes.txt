@@ -2,5 +2,15 @@
 
 Data for Character:
   Need to add:
-	Age
-	then work on Careers
+	Work on Careers
+      Started work on Services for CharGen. About 20% of the way through the EnlistServiceForm. Need to work on showing 
+	  recommended services next, then onto the rolling mechanics for Enlistment.
+	  - Currently writing
+			EnlistServiceForm
+			  TravellerService - in the middle of drafting characteristics
+
+Settings:
+  Need to add a "Do you want to save this character?" check when existing the application. (OnFormClosing event?)
+
+String Usage:
+  Need to add resources and remove strings from being embedded in classes.

@@ -35,6 +35,8 @@ namespace TravellerTools.CharGen
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +54,14 @@ namespace TravellerTools.CharGen
             this.useRankCheckBox = new System.Windows.Forms.CheckBox();
             this.rankLabel = new System.Windows.Forms.Label();
             this.rankBox = new System.Windows.Forms.TextBox();
+            this.ageLabel = new System.Windows.Forms.Label();
+            this.ageNumberBox = new System.Windows.Forms.NumericUpDown();
+            this.enlistButton = new System.Windows.Forms.Button();
+            this.enlistLabel = new System.Windows.Forms.Label();
+            this.serviceBox = new System.Windows.Forms.TextBox();
+            this.serviceLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ageNumberBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -74,7 +83,9 @@ namespace TravellerTools.CharGen
             this.fIleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
             this.fIleToolStripMenuItem.Name = "fIleToolStripMenuItem";
             this.fIleToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fIleToolStripMenuItem.Text = "FIle";
@@ -98,6 +109,18 @@ namespace TravellerTools.CharGen
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -162,6 +185,7 @@ namespace TravellerTools.CharGen
             // 
             // characterDisplay
             // 
+            this.characterDisplay.Enabled = false;
             this.characterDisplay.Location = new System.Drawing.Point(407, 29);
             this.characterDisplay.Name = "characterDisplay";
             this.characterDisplay.Size = new System.Drawing.Size(381, 409);
@@ -171,7 +195,7 @@ namespace TravellerTools.CharGen
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(12, 131);
+            this.nameLabel.Location = new System.Drawing.Point(12, 112);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 6;
@@ -179,7 +203,7 @@ namespace TravellerTools.CharGen
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(53, 128);
+            this.nameBox.Location = new System.Drawing.Point(53, 109);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(348, 20);
             this.nameBox.TabIndex = 7;
@@ -188,7 +212,7 @@ namespace TravellerTools.CharGen
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(12, 77);
+            this.titleLabel.Location = new System.Drawing.Point(12, 62);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 8;
@@ -198,7 +222,7 @@ namespace TravellerTools.CharGen
             // 
             this.titleBox.Enabled = false;
             this.titleBox.FormattingEnabled = true;
-            this.titleBox.Location = new System.Drawing.Point(53, 74);
+            this.titleBox.Location = new System.Drawing.Point(53, 59);
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(291, 21);
             this.titleBox.TabIndex = 9;
@@ -208,7 +232,7 @@ namespace TravellerTools.CharGen
             // useTitleCheckBox
             // 
             this.useTitleCheckBox.AutoSize = true;
-            this.useTitleCheckBox.Location = new System.Drawing.Point(350, 76);
+            this.useTitleCheckBox.Location = new System.Drawing.Point(350, 61);
             this.useTitleCheckBox.Name = "useTitleCheckBox";
             this.useTitleCheckBox.Size = new System.Drawing.Size(51, 17);
             this.useTitleCheckBox.TabIndex = 10;
@@ -219,7 +243,7 @@ namespace TravellerTools.CharGen
             // useRankCheckBox
             // 
             this.useRankCheckBox.AutoSize = true;
-            this.useRankCheckBox.Location = new System.Drawing.Point(350, 102);
+            this.useRankCheckBox.Location = new System.Drawing.Point(350, 87);
             this.useRankCheckBox.Name = "useRankCheckBox";
             this.useRankCheckBox.Size = new System.Drawing.Size(51, 17);
             this.useRankCheckBox.TabIndex = 13;
@@ -230,7 +254,7 @@ namespace TravellerTools.CharGen
             // rankLabel
             // 
             this.rankLabel.AutoSize = true;
-            this.rankLabel.Location = new System.Drawing.Point(12, 104);
+            this.rankLabel.Location = new System.Drawing.Point(14, 88);
             this.rankLabel.Name = "rankLabel";
             this.rankLabel.Size = new System.Drawing.Size(33, 13);
             this.rankLabel.TabIndex = 11;
@@ -239,16 +263,77 @@ namespace TravellerTools.CharGen
             // rankBox
             // 
             this.rankBox.Enabled = false;
-            this.rankBox.Location = new System.Drawing.Point(53, 100);
+            this.rankBox.Location = new System.Drawing.Point(53, 85);
             this.rankBox.Name = "rankBox";
             this.rankBox.Size = new System.Drawing.Size(291, 20);
             this.rankBox.TabIndex = 14;
+            // 
+            // ageLabel
+            // 
+            this.ageLabel.AutoSize = true;
+            this.ageLabel.Location = new System.Drawing.Point(14, 137);
+            this.ageLabel.Name = "ageLabel";
+            this.ageLabel.Size = new System.Drawing.Size(26, 13);
+            this.ageLabel.TabIndex = 15;
+            this.ageLabel.Text = "Age";
+            // 
+            // ageNumberBox
+            // 
+            this.ageNumberBox.Enabled = false;
+            this.ageNumberBox.Location = new System.Drawing.Point(53, 135);
+            this.ageNumberBox.Name = "ageNumberBox";
+            this.ageNumberBox.Size = new System.Drawing.Size(348, 20);
+            this.ageNumberBox.TabIndex = 16;
+            this.ageNumberBox.ValueChanged += new System.EventHandler(this.ageNumberBox_ValueChanged);
+            // 
+            // enlistButton
+            // 
+            this.enlistButton.Location = new System.Drawing.Point(326, 172);
+            this.enlistButton.Name = "enlistButton";
+            this.enlistButton.Size = new System.Drawing.Size(75, 23);
+            this.enlistButton.TabIndex = 17;
+            this.enlistButton.Text = "ENLIST";
+            this.enlistButton.UseVisualStyleBackColor = true;
+            this.enlistButton.Click += new System.EventHandler(this.enlistButton_Click);
+            // 
+            // enlistLabel
+            // 
+            this.enlistLabel.AutoSize = true;
+            this.enlistLabel.Location = new System.Drawing.Point(229, 177);
+            this.enlistLabel.Name = "enlistLabel";
+            this.enlistLabel.Size = new System.Drawing.Size(91, 13);
+            this.enlistLabel.TabIndex = 18;
+            this.enlistLabel.Text = "Enlist in a Service";
+            // 
+            // serviceBox
+            // 
+            this.serviceBox.Enabled = false;
+            this.serviceBox.Location = new System.Drawing.Point(53, 201);
+            this.serviceBox.Name = "serviceBox";
+            this.serviceBox.Size = new System.Drawing.Size(348, 20);
+            this.serviceBox.TabIndex = 20;
+            this.serviceBox.TextChanged += new System.EventHandler(this.serviceBox_TextChanged);
+            // 
+            // serviceLabel
+            // 
+            this.serviceLabel.AutoSize = true;
+            this.serviceLabel.Location = new System.Drawing.Point(12, 204);
+            this.serviceLabel.Name = "serviceLabel";
+            this.serviceLabel.Size = new System.Drawing.Size(43, 13);
+            this.serviceLabel.TabIndex = 19;
+            this.serviceLabel.Text = "Service";
             // 
             // CharGenMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.serviceBox);
+            this.Controls.Add(this.serviceLabel);
+            this.Controls.Add(this.enlistLabel);
+            this.Controls.Add(this.enlistButton);
+            this.Controls.Add(this.ageNumberBox);
+            this.Controls.Add(this.ageLabel);
             this.Controls.Add(this.rankBox);
             this.Controls.Add(this.useRankCheckBox);
             this.Controls.Add(this.rankLabel);
@@ -268,6 +353,7 @@ namespace TravellerTools.CharGen
             this.Text = "Classic Traveller Character Generator";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ageNumberBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,6 +383,14 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.TextBox rankBox;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label ageLabel;
+        private System.Windows.Forms.NumericUpDown ageNumberBox;
+        private System.Windows.Forms.Button enlistButton;
+        private System.Windows.Forms.Label enlistLabel;
+        private System.Windows.Forms.TextBox serviceBox;
+        private System.Windows.Forms.Label serviceLabel;
     }
 }
 
