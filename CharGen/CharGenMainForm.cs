@@ -77,6 +77,12 @@ namespace TravellerTools.CharGen
             // Age Box
             ageNumberBox.Value = m_data.Character.Age;
             ageNumberBox.Enabled = m_settings.AllowAgeEditing;
+
+            // Service Box
+            if (m_data.Character.Service != string.Empty)
+            {
+                serviceBox.Text = m_data.Character.Service;
+            }
         }
 
         // Events
@@ -169,10 +175,13 @@ namespace TravellerTools.CharGen
         private void enlistButton_Click(object sender, EventArgs e)
         {
             EnlistServiceForm enlistForm = new EnlistServiceForm( m_data.Character );
-            enlistForm.ShowDialog();
-            m_data.Character = enlistForm.Character;
-            UpdateInputBoxes();
-            RefreshCharacterDisplay();
+            DialogResult result = enlistForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                m_data.Character = enlistForm.Character;
+                UpdateInputBoxes();
+                RefreshCharacterDisplay();
+            }
         }
     }
 }

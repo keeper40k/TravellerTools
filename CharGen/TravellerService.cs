@@ -14,7 +14,13 @@ namespace TravellerTools.CharGen
         {
         }
 
-        // Properties
+        // Public Methods
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        // Public Properties
 
         public String Name { get; set; }
         public TravellerRollTarget Enlistment { get; set; }

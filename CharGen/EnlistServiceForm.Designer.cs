@@ -36,6 +36,11 @@ namespace TravellerTools.CharGen
             this.characterDisplayLabel = new System.Windows.Forms.Label();
             this.serviceRecommendationsBox = new System.Windows.Forms.RichTextBox();
             this.serviceRecommendationsLabel = new System.Windows.Forms.Label();
+            this.enlistmentChoiceLabel = new System.Windows.Forms.Label();
+            this.enlistmentChoiceBox = new System.Windows.Forms.ComboBox();
+            this.enlistTargetLabel = new System.Windows.Forms.Label();
+            this.enlistButton = new System.Windows.Forms.Button();
+            this.enlistmentResultLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -50,12 +55,14 @@ namespace TravellerTools.CharGen
             // 
             // okButton
             // 
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(632, 415);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // characterDisplay
             // 
@@ -92,12 +99,65 @@ namespace TravellerTools.CharGen
             this.serviceRecommendationsLabel.TabIndex = 8;
             this.serviceRecommendationsLabel.Text = "Service Recommendations";
             // 
+            // enlistmentChoiceLabel
+            // 
+            this.enlistmentChoiceLabel.AutoSize = true;
+            this.enlistmentChoiceLabel.Location = new System.Drawing.Point(12, 16);
+            this.enlistmentChoiceLabel.Name = "enlistmentChoiceLabel";
+            this.enlistmentChoiceLabel.Size = new System.Drawing.Size(192, 13);
+            this.enlistmentChoiceLabel.TabIndex = 11;
+            this.enlistmentChoiceLabel.Text = "Choose a Service to attempt Enlistment";
+            // 
+            // enlistmentChoiceBox
+            // 
+            this.enlistmentChoiceBox.FormattingEnabled = true;
+            this.enlistmentChoiceBox.Location = new System.Drawing.Point(211, 13);
+            this.enlistmentChoiceBox.Name = "enlistmentChoiceBox";
+            this.enlistmentChoiceBox.Size = new System.Drawing.Size(187, 21);
+            this.enlistmentChoiceBox.TabIndex = 13;
+            this.enlistmentChoiceBox.SelectedIndexChanged += new System.EventHandler(this.enlistmentChoiceBox_SelectedIndexChanged);
+            // 
+            // enlistTargetLabel
+            // 
+            this.enlistTargetLabel.AutoSize = true;
+            this.enlistTargetLabel.Location = new System.Drawing.Point(45, 45);
+            this.enlistTargetLabel.Name = "enlistTargetLabel";
+            this.enlistTargetLabel.Size = new System.Drawing.Size(272, 13);
+            this.enlistTargetLabel.TabIndex = 14;
+            this.enlistTargetLabel.Text = "You need X+ on 2d6 to Enlist. You will get a +Y modifier.";
+            // 
+            // enlistButton
+            // 
+            this.enlistButton.Enabled = false;
+            this.enlistButton.Location = new System.Drawing.Point(323, 40);
+            this.enlistButton.Name = "enlistButton";
+            this.enlistButton.Size = new System.Drawing.Size(75, 23);
+            this.enlistButton.TabIndex = 15;
+            this.enlistButton.Text = "ENLIST";
+            this.enlistButton.UseVisualStyleBackColor = true;
+            this.enlistButton.Click += new System.EventHandler(this.enlistButton_Click);
+            // 
+            // enlistmentResultLabel
+            // 
+            this.enlistmentResultLabel.AutoSize = true;
+            this.enlistmentResultLabel.Location = new System.Drawing.Point(13, 77);
+            this.enlistmentResultLabel.Name = "enlistmentResultLabel";
+            this.enlistmentResultLabel.Size = new System.Drawing.Size(100, 13);
+            this.enlistmentResultLabel.TabIndex = 16;
+            this.enlistmentResultLabel.Text = "Enlistment Result ...";
+            // 
             // EnlistServiceForm
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.enlistmentResultLabel);
+            this.Controls.Add(this.enlistButton);
+            this.Controls.Add(this.enlistTargetLabel);
+            this.Controls.Add(this.enlistmentChoiceBox);
+            this.Controls.Add(this.enlistmentChoiceLabel);
             this.Controls.Add(this.serviceRecommendationsBox);
             this.Controls.Add(this.serviceRecommendationsLabel);
             this.Controls.Add(this.characterDisplay);
@@ -124,5 +184,10 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.Label characterDisplayLabel;
         private System.Windows.Forms.RichTextBox serviceRecommendationsBox;
         private System.Windows.Forms.Label serviceRecommendationsLabel;
+        private System.Windows.Forms.Label enlistmentChoiceLabel;
+        private System.Windows.Forms.ComboBox enlistmentChoiceBox;
+        private System.Windows.Forms.Label enlistTargetLabel;
+        private System.Windows.Forms.Button enlistButton;
+        private System.Windows.Forms.Label enlistmentResultLabel;
     }
 }
