@@ -9,6 +9,8 @@ namespace TravellerTools.CharGen
 {
     public class TravellerCharacter
     {
+        // Static Strings
+
         private static string SIR = "Sir";
         private static string LADY = "Lady";
         private static string KNIGHT = "Knight";
@@ -33,21 +35,17 @@ namespace TravellerTools.CharGen
         private static string EMPERORESS = "Emperoress";
 
         // Constructors
+
         public TravellerCharacter()
         {
-            // Temporary Initialisaton
+            // Temporary Name
             Name = "Bob";
-            Age = 18;
-            Title = string.Empty;
-            UseTitle = true;
-            Rank = string.Empty;
-            UseRank = true;
+            Reinitialise();
             RollRandomCharacteristics();
-            Service = string.Empty;
         }
 
-
         // Public Methods
+
         public string EHexCharacteristic(int value)
         {
             string result = "";
@@ -77,6 +75,22 @@ namespace TravellerTools.CharGen
             }
 
             return result;
+        }
+
+        public void Reinitialise()
+        {
+            Age = 18;
+            Title = string.Empty;
+            UseTitle = true;
+            Rank = string.Empty;
+            UseRank = true;
+            Service = string.Empty;
+            Drafted = false;
+            FailedService = string.Empty;
+            TermsOfService = 0;
+            InjuredDuringCreation = false;
+
+            CreationHistory = string.Empty;
         }
 
         public void RollRandomCharacteristics()
@@ -153,7 +167,8 @@ namespace TravellerTools.CharGen
             return titles;
         }
 
-        // Override Methods
+        // Public Override Methods
+
         public override string ToString()
         {
             string result = ShortStringFormat();
@@ -161,8 +176,14 @@ namespace TravellerTools.CharGen
             {
                 result += "\nService: " + Service;
             }
+            if(CreationHistory != string.Empty)
+            {
+                result += "\n\n" + CreationHistory;
+            }
             return result;
         }
+
+        // Public Methods
 
         public string ShortStringFormat()
         {
@@ -180,19 +201,22 @@ namespace TravellerTools.CharGen
         }
 
         // Property Backers complex properties
+
         private int m_SOC;
 
-        // Properties
-        public string Title;
-        public bool UseTitle;
-        public string Rank;
-        public bool UseRank;
-        public string Name;
-        public int STR;
-        public int DEX;
-        public int END;
-        public int INT;
-        public int EDU;
+        // Public Properties
+
+        public string Title { get; set; }
+        // Doesn't need to be serialised
+        public bool UseTitle; 
+        public string Rank { get; set; }
+        public bool UseRank { get; set; }
+        public string Name { get; set; }
+        public int STR { get; set; }
+        public int DEX { get; set; }
+        public int END { get; set; }
+        public int INT { get; set; }
+        public int EDU { get; set; }
         public int SOC
         {
             get
@@ -213,6 +237,7 @@ namespace TravellerTools.CharGen
             }
         }
 
+        // Doesn't need to be serialised
         public string UPP
         {
             get
@@ -227,7 +252,14 @@ namespace TravellerTools.CharGen
             }
         }
 
-        public decimal Age;
-        public string Service;
+        public decimal Age { get; set; }
+        public string Service { get; set; }
+        public bool Drafted { get; set; }
+        public string FailedService { get; set; }
+        public decimal TermsOfService { get; set; }
+        public bool InjuredDuringCreation { get; set; }
+
+
+        public string CreationHistory { get; set; }
     }
 }

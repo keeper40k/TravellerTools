@@ -34,5 +34,7 @@ namespace TravellerTools.CharGen
         public TravellerCharacteristicRollTarget PromotionPlusOne { get; set; }
         public TravellerRollTarget Reenlist { get; set; }
 
+        public decimal DraftNumber { get; set; }
+
     }
 }

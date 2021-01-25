@@ -26,7 +26,8 @@
         "Stat": "EDU",
         "Target": 8
       },
-      "Reenlist": { "Target": 6 }
+      "Reenlist": { "Target": 6 },
+      "DraftNumber": 1
     },
     {
       "Name": "Marines",
@@ -54,7 +55,8 @@
         "Stat": "SOC",
         "Target": 8
       },
-      "Reenlist": { "Target": 6 }
+      "Reenlist": { "Target": 6 },
+      "DraftNumber": 2
     },
     {
       "Name": "Army",
@@ -82,7 +84,8 @@
         "Stat": "EDU",
         "Target": 7
       },
-      "Reenlist": { "Target": 7 }
+      "Reenlist": { "Target": 7 },
+      "DraftNumber": 3
     },
     {
       "Name": "Scouts",
@@ -110,7 +113,8 @@
         "Stat": "NONE",
         "Target": 99
       },
-      "Reenlist": { "Target": 3 }
+      "Reenlist": { "Target": 3 },
+      "DraftNumber": 4
     },
     {
       "Name": "Merchants",
@@ -138,7 +142,8 @@
         "Stat": "INT",
         "Target": 9
       },
-      "Reenlist": { "Target": 4 }
+      "Reenlist": { "Target": 4 },
+      "DraftNumber": 5
     },
     {
       "Name": "Other",
@@ -166,7 +171,8 @@
         "Stat": "NONE",
         "Target": 99
       },
-      "Reenlist": { "Target": 5 }
+      "Reenlist": { "Target": 5 },
+      "DraftNumber": 6
     }
   ]
 }

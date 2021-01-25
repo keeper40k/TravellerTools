@@ -60,6 +60,8 @@ namespace TravellerTools.CharGen
             this.enlistLabel = new System.Windows.Forms.Label();
             this.serviceBox = new System.Windows.Forms.TextBox();
             this.serviceLabel = new System.Windows.Forms.Label();
+            this.termTitleLabel = new System.Windows.Forms.Label();
+            this.termRollButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageNumberBox)).BeginInit();
             this.SuspendLayout();
@@ -185,7 +187,8 @@ namespace TravellerTools.CharGen
             // 
             // characterDisplay
             // 
-            this.characterDisplay.Enabled = false;
+            this.characterDisplay.BackColor = System.Drawing.SystemColors.Control;
+            this.characterDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.characterDisplay.Location = new System.Drawing.Point(407, 29);
             this.characterDisplay.Name = "characterDisplay";
             this.characterDisplay.Size = new System.Drawing.Size(381, 409);
@@ -281,6 +284,11 @@ namespace TravellerTools.CharGen
             // 
             this.ageNumberBox.Enabled = false;
             this.ageNumberBox.Location = new System.Drawing.Point(53, 135);
+            this.ageNumberBox.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
             this.ageNumberBox.Name = "ageNumberBox";
             this.ageNumberBox.Size = new System.Drawing.Size(348, 20);
             this.ageNumberBox.TabIndex = 16;
@@ -323,11 +331,32 @@ namespace TravellerTools.CharGen
             this.serviceLabel.TabIndex = 19;
             this.serviceLabel.Text = "Service";
             // 
+            // termTitleLabel
+            // 
+            this.termTitleLabel.AutoSize = true;
+            this.termTitleLabel.Location = new System.Drawing.Point(14, 263);
+            this.termTitleLabel.Name = "termTitleLabel";
+            this.termTitleLabel.Size = new System.Drawing.Size(108, 13);
+            this.termTitleLabel.TabIndex = 21;
+            this.termTitleLabel.Text = "Processing Term X ...";
+            // 
+            // termRollButton
+            // 
+            this.termRollButton.Location = new System.Drawing.Point(326, 258);
+            this.termRollButton.Name = "termRollButton";
+            this.termRollButton.Size = new System.Drawing.Size(75, 23);
+            this.termRollButton.TabIndex = 22;
+            this.termRollButton.Text = "ROLL";
+            this.termRollButton.UseVisualStyleBackColor = true;
+            this.termRollButton.Click += new System.EventHandler(this.termRollButton_Click);
+            // 
             // CharGenMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.termRollButton);
+            this.Controls.Add(this.termTitleLabel);
             this.Controls.Add(this.serviceBox);
             this.Controls.Add(this.serviceLabel);
             this.Controls.Add(this.enlistLabel);
@@ -391,6 +420,8 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.Label enlistLabel;
         private System.Windows.Forms.TextBox serviceBox;
         private System.Windows.Forms.Label serviceLabel;
+        private System.Windows.Forms.Label termTitleLabel;
+        private System.Windows.Forms.Button termRollButton;
     }
 }
 

@@ -13,9 +13,11 @@ namespace TravellerTools.CharGen
         public CharGenDataBlock()
         {
             Character = new TravellerCharacter();
+            Service = null;
         }
 
         // Properties
-        public TravellerCharacter Character;
-    }
+        public TravellerCharacter Character { get; set; }
+        public TravellerService Service { get; set; }
+}
 }

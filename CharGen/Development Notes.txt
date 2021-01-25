@@ -3,11 +3,11 @@
 Data for Character:
   Need to add:
 	Work on Careers
-      Started work on Services for CharGen. About 35% of the way through the EnlistServiceForm. 
-	  Done basic service selection.  Need to work on the Draft, next, for failures.
-	  Then it will be onto the details of each term of enlistment.
+      Enlistment Complete.
+	  Working on Processing the deatils of each Term of Service now.
+	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
-			EnlistServiceForm
+			CharGenMainForm
 
 Other ...
 
@@ -15,6 +15,9 @@ Investigate : Should I really be saving settings.json ? Is this really needed?
 
 Settings:
   Need to add a "Do you want to save this character?" check when existing the application. (OnFormClosing event?)
+  Need to store the settings file in a user data folder! (Need an active directory concept?)
+
+Features: 
   Also, actually saving characters ... JSON format, and human readable format
 
 String Usage:
@@ -22,3 +25,4 @@ String Usage:
 
 Future
   When expanding to 18 services in the future, Draft probably needs to be an option.
+  When CharGen is complete, extract the data classes out to their own project for re-use elsewhere

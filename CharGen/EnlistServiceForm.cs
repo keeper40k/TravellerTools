@@ -13,10 +13,14 @@ namespace TravellerTools.CharGen
 {
     public partial class EnlistServiceForm : Form
     {
+        // Static Strings
 
-        private static string ENLIST_LABEL = "You need {0}+ on 2d6 to Enlist. You will get a +{1} modifier.";
-        private static string ENLIST_SUCCESS = "You successfully enlisted in the {0}, with a total roll of {1}.";
-        private static string ENLIST_FAIL = "You failted to enlisted in the {0}, with a total roll of {1}.";
+        private static string ENLIST_LABEL = "{0} needs {1}+ on 2d6 to Enlist. You will get a +{2} modifier.";
+        private static string ENLIST_SUCCESS = "{0} successfully enlisted in the {1}, with a total roll of {2}.";
+        private static string ENLIST_FAIL = "{0} failed to enlisted in the {1}, with a total roll of {2}.";
+        private static string DRAFT_RESULT = "{0} has been drafted into the {1}.";
+
+        private static string SERVICE_ENTERED = "Service Entered:";
 
         // Constructor 
 
@@ -26,6 +30,7 @@ namespace TravellerTools.CharGen
             Services = new TravellerServices();
             Services.LoadSettings();
             SelectedService = null;
+            TermsHistoryText = string.Empty;
             InitializeComponent();
             InitialiseInputBoxes();
             UpdateInputBoxes();
@@ -36,7 +41,7 @@ namespace TravellerTools.CharGen
         protected void RefreshCharacterDisplay()
         {
             characterDisplay.Text = Character.ShortStringFormat();
-            serviceRecommendationsBox.Text = Services.RecommendText( Character );
+            recommendationsBox.Text = Services.RecommendText(Character);
         }
 
         // Some of the input boxes won't change content, so they only need initialising once.
@@ -52,18 +57,48 @@ namespace TravellerTools.CharGen
             enlistTargetLabel.Text = string.Empty;
             enlistButton.Enabled = false;
             enlistmentResultLabel.Text = string.Empty;
+            draftResultLabel.Text = string.Empty;
 
             // OK Button
-            // Should be disabled until a Service has been selected.
-            // Enable happens in methods enlistButton_Click()
+            // Should be disabled until character creation is complete
             okButton.Enabled = false;
+
         }
 
         protected void UpdateInputBoxes()
         {
         }
 
+        protected void ExecuteDraft()
+        {
+            Character.Drafted = true;
+            if (enlistmentChoiceBox.SelectedItem is TravellerService)
+            {
+                Character.FailedService = (enlistmentChoiceBox.SelectedItem as TravellerService).Name;
+            }
+
+            decimal draftResult = DiceTools.RollOneDie(6);
+            for( int i = 0; i < Services.Services.Count; i++ )
+            {
+                if (Services.Services[i].DraftNumber == draftResult)
+                {
+                    Character.Service = Services.Services[i].Name;
+                    enlistmentChoiceBox.SelectedItem = Services.Services[i];
+                    break;
+                }
+            }
+            if (Character.Service != String.Empty)
+            {
+                string resultString = String.Format(DRAFT_RESULT, Character.Name, Character.Service);
+                draftResultLabel.Text = resultString;
+            }
+        }
+
+        // Protected Properties
+        protected string TermsHistoryText;
+
         // Public Properties
+
         public TravellerServices Services;
         public TravellerCharacter Character;
         public TravellerService SelectedService;
@@ -86,7 +121,7 @@ namespace TravellerTools.CharGen
                 {
                     bonus += 1;
                 }
-                string labelText = String.Format(ENLIST_LABEL, target, bonus);
+                string labelText = String.Format(ENLIST_LABEL, Character.Name, target, bonus);
                 enlistTargetLabel.Text = labelText;
                 enlistButton.Enabled = true;
             }
@@ -127,16 +162,28 @@ namespace TravellerTools.CharGen
             bool enlist = (result >= SelectedService.Enlistment.Target);
             if (enlist)
             {
-                string labelText = String.Format(ENLIST_SUCCESS, SelectedService.Name, result);
+                string labelText = String.Format(ENLIST_SUCCESS, Character.Name, SelectedService.Name, result);
                 enlistmentResultLabel.Text = labelText;
-                okButton.Enabled = true;
             }
             else
             {
-                string labelText = String.Format(ENLIST_FAIL, SelectedService.Name, result);
+                string labelText = String.Format(ENLIST_FAIL, Character.Name, SelectedService.Name, result);
                 enlistmentResultLabel.Text = labelText;
                 // What happens in the draft ...
+                ExecuteDraft();
             }
+
+            Character.CreationHistory += enlistmentResultLabel.Text + "\n";
+            if( Character.Drafted )
+            {
+                Character.CreationHistory += draftResultLabel.Text + "\n";
+            }
+            Character.CreationHistory += "\n";
+
+            enlistmentChoiceLabel.Text = SERVICE_ENTERED;
+            enlistmentChoiceBox.Enabled = false;
+            enlistButton.Enabled = false;
+            okButton.Enabled = true;
         }
     }
 }

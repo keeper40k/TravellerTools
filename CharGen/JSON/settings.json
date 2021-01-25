@@ -1,1 +1,6 @@
-{"PromptOnNewChar":true,"AllowReroll":true,"AllowAgeEditing":true}
+{
+  "PromptOnNewChar": true,
+  "AllowReroll": true,
+  "AllowAgeEditing": true,
+  "AllowCharacterSurvival": false
+}

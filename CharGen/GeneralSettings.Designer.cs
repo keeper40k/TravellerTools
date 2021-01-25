@@ -34,12 +34,13 @@ namespace TravellerTools.CharGen
             this.promptOnNewCheckBox = new System.Windows.Forms.CheckBox();
             this.allowRerollCheckBox = new System.Windows.Forms.CheckBox();
             this.allowAgeEditingBox = new System.Windows.Forms.CheckBox();
+            this.allowCharacterSurvivalBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // closeButton
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.Location = new System.Drawing.Point(190, 94);
+            this.closeButton.Location = new System.Drawing.Point(181, 104);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 0;
@@ -80,11 +81,23 @@ namespace TravellerTools.CharGen
             this.allowAgeEditingBox.UseVisualStyleBackColor = true;
             this.allowAgeEditingBox.CheckedChanged += new System.EventHandler(this.allowAgeEditingBox_CheckedChanged);
             // 
+            // allowCharacterSurvivalBox
+            // 
+            this.allowCharacterSurvivalBox.AutoSize = true;
+            this.allowCharacterSurvivalBox.Location = new System.Drawing.Point(12, 81);
+            this.allowCharacterSurvivalBox.Name = "allowCharacterSurvivalBox";
+            this.allowCharacterSurvivalBox.Size = new System.Drawing.Size(141, 17);
+            this.allowCharacterSurvivalBox.TabIndex = 5;
+            this.allowCharacterSurvivalBox.Text = "Allow Character Survival";
+            this.allowCharacterSurvivalBox.UseVisualStyleBackColor = true;
+            this.allowCharacterSurvivalBox.CheckedChanged += new System.EventHandler(this.allowCharacterSurvival_CheckedChanged);
+            // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 131);
+            this.ClientSize = new System.Drawing.Size(268, 141);
+            this.Controls.Add(this.allowCharacterSurvivalBox);
             this.Controls.Add(this.allowAgeEditingBox);
             this.Controls.Add(this.allowRerollCheckBox);
             this.Controls.Add(this.promptOnNewCheckBox);
@@ -103,5 +116,6 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.CheckBox promptOnNewCheckBox;
         private System.Windows.Forms.CheckBox allowRerollCheckBox;
         private System.Windows.Forms.CheckBox allowAgeEditingBox;
+        private System.Windows.Forms.CheckBox allowCharacterSurvivalBox;
     }
 }
