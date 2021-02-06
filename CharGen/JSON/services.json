@@ -27,7 +27,8 @@
         "Target": 8
       },
       "Reenlist": { "Target": 6 },
-      "DraftNumber": 1
+      "DraftNumber": 1,
+      "Ranks":  [ "Ensign", "Lieutenant", "Lt Commander", "Commander", "Captain", "Admiral" ]
     },
     {
       "Name": "Marines",
@@ -56,7 +57,8 @@
         "Target": 8
       },
       "Reenlist": { "Target": 6 },
-      "DraftNumber": 2
+      "DraftNumber": 2,
+      "Ranks": [ "Lieutenant", "Captain", "Force Commander", "Lt Colonel", "Colonel", "Brigadier" ]
     },
     {
       "Name": "Army",
@@ -85,7 +87,8 @@
         "Target": 7
       },
       "Reenlist": { "Target": 7 },
-      "DraftNumber": 3
+      "DraftNumber": 3,
+      "Ranks": [ "Lieutenant", "Captain", "Major", "Lt Colonel", "Colonel", "General" ]
     },
     {
       "Name": "Scouts",
@@ -114,7 +117,8 @@
         "Target": 99
       },
       "Reenlist": { "Target": 3 },
-      "DraftNumber": 4
+      "DraftNumber": 4,
+      "Ranks": []
     },
     {
       "Name": "Merchants",
@@ -143,7 +147,8 @@
         "Target": 9
       },
       "Reenlist": { "Target": 4 },
-      "DraftNumber": 5
+      "DraftNumber": 5,
+      "Ranks": [ "4th Officer", "3rd Officer", "2nd Officer", "1st Officer", "Captain" ]
     },
     {
       "Name": "Other",
@@ -172,7 +177,8 @@
         "Target": 99
       },
       "Reenlist": { "Target": 5 },
-      "DraftNumber": 6
+      "DraftNumber": 6,
+      "Ranks": []
     }
   ]
 }

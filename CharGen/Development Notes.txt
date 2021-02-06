@@ -8,6 +8,12 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
+	 - Needs to come soon ...
+			TravellerSkill class
+			Skills / characteristic acquisition in terms of service
+			TravellerGear class
+			Musting Out
+			Aging Effects
 
 Other ...
 

@@ -20,6 +20,23 @@ namespace TravellerTools.CharGen
             return Name;
         }
 
+        public bool UsesRanks
+        {
+            get
+            {
+                return Ranks.Count > 0;
+            }
+        }
+
+        public string RankName(int rankIndex)
+        {
+            if(rankIndex < 0 || rankIndex >= Ranks.Count )
+            {
+                throw new ArgumentOutOfRangeException("rankIndex", "Parameter rank must be within the range of available ranks.");
+            }
+            return Ranks[rankIndex];
+        }
+
         // Public Properties
 
         public String Name { get; set; }
@@ -35,6 +52,7 @@ namespace TravellerTools.CharGen
         public TravellerRollTarget Reenlist { get; set; }
 
         public decimal DraftNumber { get; set; }
+        public List<string> Ranks { get; set; }
 
     }
 }

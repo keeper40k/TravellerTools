@@ -89,6 +89,7 @@ namespace TravellerTools.CharGen
             FailedService = string.Empty;
             TermsOfService = 0;
             InjuredDuringCreation = false;
+            RankNumber = 0;
 
             CreationHistory = string.Empty;
         }
@@ -252,13 +253,21 @@ namespace TravellerTools.CharGen
             }
         }
 
+        public bool Commissioned
+        {
+            get
+            {
+                return RankNumber > 0;
+            }
+        }
+
         public decimal Age { get; set; }
         public string Service { get; set; }
         public bool Drafted { get; set; }
         public string FailedService { get; set; }
         public decimal TermsOfService { get; set; }
         public bool InjuredDuringCreation { get; set; }
-
+        public decimal RankNumber { get; set; }
 
         public string CreationHistory { get; set; }
     }

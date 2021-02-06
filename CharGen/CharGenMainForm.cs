@@ -35,6 +35,15 @@ namespace TravellerTools.CharGen
         private static string SURVIVED_THIS_TERM = "{0} survived.";
         private static string DIED_THIS_TERM = "{0} died.";
         private static string INJURED_THIS_TERM = "{0} was injured and left the {1} service.";
+        private static string NOT_ELIGIBLE_FOR_COMMISSION_DUE_TO_DRAFT = "{0} was not eligible for a commission this term, due to being drafted.";
+        private static string COMMISSION_ROLL = "Commission: {0} rolled a {1} against a target of {2}+{3}.";
+        private static string COMMISSION_MODIFIED = " including a +1 bonus";
+        private static string COMMISSION_THIS_TERM = "{0} was Commissioned as a {1}.";
+        private static string COMMISSION_FAILED = "{0} was not Commissioned this term.";
+        private static string PROMOTION_ROLL = "Promotion: {0} rolled a {1} against a target of {2}+{3}.";
+        private static string PROMOTION_MODIFIED = " including a +1 bonus";
+        private static string PROMOTION_THIS_TERM = "{0} was Promoted to a {1}.";
+        private static string PROMOTION_FAILED = "{0} was not Promoted this term.";
 
         // Protected member variables
         protected CharGenSettings m_settings = null;
@@ -138,6 +147,7 @@ namespace TravellerTools.CharGen
                         termTitleLabel.Visible = true;
                         termRollButton.Enabled = true;
                         termRollButton.Visible = true;
+                        enlistButton.Enabled = false;
                         break;
                 }
                 case CreationProcessState.DEAD:
@@ -195,8 +205,72 @@ namespace TravellerTools.CharGen
                 // Increment Term
                 m_data.Character.TermsOfService += 1;
 
-                // Commission
-                // Promotion
+                // Commissions and Promotions are not available in all Services
+                if (m_data.Service.UsesRanks)
+                {
+                    // Commissioning shouldn't be done if the character has already been Commissioned!
+                    if (!m_data.Character.Commissioned)
+                    { 
+                        //  Characters cannot be commissioned in their first term of service if they were drafted
+                        if (!m_data.Character.Drafted || m_data.Character.TermsOfService != 1)
+                        {
+                            decimal commissionTarget = m_data.Service.Commission.Target;
+                            decimal commissionRoll = DiceTools.RollDice(2, 6);
+                            bool commissionBonus = m_data.Service.CommissionPlusOne.Pass(m_data.Character);
+                            if (commissionBonus)
+                            {
+                                commissionRoll += 1;
+                            }
+                            modifierText = commissionBonus ? COMMISSION_MODIFIED : string.Empty;
+                            textUpdate += string.Format(COMMISSION_ROLL, m_data.Character.Name, commissionRoll, commissionTarget, modifierText) + "\n";
+                            if (commissionRoll >= commissionTarget)
+                            {
+                                m_data.Character.RankNumber += 1;
+                                m_data.Character.Rank = m_data.Service.RankName((int)m_data.Character.RankNumber - 1);
+                            }
+
+                            if (m_data.Character.Commissioned)
+                            {
+                                textUpdate += string.Format(COMMISSION_THIS_TERM, m_data.Character.Name, m_data.Character.Rank) + "\n";
+                            }
+                            else
+                            {
+                                textUpdate += string.Format(COMMISSION_FAILED, m_data.Character.Name) + "\n";
+                            }
+                        }
+                        else
+                        {
+                            textUpdate += string.Format(NOT_ELIGIBLE_FOR_COMMISSION_DUE_TO_DRAFT, m_data.Character.Name) + "\n";
+                        }
+                    }
+
+                    // Promotion is not available until a character is Commissioned, but it can happen in the same term as a successful Commission
+                    // Also, a character cannot be promoted if they have reached the maximum rank in that service
+                    if( m_data.Character.Commissioned && ( m_data.Character.RankNumber < m_data.Service.Ranks.Count ) )
+                    {
+                        decimal promotionTarget = m_data.Service.Promotion.Target;
+                        decimal promotionRoll = DiceTools.RollDice(2, 6);
+                        bool promotionBonus = m_data.Service.PromotionPlusOne.Pass(m_data.Character);
+                        if (promotionBonus)
+                        {
+                            promotionRoll += 1;
+                        }
+                        modifierText = promotionBonus ? PROMOTION_MODIFIED : string.Empty;
+                        textUpdate += string.Format(PROMOTION_ROLL, m_data.Character.Name, promotionRoll, promotionTarget, modifierText) + "\n";
+                        if (promotionRoll >= promotionTarget)
+                        {
+                            m_data.Character.RankNumber += 1;
+                            m_data.Character.Rank = m_data.Service.RankName((int)m_data.Character.RankNumber - 1);
+                            textUpdate += string.Format(PROMOTION_THIS_TERM, m_data.Character.Name, m_data.Character.Rank) + "\n";
+                        }
+                        else
+                        {
+                            textUpdate += string.Format(PROMOTION_FAILED, m_data.Character.Name) + "\n";
+                        }
+                    }
+
+                }
+
                 // Skills and Training
                 // Reenlistment
                 // Retirement
