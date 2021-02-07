@@ -44,17 +44,23 @@ namespace TravellerTools.CharGen
         private static string PROMOTION_MODIFIED = " including a +1 bonus";
         private static string PROMOTION_THIS_TERM = "{0} was Promoted to a {1}.";
         private static string PROMOTION_FAILED = "{0} was not Promoted this term.";
+        private static string MUST_REENLIST = "{0} is required to stay in the {1} Service for an additional term and may not leave this time.";
+        private static string REENLIST_ROLL = "Reenlistment: {0} rolled a {1} against a target of {2}.";
+        private static string REENLIST_FAILED = "The {0} Service no longer needs the services of {1}. They may not enlist for another term.";
 
         // Protected member variables
         protected CharGenSettings m_settings = null;
-        protected CharGenDataBlock m_data = null;
+        protected TravellerService Service = null;
+        protected TravellerCharacter Character = null;
+        protected bool ForceReenlistment = false;
 
         public CharGenMainForm()
         {
             InitializeComponent();
             m_settings = new CharGenSettings();
             m_settings.LoadSettings();
-            m_data = new CharGenDataBlock();
+            Service = new TravellerService();
+            Character = new TravellerCharacter();
             CurrentState = CreationProcessState.SELECT_SERVICE;
             RefreshCharacterDisplay();
             UpdateInputBoxes();
@@ -64,7 +70,8 @@ namespace TravellerTools.CharGen
 
         protected void ResetState()
         {
-            m_data = new CharGenDataBlock();
+            Service = new TravellerService();
+            Character = new TravellerCharacter();
             CurrentState = CreationProcessState.SELECT_SERVICE;
 
             autoCreate.Enabled = true;
@@ -77,7 +84,16 @@ namespace TravellerTools.CharGen
 
         protected void RefreshCharacterDisplay()
         {
-            characterDisplay.Text = m_data.Character.ToString();
+            characterDisplay.Text = string.Empty;
+            // This makes the history data scroll to the end
+            characterDisplay.Focus();
+            characterDisplay.AppendText( Character.ShortStringFormat() );
+
+            characterHistory.Text = string.Empty;
+            // This makes the history data scroll to the end
+            characterHistory.Focus();
+            characterHistory.AppendText( Character.CharacterHistory() );
+            
         }
 
         protected void UpdateInputBoxes()
@@ -87,11 +103,11 @@ namespace TravellerTools.CharGen
             autoCreateLabel.Enabled = m_settings.AllowReroll;
 
             // Title Combo and Use Title
-            useTitleCheckBox.Checked = m_data.Character.UseTitle;
-            if (m_data.Character.SOC >= 11)
+            useTitleCheckBox.Checked = Character.UseTitle;
+            if (Character.SOC >= 11)
             {
                 titleBox.Items.Clear();
-                titleBox.Items.AddRange(m_data.Character.AvailableTitles().ToArray());
+                titleBox.Items.AddRange(Character.AvailableTitles().ToArray());
                 titleBox.SelectedIndex = 0;
                 titleBox.Enabled = true;
                 useTitleCheckBox.Enabled = true;
@@ -104,26 +120,26 @@ namespace TravellerTools.CharGen
                 useTitleCheckBox.Enabled = false;
             }
             // Rank Box and Use Rank
-            rankBox.Text = m_data.Character.Rank;
-            if( m_data.Character.Rank != string.Empty )
+            rankBox.Text = Character.Rank;
+            if( Character.Rank != string.Empty )
             {
                 useRankCheckBox.Enabled = true;
-                useRankCheckBox.Checked = m_data.Character.UseRank;
+                useRankCheckBox.Checked = Character.UseRank;
             }
             else
             {
                 useRankCheckBox.Enabled = false;
             }
             // Name Box
-            nameBox.Text = m_data.Character.Name;
+            nameBox.Text = Character.Name;
             // Age Box
-            ageNumberBox.Value = m_data.Character.Age;
+            ageNumberBox.Value = Character.Age;
             ageNumberBox.Enabled = m_settings.AllowAgeEditing;
 
             // Service Box
-            if (m_data.Character.Service != string.Empty)
+            if (Character.Service != string.Empty)
             {
-                serviceBox.Text = m_data.Character.Service;
+                serviceBox.Text = Character.Service;
             }
 
             // Term Boxes
@@ -138,16 +154,19 @@ namespace TravellerTools.CharGen
                 {
                         termTitleLabel.Visible = false;
                         termRollButton.Visible = false;
+                        musterOutButton.Visible = false;
                         break;
                 }
                 case CreationProcessState.TERMS:
                 {
-                        string termTitle = String.Format(TERM_TITLE, m_data.Character.TermsOfService + 1);
+                        string termTitle = String.Format(TERM_TITLE, Character.TermsOfService + 1);
                         termTitleLabel.Text = termTitle;
                         termTitleLabel.Visible = true;
                         termRollButton.Enabled = true;
                         termRollButton.Visible = true;
                         enlistButton.Enabled = false;
+                        musterOutButton.Visible = Character.TermsOfService > 0;
+                        musterOutButton.Enabled = !ForceReenlistment;
                         break;
                 }
                 case CreationProcessState.DEAD:
@@ -162,10 +181,17 @@ namespace TravellerTools.CharGen
                     enlistButton.Enabled = false;
                     serviceBox.Enabled = false;
                     termRollButton.Enabled = false;
+                    musterOutButton.Visible = false;
                     break;
                 }
                 case CreationProcessState.MUSTERING_OUT:
                 {
+                    termTitleLabel.Visible = true;
+                    termRollButton.Enabled = false;
+                    termRollButton.Visible = true;
+                    enlistButton.Enabled = false;
+                    musterOutButton.Visible = true;
+                    musterOutButton.Enabled = true;
                     break;
                 }
                 default:
@@ -177,119 +203,144 @@ namespace TravellerTools.CharGen
 
         protected void ProcessTerm()
         {
-            decimal currentTerm = m_data.Character.TermsOfService + 1;
+            ForceReenlistment = false;
+
+            decimal currentTerm = Character.TermsOfService + 1;
             string textUpdate = string.Format(TERM_BLOCK_TITLE, currentTerm) + "\n";
 
             // Survive
-            decimal survivalTarget = m_data.Service.Survival.Target;
+            decimal survivalTarget = Service.Survival.Target;
             decimal survivalRoll = DiceTools.RollDice(2, 6);
-            bool hasSurvivalModifier = m_data.Service.SurvivalPlusTwo.Pass(m_data.Character);
+            bool hasSurvivalModifier = Service.SurvivalPlusTwo.Pass(Character);
             if (hasSurvivalModifier)
             {
                 survivalRoll += 2;
             }
             bool survived = survivalRoll >= survivalTarget;
             string modifierText = hasSurvivalModifier ? SURVIVAL_MODIFIED : string.Empty;
-            textUpdate += string.Format(SURVIVAL_ROLL, m_data.Character.Name, survivalRoll, survivalTarget, modifierText) + "\n";
+            textUpdate += string.Format(SURVIVAL_ROLL, Character.Name, survivalRoll, survivalTarget, modifierText) + "\n";
             if (survived)
             {
-                textUpdate += string.Format(SURVIVED_THIS_TERM, m_data.Character.Name) + "\n";
+                textUpdate += string.Format(SURVIVED_THIS_TERM, Character.Name) + "\n";
 
                 // Age
-                m_data.Character.Age += 4;
+                Character.Age += 4;
 
                 // Aging Crisis
 
                 // TO DO
 
                 // Increment Term
-                m_data.Character.TermsOfService += 1;
+                Character.TermsOfService += 1;
 
                 // Commissions and Promotions are not available in all Services
-                if (m_data.Service.UsesRanks)
+                if (Service.UsesRanks)
                 {
                     // Commissioning shouldn't be done if the character has already been Commissioned!
-                    if (!m_data.Character.Commissioned)
+                    if (!Character.Commissioned)
                     { 
                         //  Characters cannot be commissioned in their first term of service if they were drafted
-                        if (!m_data.Character.Drafted || m_data.Character.TermsOfService != 1)
+                        if (!Character.Drafted || Character.TermsOfService != 1)
                         {
-                            decimal commissionTarget = m_data.Service.Commission.Target;
+                            decimal commissionTarget = Service.Commission.Target;
                             decimal commissionRoll = DiceTools.RollDice(2, 6);
-                            bool commissionBonus = m_data.Service.CommissionPlusOne.Pass(m_data.Character);
+                            bool commissionBonus = Service.CommissionPlusOne.Pass(Character);
                             if (commissionBonus)
                             {
                                 commissionRoll += 1;
                             }
                             modifierText = commissionBonus ? COMMISSION_MODIFIED : string.Empty;
-                            textUpdate += string.Format(COMMISSION_ROLL, m_data.Character.Name, commissionRoll, commissionTarget, modifierText) + "\n";
+                            textUpdate += string.Format(COMMISSION_ROLL, Character.Name, commissionRoll, commissionTarget, modifierText) + "\n";
                             if (commissionRoll >= commissionTarget)
                             {
-                                m_data.Character.RankNumber += 1;
-                                m_data.Character.Rank = m_data.Service.RankName((int)m_data.Character.RankNumber - 1);
+                                Character.RankNumber += 1;
+                                Character.Rank = Service.RankName((int)Character.RankNumber - 1);
                             }
 
-                            if (m_data.Character.Commissioned)
+                            if (Character.Commissioned)
                             {
-                                textUpdate += string.Format(COMMISSION_THIS_TERM, m_data.Character.Name, m_data.Character.Rank) + "\n";
+                                textUpdate += string.Format(COMMISSION_THIS_TERM, Character.Name, Character.Rank) + "\n";
                             }
                             else
                             {
-                                textUpdate += string.Format(COMMISSION_FAILED, m_data.Character.Name) + "\n";
+                                textUpdate += string.Format(COMMISSION_FAILED, Character.Name) + "\n";
                             }
                         }
                         else
                         {
-                            textUpdate += string.Format(NOT_ELIGIBLE_FOR_COMMISSION_DUE_TO_DRAFT, m_data.Character.Name) + "\n";
+                            textUpdate += string.Format(NOT_ELIGIBLE_FOR_COMMISSION_DUE_TO_DRAFT, Character.Name) + "\n";
                         }
                     }
 
                     // Promotion is not available until a character is Commissioned, but it can happen in the same term as a successful Commission
                     // Also, a character cannot be promoted if they have reached the maximum rank in that service
-                    if( m_data.Character.Commissioned && ( m_data.Character.RankNumber < m_data.Service.Ranks.Count ) )
+                    if( Character.Commissioned && ( Character.RankNumber < Service.Ranks.Count ) )
                     {
-                        decimal promotionTarget = m_data.Service.Promotion.Target;
+                        decimal promotionTarget = Service.Promotion.Target;
                         decimal promotionRoll = DiceTools.RollDice(2, 6);
-                        bool promotionBonus = m_data.Service.PromotionPlusOne.Pass(m_data.Character);
+                        bool promotionBonus = Service.PromotionPlusOne.Pass(Character);
                         if (promotionBonus)
                         {
                             promotionRoll += 1;
                         }
                         modifierText = promotionBonus ? PROMOTION_MODIFIED : string.Empty;
-                        textUpdate += string.Format(PROMOTION_ROLL, m_data.Character.Name, promotionRoll, promotionTarget, modifierText) + "\n";
+                        textUpdate += string.Format(PROMOTION_ROLL, Character.Name, promotionRoll, promotionTarget, modifierText) + "\n";
                         if (promotionRoll >= promotionTarget)
                         {
-                            m_data.Character.RankNumber += 1;
-                            m_data.Character.Rank = m_data.Service.RankName((int)m_data.Character.RankNumber - 1);
-                            textUpdate += string.Format(PROMOTION_THIS_TERM, m_data.Character.Name, m_data.Character.Rank) + "\n";
+                            Character.RankNumber += 1;
+                            Character.Rank = Service.RankName((int)Character.RankNumber - 1);
+                            textUpdate += string.Format(PROMOTION_THIS_TERM, Character.Name, Character.Rank) + "\n";
                         }
                         else
                         {
-                            textUpdate += string.Format(PROMOTION_FAILED, m_data.Character.Name) + "\n";
+                            textUpdate += string.Format(PROMOTION_FAILED, Character.Name) + "\n";
                         }
                     }
 
                 }
 
                 // Skills and Training
+
+                // TO DO
+
                 // Reenlistment
-                // Retirement
-                // Mustering Out
+
+                decimal reenlistmentRoll = DiceTools.RollDice(2, 6);
+                // A reenlistment roll of 12 (two sixes on two d6) means the character must stay in the service.
+                if( reenlistmentRoll == 12 )
+                {
+                    textUpdate += string.Format(MUST_REENLIST, Character.Name, Service.Name) + "\n";
+                    ForceReenlistment = true;
+                }
+                else
+                {
+                    bool reenlistSuccess = reenlistmentRoll >= Service.Reenlist.Target;
+                    textUpdate += string.Format(REENLIST_ROLL, Character.Name, reenlistmentRoll, Service.Reenlist.Target) + "\n";
+                    if( !reenlistSuccess )
+                    {
+                        textUpdate += string.Format(REENLIST_FAILED, Service.Name, Character.Name) + "\n";
+                        CurrentState = CreationProcessState.MUSTERING_OUT;
+                    }
+
+                    // Retirement
+                    // Mustering Out
+                }
+
             }
             else if (m_settings.AllowCharacterSurvival)
             {
-                textUpdate += string.Format(INJURED_THIS_TERM, m_data.Character.Name, m_data.Service.Name) + "\n";
-                m_data.Character.Age += 2;
-                m_data.Character.InjuredDuringCreation = true;
+                textUpdate += string.Format(INJURED_THIS_TERM, Character.Name, Service.Name) + "\n";
+                Character.Age += 2;
+                Character.InjuredDuringCreation = true;
                 CurrentState = CreationProcessState.MUSTERING_OUT;
             }
             else
             {
-                textUpdate += string.Format(DIED_THIS_TERM, m_data.Character.Name) + "\n";
+                textUpdate += string.Format(DIED_THIS_TERM, Character.Name) + "\n";
                 CurrentState = CreationProcessState.DEAD;
             }
 
-            m_data.Character.CreationHistory += textUpdate + "\n";
+            Character.CreationHistory += textUpdate + "\n";
         }
 
         // Protected Properaties
@@ -316,22 +367,19 @@ namespace TravellerTools.CharGen
 
         private void autoCreate_Click(object sender, EventArgs e)
         {
-            if(m_data != null)
+            Character.Reinitialise();
+            Character.RollRandomCharacteristics();
+            UpdateInputBoxes();
+            RefreshCharacterDisplay();
+            if (!m_settings.AllowReroll)
             {
-                m_data.Character.Reinitialise();
-                m_data.Character.RollRandomCharacteristics();
-                UpdateInputBoxes();
-                RefreshCharacterDisplay();
-                if (!m_settings.AllowReroll)
-                {
-                    autoCreate.Enabled = false;
-                }
+                autoCreate.Enabled = false;
             }
         }
 
         private void nameBox_TextChanged(object sender, EventArgs e)
         {
-            m_data.Character.Name = nameBox.Text;
+            Character.Name = nameBox.Text;
             RefreshCharacterDisplay();
         }
 
@@ -342,19 +390,19 @@ namespace TravellerTools.CharGen
 
         private void titleBox_TextChanged(object sender, EventArgs e)
         {
-            m_data.Character.Title = titleBox.Text;
+            Character.Title = titleBox.Text;
             RefreshCharacterDisplay();
         }
 
         private void useTitleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            m_data.Character.UseTitle = useTitleCheckBox.Checked;
+            Character.UseTitle = useTitleCheckBox.Checked;
             RefreshCharacterDisplay();
         }
 
         private void useRankCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            m_data.Character.UseRank = useRankCheckBox.Checked;
+            Character.UseRank = useRankCheckBox.Checked;
             RefreshCharacterDisplay();
         }
 
@@ -373,24 +421,24 @@ namespace TravellerTools.CharGen
 
         private void ageNumberBox_ValueChanged(object sender, EventArgs e)
         {
-            m_data.Character.Age = ageNumberBox.Value;
+            Character.Age = ageNumberBox.Value;
             RefreshCharacterDisplay();
         }
 
         private void serviceBox_TextChanged(object sender, EventArgs e)
         {
-            m_data.Character.Service = serviceBox.Text;
+            Character.Service = serviceBox.Text;
             RefreshCharacterDisplay();
         }
 
         private void enlistButton_Click(object sender, EventArgs e)
         {
-            EnlistServiceForm enlistForm = new EnlistServiceForm( m_data.Character );
+            EnlistServiceForm enlistForm = new EnlistServiceForm( Character );
             DialogResult result = enlistForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                m_data.Character = enlistForm.Character;
-                m_data.Service = enlistForm.SelectedService;
+                Character = enlistForm.Character;
+                Service = enlistForm.SelectedService;
                 CurrentState = CreationProcessState.TERMS;
                 UpdateInputBoxes();
                 RefreshCharacterDisplay();

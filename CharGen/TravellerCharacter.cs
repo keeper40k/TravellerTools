@@ -172,16 +172,7 @@ namespace TravellerTools.CharGen
 
         public override string ToString()
         {
-            string result = ShortStringFormat();
-            if (Service != string.Empty)
-            {
-                result += "\nService: " + Service;
-            }
-            if(CreationHistory != string.Empty)
-            {
-                result += "\n\n" + CreationHistory;
-            }
-            return result;
+            return ShortStringFormat() + "\n" + CharacterHistory();
         }
 
         // Public Methods
@@ -198,6 +189,20 @@ namespace TravellerTools.CharGen
                 result += Rank + " ";
             }
             result += Name + "\t" + UPP + "\tAge " + Age;
+            return result;
+        }
+
+        public string CharacterHistory()
+        {
+            string result = string.Empty;
+            if (Service != string.Empty)
+            {
+                result += "Service: " + Service;
+            }
+            if (CreationHistory != string.Empty)
+            {
+                result += "\n\n" + CreationHistory;
+            }
             return result;
         }
 

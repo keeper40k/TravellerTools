@@ -45,7 +45,6 @@ namespace TravellerTools.CharGen
             this.characterDisplayLabel = new System.Windows.Forms.Label();
             this.autoCreate = new System.Windows.Forms.Button();
             this.autoCreateLabel = new System.Windows.Forms.Label();
-            this.characterDisplay = new System.Windows.Forms.RichTextBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -62,6 +61,10 @@ namespace TravellerTools.CharGen
             this.serviceLabel = new System.Windows.Forms.Label();
             this.termTitleLabel = new System.Windows.Forms.Label();
             this.termRollButton = new System.Windows.Forms.Button();
+            this.characterHistoryLabel = new System.Windows.Forms.Label();
+            this.musterOutButton = new System.Windows.Forms.Button();
+            this.characterDisplay = new System.Windows.Forms.RichTextBox();
+            this.characterHistory = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageNumberBox)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +79,7 @@ namespace TravellerTools.CharGen
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1203, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -184,16 +187,6 @@ namespace TravellerTools.CharGen
             this.autoCreateLabel.Size = new System.Drawing.Size(160, 13);
             this.autoCreateLabel.TabIndex = 4;
             this.autoCreateLabel.Text = "Re-Roll Traveller Character UPP";
-            // 
-            // characterDisplay
-            // 
-            this.characterDisplay.BackColor = System.Drawing.SystemColors.Control;
-            this.characterDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.characterDisplay.Location = new System.Drawing.Point(407, 29);
-            this.characterDisplay.Name = "characterDisplay";
-            this.characterDisplay.Size = new System.Drawing.Size(381, 409);
-            this.characterDisplay.TabIndex = 5;
-            this.characterDisplay.Text = "";
             // 
             // nameLabel
             // 
@@ -342,19 +335,61 @@ namespace TravellerTools.CharGen
             // 
             // termRollButton
             // 
-            this.termRollButton.Location = new System.Drawing.Point(326, 258);
+            this.termRollButton.Location = new System.Drawing.Point(310, 258);
             this.termRollButton.Name = "termRollButton";
-            this.termRollButton.Size = new System.Drawing.Size(75, 23);
+            this.termRollButton.Size = new System.Drawing.Size(91, 23);
             this.termRollButton.TabIndex = 22;
             this.termRollButton.Text = "ROLL";
             this.termRollButton.UseVisualStyleBackColor = true;
             this.termRollButton.Click += new System.EventHandler(this.termRollButton_Click);
             // 
+            // characterHistoryLabel
+            // 
+            this.characterHistoryLabel.AutoSize = true;
+            this.characterHistoryLabel.Location = new System.Drawing.Point(800, 9);
+            this.characterHistoryLabel.Name = "characterHistoryLabel";
+            this.characterHistoryLabel.Size = new System.Drawing.Size(134, 13);
+            this.characterHistoryLabel.TabIndex = 24;
+            this.characterHistoryLabel.Text = "Current Traveller Character";
+            // 
+            // musterOutButton
+            // 
+            this.musterOutButton.Location = new System.Drawing.Point(310, 287);
+            this.musterOutButton.Name = "musterOutButton";
+            this.musterOutButton.Size = new System.Drawing.Size(91, 23);
+            this.musterOutButton.TabIndex = 25;
+            this.musterOutButton.Text = "MUSTER OUT";
+            this.musterOutButton.UseVisualStyleBackColor = true;
+            // 
+            // characterDisplay
+            // 
+            this.characterDisplay.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.characterDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.characterDisplay.Location = new System.Drawing.Point(407, 32);
+            this.characterDisplay.Name = "characterDisplay";
+            this.characterDisplay.Size = new System.Drawing.Size(389, 406);
+            this.characterDisplay.TabIndex = 26;
+            this.characterDisplay.Text = "";
+            // 
+            // characterHistory
+            // 
+            this.characterHistory.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.characterHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.characterHistory.Location = new System.Drawing.Point(803, 32);
+            this.characterHistory.Name = "characterHistory";
+            this.characterHistory.Size = new System.Drawing.Size(389, 406);
+            this.characterHistory.TabIndex = 27;
+            this.characterHistory.Text = "";
+            // 
             // CharGenMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1203, 450);
+            this.Controls.Add(this.characterHistory);
+            this.Controls.Add(this.characterDisplay);
+            this.Controls.Add(this.musterOutButton);
+            this.Controls.Add(this.characterHistoryLabel);
             this.Controls.Add(this.termRollButton);
             this.Controls.Add(this.termTitleLabel);
             this.Controls.Add(this.serviceBox);
@@ -371,7 +406,6 @@ namespace TravellerTools.CharGen
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.characterDisplay);
             this.Controls.Add(this.autoCreateLabel);
             this.Controls.Add(this.autoCreate);
             this.Controls.Add(this.characterDisplayLabel);
@@ -401,7 +435,6 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.Label characterDisplayLabel;
         private System.Windows.Forms.Button autoCreate;
         private System.Windows.Forms.Label autoCreateLabel;
-        private System.Windows.Forms.RichTextBox characterDisplay;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Label titleLabel;
@@ -422,6 +455,10 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.Label serviceLabel;
         private System.Windows.Forms.Label termTitleLabel;
         private System.Windows.Forms.Button termRollButton;
+        private System.Windows.Forms.Label characterHistoryLabel;
+        private System.Windows.Forms.Button musterOutButton;
+        private System.Windows.Forms.RichTextBox characterDisplay;
+        private System.Windows.Forms.RichTextBox characterHistory;
     }
 }
 

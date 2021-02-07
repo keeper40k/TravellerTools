@@ -98,7 +98,6 @@
       <DependentUpon>GeneralSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="TravellerCharacter.cs" />
-    <Compile Include="CharGenDataBlock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <CustomToolNamespace>TravellerTools.Chargen</CustomToolNamespace>
