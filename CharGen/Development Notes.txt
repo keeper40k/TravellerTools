@@ -8,15 +8,11 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
-			  Re-enlistment
-			    -  Need to consider if the ROLL after Enlistment should be renamed "Reenlist"
-				-  Also, auto-processing of term one after Enlist.
 	 - Needs to come soon ...
 			TravellerSkill class
 			Skills / characteristic acquisition in terms of service
 			TravellerGear class
 			Mustering Out
-			Aging Effects
 
 Other ...
 

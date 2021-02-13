@@ -342,7 +342,7 @@ namespace TravellerTools.CharGen
             this.termRollButton.Name = "termRollButton";
             this.termRollButton.Size = new System.Drawing.Size(91, 23);
             this.termRollButton.TabIndex = 22;
-            this.termRollButton.Text = "ROLL";
+            this.termRollButton.Text = "REENLIST";
             this.termRollButton.UseVisualStyleBackColor = true;
             this.termRollButton.Click += new System.EventHandler(this.termRollButton_Click);
             // 
@@ -361,7 +361,7 @@ namespace TravellerTools.CharGen
             this.musterOutButton.Name = "musterOutButton";
             this.musterOutButton.Size = new System.Drawing.Size(91, 23);
             this.musterOutButton.TabIndex = 25;
-            this.musterOutButton.Text = "MUSTER OUT";
+            this.musterOutButton.Text = "RETIRE";
             this.musterOutButton.UseVisualStyleBackColor = true;
             // 
             // characterDisplay

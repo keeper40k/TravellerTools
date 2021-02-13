@@ -34,6 +34,9 @@ namespace TravellerTools.CharGen
         private static string EMPEROR = "Emperor";
         private static string EMPERORESS = "Emperoress";
 
+        private static string FAILED_AGING_CRISIS = "{0} suffered an Aging Crisis and passed away at the age of {1}.";
+        private static string PASSED_AGING_CRISIS = "{0} passed through Aging Crisis at the age of {1} and aged a further {2} months due to Slow Drug recovery.";
+
         // Constructors
 
         public TravellerCharacter()
@@ -42,6 +45,170 @@ namespace TravellerTools.CharGen
             Name = "Bob";
             Reinitialise();
             RollRandomCharacteristics();
+        }
+
+        // Protected Methods
+
+        protected void ProcessAging(decimal start, decimal end)
+        {
+            // Doesn't handle negative aging at this time!
+            if( end <= start)
+            {
+                return;
+            }
+
+            for( decimal i = start+1; i <= end; i++ )
+            {
+                // i mod 4 remainder 2 gives us aging years of 34, 28, 42, etc.
+                if ( (i > 33) && (i % 4 == 2) )
+                {
+                    if( i < 50 )
+                    {
+                        Phase1AgeCheck(i);
+                    }
+                    else if( i < 66 )
+                    {
+                        Phase2AgeCheck(i);
+                    }
+                    else
+                    {
+                        Phase3AgeCheck(i);
+                    }
+                }
+            }
+        }
+
+        // STR, DEX and INT save on (8+, 7+, 8+)
+        protected void Phase1AgeCheck(decimal currentAge)
+        {
+            int strRoll = DiceTools.RollDice(2, 6);
+            if( strRoll < 8 )
+            {
+                STR = STR - 1;
+            }
+            int dexRoll = DiceTools.RollDice(2, 6);
+            if (dexRoll < 7)
+            {
+                DEX = DEX - 1;
+            }
+            int endRoll = DiceTools.RollDice(2, 6);
+            if (endRoll < 8)
+            {
+                END = END - 1;
+            }
+            AgingCrisis(currentAge);
+        }
+
+        // STR, DEX and INT save on (9+, 8+, 9+)
+        protected void Phase2AgeCheck(decimal currentAge)
+        {
+            int strRoll = DiceTools.RollDice(2, 6);
+            if (strRoll < 9)
+            {
+                STR = STR - 1;
+            }
+            int dexRoll = DiceTools.RollDice(2, 6);
+            if (dexRoll < 8)
+            {
+                DEX = DEX - 1;
+            }
+            int endRoll = DiceTools.RollDice(2, 6);
+            if (endRoll < 9)
+            {
+                END = END - 1;
+            }
+            AgingCrisis(currentAge);
+        }
+
+        // STR, DEX, INT and INT save on (9+, 9+, 9+. 9+)
+        protected void Phase3AgeCheck(decimal currentAge)
+        {
+            int strRoll = DiceTools.RollDice(2, 6);
+            if (strRoll < 9)
+            {
+                STR = STR - 2;
+            }
+            int dexRoll = DiceTools.RollDice(2, 6);
+            if (dexRoll < 9)
+            {
+                DEX = DEX - 2;
+            }
+            int endRoll = DiceTools.RollDice(2, 6);
+            if (endRoll < 9)
+            {
+                END = END - 2;
+            }
+            int intRoll = DiceTools.RollDice(2, 6);
+            if (intRoll < 9)
+            {
+                INT = INT - 1;
+            }
+            AgingCrisis(currentAge);
+        }
+
+        protected void AgingCrisis(decimal currentAge)
+        {
+            int slowDrugAging = 0;
+            if( STR == 0 )
+            {
+                int saveRoll = DiceTools.RollDice(2, 6);
+                if( saveRoll < 8 )
+                {
+                    IsDead = true;
+                }
+                else
+                {
+                    STR = 1;
+                    slowDrugAging += DiceTools.RollOneDie(6);
+                }
+            }
+            if (DEX == 0)
+            {
+                int saveRoll = DiceTools.RollDice(2, 6);
+                if (saveRoll < 8)
+                {
+                    IsDead = true;
+                }
+                else
+                {
+                    DEX = 1;
+                    slowDrugAging += DiceTools.RollOneDie(6);
+                }
+            }
+            if (END == 0)
+            {
+                int saveRoll = DiceTools.RollDice(2, 6);
+                if (saveRoll < 8)
+                {
+                    IsDead = true;
+                }
+                else
+                {
+                    END = 1;
+                    slowDrugAging += DiceTools.RollOneDie(6);
+                }
+            }
+            if (INT == 0)
+            {
+                int saveRoll = DiceTools.RollDice(2, 6);
+                if (saveRoll < 8)
+                {
+                    IsDead = true;
+                }
+                else
+                {
+                    INT = 1;
+                    slowDrugAging += DiceTools.RollOneDie(6);
+                }
+            }
+            if (IsDead)
+            {
+                CreationHistory += string.Format(FAILED_AGING_CRISIS, Name, currentAge) + "\n";
+            }
+            else if (slowDrugAging != 0)
+            {
+                CreationHistory += string.Format(PASSED_AGING_CRISIS, Name, currentAge, slowDrugAging) + "\n";
+            }
         }
 
         // Public Methods
@@ -92,6 +259,8 @@ namespace TravellerTools.CharGen
             RankNumber = 0;
 
             CreationHistory = string.Empty;
+
+            IsDead = false;
         }
 
         public void RollRandomCharacteristics()
@@ -209,6 +378,7 @@ namespace TravellerTools.CharGen
         // Property Backers complex properties
 
         private int m_SOC;
+        private decimal m_age;
 
         // Public Properties
 
@@ -266,7 +436,18 @@ namespace TravellerTools.CharGen
             }
         }
 
-        public decimal Age { get; set; }
+        public decimal Age
+        {
+            get
+            {
+                return m_age;
+            }
+            set
+            {
+                ProcessAging(m_age, value);
+                m_age = value;
+            }
+        }
         public string Service { get; set; }
         public bool Drafted { get; set; }
         public string FailedService { get; set; }
@@ -275,5 +456,7 @@ namespace TravellerTools.CharGen
         public decimal RankNumber { get; set; }
 
         public string CreationHistory { get; set; }
+
+        public bool IsDead { get; set; }
     }
 }

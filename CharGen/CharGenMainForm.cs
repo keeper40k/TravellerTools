@@ -52,7 +52,7 @@ namespace TravellerTools.CharGen
         private static string PROMOTION_MODIFIED = " including a +1 bonus";
         private static string PROMOTION_THIS_TERM = "{0} was Promoted to a {1}.";
         private static string PROMOTION_FAILED = "{0} was not Promoted this term.";
-        private static string MUST_REENLIST = "{0} is required to stay in the {1} Service for an additional term and may not leave this time.";
+        private static string MUST_REENLIST = "{0} is required to stay in the {1} Service for an additional term and may not leave at this time.";
         private static string REENLIST_ROLL = "Reenlistment: {0} rolled a {1} against a target of {2}.";
         private static string REENLIST_FAILED = "The {0} Service no longer needs the services of {1}. They may not enlist for another term.";
 
@@ -299,9 +299,6 @@ namespace TravellerTools.CharGen
             {
                 textUpdate += string.Format(SURVIVED_THIS_TERM, Character.Name) + "\n";
 
-                // Age
-                Character.Age += 4;
-
                 // Aging Crisis
 
                 // TO DO
@@ -383,7 +380,7 @@ namespace TravellerTools.CharGen
 
                 decimal reenlistmentRoll = DiceTools.RollDice(2, 6);
                 // A reenlistment roll of 12 (two sixes on two d6) means the character must stay in the service.
-                if( reenlistmentRoll == 12 )
+                if ( reenlistmentRoll == 12 )
                 {
                     textUpdate += string.Format(MUST_REENLIST, Character.Name, Service.Name) + "\n";
                     ForceReenlistment = true;
@@ -417,6 +414,20 @@ namespace TravellerTools.CharGen
             }
 
             Character.CreationHistory += textUpdate + "\n";
+
+            // Age
+            Character.Age += 4;
+            // Aging could kill the character ...
+            if( Character.IsDead )
+            {
+                CurrentState = CreationProcessState.DEAD;
+            }
+
+            // Automatically run another term, if it has been rolled and the character hasn't died due to aging
+            if ( !Character.IsDead && ForceReenlistment )
+            {
+                ProcessTerm();
+            }
         }
 
         // Protected Properaties
@@ -546,6 +557,9 @@ namespace TravellerTools.CharGen
 
             serviceBox.Text = Service.Name;
             CurrentState = CreationProcessState.TERMS;
+            // Run the first term automatically
+            ProcessTerm();
+
             UpdateInputBoxes();
             RefreshCharacterDisplay();
 
