@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravellerTools.CharGen
+namespace TravellerTools.TravellerData
 {
     public class TravellerRollTarget
     {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CharGen</RootNamespace>
-    <AssemblyName>CharGen</AssemblyName>
+    <RootNamespace>TravellerTools.CharGen</RootNamespace>
+    <AssemblyName>TravellerTools.CharGen</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -81,17 +81,12 @@
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CharGenSettings.cs" />
-    <Compile Include="TravellerCharacteristicRollTarget.cs" />
-    <Compile Include="TravellerRollTarget.cs" />
-    <Compile Include="TravellerService.cs" />
-    <Compile Include="TravellerServices.cs" />
     <Compile Include="GeneralSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GeneralSettings.Designer.cs">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="TravellerCharacter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <CustomToolNamespace>TravellerTools.Chargen</CustomToolNamespace>
@@ -110,6 +105,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="JSON\services.json" />
     <None Include="JSON\settings.json" />
@@ -129,13 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Development Notes.txt" />
-    <Content Include="Images\TravellerIcon.ico" />
-    <Content Include="Images\TravellerIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fundamentals\Fundamentals.csproj">
       <Project>{0be6638e-98ee-43a3-9566-2fc6dc34da4f}</Project>
       <Name>Fundamentals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TravellerData\TravellerData.csproj">
+      <Project>{e697dd9f-6b6f-4b79-9806-9a68bc9c14b1}</Project>
+      <Name>TravellerData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

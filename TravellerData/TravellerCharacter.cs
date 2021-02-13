@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravellerTools.Fundamentals;
 
-namespace TravellerTools.CharGen
+namespace TravellerTools.TravellerData
 {
     public class TravellerCharacter
     {

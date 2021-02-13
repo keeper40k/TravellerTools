@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TravellerTools.TravellerData</AssemblyName>
+    <RootNamespace>TravellerTools.TravellerData</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fundamentals\Fundamentals.csproj" />
+  </ItemGroup>
+
+</Project>
