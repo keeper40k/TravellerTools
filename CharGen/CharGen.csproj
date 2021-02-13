@@ -85,12 +85,6 @@
     <Compile Include="TravellerRollTarget.cs" />
     <Compile Include="TravellerService.cs" />
     <Compile Include="TravellerServices.cs" />
-    <Compile Include="EnlistServiceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EnlistServiceForm.Designer.cs">
-      <DependentUpon>EnlistServiceForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="GeneralSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,9 +98,6 @@
     </Compile>
     <EmbeddedResource Include="CharGenMainForm.resx">
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EnlistServiceForm.resx">
-      <DependentUpon>EnlistServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>

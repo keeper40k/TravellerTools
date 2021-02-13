@@ -28,6 +28,14 @@ namespace TravellerTools.CharGen
         private static string NEW_CHAR_SURE = " Are you sure you want to create a New Character?\nThe current Character will be lost.";
         private static string NEW_CHAR_SURE_TITLE = "Create New Character";
 
+        private static string RECOMMENDATIONS_LABEL = "Service Recommendations";
+        private static string CHARACTER_HISTORY_LABEL = "Current Traveller Character";
+
+        private static string ENLIST_LABEL = "{0} needs {1}+ on 2d6 to Enlist. You will get a +{2} modifier.";
+        private static string ENLIST_SUCCESS = "{0} successfully enlisted in the {1}, with a total roll of {2}.";
+        private static string ENLIST_FAIL = "{0} failed to enlisted in the {1}, with a total roll of {2}.";
+        private static string DRAFT_RESULT = "{0} has been drafted into the {1}.";
+
         private static string TERM_TITLE = "Processing Term {0} ...";
         private static string TERM_BLOCK_TITLE = "Term {0} ...";
         private static string SURVIVAL_ROLL = "Survival: {0} rolled a {1} against a target of {2}+{3}.";
@@ -49,7 +57,8 @@ namespace TravellerTools.CharGen
         private static string REENLIST_FAILED = "The {0} Service no longer needs the services of {1}. They may not enlist for another term.";
 
         // Protected member variables
-        protected CharGenSettings m_settings = null;
+        protected CharGenSettings Settings = null;
+        protected TravellerServices Services = null;
         protected TravellerService Service = null;
         protected TravellerCharacter Character = null;
         protected bool ForceReenlistment = false;
@@ -57,11 +66,14 @@ namespace TravellerTools.CharGen
         public CharGenMainForm()
         {
             InitializeComponent();
-            m_settings = new CharGenSettings();
-            m_settings.LoadSettings();
+            Settings = new CharGenSettings();
+            Settings.LoadSettings();
+            Services = new TravellerServices();
+            Services.LoadSettings();
             Service = new TravellerService();
             Character = new TravellerCharacter();
             CurrentState = CreationProcessState.SELECT_SERVICE;
+            InitialiseServiceSelectionBoxes();
             RefreshCharacterDisplay();
             UpdateInputBoxes();
         }
@@ -80,6 +92,23 @@ namespace TravellerTools.CharGen
             enlistButton.Enabled = true;
             serviceBox.Enabled = false;
             termRollButton.Enabled = false;
+
+            enlistmentChoiceBox.SelectedIndex = 0;
+            enlistTargetLabel.Text = string.Empty;
+        }
+
+        // Some of the input boxes won't change content, so they only need initialising once.
+        protected void InitialiseServiceSelectionBoxes()
+        {
+            enlistmentChoiceBox.Items.Clear();
+            enlistmentChoiceBox.Items.Add(" -- Choose a Service --");
+            foreach (TravellerService service in Services.Services)
+            {
+                enlistmentChoiceBox.Items.Add(service);
+            }
+            enlistmentChoiceBox.SelectedItem = enlistmentChoiceBox.Items[0];
+            enlistTargetLabel.Text = string.Empty;
+            enlistButton.Enabled = false;
         }
 
         protected void RefreshCharacterDisplay()
@@ -90,17 +119,28 @@ namespace TravellerTools.CharGen
             characterDisplay.AppendText( Character.ShortStringFormat() );
 
             characterHistory.Text = string.Empty;
-            // This makes the history data scroll to the end
-            characterHistory.Focus();
-            characterHistory.AppendText( Character.CharacterHistory() );
-            
+            // Show Recommendations for Services if in SELECT_SERVICE state
+            if (CurrentState == CreationProcessState.SELECT_SERVICE)
+            {
+                characterHistoryLabel.Text = RECOMMENDATIONS_LABEL;
+                // Do need to scroll to the end here.
+                characterHistory.Text = Services.RecommendText(Character);
+            }
+            // Otherwise show the character history
+            else
+            {
+                characterHistoryLabel.Text = CHARACTER_HISTORY_LABEL;
+                // This makes the history data scroll to the end
+                characterHistory.Focus();
+                characterHistory.AppendText(Character.CharacterHistory());
+            }            
         }
 
         protected void UpdateInputBoxes()
         {
             // Roll Button
-            autoCreate.Enabled = m_settings.AllowReroll;
-            autoCreateLabel.Enabled = m_settings.AllowReroll;
+            autoCreate.Enabled = Settings.AllowReroll;
+            autoCreateLabel.Enabled = Settings.AllowReroll;
 
             // Title Combo and Use Title
             useTitleCheckBox.Checked = Character.UseTitle;
@@ -134,7 +174,7 @@ namespace TravellerTools.CharGen
             nameBox.Text = Character.Name;
             // Age Box
             ageNumberBox.Value = Character.Age;
-            ageNumberBox.Enabled = m_settings.AllowAgeEditing;
+            ageNumberBox.Enabled = Settings.AllowAgeEditing;
 
             // Service Box
             if (Character.Service != string.Empty)
@@ -152,6 +192,11 @@ namespace TravellerTools.CharGen
             {
                 case CreationProcessState.SELECT_SERVICE:
                 {
+                        enlistmentChoiceLabel.Visible = true;
+                        enlistmentChoiceBox.Visible = true;
+                        enlistTargetLabel.Visible = true;
+                        serviceLabel.Visible = false;
+                        serviceBox.Visible = false;
                         termTitleLabel.Visible = false;
                         termRollButton.Visible = false;
                         musterOutButton.Visible = false;
@@ -159,6 +204,11 @@ namespace TravellerTools.CharGen
                 }
                 case CreationProcessState.TERMS:
                 {
+                        enlistmentChoiceLabel.Visible = false;
+                        enlistmentChoiceBox.Visible = false;
+                        enlistTargetLabel.Visible = false;
+                        serviceLabel.Visible = true;
+                        serviceBox.Visible = true;
                         string termTitle = String.Format(TERM_TITLE, Character.TermsOfService + 1);
                         termTitleLabel.Text = termTitle;
                         termTitleLabel.Visible = true;
@@ -171,6 +221,9 @@ namespace TravellerTools.CharGen
                 }
                 case CreationProcessState.DEAD:
                 {
+                    enlistmentChoiceLabel.Visible = false;
+                    enlistmentChoiceBox.Visible = false;
+                    enlistTargetLabel.Visible = false;
                     autoCreate.Enabled = false;
                     titleBox.Enabled = false;
                     useTitleCheckBox.Enabled = false;
@@ -186,6 +239,9 @@ namespace TravellerTools.CharGen
                 }
                 case CreationProcessState.MUSTERING_OUT:
                 {
+                    enlistmentChoiceLabel.Visible = false;
+                    enlistmentChoiceBox.Visible = false;
+                    enlistTargetLabel.Visible = false;
                     termTitleLabel.Visible = true;
                     termRollButton.Enabled = false;
                     termRollButton.Visible = true;
@@ -196,6 +252,26 @@ namespace TravellerTools.CharGen
                 }
                 default:
                 {
+                    break;
+                }
+            }
+        }
+
+        protected void ExecuteDraft()
+        {
+            Character.Drafted = true;
+            if (enlistmentChoiceBox.SelectedItem is TravellerService)
+            {
+                Character.FailedService = (enlistmentChoiceBox.SelectedItem as TravellerService).Name;
+            }
+
+            decimal draftResult = DiceTools.RollOneDie(6);
+            for (int i = 0; i < Services.Services.Count; i++)
+            {
+                if (Services.Services[i].DraftNumber == draftResult)
+                {
+                    Character.Service = Services.Services[i].Name;
+                    enlistmentChoiceBox.SelectedItem = Services.Services[i];
                     break;
                 }
             }
@@ -327,7 +403,7 @@ namespace TravellerTools.CharGen
                 }
 
             }
-            else if (m_settings.AllowCharacterSurvival)
+            else if (Settings.AllowCharacterSurvival)
             {
                 textUpdate += string.Format(INJURED_THIS_TERM, Character.Name, Service.Name) + "\n";
                 Character.Age += 2;
@@ -351,7 +427,7 @@ namespace TravellerTools.CharGen
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = DialogResult.Yes;
-            if( m_settings.PromptOnNewChar )
+            if( Settings.PromptOnNewChar )
             {
                 result = MessageBox.Show(NEW_CHAR_SURE, NEW_CHAR_SURE_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             }
@@ -371,7 +447,7 @@ namespace TravellerTools.CharGen
             Character.RollRandomCharacteristics();
             UpdateInputBoxes();
             RefreshCharacterDisplay();
-            if (!m_settings.AllowReroll)
+            if (!Settings.AllowReroll)
             {
                 autoCreate.Enabled = false;
             }
@@ -408,9 +484,9 @@ namespace TravellerTools.CharGen
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GeneralSettings settingsForm = new GeneralSettings( m_settings );
+            GeneralSettings settingsForm = new GeneralSettings( Settings );
             settingsForm.ShowDialog();
-            m_settings = settingsForm.Settings;
+            Settings = settingsForm.Settings;
             UpdateInputBoxes();
         }
 
@@ -431,18 +507,48 @@ namespace TravellerTools.CharGen
             RefreshCharacterDisplay();
         }
 
+
         private void enlistButton_Click(object sender, EventArgs e)
         {
-            EnlistServiceForm enlistForm = new EnlistServiceForm( Character );
-            DialogResult result = enlistForm.ShowDialog();
-            if (result == DialogResult.OK)
+            decimal target = Service.Enlistment.Target;
+            decimal bonus = 0;
+            if (Service.EnlistmentPlusTwo.Pass(Character))
             {
-                Character = enlistForm.Character;
-                Service = enlistForm.SelectedService;
-                CurrentState = CreationProcessState.TERMS;
-                UpdateInputBoxes();
-                RefreshCharacterDisplay();
+                bonus += 2;
             }
+            if (Service.EnlistmentPlusOne.Pass(Character))
+            {
+                bonus += 1;
+            }
+
+            decimal roll = DiceTools.RollDice(2, 6);
+            decimal result = roll + bonus;
+            bool enlist = (result >= Service.Enlistment.Target);
+            if (enlist)
+            {
+                string enlistmentResultText = String.Format(ENLIST_SUCCESS, Character.Name, Service.Name, result);
+                Character.CreationHistory += enlistmentResultText += "\n";
+            }
+            else
+            {
+                string enlistmentResultText = String.Format(ENLIST_FAIL, Character.Name, Service.Name, result);
+                Character.CreationHistory += enlistmentResultText += "\n";
+                // What happens in the draft ...
+                ExecuteDraft();
+            }
+
+            if (Character.Drafted)
+            {
+                string draftResultText = String.Format(DRAFT_RESULT, Character.Name, Character.Service);
+                Character.CreationHistory += draftResultText + "\n";
+            }
+            Character.CreationHistory += "\n";
+
+            serviceBox.Text = Service.Name;
+            CurrentState = CreationProcessState.TERMS;
+            UpdateInputBoxes();
+            RefreshCharacterDisplay();
+
         }
 
         private void termRollButton_Click(object sender, EventArgs e)
@@ -450,6 +556,36 @@ namespace TravellerTools.CharGen
             ProcessTerm();
             UpdateInputBoxes();
             RefreshCharacterDisplay();
+        }
+
+        private void enlistmentChoiceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // There is a string in the list, if this is chosen, then the
+            // SelctedService should revert to null
+            if (enlistmentChoiceBox.SelectedItem is TravellerService)
+            {
+                Service = enlistmentChoiceBox.SelectedItem as TravellerService;
+                decimal target = Service.Enlistment.Target;
+                decimal bonus = 0;
+                if (Service.EnlistmentPlusTwo.Pass(Character))
+                {
+                    bonus += 2;
+                }
+                if (Service.EnlistmentPlusOne.Pass(Character))
+                {
+                    bonus += 1;
+                }
+                string labelText = String.Format(ENLIST_LABEL, Character.Name, target, bonus);
+                enlistTargetLabel.Text = labelText;
+                enlistButton.Enabled = true;
+            }
+            else
+            {
+                Service = null;
+                enlistButton.Enabled = false;
+            }
+
+            UpdateInputBoxes();
         }
     }
 }

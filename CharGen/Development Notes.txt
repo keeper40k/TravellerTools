@@ -10,8 +10,7 @@ Data for Character:
 			CharGenMainForm
 			  Re-enlistment
 			    -  Need to consider if the ROLL after Enlistment should be renamed "Reenlist"
-				-  Also, out-processing of term one after Enlist.
-				-  Also, consider bringing EnlistServiceForm controls back onto the main form.
+				-  Also, auto-processing of term one after Enlist.
 	 - Needs to come soon ...
 			TravellerSkill class
 			Skills / characteristic acquisition in terms of service
