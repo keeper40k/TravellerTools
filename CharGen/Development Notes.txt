@@ -8,11 +8,19 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
+			 - Need to do term skills next ...
+			 - Don't forget automatic skills
+			 - Will include adding skill tables into Services JSON
+			 - Will include adding automatic skills into Services JSON
 	 - Needs to come soon ...
 			TravellerSkill class
+			TravellerSkills JSON
 			Skills / characteristic acquisition in terms of service
 			TravellerGear class
-			Mustering Out
+			Retirement & Mustering Out
+			Need to add mustering out tables into Services JSON
+			And benefits / credits / gear into TravellerCharacter
+			Weapons profiles
 
 Other ...
 
