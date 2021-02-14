@@ -13,8 +13,6 @@ Data for Character:
 			 - Will include adding skill tables into Services JSON
 			 - Will include adding automatic skills into Services JSON
 	 - Needs to come soon ...
-			TravellerSkill class
-			TravellerSkills JSON
 			Skills / characteristic acquisition in terms of service
 			TravellerGear class
 			Retirement & Mustering Out

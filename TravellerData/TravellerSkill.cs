@@ -10,7 +10,12 @@ namespace TravellerTools.TravellerData
         public TravellerSkill()
         {
             Name = string.Empty;
+            Summary = string.Empty;
             Description = string.Empty;
+            Referee = string.Empty;
+
+            HasSpecialisations = false;
+            Specialisations = new List<TravellerSkill>();
         }
 
         // Public Methods
@@ -27,5 +32,7 @@ namespace TravellerTools.TravellerData
         public string Description { get; set; }
         public string Referee { get; set; }
         public decimal Level { get; set; }
+        public bool HasSpecialisations { get; set; }
+        public List<TravellerSkill> Specialisations { get; set; }
     }
 }
