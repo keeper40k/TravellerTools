@@ -28,7 +28,27 @@
       },
       "Reenlist": { "Target": 6 },
       "DraftNumber": 1,
-      "Ranks":  [ "Ensign", "Lieutenant", "Lt Commander", "Commander", "Captain", "Admiral" ]
+      "Ranks": [ "Ensign", "Lieutenant", "Lt Commander", "Commander", "Captain", "Admiral" ],
+      "AutomaticSkills": [
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "SOC",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "SOC",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        }
+      ]
     },
     {
       "Name": "Marines",
@@ -58,7 +78,27 @@
       },
       "Reenlist": { "Target": 6 },
       "DraftNumber": 2,
-      "Ranks": [ "Lieutenant", "Captain", "Force Commander", "Lt Colonel", "Colonel", "Brigadier" ]
+      "Ranks": [ "Lieutenant", "Captain", "Force Commander", "Lt Colonel", "Colonel", "Brigadier" ],
+      "AutomaticSkills": [
+        {
+          "Key": 0,
+          "Value": {
+            "Name": "Cutlass",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Revolver",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ]
     },
     {
       "Name": "Army",
@@ -88,7 +128,27 @@
       },
       "Reenlist": { "Target": 7 },
       "DraftNumber": 3,
-      "Ranks": [ "Lieutenant", "Captain", "Major", "Lt Colonel", "Colonel", "General" ]
+      "Ranks": [ "Lieutenant", "Captain", "Major", "Lt Colonel", "Colonel", "General" ],
+      "AutomaticSkills": [
+        {
+          "Key": 0,
+          "Value": {
+            "Name": "Rifle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "SMG",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ]
     },
     {
       "Name": "Scouts",
@@ -118,7 +178,18 @@
       },
       "Reenlist": { "Target": 3 },
       "DraftNumber": 4,
-      "Ranks": []
+      "Ranks": [],
+      "AutomaticSkills": [
+        {
+          "Key": 0,
+          "Value": {
+            "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ]
     },
     {
       "Name": "Merchants",
@@ -148,7 +219,18 @@
       },
       "Reenlist": { "Target": 4 },
       "DraftNumber": 5,
-      "Ranks": [ "4th Officer", "3rd Officer", "2nd Officer", "1st Officer", "Captain" ]
+      "Ranks": [ "4th Officer", "3rd Officer", "2nd Officer", "1st Officer", "Captain" ],
+      "AutomaticSkills": [
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ]
     },
     {
       "Name": "Other",

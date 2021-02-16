@@ -12,6 +12,20 @@ namespace TravellerTools.TravellerData
         // Constructor
         public TravellerService()
         {
+            Name = string.Empty;
+            Enlistment = new TravellerRollTarget(0);
+            EnlistmentPlusOne = new TravellerCharacteristicRollTarget(string.Empty, 0);
+            EnlistmentPlusTwo = new TravellerCharacteristicRollTarget(string.Empty, 0);
+            Survival = new TravellerRollTarget(0);
+            SurvivalPlusTwo = new TravellerCharacteristicRollTarget(string.Empty, 0);
+            Commission = new TravellerRollTarget(0);
+            CommissionPlusOne = new TravellerCharacteristicRollTarget(string.Empty, 0);
+            Promotion = new TravellerRollTarget(0);
+            PromotionPlusOne = new TravellerCharacteristicRollTarget(string.Empty, 0);
+            Reenlist = new TravellerRollTarget(0);
+            DraftNumber = 0;
+            Ranks = new List<string>();
+            AutomaticSkills = new List<KeyValuePair<int, TravellerSkillModifier>>();
         }
 
         // Public Methods
@@ -37,6 +51,21 @@ namespace TravellerTools.TravellerData
             return Ranks[rankIndex];
         }
 
+        public List<TravellerSkillModifier> AutomaticSkillsAtRank (int rankIndex)
+        {
+            List<TravellerSkillModifier> results = new List<TravellerSkillModifier>();
+
+            foreach(KeyValuePair<int, TravellerSkillModifier> item in AutomaticSkills )
+            {
+                if( item.Key == rankIndex)
+                {
+                    results.Add(item.Value);
+                }
+            }
+
+            return results;
+        }
+
         // Public Properties
 
         public String Name { get; set; }
@@ -53,6 +82,6 @@ namespace TravellerTools.TravellerData
 
         public decimal DraftNumber { get; set; }
         public List<string> Ranks { get; set; }
-
+        public List<KeyValuePair<int, TravellerSkillModifier>> AutomaticSkills { get; set; }
     }
 }

@@ -109,6 +109,7 @@
     </Compile>
     <None Include="JSON\services.json" />
     <None Include="JSON\settings.json" />
+    <None Include="JSON\skills.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -141,6 +142,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy $(ProjectDir)JSON\services.json $(TargetDir)\services.json
 copy $(ProjectDir)JSON\settings.json $(Targetdir)\settings.json
+copy $(ProjectDir)JSON\skills.json $(Targetdir)\skills.json
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

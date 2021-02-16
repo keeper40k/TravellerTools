@@ -281,6 +281,7 @@ namespace TravellerTools.CharGen
         protected void ProcessTerm()
         {
             ForceReenlistment = false;
+            decimal termStartingRank = Character.RankNumber;
 
             decimal currentTerm = Character.TermsOfService + 1;
             string textUpdate = string.Format(TERM_BLOCK_TITLE, currentTerm) + "\n";
@@ -300,11 +301,9 @@ namespace TravellerTools.CharGen
             {
                 textUpdate += string.Format(SURVIVED_THIS_TERM, Character.Name) + "\n";
 
-                // Aging Crisis
+                // Aging Crisis is handled in TravellerCharacter
 
-                // TO DO
-
-                // Increment Term
+                 // Increment Term
                 Character.TermsOfService += 1;
 
                 // Commissions and Promotions are not available in all Services
@@ -329,6 +328,9 @@ namespace TravellerTools.CharGen
                             {
                                 Character.RankNumber += 1;
                                 Character.Rank = Service.RankName((int)Character.RankNumber - 1);
+                                // Reset, termStarting Rank, as we've just run auto-skills again
+                                termStartingRank = Character.RankNumber;
+                                AddAutomaticSkills();
                             }
 
                             if (Character.Commissioned)
@@ -374,6 +376,12 @@ namespace TravellerTools.CharGen
                 }
 
                 // Skills and Training
+
+                // Automatic Skills if RankNumber has increased
+                if (termStartingRank != Character.RankNumber)
+                {
+                    AddAutomaticSkills();
+                }
 
                 // TO DO
 
@@ -428,6 +436,15 @@ namespace TravellerTools.CharGen
             if ( !Character.IsDead && ForceReenlistment )
             {
                 ProcessTerm();
+            }
+        }
+
+        protected void AddAutomaticSkills()
+        {
+            List<TravellerSkillModifier> autoSkills = Service.AutomaticSkillsAtRank((int)Character.RankNumber);
+            foreach (TravellerSkillModifier autoSkill in autoSkills)
+            {
+                Character.AddSkill(autoSkill);
             }
         }
 
@@ -557,6 +574,10 @@ namespace TravellerTools.CharGen
             Character.CreationHistory += "\n";
 
             serviceBox.Text = Service.Name;
+            
+            // Automatic Skills at Rank 0
+            AddAutomaticSkills();
+
             CurrentState = CreationProcessState.TERMS;
             // Run the first term automatically
             ProcessTerm();

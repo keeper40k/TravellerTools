@@ -9,6 +9,28 @@ namespace TravellerTools.TravellerData
         // Public Constructors
         public TravellerSkill()
         {
+            InitialiseData();
+        }
+
+        public TravellerSkill(TravellerSkill source)
+        {
+            InitialiseData();
+            Name = source.Name;
+            Summary = source.Summary;
+            Description = source.Description;
+            Referee = source.Referee;
+            HasSpecialisations = source.HasSpecialisations;
+            foreach( TravellerSkill specialisation in Specialisations )
+            {
+                Specialisations.Add(new TravellerSkill(specialisation));
+            }
+            
+        }
+
+        // Protected Methods
+
+        protected void InitialiseData()
+        {
             Name = string.Empty;
             Summary = string.Empty;
             Description = string.Empty;

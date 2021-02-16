@@ -257,6 +257,7 @@ namespace TravellerTools.TravellerData
             TermsOfService = 0;
             InjuredDuringCreation = false;
             RankNumber = 0;
+            Skills = new List<TravellerSkill>();
 
             CreationHistory = string.Empty;
 
@@ -337,6 +338,76 @@ namespace TravellerTools.TravellerData
             return titles;
         }
 
+        public void AddSkill( TravellerSkillModifier newSkill )
+        {
+            // TO DO
+            if( newSkill.IsAttribute )
+            {
+                switch( newSkill.Name )
+                {
+                    case "STR":
+                    {
+                        STR += newSkill.Level;
+                        break;
+                    }
+                    case "DEX":
+                    {
+                        DEX += newSkill.Level;
+                        break;
+                    }
+                    case "END":
+                    {
+                        END += newSkill.Level;
+                        break;
+                    }
+                    case "INT":
+                    {
+                        INT += newSkill.Level;
+                        break;
+                    }
+                    case "EDU":
+                    {
+                        EDU += newSkill.Level;
+                        break;
+                    }
+                    case "SOC":
+                    {
+                        SOC += newSkill.Level;
+                        break;
+                    }
+                    default:
+                    {
+                        // Do nothing
+                        break;
+                    }
+                }
+            }
+            if( newSkill.IsSkill )
+            {
+                TravellerSkill fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
+                if (fullSkill != null)
+                {
+                    bool found = false;
+                    foreach (TravellerSkill existingSkill in Skills)
+                    {
+                        if( existingSkill.Name == fullSkill.Name )
+                        {
+                            found = true;
+                            existingSkill.Level += newSkill.Level;
+                            break;
+                        }
+                    }
+
+                    if (!found )
+                    {
+                        TravellerSkill localSkill = new TravellerSkill(fullSkill);
+                        localSkill.Level = newSkill.Level;
+                        Skills.Add( localSkill );
+                    }
+                }
+            }
+        }
+
         // Public Override Methods
 
         public override string ToString()
@@ -357,7 +428,17 @@ namespace TravellerTools.TravellerData
             {
                 result += Rank + " ";
             }
-            result += Name + "\t" + UPP + "\tAge " + Age;
+            result += Name + "\t" + UPP + "\tAge " + Age + "\n";
+
+            for (int i = 0; i < Skills.Count; i++)
+            {
+                result += Skills[i].Name + "-" + Skills[i].Level;
+                if (i < Skills.Count - 1)
+                {
+                    result += ", ";
+                }
+            }
+
             return result;
         }
 
@@ -454,6 +535,7 @@ namespace TravellerTools.TravellerData
         public decimal TermsOfService { get; set; }
         public bool InjuredDuringCreation { get; set; }
         public decimal RankNumber { get; set; }
+        public List<TravellerSkill> Skills { get; set; }
 
         public string CreationHistory { get; set; }
 

@@ -9,9 +9,8 @@ Data for Character:
 	  - Currently writing
 			CharGenMainForm
 			 - Need to do term skills next ...
-			 - Don't forget automatic skills
 			 - Will include adding skill tables into Services JSON
-			 - Will include adding automatic skills into Services JSON
+			 - Auto Skills are done
 	 - Needs to come soon ...
 			Skills / characteristic acquisition in terms of service
 			TravellerGear class
@@ -36,4 +35,3 @@ String Usage:
 
 Future
   When expanding to 18 services in the future, Draft probably needs to be an option.
-  When CharGen is complete, extract the data classes out to their own project for re-use elsewhere
