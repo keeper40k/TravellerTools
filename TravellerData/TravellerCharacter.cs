@@ -37,6 +37,9 @@ namespace TravellerTools.TravellerData
         private static string FAILED_AGING_CRISIS = "{0} suffered an Aging Crisis and passed away at the age of {1}.";
         private static string PASSED_AGING_CRISIS = "{0} passed through Aging Crisis at the age of {1} and aged a further {2} months due to Slow Drug recovery.";
 
+        private static string ATT_SKILL_LOSS = "{0} lost {1} {2}\n";
+        private static string ATT_SKILL_GAIN = "{0} gained {1} {2}\n";
+
         // Constructors
 
         public TravellerCharacter()
@@ -85,16 +88,19 @@ namespace TravellerTools.TravellerData
             if( strRoll < 8 )
             {
                 STR = STR - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "STR");
             }
             int dexRoll = DiceTools.RollDice(2, 6);
             if (dexRoll < 7)
             {
                 DEX = DEX - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "DEX");
             }
             int endRoll = DiceTools.RollDice(2, 6);
             if (endRoll < 8)
             {
                 END = END - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "END");
             }
             AgingCrisis(currentAge);
         }
@@ -106,16 +112,19 @@ namespace TravellerTools.TravellerData
             if (strRoll < 9)
             {
                 STR = STR - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "STR");
             }
             int dexRoll = DiceTools.RollDice(2, 6);
             if (dexRoll < 8)
             {
                 DEX = DEX - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "DEX");
             }
             int endRoll = DiceTools.RollDice(2, 6);
             if (endRoll < 9)
             {
                 END = END - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "END");
             }
             AgingCrisis(currentAge);
         }
@@ -127,21 +136,25 @@ namespace TravellerTools.TravellerData
             if (strRoll < 9)
             {
                 STR = STR - 2;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 2, "STR");
             }
             int dexRoll = DiceTools.RollDice(2, 6);
             if (dexRoll < 9)
             {
                 DEX = DEX - 2;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 2, "DEX");
             }
             int endRoll = DiceTools.RollDice(2, 6);
             if (endRoll < 9)
             {
                 END = END - 2;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 2, "END");
             }
             int intRoll = DiceTools.RollDice(2, 6);
             if (intRoll < 9)
             {
                 INT = INT - 1;
+                CreationHistory += string.Format(ATT_SKILL_LOSS, Name, 1, "INT");
             }
             AgingCrisis(currentAge);
         }
@@ -338,8 +351,10 @@ namespace TravellerTools.TravellerData
             return titles;
         }
 
-        public void AddSkill( TravellerSkillModifier newSkill )
+        public void AddSkill( TravellerSkillModifier newSkill, ISkillSpecialisationCollection callback )
         {
+            SpecialisationSelectionCallback = callback;
+
             // TO DO
             if( newSkill.IsAttribute )
             {
@@ -348,31 +363,37 @@ namespace TravellerTools.TravellerData
                     case "STR":
                     {
                         STR += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     case "DEX":
                     {
                         DEX += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     case "END":
                     {
                         END += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     case "INT":
                     {
                         INT += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     case "EDU":
                     {
                         EDU += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     case "SOC":
                     {
                         SOC += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                         break;
                     }
                     default:
@@ -387,6 +408,12 @@ namespace TravellerTools.TravellerData
                 TravellerSkill fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
                 if (fullSkill != null)
                 {
+                    // Resolve Specialisation. While loop for nesting
+                    while( fullSkill.HasSpecialisations )
+                    {
+                        fullSkill = ChooseSpecialisation(fullSkill.Name, fullSkill.Specialisations);
+                    }
+
                     bool found = false;
                     foreach (TravellerSkill existingSkill in Skills)
                     {
@@ -394,6 +421,7 @@ namespace TravellerTools.TravellerData
                         {
                             found = true;
                             existingSkill.Level += newSkill.Level;
+                            CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                             break;
                         }
                     }
@@ -403,9 +431,12 @@ namespace TravellerTools.TravellerData
                         TravellerSkill localSkill = new TravellerSkill(fullSkill);
                         localSkill.Level = newSkill.Level;
                         Skills.Add( localSkill );
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
                     }
                 }
             }
+
+            SpecialisationSelectionCallback = null;
         }
 
         // Public Override Methods
@@ -540,5 +571,15 @@ namespace TravellerTools.TravellerData
         public string CreationHistory { get; set; }
 
         public bool IsDead { get; set; }
+
+        // Event Management
+
+        // Not using { get; set; } here as this data is not for serialisation. Should only be one at once.
+        public ISkillSpecialisationCollection SpecialisationSelectionCallback;
+
+        protected TravellerSkill ChooseSpecialisation( string skillName, List<TravellerSkill> list )
+        {
+            return SpecialisationSelectionCallback.SelectSpecialisation(skillName, list);
+        }
     }
 }

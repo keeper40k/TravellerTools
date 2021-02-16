@@ -43,8 +43,6 @@ namespace TravellerTools.CharGen
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.characterDisplayLabel = new System.Windows.Forms.Label();
-            this.autoCreate = new System.Windows.Forms.Button();
-            this.autoCreateLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -172,29 +170,10 @@ namespace TravellerTools.CharGen
             this.characterDisplayLabel.TabIndex = 2;
             this.characterDisplayLabel.Text = "Current Traveller Character";
             // 
-            // autoCreate
-            // 
-            this.autoCreate.Location = new System.Drawing.Point(326, 32);
-            this.autoCreate.Name = "autoCreate";
-            this.autoCreate.Size = new System.Drawing.Size(75, 23);
-            this.autoCreate.TabIndex = 3;
-            this.autoCreate.Text = "ROLL";
-            this.autoCreate.UseVisualStyleBackColor = true;
-            this.autoCreate.Click += new System.EventHandler(this.autoCreate_Click);
-            // 
-            // autoCreateLabel
-            // 
-            this.autoCreateLabel.AutoSize = true;
-            this.autoCreateLabel.Location = new System.Drawing.Point(160, 37);
-            this.autoCreateLabel.Name = "autoCreateLabel";
-            this.autoCreateLabel.Size = new System.Drawing.Size(160, 13);
-            this.autoCreateLabel.TabIndex = 4;
-            this.autoCreateLabel.Text = "Re-Roll Traveller Character UPP";
-            // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(12, 112);
+            this.nameLabel.Location = new System.Drawing.Point(12, 86);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 6;
@@ -202,7 +181,7 @@ namespace TravellerTools.CharGen
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(61, 109);
+            this.nameBox.Location = new System.Drawing.Point(61, 83);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(340, 20);
             this.nameBox.TabIndex = 7;
@@ -211,7 +190,7 @@ namespace TravellerTools.CharGen
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(12, 62);
+            this.titleLabel.Location = new System.Drawing.Point(12, 36);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 8;
@@ -221,7 +200,7 @@ namespace TravellerTools.CharGen
             // 
             this.titleBox.Enabled = false;
             this.titleBox.FormattingEnabled = true;
-            this.titleBox.Location = new System.Drawing.Point(61, 59);
+            this.titleBox.Location = new System.Drawing.Point(61, 33);
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(283, 21);
             this.titleBox.TabIndex = 9;
@@ -231,7 +210,7 @@ namespace TravellerTools.CharGen
             // useTitleCheckBox
             // 
             this.useTitleCheckBox.AutoSize = true;
-            this.useTitleCheckBox.Location = new System.Drawing.Point(350, 61);
+            this.useTitleCheckBox.Location = new System.Drawing.Point(350, 35);
             this.useTitleCheckBox.Name = "useTitleCheckBox";
             this.useTitleCheckBox.Size = new System.Drawing.Size(51, 17);
             this.useTitleCheckBox.TabIndex = 10;
@@ -242,7 +221,7 @@ namespace TravellerTools.CharGen
             // useRankCheckBox
             // 
             this.useRankCheckBox.AutoSize = true;
-            this.useRankCheckBox.Location = new System.Drawing.Point(350, 87);
+            this.useRankCheckBox.Location = new System.Drawing.Point(350, 61);
             this.useRankCheckBox.Name = "useRankCheckBox";
             this.useRankCheckBox.Size = new System.Drawing.Size(51, 17);
             this.useRankCheckBox.TabIndex = 13;
@@ -253,7 +232,7 @@ namespace TravellerTools.CharGen
             // rankLabel
             // 
             this.rankLabel.AutoSize = true;
-            this.rankLabel.Location = new System.Drawing.Point(14, 88);
+            this.rankLabel.Location = new System.Drawing.Point(14, 62);
             this.rankLabel.Name = "rankLabel";
             this.rankLabel.Size = new System.Drawing.Size(33, 13);
             this.rankLabel.TabIndex = 11;
@@ -262,7 +241,7 @@ namespace TravellerTools.CharGen
             // rankBox
             // 
             this.rankBox.Enabled = false;
-            this.rankBox.Location = new System.Drawing.Point(61, 85);
+            this.rankBox.Location = new System.Drawing.Point(61, 59);
             this.rankBox.Name = "rankBox";
             this.rankBox.Size = new System.Drawing.Size(283, 20);
             this.rankBox.TabIndex = 14;
@@ -270,7 +249,7 @@ namespace TravellerTools.CharGen
             // ageLabel
             // 
             this.ageLabel.AutoSize = true;
-            this.ageLabel.Location = new System.Drawing.Point(14, 137);
+            this.ageLabel.Location = new System.Drawing.Point(14, 111);
             this.ageLabel.Name = "ageLabel";
             this.ageLabel.Size = new System.Drawing.Size(26, 13);
             this.ageLabel.TabIndex = 15;
@@ -279,7 +258,7 @@ namespace TravellerTools.CharGen
             // ageNumberBox
             // 
             this.ageNumberBox.Enabled = false;
-            this.ageNumberBox.Location = new System.Drawing.Point(61, 135);
+            this.ageNumberBox.Location = new System.Drawing.Point(61, 109);
             this.ageNumberBox.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -292,7 +271,7 @@ namespace TravellerTools.CharGen
             // 
             // enlistButton
             // 
-            this.enlistButton.Location = new System.Drawing.Point(326, 205);
+            this.enlistButton.Location = new System.Drawing.Point(326, 179);
             this.enlistButton.Name = "enlistButton";
             this.enlistButton.Size = new System.Drawing.Size(75, 23);
             this.enlistButton.TabIndex = 17;
@@ -303,7 +282,7 @@ namespace TravellerTools.CharGen
             // enlistLabel
             // 
             this.enlistLabel.AutoSize = true;
-            this.enlistLabel.Location = new System.Drawing.Point(229, 210);
+            this.enlistLabel.Location = new System.Drawing.Point(229, 184);
             this.enlistLabel.Name = "enlistLabel";
             this.enlistLabel.Size = new System.Drawing.Size(91, 13);
             this.enlistLabel.TabIndex = 18;
@@ -312,7 +291,7 @@ namespace TravellerTools.CharGen
             // serviceBox
             // 
             this.serviceBox.Enabled = false;
-            this.serviceBox.Location = new System.Drawing.Point(61, 161);
+            this.serviceBox.Location = new System.Drawing.Point(61, 135);
             this.serviceBox.Name = "serviceBox";
             this.serviceBox.Size = new System.Drawing.Size(340, 20);
             this.serviceBox.TabIndex = 20;
@@ -321,7 +300,7 @@ namespace TravellerTools.CharGen
             // serviceLabel
             // 
             this.serviceLabel.AutoSize = true;
-            this.serviceLabel.Location = new System.Drawing.Point(12, 164);
+            this.serviceLabel.Location = new System.Drawing.Point(12, 138);
             this.serviceLabel.Name = "serviceLabel";
             this.serviceLabel.Size = new System.Drawing.Size(43, 13);
             this.serviceLabel.TabIndex = 19;
@@ -330,7 +309,7 @@ namespace TravellerTools.CharGen
             // termTitleLabel
             // 
             this.termTitleLabel.AutoSize = true;
-            this.termTitleLabel.Location = new System.Drawing.Point(14, 335);
+            this.termTitleLabel.Location = new System.Drawing.Point(14, 309);
             this.termTitleLabel.Name = "termTitleLabel";
             this.termTitleLabel.Size = new System.Drawing.Size(108, 13);
             this.termTitleLabel.TabIndex = 21;
@@ -338,7 +317,7 @@ namespace TravellerTools.CharGen
             // 
             // termRollButton
             // 
-            this.termRollButton.Location = new System.Drawing.Point(310, 330);
+            this.termRollButton.Location = new System.Drawing.Point(310, 304);
             this.termRollButton.Name = "termRollButton";
             this.termRollButton.Size = new System.Drawing.Size(91, 23);
             this.termRollButton.TabIndex = 22;
@@ -357,7 +336,7 @@ namespace TravellerTools.CharGen
             // 
             // musterOutButton
             // 
-            this.musterOutButton.Location = new System.Drawing.Point(310, 359);
+            this.musterOutButton.Location = new System.Drawing.Point(310, 333);
             this.musterOutButton.Name = "musterOutButton";
             this.musterOutButton.Size = new System.Drawing.Size(91, 23);
             this.musterOutButton.TabIndex = 25;
@@ -387,7 +366,7 @@ namespace TravellerTools.CharGen
             // enlistmentChoiceBox
             // 
             this.enlistmentChoiceBox.FormattingEnabled = true;
-            this.enlistmentChoiceBox.Location = new System.Drawing.Point(214, 161);
+            this.enlistmentChoiceBox.Location = new System.Drawing.Point(214, 135);
             this.enlistmentChoiceBox.Name = "enlistmentChoiceBox";
             this.enlistmentChoiceBox.Size = new System.Drawing.Size(187, 21);
             this.enlistmentChoiceBox.TabIndex = 29;
@@ -396,7 +375,7 @@ namespace TravellerTools.CharGen
             // enlistmentChoiceLabel
             // 
             this.enlistmentChoiceLabel.AutoSize = true;
-            this.enlistmentChoiceLabel.Location = new System.Drawing.Point(15, 164);
+            this.enlistmentChoiceLabel.Location = new System.Drawing.Point(15, 138);
             this.enlistmentChoiceLabel.Name = "enlistmentChoiceLabel";
             this.enlistmentChoiceLabel.Size = new System.Drawing.Size(192, 13);
             this.enlistmentChoiceLabel.TabIndex = 28;
@@ -405,7 +384,7 @@ namespace TravellerTools.CharGen
             // enlistTargetLabel
             // 
             this.enlistTargetLabel.AutoSize = true;
-            this.enlistTargetLabel.Location = new System.Drawing.Point(129, 185);
+            this.enlistTargetLabel.Location = new System.Drawing.Point(129, 159);
             this.enlistTargetLabel.Name = "enlistTargetLabel";
             this.enlistTargetLabel.Size = new System.Drawing.Size(272, 13);
             this.enlistTargetLabel.TabIndex = 30;
@@ -439,8 +418,6 @@ namespace TravellerTools.CharGen
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.autoCreateLabel);
-            this.Controls.Add(this.autoCreate);
             this.Controls.Add(this.characterDisplayLabel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -466,8 +443,6 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Label characterDisplayLabel;
-        private System.Windows.Forms.Button autoCreate;
-        private System.Windows.Forms.Label autoCreateLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Label titleLabel;

@@ -32,7 +32,6 @@ namespace TravellerTools.CharGen
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettings));
             this.closeButton = new System.Windows.Forms.Button();
             this.promptOnNewCheckBox = new System.Windows.Forms.CheckBox();
-            this.allowRerollCheckBox = new System.Windows.Forms.CheckBox();
             this.allowAgeEditingBox = new System.Windows.Forms.CheckBox();
             this.allowCharacterSurvivalBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -40,7 +39,7 @@ namespace TravellerTools.CharGen
             // closeButton
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.Location = new System.Drawing.Point(181, 104);
+            this.closeButton.Location = new System.Drawing.Point(181, 51);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 0;
@@ -59,21 +58,10 @@ namespace TravellerTools.CharGen
             this.promptOnNewCheckBox.UseVisualStyleBackColor = true;
             this.promptOnNewCheckBox.CheckedChanged += new System.EventHandler(this.promptOnNewCheckBox_CheckedChanged);
             // 
-            // allowRerollCheckBox
-            // 
-            this.allowRerollCheckBox.AutoSize = true;
-            this.allowRerollCheckBox.Location = new System.Drawing.Point(12, 35);
-            this.allowRerollCheckBox.Name = "allowRerollCheckBox";
-            this.allowRerollCheckBox.Size = new System.Drawing.Size(242, 17);
-            this.allowRerollCheckBox.TabIndex = 3;
-            this.allowRerollCheckBox.Text = "Allow Reroll without creating a New Character";
-            this.allowRerollCheckBox.UseVisualStyleBackColor = true;
-            this.allowRerollCheckBox.CheckedChanged += new System.EventHandler(this.allowRerollCheckBox_CheckedChanged);
-            // 
             // allowAgeEditingBox
             // 
             this.allowAgeEditingBox.AutoSize = true;
-            this.allowAgeEditingBox.Location = new System.Drawing.Point(12, 58);
+            this.allowAgeEditingBox.Location = new System.Drawing.Point(12, 35);
             this.allowAgeEditingBox.Name = "allowAgeEditingBox";
             this.allowAgeEditingBox.Size = new System.Drawing.Size(108, 17);
             this.allowAgeEditingBox.TabIndex = 4;
@@ -84,7 +72,7 @@ namespace TravellerTools.CharGen
             // allowCharacterSurvivalBox
             // 
             this.allowCharacterSurvivalBox.AutoSize = true;
-            this.allowCharacterSurvivalBox.Location = new System.Drawing.Point(12, 81);
+            this.allowCharacterSurvivalBox.Location = new System.Drawing.Point(12, 58);
             this.allowCharacterSurvivalBox.Name = "allowCharacterSurvivalBox";
             this.allowCharacterSurvivalBox.Size = new System.Drawing.Size(141, 17);
             this.allowCharacterSurvivalBox.TabIndex = 5;
@@ -96,10 +84,9 @@ namespace TravellerTools.CharGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 141);
+            this.ClientSize = new System.Drawing.Size(268, 86);
             this.Controls.Add(this.allowCharacterSurvivalBox);
             this.Controls.Add(this.allowAgeEditingBox);
-            this.Controls.Add(this.allowRerollCheckBox);
             this.Controls.Add(this.promptOnNewCheckBox);
             this.Controls.Add(this.closeButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -114,7 +101,6 @@ namespace TravellerTools.CharGen
 
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.CheckBox promptOnNewCheckBox;
-        private System.Windows.Forms.CheckBox allowRerollCheckBox;
         private System.Windows.Forms.CheckBox allowAgeEditingBox;
         private System.Windows.Forms.CheckBox allowCharacterSurvivalBox;
     }

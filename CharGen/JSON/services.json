@@ -48,6 +48,232 @@
             "IsAttribute": true
           }
         }
+      ],
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 1,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "INT",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "EDU",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "SOC",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Ship's Boat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Vacc Suit",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Forward Observer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gunnery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vacc Suit",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronic",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Engineering",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Gunnery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Navigation",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Engineering",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Administration",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
       ]
     },
     {
@@ -93,6 +319,232 @@
           "Key": 1,
           "Value": {
             "Name": "Revolver",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 1,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gambling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Brawling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Vacc Suit",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronic",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Leader",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Administration",
             "Level": 1,
             "IsSkill": true,
             "IsAttribute": false
@@ -148,6 +600,232 @@
             "IsAttribute": false
           }
         }
+      ],
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 1,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gambling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "EDU",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Brawling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Grav Vehicles",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Forward Observer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronic",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Tactics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Leader",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Administration",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
       ]
     },
     {
@@ -178,12 +856,237 @@
       },
       "Reenlist": { "Target": 3 },
       "DraftNumber": 4,
-      "Ranks": [],
       "AutomaticSkills": [
         {
           "Key": 0,
           "Value": {
             "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 2,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "INT",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "EDU",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Vacc Suit",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Navigation",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Electronics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gunnery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Navigation",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Engineering",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Jack of all Trades",
             "Level": 1,
             "IsSkill": true,
             "IsAttribute": false
@@ -230,6 +1133,232 @@
             "IsAttribute": false
           }
         }
+      ],
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 1,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Bribery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Vacc Suit",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Steward",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Electronics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Streetwise",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronic",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Navigation",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Gunnery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Navigation",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Engineering",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Pilot",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Administration",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
       ]
     },
     {
@@ -260,7 +1389,232 @@
       },
       "Reenlist": { "Target": 5 },
       "DraftNumber": 6,
-      "Ranks": []
+      "SkillsFirstTerm": 2,
+      "SkillsPerTerm": 1,
+      "PersonalDevelopmentTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "STR",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "DEX",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "END",
+            "Level": 1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Brawling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "SOC",
+            "Level": -1,
+            "IsSkill": false,
+            "IsAttribute": true
+          }
+        }
+      ],
+      "ServiceSkillsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Vehicle",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Gambling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Brawling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Bribery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Gun Combat",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Streetwise",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Mechanical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronic",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gambling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Brawling",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Forgery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ],
+      "AdvancedEducationTable2": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Medical",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "Forgery",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "Electronics",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Computer",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Streetwise",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Jack of all Trades",
+            "Level": 1,
+            "IsSkill": true,
+            "IsAttribute": false
+          }
+        }
+      ]
     }
   ]
 }

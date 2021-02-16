@@ -12,7 +12,7 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
-    public partial class CharGenMainForm : Form
+    public partial class CharGenMainForm : Form, ISkillSpecialisationCollection
     {
         // Protected enums
 
@@ -87,7 +87,6 @@ namespace TravellerTools.CharGen
             Character = new TravellerCharacter();
             CurrentState = CreationProcessState.SELECT_SERVICE;
 
-            autoCreate.Enabled = true;
             nameBox.Enabled = true;
             ageNumberBox.Enabled = true;
             enlistButton.Enabled = true;
@@ -139,10 +138,6 @@ namespace TravellerTools.CharGen
 
         protected void UpdateInputBoxes()
         {
-            // Roll Button
-            autoCreate.Enabled = Settings.AllowReroll;
-            autoCreateLabel.Enabled = Settings.AllowReroll;
-
             // Title Combo and Use Title
             useTitleCheckBox.Checked = Character.UseTitle;
             if (Character.SOC >= 11)
@@ -225,7 +220,6 @@ namespace TravellerTools.CharGen
                     enlistmentChoiceLabel.Visible = false;
                     enlistmentChoiceBox.Visible = false;
                     enlistTargetLabel.Visible = false;
-                    autoCreate.Enabled = false;
                     titleBox.Enabled = false;
                     useTitleCheckBox.Enabled = false;
                     rankBox.Enabled = false;
@@ -284,7 +278,8 @@ namespace TravellerTools.CharGen
             decimal termStartingRank = Character.RankNumber;
 
             decimal currentTerm = Character.TermsOfService + 1;
-            string textUpdate = string.Format(TERM_BLOCK_TITLE, currentTerm) + "\n";
+            Character.CreationHistory += string.Format(TERM_BLOCK_TITLE, currentTerm) + "\n";
+            string textUpdate = string.Empty;
 
             // Survive
             decimal survivalTarget = Service.Survival.Target;
@@ -305,6 +300,9 @@ namespace TravellerTools.CharGen
 
                  // Increment Term
                 Character.TermsOfService += 1;
+
+                bool commissionedThisTerm = false;
+                bool promotedThisTerm = false;
 
                 // Commissions and Promotions are not available in all Services
                 if (Service.UsesRanks)
@@ -330,6 +328,7 @@ namespace TravellerTools.CharGen
                                 Character.Rank = Service.RankName((int)Character.RankNumber - 1);
                                 // Reset, termStarting Rank, as we've just run auto-skills again
                                 termStartingRank = Character.RankNumber;
+                                commissionedThisTerm = true;
                                 AddAutomaticSkills();
                             }
 
@@ -365,6 +364,7 @@ namespace TravellerTools.CharGen
                         {
                             Character.RankNumber += 1;
                             Character.Rank = Service.RankName((int)Character.RankNumber - 1);
+                            promotedThisTerm = true;
                             textUpdate += string.Format(PROMOTION_THIS_TERM, Character.Name, Character.Rank) + "\n";
                         }
                         else
@@ -381,6 +381,26 @@ namespace TravellerTools.CharGen
                 if (termStartingRank != Character.RankNumber)
                 {
                     AddAutomaticSkills();
+                }
+
+                // TermSkill Eligibility
+                decimal skillCount = 0;
+                if (Character.TermsOfService == 1)
+                {
+                    skillCount += Service.SkillsFirstTerm;
+                }
+                else
+                {
+                    skillCount += Service.SkillsPerTerm;
+                }
+
+                skillCount += commissionedThisTerm ? 1 : 0;
+                skillCount += promotedThisTerm ? 1 : 0;
+
+                if ( skillCount > 0 )
+                {
+                    SkillSelectionDialog skillsDialog = new SkillSelectionDialog(Service, Character, skillCount);
+                    skillsDialog.ShowDialog();
                 }
 
                 // TO DO
@@ -444,7 +464,7 @@ namespace TravellerTools.CharGen
             List<TravellerSkillModifier> autoSkills = Service.AutomaticSkillsAtRank((int)Character.RankNumber);
             foreach (TravellerSkillModifier autoSkill in autoSkills)
             {
-                Character.AddSkill(autoSkill);
+                Character.AddSkill(autoSkill, this);
             }
         }
 
@@ -463,7 +483,6 @@ namespace TravellerTools.CharGen
             
             if( result == DialogResult.Yes )
             {
-                autoCreate.Enabled = true;
                 ResetState();
                 RefreshCharacterDisplay();
                 UpdateInputBoxes();
@@ -476,10 +495,6 @@ namespace TravellerTools.CharGen
             Character.RollRandomCharacteristics();
             UpdateInputBoxes();
             RefreshCharacterDisplay();
-            if (!Settings.AllowReroll)
-            {
-                autoCreate.Enabled = false;
-            }
         }
 
         private void nameBox_TextChanged(object sender, EventArgs e)
@@ -622,6 +637,21 @@ namespace TravellerTools.CharGen
             }
 
             UpdateInputBoxes();
+        }
+
+        // Implementation of ISkillSpecialisationCollection
+
+        public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
+        {
+            SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
+            form.ShowDialog();
+            TravellerSkill selectedSkill = form.SelectedSkill;
+            if (selectedSkill != null && selectedSkill.HasSpecialisations)
+            {
+                SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
+            }
+
+            return selectedSkill;
         }
     }
 }

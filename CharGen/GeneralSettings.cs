@@ -29,7 +29,6 @@ namespace TravellerTools.CharGen
             }
 
             promptOnNewCheckBox.Checked = Settings.PromptOnNewChar;
-            allowRerollCheckBox.Checked = Settings.AllowReroll;
             allowAgeEditingBox.Checked = Settings.AllowAgeEditing;
             allowCharacterSurvivalBox.Checked = Settings.AllowCharacterSurvival;
         }
@@ -49,11 +48,6 @@ namespace TravellerTools.CharGen
         private void promptOnNewCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.PromptOnNewChar = promptOnNewCheckBox.Checked;
-        }
-
-        private void allowRerollCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.AllowReroll = allowRerollCheckBox.Checked;
         }
 
         private void allowAgeEditingBox_CheckedChanged(object sender, EventArgs e)

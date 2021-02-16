@@ -91,6 +91,18 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <CustomToolNamespace>TravellerTools.Chargen</CustomToolNamespace>
     </Compile>
+    <Compile Include="SelectSkillSpecialisationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSkillSpecialisationForm.Designer.cs">
+      <DependentUpon>SelectSkillSpecialisationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkillSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SkillSelectionDialog.Designer.cs">
+      <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CharGenMainForm.resx">
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +119,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SelectSkillSpecialisationForm.resx">
+      <DependentUpon>SelectSkillSpecialisationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkillSelectionDialog.resx">
+      <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="JSON\services.json" />
     <None Include="JSON\settings.json" />
     <None Include="JSON\skills.json" />

@@ -8,6 +8,10 @@ namespace TravellerTools.TravellerData
 {
     public class TravellerService
     {
+        // private constant strings
+
+        private const string SKILL_ROW = "{0}    {1}\n";
+        private const string ATT_ROW = "{0}    {1}{2} {3}\n";
 
         // Constructor
         public TravellerService()
@@ -26,9 +30,41 @@ namespace TravellerTools.TravellerData
             DraftNumber = 0;
             Ranks = new List<string>();
             AutomaticSkills = new List<KeyValuePair<int, TravellerSkillModifier>>();
+            SkillsPerTerm = 0;
+        }
+
+        // Protected Methods
+
+        protected string TableText( List<KeyValuePair<int, TravellerSkillModifier>> table )
+        {
+            string result = string.Empty;
+            foreach (KeyValuePair<int, TravellerSkillModifier> row in table)
+            {
+                TravellerSkillModifier thisSkill = (row.Value as TravellerSkillModifier);
+                if (thisSkill != null)
+                {
+                    if (thisSkill.IsSkill)
+                    {
+                        result += string.Format(SKILL_ROW, row.Key, thisSkill.Name);
+                    }
+                    else if (thisSkill.IsAttribute)
+                    {
+                        string modifier = "+";
+                        if (thisSkill.Level < 0)
+                        {
+                            modifier = "-";
+                        }
+                        result += string.Format(ATT_ROW, row.Key, modifier, thisSkill.Level, thisSkill.Name);
+                    }
+                }
+            }
+            // Remove the last \n character
+            result = result.Substring(0, result.Length - 1);
+            return result;
         }
 
         // Public Methods
+
         public override string ToString()
         {
             return Name;
@@ -66,6 +102,26 @@ namespace TravellerTools.TravellerData
             return results;
         }
 
+        public string PersonalDevelopmentTableText()
+        {
+            return TableText( PersonalDevelopmentTable );
+        }
+
+        public string ServiceSkillsTableText()
+        {
+            return TableText( ServiceSkillsTable );
+        }
+
+        public string AdvancedEducationTableText()
+        {
+            return TableText( AdvancedEducationTable );
+        }
+
+        public string AdvancedEducationTable2Text()
+        {
+            return TableText( AdvancedEducationTable2 );
+        }
+
         // Public Properties
 
         public String Name { get; set; }
@@ -79,9 +135,14 @@ namespace TravellerTools.TravellerData
         public TravellerRollTarget Promotion { get; set; }
         public TravellerCharacteristicRollTarget PromotionPlusOne { get; set; }
         public TravellerRollTarget Reenlist { get; set; }
-
         public decimal DraftNumber { get; set; }
         public List<string> Ranks { get; set; }
         public List<KeyValuePair<int, TravellerSkillModifier>> AutomaticSkills { get; set; }
+        public decimal SkillsFirstTerm { get; set; }
+        public decimal SkillsPerTerm { get; set; }
+        public List<KeyValuePair<int, TravellerSkillModifier>> PersonalDevelopmentTable { get; set; }
+        public List<KeyValuePair<int, TravellerSkillModifier>> ServiceSkillsTable { get; set; }
+        public List<KeyValuePair<int, TravellerSkillModifier>> AdvancedEducationTable { get; set; }
+        public List<KeyValuePair<int, TravellerSkillModifier>> AdvancedEducationTable2 { get; set; }
     }
 }
