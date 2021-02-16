@@ -274,6 +274,94 @@
             "IsAttribute": false
           }
         }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 1000
+        },
+        {
+          "Key": 2,
+          "Value": 5000
+        },
+        {
+          "Key": 3,
+          "Value": 5000
+        },
+        {
+          "Key": 4,
+          "Value": 10000
+        },
+        {
+          "Key": 5,
+          "Value": 20000
+        },
+        {
+          "Key": 6,
+          "Value": 50000
+        },
+        {
+          "Key": 7,
+          "Value": 50000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+1 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+2 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Blade",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Travellers' Aid",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "High Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 7,
+          "Value": {
+            "Name": "+2 SOC",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        }
       ]
     },
     {
@@ -548,6 +636,94 @@
             "Level": 1,
             "IsSkill": true,
             "IsAttribute": false
+          }
+        }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 2000
+        },
+        {
+          "Key": 2,
+          "Value": 5000
+        },
+        {
+          "Key": 3,
+          "Value": 5000
+        },
+        {
+          "Key": 4,
+          "Value": 10000
+        },
+        {
+          "Key": 5,
+          "Value": 20000
+        },
+        {
+          "Key": 6,
+          "Value": 30000
+        },
+        {
+          "Key": 7,
+          "Value": 40000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+2 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+1 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Blade",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Travellers' Aid",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "High Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 7,
+          "Value": {
+            "Name": "+2 SOC",
+            "IsAtt": true,
+            "IsGear": false
           }
         }
       ]
@@ -826,7 +1002,96 @@
             "IsAttribute": false
           }
         }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 2000
+        },
+        {
+          "Key": 2,
+          "Value": 5000
+        },
+        {
+          "Key": 3,
+          "Value": 10000
+        },
+        {
+          "Key": 4,
+          "Value": 10000
+        },
+        {
+          "Key": 5,
+          "Value": 10000
+        },
+        {
+          "Key": 6,
+          "Value": 20000
+        },
+        {
+          "Key": 7,
+          "Value": 30000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+1 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+2 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gun",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "High Passage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Middle Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 7,
+          "Value": {
+            "Name": "+1 SOC",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        }
       ]
+
     },
     {
       "Name": "Scouts",
@@ -1090,6 +1355,86 @@
             "Level": 1,
             "IsSkill": true,
             "IsAttribute": false
+          }
+        }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 20000
+        },
+        {
+          "Key": 2,
+          "Value": 20000
+        },
+        {
+          "Key": 3,
+          "Value": 30000
+        },
+        {
+          "Key": 4,
+          "Value": 30000
+        },
+        {
+          "Key": 5,
+          "Value": 50000
+        },
+        {
+          "Key": 6,
+          "Value": 50000
+        },
+        {
+          "Key": 7,
+          "Value": 50000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+2 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+2 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Blade",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Gun",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Scout Ship",
+            "IsAtt": false,
+            "IsGear": true
           }
         }
       ]
@@ -1359,6 +1704,94 @@
             "IsAttribute": false
           }
         }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 1000
+        },
+        {
+          "Key": 2,
+          "Value": 5000
+        },
+        {
+          "Key": 3,
+          "Value": 10000
+        },
+        {
+          "Key": 4,
+          "Value": 20000
+        },
+        {
+          "Key": 5,
+          "Value": 20000
+        },
+        {
+          "Key": 6,
+          "Value": 40000
+        },
+        {
+          "Key": 7,
+          "Value": 40000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+1 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+1 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gun",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "Blade",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 6,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 7,
+          "Value": {
+            "Name": "Free Trader",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        }
       ]
     },
     {
@@ -1612,6 +2045,78 @@
             "Level": 1,
             "IsSkill": true,
             "IsAttribute": false
+          }
+        }
+      ],
+      "CashTable": [
+        {
+          "Key": 1,
+          "Value": 1000
+        },
+        {
+          "Key": 2,
+          "Value": 5000
+        },
+        {
+          "Key": 3,
+          "Value": 10000
+        },
+        {
+          "Key": 4,
+          "Value": 10000
+        },
+        {
+          "Key": 5,
+          "Value": 10000
+        },
+        {
+          "Key": 6,
+          "Value": 50000
+        },
+        {
+          "Key": 7,
+          "Value": 100000
+        }
+      ],
+      "BenefitsTable": [
+        {
+          "Key": 1,
+          "Value": {
+            "Name": "Low Passgage",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 2,
+          "Value": {
+            "Name": "+1 INT",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 3,
+          "Value": {
+            "Name": "+1 EDU",
+            "IsAtt": true,
+            "IsGear": false
+          }
+        },
+        {
+          "Key": 4,
+          "Value": {
+            "Name": "Gun",
+            "IsAtt": false,
+            "IsGear": true
+          }
+        },
+        {
+          "Key": 5,
+          "Value": {
+            "Name": "High Passgage",
+            "IsAtt": false,
+            "IsGear": true
           }
         }
       ]

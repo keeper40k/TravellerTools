@@ -275,6 +275,9 @@ namespace TravellerTools.TravellerData
             CreationHistory = string.Empty;
 
             IsDead = false;
+
+            Cash = 0;
+            Gear = new List<TravellerGear>();
         }
 
         public void RollRandomCharacteristics()
@@ -459,7 +462,7 @@ namespace TravellerTools.TravellerData
             {
                 result += Rank + " ";
             }
-            result += Name + "\t" + UPP + "\tAge " + Age + "\n";
+            result += Name + "\t" + UPP + "\tAge " + Age + "\tCr" + Cash + "\n";
 
             for (int i = 0; i < Skills.Count; i++)
             {
@@ -470,6 +473,19 @@ namespace TravellerTools.TravellerData
                 }
             }
 
+            if (Gear.Count > 0)
+            {
+                result += "\n";
+            }
+
+            for (int i = 0; i < Gear.Count; i++)
+            {
+                result += Gear[i].Name;
+                if (i < Skills.Count - 1)
+                {
+                    result += ", ";
+                }
+            }
             return result;
         }
 
@@ -483,6 +499,20 @@ namespace TravellerTools.TravellerData
             if (CreationHistory != string.Empty)
             {
                 result += "\n\n" + CreationHistory;
+            }
+            return result;
+        }
+
+        public bool HasSkill( string name )
+        {
+            bool result = false;
+            foreach( TravellerSkill skill in Skills )
+            {
+                if( name == skill.Name )
+                {
+                    result = true;
+                    break;
+                }
             }
             return result;
         }
@@ -571,6 +601,9 @@ namespace TravellerTools.TravellerData
         public string CreationHistory { get; set; }
 
         public bool IsDead { get; set; }
+
+        public int Cash { get; set; }
+        public List<TravellerGear> Gear { get; set; }
 
         // Event Management
 

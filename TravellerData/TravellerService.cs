@@ -12,6 +12,8 @@ namespace TravellerTools.TravellerData
 
         private const string SKILL_ROW = "{0}    {1}\n";
         private const string ATT_ROW = "{0}    {1}{2} {3}\n";
+        private const string BENEFIT_ROW = "{0}    {1}\n";
+        private const string CASH_ROW = "{0}    Cr{1}\n";
 
         // Constructor
         public TravellerService()
@@ -31,6 +33,8 @@ namespace TravellerTools.TravellerData
             Ranks = new List<string>();
             AutomaticSkills = new List<KeyValuePair<int, TravellerSkillModifier>>();
             SkillsPerTerm = 0;
+            CashTable = new List<KeyValuePair<int, decimal>>();
+            BenefitsTable = new List<KeyValuePair<int, TravellerMusteringOutBenefit>>();
         }
 
         // Protected Methods
@@ -122,6 +126,30 @@ namespace TravellerTools.TravellerData
             return TableText( AdvancedEducationTable2 );
         }
 
+        public string CashTableText()
+        {
+            string result = string.Empty;
+            foreach( KeyValuePair<int, decimal> item in CashTable )
+            {
+                result += string.Format(CASH_ROW, item.Key, item.Value);
+            }
+            // Remove the last \n character
+            result = result.Substring(0, result.Length - 1);
+            return result;
+        }
+
+        public string BenefitsTableText()
+        {
+            string result = string.Empty;
+            foreach ( KeyValuePair<int, TravellerMusteringOutBenefit> item in BenefitsTable )
+            {
+                result += string.Format(BENEFIT_ROW, item.Key, item.Value.Name);
+            }
+            // Remove the last \n character
+            result = result.Substring(0, result.Length - 1);
+            return result;
+        }
+
         // Public Properties
 
         public String Name { get; set; }
@@ -144,5 +172,7 @@ namespace TravellerTools.TravellerData
         public List<KeyValuePair<int, TravellerSkillModifier>> ServiceSkillsTable { get; set; }
         public List<KeyValuePair<int, TravellerSkillModifier>> AdvancedEducationTable { get; set; }
         public List<KeyValuePair<int, TravellerSkillModifier>> AdvancedEducationTable2 { get; set; }
+        public List<KeyValuePair<int, decimal>> CashTable { get; set; }
+        public List<KeyValuePair<int, TravellerMusteringOutBenefit>> BenefitsTable { get; set; }
     }
 }

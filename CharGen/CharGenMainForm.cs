@@ -20,8 +20,9 @@ namespace TravellerTools.CharGen
         {
             SELECT_SERVICE = 1,
             TERMS = 2,
-            MUSTERING_OUT = 3,
-            DEAD = 4
+            MUST_RETIRE = 3,
+            MUSTERED_OUT = 4,
+            DEAD = 5
         }
         
         // constant string
@@ -113,10 +114,7 @@ namespace TravellerTools.CharGen
 
         protected void RefreshCharacterDisplay()
         {
-            characterDisplay.Text = string.Empty;
-            // This makes the history data scroll to the end
-            characterDisplay.Focus();
-            characterDisplay.AppendText( Character.ShortStringFormat() );
+            characterDisplay.Text = Character.ShortStringFormat();
 
             characterHistory.Text = string.Empty;
             // Show Recommendations for Services if in SELECT_SERVICE state
@@ -191,6 +189,7 @@ namespace TravellerTools.CharGen
                         enlistmentChoiceLabel.Visible = true;
                         enlistmentChoiceBox.Visible = true;
                         enlistTargetLabel.Visible = true;
+                        enlistButton.Visible = true;
                         serviceLabel.Visible = false;
                         serviceBox.Visible = false;
                         termTitleLabel.Visible = false;
@@ -210,10 +209,37 @@ namespace TravellerTools.CharGen
                         termTitleLabel.Visible = true;
                         termRollButton.Enabled = true;
                         termRollButton.Visible = true;
-                        enlistButton.Enabled = false;
+                        enlistLabel.Visible = false;
+                        enlistButton.Visible = false;
                         musterOutButton.Visible = Character.TermsOfService > 0;
                         musterOutButton.Enabled = !ForceReenlistment;
                         break;
+                }
+                case CreationProcessState.MUST_RETIRE:
+                {
+                        enlistmentChoiceLabel.Visible = false;
+                        enlistmentChoiceBox.Visible = false;
+                        enlistTargetLabel.Visible = false;
+                        termTitleLabel.Visible = false;
+                        termRollButton.Enabled = false;
+                        termRollButton.Visible = true;
+                        enlistButton.Enabled = false;
+                        musterOutButton.Visible = true;
+                        musterOutButton.Enabled = true;
+                        break;
+                }
+                case CreationProcessState.MUSTERED_OUT:
+                {
+                    enlistmentChoiceLabel.Visible = false;
+                    enlistmentChoiceBox.Visible = false;
+                    enlistTargetLabel.Visible = false;
+                    termTitleLabel.Visible = false;
+                    termRollButton.Enabled = false;
+                    termRollButton.Visible = true;
+                    enlistButton.Enabled = false;
+                    musterOutButton.Visible = true;
+                    musterOutButton.Enabled = false;
+                    break;
                 }
                 case CreationProcessState.DEAD:
                 {
@@ -230,19 +256,6 @@ namespace TravellerTools.CharGen
                     serviceBox.Enabled = false;
                     termRollButton.Enabled = false;
                     musterOutButton.Visible = false;
-                    break;
-                }
-                case CreationProcessState.MUSTERING_OUT:
-                {
-                    enlistmentChoiceLabel.Visible = false;
-                    enlistmentChoiceBox.Visible = false;
-                    enlistTargetLabel.Visible = false;
-                    termTitleLabel.Visible = true;
-                    termRollButton.Enabled = false;
-                    termRollButton.Visible = true;
-                    enlistButton.Enabled = false;
-                    musterOutButton.Visible = true;
-                    musterOutButton.Enabled = true;
                     break;
                 }
                 default:
@@ -403,8 +416,6 @@ namespace TravellerTools.CharGen
                     skillsDialog.ShowDialog();
                 }
 
-                // TO DO
-
                 // Reenlistment
 
                 decimal reenlistmentRoll = DiceTools.RollDice(2, 6);
@@ -421,36 +432,37 @@ namespace TravellerTools.CharGen
                     if( !reenlistSuccess )
                     {
                         textUpdate += string.Format(REENLIST_FAILED, Service.Name, Character.Name) + "\n";
-                        CurrentState = CreationProcessState.MUSTERING_OUT;
+                        CurrentState = CreationProcessState.MUST_RETIRE;
                     }
 
-                    // Retirement
-                    // Mustering Out
                 }
 
+                // Age
+                Character.Age += 4;
+                // Aging could kill the character ...
+                if (Character.IsDead)
+                {
+                    CurrentState = CreationProcessState.DEAD;
+                }
             }
             else if (Settings.AllowCharacterSurvival)
             {
                 textUpdate += string.Format(INJURED_THIS_TERM, Character.Name, Service.Name) + "\n";
                 Character.Age += 2;
                 Character.InjuredDuringCreation = true;
-                CurrentState = CreationProcessState.MUSTERING_OUT;
+                CurrentState = CreationProcessState.MUSTERED_OUT;
             }
             else
             {
-                textUpdate += string.Format(DIED_THIS_TERM, Character.Name) + "\n";
                 CurrentState = CreationProcessState.DEAD;
+            }
+
+            if (CurrentState == CreationProcessState.DEAD )
+            {
+                textUpdate += string.Format(DIED_THIS_TERM, Character.Name) + "\n";
             }
 
             Character.CreationHistory += textUpdate + "\n";
-
-            // Age
-            Character.Age += 4;
-            // Aging could kill the character ...
-            if( Character.IsDead )
-            {
-                CurrentState = CreationProcessState.DEAD;
-            }
 
             // Automatically run another term, if it has been rolled and the character hasn't died due to aging
             if ( !Character.IsDead && ForceReenlistment )
@@ -652,6 +664,29 @@ namespace TravellerTools.CharGen
             }
 
             return selectedSkill;
+        }
+
+        private void musterOutButton_Click(object sender, EventArgs e)
+        {
+            decimal rolls = Character.TermsOfService;
+            if( Character.RankNumber > 0 )
+            {
+                rolls++;
+            }
+            if( Character.RankNumber > 2 )
+            {
+                rolls++;
+            }
+            if( Character.RankNumber > 4 )
+            {
+                rolls++;
+            }
+            MusteringOutDialog form = new MusteringOutDialog(Service, Character, rolls);
+            form.ShowDialog();
+
+            CurrentState = CreationProcessState.MUSTERED_OUT;
+            UpdateInputBoxes();
+            RefreshCharacterDisplay();
         }
     }
 }

@@ -309,7 +309,7 @@ namespace TravellerTools.CharGen
             // termTitleLabel
             // 
             this.termTitleLabel.AutoSize = true;
-            this.termTitleLabel.Location = new System.Drawing.Point(14, 309);
+            this.termTitleLabel.Location = new System.Drawing.Point(14, 184);
             this.termTitleLabel.Name = "termTitleLabel";
             this.termTitleLabel.Size = new System.Drawing.Size(108, 13);
             this.termTitleLabel.TabIndex = 21;
@@ -317,7 +317,7 @@ namespace TravellerTools.CharGen
             // 
             // termRollButton
             // 
-            this.termRollButton.Location = new System.Drawing.Point(310, 304);
+            this.termRollButton.Location = new System.Drawing.Point(310, 179);
             this.termRollButton.Name = "termRollButton";
             this.termRollButton.Size = new System.Drawing.Size(91, 23);
             this.termRollButton.TabIndex = 22;
@@ -336,12 +336,13 @@ namespace TravellerTools.CharGen
             // 
             // musterOutButton
             // 
-            this.musterOutButton.Location = new System.Drawing.Point(310, 333);
+            this.musterOutButton.Location = new System.Drawing.Point(310, 208);
             this.musterOutButton.Name = "musterOutButton";
             this.musterOutButton.Size = new System.Drawing.Size(91, 23);
             this.musterOutButton.TabIndex = 25;
             this.musterOutButton.Text = "RETIRE";
             this.musterOutButton.UseVisualStyleBackColor = true;
+            this.musterOutButton.Click += new System.EventHandler(this.musterOutButton_Click);
             // 
             // characterDisplay
             // 

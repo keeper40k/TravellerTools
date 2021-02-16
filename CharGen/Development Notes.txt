@@ -8,8 +8,12 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
+			  Need better journaling for Mustering Out
+			  Need to be able to combine Gear ...
 	 - Needs to come soon ...
-			TravellerGear class
+			Retirement Pay
+			Saving & Exporting a Character
+			TravellerGear class feels like it needs more work
 			Retirement & Mustering Out
 			Need to add mustering out tables into Services JSON
 			And benefits / credits / gear into TravellerCharacter
