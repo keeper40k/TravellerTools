@@ -442,6 +442,48 @@ namespace TravellerTools.TravellerData
             SpecialisationSelectionCallback = null;
         }
 
+        // Should only be used when the newSkill does not have further specialisation
+        public void AddSkill(TravellerSkill newSkill)
+        {
+            if (newSkill != null)
+            {
+                bool found = false;
+                foreach (TravellerSkill existingSkill in Skills)
+                {
+                    if (existingSkill.Name == newSkill.Name)
+                    {
+                        found = true;
+                        existingSkill.Level += newSkill.Level;
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Skills.Add(newSkill);
+                    CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
+                }
+            }
+        }
+
+        public void AddGear( TravellerGear gear )
+        {
+            bool found = false;
+            foreach( TravellerGear item in Gear )
+            {
+                if( gear.Name == item.Name )
+                {
+                    found = true;
+                    item.Count += gear.Count;
+                }
+            }
+            if( !found )
+            {
+                Gear.Add(gear);
+            }
+        }
+
         // Public Override Methods
 
         public override string ToString()
@@ -480,8 +522,8 @@ namespace TravellerTools.TravellerData
 
             for (int i = 0; i < Gear.Count; i++)
             {
-                result += Gear[i].Name;
-                if (i < Skills.Count - 1)
+                result += Gear[i];
+                if (i < Gear.Count - 1)
                 {
                     result += ", ";
                 }

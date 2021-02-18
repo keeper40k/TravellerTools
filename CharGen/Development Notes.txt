@@ -8,9 +8,10 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
+			  WeaponSelectionForm in Mustering out is NOT behaving as expected - especially the control updates!  Need to fix this. Need to debug it through from construction next time.
 			  Need better journaling for Mustering Out
-			  Need to be able to combine Gear ...
 	 - Needs to come soon ...
+			Limit to 7 terms (excepting mandatory re-enlistment)
 			Retirement Pay
 			Saving & Exporting a Character
 			TravellerGear class feels like it needs more work
@@ -18,8 +19,11 @@ Data for Character:
 			Need to add mustering out tables into Services JSON
 			And benefits / credits / gear into TravellerCharacter
 			Weapons profiles
+			Flesh out TravellerGearStorehouse
 
 Other ...
+
+Why is death reported after mandatory re-enlistment?
 
 Investigate : Should I really be saving settings.json ? Is this really needed?
 

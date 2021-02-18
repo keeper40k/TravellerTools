@@ -15,9 +15,14 @@ namespace TravellerTools.CharGen
     public partial class MusteringOutDialog : Form, ISkillSpecialisationCollection
     {
         // static constant strings
-        private string ROLLS_REMAINING_LABEL = "Mustering Out Rolls Remaining ... {0}";
-        private string CASH_ROLLS_MADE_LABEL = "{0} Cash Rolls Made";
-        private string BENEFIT_ROLLS_MADE_LABEL = "{0} Benefits Rolls Made";
+        private const string ROLLS_REMAINING_LABEL = "Mustering Out Rolls Remaining ... {0}";
+        private const string CASH_ROLLS_MADE_LABEL = "{0} Cash Rolls Made";
+        private const string BENEFIT_ROLLS_MADE_LABEL = "{0} Benefits Rolls Made";
+
+        private const string GUN_NAME = "Gun";
+        private const string BLADE_NAME = "Blade";
+
+        private const string GEAR_TO_SKILL_SUFFIX = " Combat";
 
         // protected members
 
@@ -87,7 +92,24 @@ namespace TravellerTools.CharGen
                 else if( rolledBenefit.IsGear )
                 {
                     TravellerGear gear = BenefitGearLookup(rolledBenefit.Name);
-                    m_character.Gear.Add( gear );
+                    if( gear.Name == GUN_NAME || gear.Name == BLADE_NAME )
+                    {
+                        TravellerSkill weaponSkill = TravellerSkills.MatchSkill(gear.Name + GEAR_TO_SKILL_SUFFIX);
+                        WeaponSelectionForm form = new WeaponSelectionForm(weaponSkill, m_character.Gear);
+                        form.ShowDialog();
+                        if (form.IsWeaponSelected)
+                        {
+                            m_character.AddGear(form.SelectedGear);
+                        }
+                        else
+                        {
+                            m_character.AddSkill(form.SelectedSkill);
+                        }
+                    }
+                    else
+                    {
+                        m_character.AddGear(gear);
+                    }
                 }
                 m_rollsCount--;
                 m_benefitRollsCount++;

@@ -109,6 +109,12 @@
     <Compile Include="SkillSelectionDialog.Designer.cs">
       <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="WeaponSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeaponSelectionForm.Designer.cs">
+      <DependentUpon>WeaponSelectionForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CharGenMainForm.resx">
       <DependentUpon>CharGenMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SkillSelectionDialog.resx">
       <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeaponSelectionForm.resx">
+      <DependentUpon>WeaponSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="JSON\services.json" />
     <None Include="JSON\settings.json" />
