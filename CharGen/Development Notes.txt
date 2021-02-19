@@ -8,7 +8,6 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
-			  WeaponSelectionForm in Mustering out is NOT behaving as expected - especially the control updates!  Need to fix this. Need to debug it through from construction next time.
 			  Need better journaling for Mustering Out
 	 - Needs to come soon ...
 			Limit to 7 terms (excepting mandatory re-enlistment)
@@ -39,3 +38,4 @@ String Usage:
 
 Future
   When expanding to 18 services in the future, Draft probably needs to be an option.
+  Fixed most issues with WeaponSelectionForm.  It still loses the enable on Select when switching between choices, but reselection in the combo box does sort it out.
