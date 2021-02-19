@@ -19,6 +19,9 @@ namespace TravellerTools.CharGen
         private const string CASH_ROLLS_MADE_LABEL = "{0} Cash Rolls Made";
         private const string BENEFIT_ROLLS_MADE_LABEL = "{0} Benefits Rolls Made";
 
+        private const string ROLL_RESULT_GEAR = "Roll {0} : {1}\n";
+        private const string ROLL_RESULT_CASH = "Roll {0} : Cr{1}\n";
+
         private const string GUN_NAME = "Gun";
         private const string BLADE_NAME = "Blade";
 
@@ -43,6 +46,9 @@ namespace TravellerTools.CharGen
             m_benefitRollsCount = 0;
 
             InitializeComponent();
+
+            resultsBox.Text = string.Empty;
+
             UpdateButtons();
         }
 
@@ -50,8 +56,12 @@ namespace TravellerTools.CharGen
         {
             if (m_rollsCount == 0)
             {
-                // If nothing left to do, close the form
-                Close();
+                benefitsTableButton.Enabled = false;
+                cashTableButton.Enabled = false;
+
+                characterDisplay.Text = m_character.ShortStringFormat();
+
+                closeButton.Enabled = true;
             }
             else
             {
@@ -67,11 +77,14 @@ namespace TravellerTools.CharGen
 
                 cashTableButton.Enabled = m_cashRollsCount < 3;
 
+                closeButton.Enabled = false;
             }
         }
 
         protected void ProcessBenefitSelection(List<KeyValuePair<int, TravellerMusteringOutBenefit>> table)
         {
+            object resultForReporting = null;
+
             int roll = DiceTools.RollOneDie(6);
             TravellerMusteringOutBenefit rolledBenefit = null;
             foreach (KeyValuePair<int, TravellerMusteringOutBenefit> item in table)
@@ -88,6 +101,7 @@ namespace TravellerTools.CharGen
                 {
                     TravellerSkillModifier att = BenefitAttLookup(rolledBenefit.Name);
                     m_character.AddSkill(att, this);
+                    resultForReporting = att;
                 }
                 else if( rolledBenefit.IsGear )
                 {
@@ -100,20 +114,26 @@ namespace TravellerTools.CharGen
                         if (form.IsWeaponSelected)
                         {
                             m_character.AddGear(form.SelectedGear);
+                            resultForReporting = form.SelectedGear;
                         }
                         else
                         {
                             m_character.AddSkill(form.SelectedSkill);
+                            resultForReporting = form.SelectedSkill;
                         }
                     }
                     else
                     {
                         m_character.AddGear(gear);
+                        resultForReporting = gear;
                     }
                 }
                 m_rollsCount--;
                 m_benefitRollsCount++;
             }
+            string benefitString = rolledBenefit == null ? string.Empty : rolledBenefit.ToString();
+            resultsBox.Text += string.Format( ROLL_RESULT_GEAR, m_cashRollsCount+m_benefitRollsCount, benefitString );
+
             UpdateButtons();
         }
 
@@ -133,6 +153,9 @@ namespace TravellerTools.CharGen
             m_character.Cash += cashValue;
             m_rollsCount--;
             m_cashRollsCount++;
+
+            resultsBox.Text += string.Format(ROLL_RESULT_CASH, m_cashRollsCount + m_benefitRollsCount, cashValue);
+
             UpdateButtons();
         }
 
@@ -225,11 +248,16 @@ namespace TravellerTools.CharGen
         private void benefitsTableButton_Click(object sender, EventArgs e)
         {
             ProcessBenefitSelection( m_service.BenefitsTable );
-        }
+    }
 
-        private void cashTableButton_Click(object sender, EventArgs e)
+    private void cashTableButton_Click(object sender, EventArgs e)
         {
             ProcessCashSelection( m_service.CashTable );
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

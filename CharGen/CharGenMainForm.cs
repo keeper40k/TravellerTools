@@ -57,6 +57,7 @@ namespace TravellerTools.CharGen
         private static string MUST_REENLIST = "{0} is required to stay in the {1} Service for an additional term and may not leave at this time.";
         private static string REENLIST_ROLL = "Reenlistment: {0} rolled a {1} against a target of {2}.";
         private static string REENLIST_FAILED = "The {0} Service no longer needs the services of {1}. They may not enlist for another term.";
+        private static string ENOUGH_TERMS = "{0} must now retire after serving {1} terms.";
 
         // Protected member variables
         protected CharGenSettings Settings = null;
@@ -463,6 +464,13 @@ namespace TravellerTools.CharGen
             }
 
             Character.CreationHistory += textUpdate + "\n";
+
+            // Only allow 7 terms, unless forced reenlistment happens
+            if( Character.TermsOfService > 6 && CurrentState == CreationProcessState.TERMS && !ForceReenlistment )
+            {
+                Character.CreationHistory += string.Format( ENOUGH_TERMS, Character.Name, Character.TermsOfService ) + "\n";
+                CurrentState = CreationProcessState.MUST_RETIRE;
+            }
 
             // Automatically run another term, if it has been rolled and the character hasn't died due to aging
             if ( !Character.IsDead && ForceReenlistment )

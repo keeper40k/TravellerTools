@@ -15,6 +15,15 @@ namespace TravellerTools.TravellerData
             IsGear = false;
         }
 
+        // Public override methods
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        // Public Properties
+
         public string Name { get; set; }
         public bool IsAtt { get; set; }
         public bool IsGear { get; set; }

@@ -39,6 +39,9 @@ namespace TravellerTools.CharGen
             this.benefitsRollLabel = new System.Windows.Forms.Label();
             this.bonusToBenefitsLabel = new System.Windows.Forms.Label();
             this.bonusToCashLabel = new System.Windows.Forms.Label();
+            this.resultsBox = new System.Windows.Forms.RichTextBox();
+            this.resultsLabel = new System.Windows.Forms.Label();
+            this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rollsRemainingLabel
@@ -125,11 +128,43 @@ namespace TravellerTools.CharGen
             this.bonusToCashLabel.TabIndex = 32;
             this.bonusToCashLabel.Text = "+1 Bonus to Cash";
             // 
+            // resultsBox
+            // 
+            this.resultsBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.resultsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.resultsBox.Location = new System.Drawing.Point(16, 299);
+            this.resultsBox.Name = "resultsBox";
+            this.resultsBox.Size = new System.Drawing.Size(430, 116);
+            this.resultsBox.TabIndex = 34;
+            this.resultsBox.Text = "";
+            // 
+            // resultsLabel
+            // 
+            this.resultsLabel.AutoSize = true;
+            this.resultsLabel.Location = new System.Drawing.Point(13, 283);
+            this.resultsLabel.Name = "resultsLabel";
+            this.resultsLabel.Size = new System.Drawing.Size(148, 13);
+            this.resultsLabel.TabIndex = 33;
+            this.resultsLabel.Text = "Musting Out Results So Far ...";
+            // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(371, 422);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 35;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // MusteringOutDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 289);
+            this.ClientSize = new System.Drawing.Size(458, 454);
+            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.resultsBox);
+            this.Controls.Add(this.resultsLabel);
             this.Controls.Add(this.bonusToCashLabel);
             this.Controls.Add(this.bonusToBenefitsLabel);
             this.Controls.Add(this.benefitsRollLabel);
@@ -159,5 +194,8 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.Label benefitsRollLabel;
         private System.Windows.Forms.Label bonusToBenefitsLabel;
         private System.Windows.Forms.Label bonusToCashLabel;
+        private System.Windows.Forms.RichTextBox resultsBox;
+        private System.Windows.Forms.Label resultsLabel;
+        private System.Windows.Forms.Button closeButton;
     }
 }

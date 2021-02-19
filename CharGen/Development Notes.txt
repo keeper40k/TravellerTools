@@ -8,9 +8,7 @@ Data for Character:
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
 			CharGenMainForm
-			  Need better journaling for Mustering Out
 	 - Needs to come soon ...
-			Limit to 7 terms (excepting mandatory re-enlistment)
 			Retirement Pay
 			Saving & Exporting a Character
 			TravellerGear class feels like it needs more work
