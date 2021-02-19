@@ -66,18 +66,39 @@ namespace TravellerTools.CharGen
                 }
             }
 
-            if (m_currentGear.Count == 0)
+            if (m_currentGear.Count == 0 || ! GearContainsWeaponType() )
             {
                 IsWeaponSelected = true;
                 skillChoiceBox.Enabled = false;
+                label1.Enabled = false;
+                label2.Enabled = false;
+                label3.Enabled = false;
             }
             UpdateCheckBoxes();
         }
 
         protected void UpdateCheckBoxes()
         {
+            m_suppressCheckChange = true;
             weaponChoiceBox.Checked = IsWeaponSelected;
             skillChoiceBox.Checked = !IsWeaponSelected;
+            m_suppressCheckChange = false;
+        }
+
+        protected bool GearContainsWeaponType()
+        {
+            bool found = false;
+            foreach (TravellerGear gear in m_currentGear)
+            {
+                if (gear.WeaponType == m_weapon.Name)
+                {
+                    found = true;
+                    // Once we've found one, that is enough to know
+                    break;
+                }
+
+            }
+            return found;
         }
 
         // Public properties
@@ -88,16 +109,24 @@ namespace TravellerTools.CharGen
 
         // Private events
 
+        private bool m_suppressCheckChange = false;
+
         private void weaponChoiceBox_CheckedChanged(object sender, EventArgs e)
         {
-            IsWeaponSelected = true;
-            UpdateBoxes();
+            if (!m_suppressCheckChange)
+            {
+                IsWeaponSelected = true;
+                UpdateBoxes();
+            }
         }
 
         private void skillChoiceBox_CheckedChanged(object sender, EventArgs e)
         {
-            IsWeaponSelected = false;
-            UpdateBoxes();
+            if (!m_suppressCheckChange)
+            {
+                IsWeaponSelected = false;
+                UpdateBoxes();
+            }
         }
 
         // Assumes that choicesBox.SelectedItem isn't null.
@@ -113,6 +142,7 @@ namespace TravellerTools.CharGen
             {
                 TravellerGear selected = choicesBox.SelectedItem as TravellerGear;
                 SelectedSkill = TravellerSkills.MatchSkill(selected.Name);
+                SelectedSkill.Level = 1;
             }
             Close();
         }
