@@ -7,14 +7,11 @@ Data for Character:
 	  Working on Processing the deatils of each Term of Service now.
 	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
-			CharGenMainForm
-	 - Needs to come soon ...
-			Retirement Pay
+			Nothing.
+	  - Plan to write next
 			Saving & Exporting a Character
+	 - Needs to come soon ...
 			TravellerGear class feels like it needs more work
-			Retirement & Mustering Out
-			Need to add mustering out tables into Services JSON
-			And benefits / credits / gear into TravellerCharacter
 			Weapons profiles
 			Flesh out TravellerGearStorehouse
 
