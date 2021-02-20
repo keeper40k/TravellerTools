@@ -1,1 +1,509 @@
-[{"Name":"Administration","Summary":"The individual has had experience with bureaucratic agencies, and understands the requirements of dealing with assist in dealing with them and managing them.","Description":"When contact with officials is required, and understanding their needs and motives will assist in dealing with them. A basic throw of 7\u002B will successfully resolve normal interaction without further problems (such as avoidance of police harrassment, insuring prompt issuance of licenses, approval of applications, avoidance of close inspection of papers, etc). DMs to be applied: no expertise, - 3: per level of admin expertise, \u002B2.\n\nWhen serving in a bureaucratic organization, admin expertise allows competency in the eyes of superiors. DMs to be applied: \u002B1 per level of expertise. The exact throw to be determined by the referee under the circumstances.\n","Referee":"Admin expertise should also affect the quality of work and potential of success for an organization which the character is controlling or managing.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Blade Combat","Summary":"Blade combat is a specific skill in the use of blades and polearms.","Description":"","Referee":"","Level":0,"HasSpecialisations":true,"Specialisations":[{"Name":"Bayonet","Summary":"Bayonet skill is specifically relates to the use of weapons designated as Bayonet.","Description":"A typical Bayonet has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Blade","Summary":"Blade skill is specifically relates to the use of weapons designated as Blade.","Description":"A typical Blade has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 2D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Broadsword","Summary":"Broadsword skill is specifically relates to the use of weapons designated as Broadsword.","Description":"A typical Broadsword has the following characteristics:\n\u002BDM : 12\u002B\n-DM: 7-\nWounds: 4D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Cudgel","Summary":"Cudgel skill is specifically relates to the use of weapons designated as Cudgel.\n","Description":"A typical Cudgel has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 4-\nWounds: 2D\n","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Cutlass","Summary":"Cutlass skill is specifically relates to the use of weapons designated as Cutlass.","Description":"A typical Cutlass has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 7-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Dagger","Summary":"Dagger skill is specifically relates to the use of weapons designated as Dagger.","Description":"A typical Dagger has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 3-\nWounds: 2D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Foil","Summary":"Foil skill is specifically relates to the use of weapons designated as Foil.","Description":"A typical Foil has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 4-\nWounds: 1D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Halberd","Summary":"Halberd skill is specifically relates to the use of weapons designated as Halberd.","Description":"A typical Halberd has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Pike","Summary":"Pike skill is specifically relates to the use of weapons designated as Pike.","Description":"A typical Pikehas the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Spear","Summary":"Spear skill is specifically relates to the use of weapons designated as Spear.","Description":"A typical Spear has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 2D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Sword","Summary":"Sword skill is specifically relates to the use of weapons designated as Sword.","Description":"A typical Sword has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 2D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]}]},{"Name":"Brawling","Summary":"Brawling is a general skill for hand-to-hand combat. It includes the use of hands, clubs, and bottles as weapons.","Description":"","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Bribery","Summary":"The individual has experience in bribing petty and not-so-petty officials in order to circumvent regulations or ignore cumbersome laws. Bribery skill does not guarantee success but does minimize bad effects if the offer is rebuffed.\n","Description":"Petty officials can generally be bribed to ignore regulations or poor documentation, requiring a throw of the law level of the world in question or less (plus a cash offer) to do as asked. If the first offer is refused, a second roll may be made with the cash offer doubled. The character offering the bribe should first roll on the reaction table (Book 3) and should not offer to a negatively reacting official. DMs to be applied: no expertise, \u002B5; per level of expertise, -1 ; if the official reacts as a strong friend on the reaction table (a roll of 12). -2.","Referee":"Ensure that both the cash offered, and the act solicited are reasonable; if not, implement appropriate DMs. Note that the roll for accepting a bribe varies inversely with the law level of a world, the more stringent the laws, the greater the corruption. If a bribe is not accepted, roll 3- for the offer to be reported to higher authorities.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Computer","Summary":"The individual is skilled in the programming and operation of electronic and fibre optic computers, both ground and shipboard models. ","Description":"Computers perform valuable functions in human society, and individuals capable of using them find that their skill is equally valuable. Characters with computer expertise may be hired (when needed) to operate and program computers for organizations, ships, or other employers.\nComputer programs (especially starship programs as mentioned in Book 2) may be written by characters with expertise. The individual must have access to a computer which will handle the intended program, knowledge of the skill being incorporated, and no other duties or responsibilities during each week of work. Book 2 gives more details.\nDespite all good intentions, there is always the possibility that such a program will have a fatal flaw and will not function when actually used in space combat. Referee: Throw 7 exactly for a fatal error to be written in. If there is none, throw 5- for a negative DM to appear on the program when used; there is a half chance that the DM will be -1 or -2. These flaws will generally remain hidden until the program is actually used.","Referee":"When characters want to write computer programs, the general procedure shown in Book 2 should be used, with modifications for the specific purpose.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Electronics","Summary":"The individual has skill in the use, operation, and repair of electronic devices. They are considered handy in this field, with the equivalent of a green thumb talent. This skill includes the repair of energy weapons. ","Description":"An advanced technological civilization depends heavily on the use of electronic devices. The need to use, repair, and replace electronic devices is ubiquitous. Electronic expertise allows a character to use and operate electronic items; generally, the skill is a DM applied to the throw to understand, repair, assemble, or operate. Complex items would also require a certain level of education or a very high intelligence; many devices may also require some degree of dexterity.","Referee":"Specific throws for specific situations must be generated. Obviously, some throws will be harder than others, and many will be impossible without an accumulation of DMs based on expertise, education, dexterity, intelligence, and the availability of parts and tools.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Engineering","Summary":"The individual is skilled in the operation and maintenance of starship maneuver drives, jump drives, and power plants.","Description":"Engineering experience enables an individual to operate the vital drives of starships (and interplanetary craft) and to maintain the machinery against failure.\nThe engineer is essential for the proper operation of any starships. Expertise qualifies the individual for such jobs and can be used to get working passage on a ship in need of help. Greater levels of expertise enable the individual to handle problems of greater complexity and jobs with higher levels of responsibility.","Referee":"Skill level is generally a DM applied to the throw to remedy an engineering problem. In order to handle the relative value of experience, the DM may be assigned based on \u002B2 per level of expertise.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Forgery","Summary":"The individual has a skill at faking documents and papers with a view to deceiving officials, banks, patrons, or persons.","Description":"Documents necessary for cargo transfers, bank transactions, personal identification, and other many other purposes are often closely inspected by officials such as the police, customs agents, or clerks when encounters occur (such encounters happen when the law level for a world or less is thrown; generally, once or twice per day). The throw for detection of forged or fake documents is 6\u002B; DMs to be applied: -2 per level of expertise.","Referee":"Forgery is a useful skill, but control is required to prevent blatant misuse (to provide a bottomless checking account, for example). Note that administration and bribery may also be used to determine whether documents are actually examined by the individuals involved.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Forward Observer","Summary":"The individual has been trained (in military service) to call on and adjust artillery (projectile, missile, and laser) fire from distant batteries and from ships in orbit. ","Description":"Modern fire support can be a tremendously effective weapon, when available, but is virtually useless unless the technique of its application and adjustment is known. If artillery of any form (including communication with the firing battery) is available, the first shots fired will invariably miss the target. On each subsequent turn in which such fire is delivered, a basic throw of 11\u002B to hit is required. DMs to be applied: \u002B4 per level of expertise; per turn of adjustment (two-minute turns): \u002B1; if adjusting person has no expertise: -4.","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Gambling","Summary":"The individual is well informed on games of chance, and wise in their play. He or she has an advantage over non-experts and is generally capable of winning when engaged in such games. Gambling, however, should not be confused with general risk-taking.","Description":"Organized games (as at casinos) allow bets of up to Cr5000 and require a throw of 9\u002B to win. Private games allow bets ranging from Cr50 to Cr5000 and require a throw of 8\u002B to win. Gambling skill allows a DM of \u002B1 per level, but the house will always win on a throw of 2 exactly.\nGames may be crooked (throw 10\u002B to be dishonest) in which case the referee will stack the odds against the players. Gambling-3 or better will usually detect crooked games (throw 7\u002B to detect).\nGambling-4 or better may be suspected of cheating and ejected (or worse) due to the finesse of the skill involved (throw 9\u002B to be suspected; DM -1 per level over 4). Characters may elect to use a lower expertise level in some cases in order to avoid detection of true skill level.","Referee":"Characters\u0027 die rolls should not be divulged when gambling; instead merely inform the individual of wins and losses. This will serve to conceal any manipulation of the throws.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Gunnery","Summary":"The individual is trained and competent in the use of weapons mounted on board spacecraft and starships, such as beam and pulse lasers, sandcasters, and missile launchers.","Description":"Defensive and offensive weapons are mounted on a variety of interplanetary and interstellar vessels. Gunnery expertise qualifies an individual to operate such weaponry, and to be hired on a ship\u0027s crew with the title of gunner. Gunnery expertise provides DMs in space combat. Gunnery may also be used for similar weapons mounted on ATVs or air/rafts.","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Jack of all Trades","Summary":"The individual is proven capable of handling a wide variety of situations and is resourceful in finding solutions and remedies.","Description":"The well-rounded individual (the renaissance man, so to speak) is uncommon in all societies, but is naturally proficient when he or she occurs.\nThis skill is a general ability which may be applied to nearly any endeavour at the discretion of the referee. The jack of all trades can attempt activity which is not normally possible due to the absence of skills or expertise. Unskilled people have no idea how to even start many projects; jack of all trades can apply this skill to such a project as if he or she has the skill. Jack of all trades can be considered to confer skill level-0 in every other skill (but never level-1).\nFor example: one of a group of adventurers arrives at an aging crisis (page 8) while on an expedition into the wilds of an unsettled planet. No one has medical expertise. Jack of all trades can be applied as a substitute for medical skill in this situation; the referee should assume that the person has studied independently at some time or has seen such a crisis previously and knows something of what to do. When using jack of all trades skill, the referee should also consider appropriate personal characteristics (intelligence, education), availability of equipment (drugs, medical instruments), and other factors (weather, shelter, the specific situation).\nJack of all trades, however, is never sufficient for an individual to achieve standing in another skill. Use of the skill in medical situations does not imply medic skill. Use of the skill to pilot a ship in an emergency does not imply pilot skill.","Referee":null,"Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Leader","Summary":"The individual has led troops in battle (or on adventures) and is possessed of a knowledge and self-assurance which will make for a capable emergent or appointed leader.","Description":"Leadership is a required ability to control a group of more than six non-player hirelings or soldiers. Such a group will tend to obey the general orders of the character with the highest leader expertise. Reaction throws are necessary when the leader and the group first meet. DMs may be applied: \u002B1 per level of leader expertise when consulting the reaction table (Book 3). Leader-3 or better is sufficient to allow soldiers to obey orders without hesitation. Leader4 or better will allow a positive DM when recruiting soldiers or hirelings for adventures. The throws for such hirelings, and DMs, depend on the situation.","Referee":null,"Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Mechanical","Summary":"The individual has skill in the use, operation, and repair of mechanical devices. The person is considered to be handy in this field, with a talent similar to that of a green thumb. This skill specifically excludes the field of engineering; it does include non-energy weapon repair.","Description":"Many of the devices of civilization are strictly mechanical in nature, and the need to repair, replace, or simply use them pervades life. Mechanical expertise allows a character the ability to operate mechanical devices easily, as well as to repair them quickly and efficiently.\nAny situation requiring a knowledge of mechanical aspects of devices or equipment can be affected by mechanical skill.","Referee":"Specific throws for specific situations must be generated. Obviously, the throw to fabricate a new main drive bearing as a starship plunges into a flaming sun would be harder than the throw to repair a broken air lock hatch while in port. Success in any mechanical enterprise is also affected by such variables as tool availability, personal strength and dexterity, education, and situation.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Medical","Summary":"The individual has training and skill in the medical arts and sciences. ","Description":"Medical science is capable of great feats in preserving and maintaining the health and welfare of individuals. The services of medically trained individuals are in great demand. The levels of medical skill represent steps in increasingly better ability and knowledge.\nMedical-1 is sufficient to qualify a character for the position of medic on a starship crew. An expertise of medic-2 or better allows a DM of \u002B1 when reviving low passengers (each normally throws 5\u002B to revive after a trip; otherwise, the passenger dies.\nMedical-3 is sufficient for a character to be called doctor, and assumes a license to practice medicine, including writing prescriptions, handling most ailments, and dealing with other doctors on a professional level. A dexterity of 8\u002B is required for a doctor to also be a surgeon.","Referee":"Xeno-Medicine: Normally, medical expertise is considered to apply to humans, and to a limited extent to the animals which live on human worlds. Anyone with medical expertise can apply that expertise (with a reduction of -2) to non-human aliens. For example, a human doctor (medical-3) may find herself in a situation which calls for treatment of an alien, with anatomy and physiology unfamiliar to her. She could provide treatment with the equivalent of medical-1. Obvious encumbrances such as strange environment or unfamiliar chemistry should also be considered by the referee.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Navigation","Summary":"The individual has training and expertise in the art and science of interplanetary and interstellar navigation.","Description":"Travel between worlds depends on the starships and their crews; the navigator is relied upon to plot the course and to ensure that correct information is made available to the pilot and crew as they need it. The navigator interprets the long-range data provided by the ship\u0027s scanners and detectors.\nNavigation expertise qualifies a character for the job position of navigator on a starship or interplanetary vessel.","Referee":"In general, navigation skill allows a character to perform in a starship crew position which requires this type of skill. On exploratory missions, or when venturing into unexplored territory, navigation skill may be used to assist in the speedy computation of courses, in the accurate determination of courses, and in the determination of position when lost or strayed.\nNavigation expertise can assist an individual in land or sea navigation as well. In any situation where directions need to be known or location must be determined, navigation expertise can be used as a DM of \u002B1 per level on a throw to determine the needed information.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Pilot","Summary":"The individual has training and experience in the operation of starships and large interplanetary ships. This skill encompasses both the interplanetary and the interstellar aspects of large ship operation.","Description":"Interstellar travel depends on starships and their crews; the single most important crew position is that of the pilot, responsible for control of the starship\u0027s lift-offs, landings, and routine flight.\nPilot expertise qualifies a character for the job of pilot on a starship or interplanetary vessel over 100 tons.","Referee":"Pilot expertise is usable as a DM in handling of starships as they move from world to world. Pilot expertise generally refers to interstellar ships; much of the ordinary operation, however, is similar to that of interplanetary craft and pilot expertise also applies to large interplanetary craft (100 tons and up). Small interplanetary craft (under 100 tons) handle somewhat differently; pilot expertise minus 1 may be used as ship\u0027s boat expertise as applied to interplanetary vessels under 100 tons; thus, an individual with pilot-3 could also operate a small craft interplanetary vessel as if he or she had a skill of ship\u0027s boat-2. The reverse is not true.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Ship\u0027s Boat","Summary":"The individual is familiar with the function and operation of small interplanetary craft collectively known as ship\u0027s boats. These craft range in size from five to 100 tons, and include shuttles, lifeboats, launches, ship\u0027s boats, and fighters.","Description":"The small interplanetary craft carried as auxiliaries or boats on larger ships, or serving the needs of bases and stations, are distinctly different from the large vessels which ply the space lanes. Ship\u0027s boat expertise reflects a distinct experience and training in the operation of these craft. Pilot expertise minus 1 can be used as the equivalent level of ship\u0027s boat expertise.","Referee":"Ship\u0027s boat skill is used as a DM in handling throws to determine various operations and their results. The following examples should illustrate this concept. Assume a hostile attack on a pinnace (small craft) flown by a character with ship\u0027s boat-2. Throw 10\u002B for the pinnace to escape on contact and avoid the attack; DM \u002B2 based on the skill. Throw 8\u002B to avoid being hit by enemy fire if the escape attempt fails; DM \u002B2, again based on the skill. Alternate these throws until either escape succeeds of the craft is hit. If the pinnace is hit, throw 5\u002B for it to be crippled and boarded; 4- for the craft to be destroyed; no DMs apply to this throw for damage type.\nSimilarly, assuming bad weather (storms, wind, etc) at a planetary surface landing point, throw 9\u002B to land safely; \u002B2 per level of expertise above 1.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Steward","Summary":"The individual is experienced and capable in the care and feeding of passengers: the duties of the ship\u0027s steward. ","Description":"The responsibility for the welfare of passengers aboard a starship falls on the ship\u0027s steward. Although anyone can be hired as a ship\u0027s steward, this skill represents training in the various duties necessary, and serves as an advantage when attempting to get such a job.","Referee":"Steward skill represents a general awareness of cooking, personal care and attention, and other areas of experience which will make passengers and crew happy and content with their conditions of passage.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Streetwise","Summary":"The individual is acquainted with the ways of local subcultures (which tend to be the same everywhere in human society), and thus can deal with strangers without alienating them. This skill is not the same as alien contact experience.","Description":"Close-knit subcultures (such as some portions of the lower classes, trade groups such as workers, and the underworld) generally reject contact with strangers or unknown elements. Streetwise expertise allows contact for the purposes of obtaining information, hiring persons, purchasing or selling contraband or stolen goods, and other shady or borderline activities.","Referee":"After establishing throws for various activities desired by the characters (such as the name of an official willing to issue licenses without hassle: 5\u002B; the location of high quality guns at low prices: 9\u002B), allow streetwise as a DM on the throw. If no streetwise expertise is used, impose a DM of -5.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Tactics","Summary":"The individual has training and experience in small unit tactics (up to and including units of 1000 troops or individual spaceships). This skill is not to be confused with strategy, which deals with the reasons for the encounter and the intended results of encounter; strategy is the realm of the players, rather than the characters.","Description":"When small units encounter hostile forces (in battle, by ambush, or while adventuring), tactical skill can provide an advantage in gaining victory or reducing the disaster of defeat.","Referee":"Because tactical skill is an in the tangible, the exact results in battle are left to the referee to implement as necessary or prudent. It might influence the type and amount of information available to the character in the miniature figure resolution of a battle which uses hidden movement or could be applied as a DM in crucial situations. Tactical skill should be considered by the referee when the character is applying for employment which might find such skill useful.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Vehicle","Summary":"The individual is skilled in the operation, use, and maintenance of a specific type of vehicle commonly available in society.","Description":"The individual immediately selects one vehicle from one of the following groups and gains one level of skill in that specific type. The groups available are: ground car, watercraft, winged craft (including helicopters), hovercraft, and grav belt. Individual vehicles within a class may be found in Book 3, beginning on page 20. In the case of ground car, winged craft, and watercraft, other similar vehicles may be operated by the individual at skill level minus 1 (the ground car class includes ATV). Vehicle skill is used for operation and as a DM against accident and may also be used for assistance in repairing and maintaining a vehicle.","Referee":"","Level":0,"HasSpecialisations":true,"Specialisations":[{"Name":"ATV","Summary":"The individual is acquainted with modern all-terrain vehicles, and has been trained in, or has experience with, their operation. The term ATV (all-terrain vehicle) includes AFV (armoured fighting vehicle) within its meaning.","Description":"The ATV is used, in varying forms, on frontier and airless worlds. or in situations where weather, atmosphere, or players\u0027 intent preclude the use of air/rafts or aircraft. ATVs are quite reliable (throw 11\u002B per day for mechanical breakdowns) but are susceptible to off-road difficulties such as becoming bogged down in mud or sand, or trapped by jungle growth. Generally, driver expertise will serve as a DM (\u002B1 per level) to help avoid such difficulty.\n\nPersons with ATV skill may operate Ground Cars at their ATV skill level -1.","Referee":"ATV skill will also serve to allow increased speed and greater manoeuvrability. It will also allow the individual to diagnose malfunctions within the vehicle, to help repair them and to perform preventive maintenance on the ATV.\n","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Fixed Winged Aircraft","Summary":"This skill includes the operation and maintenance of fixed wing aircraft which are jet engined.\n","Description":"Persons with Fixed Winged Aircraft skill may operate other Winged Craft (Primative Biplane Aircraft or Helicopters) and at their Fixed Wing Aircraft skill level -1.\n","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Grav Belt","Summary":"This skill includes the operation and maintenance of grav belts.\n","Description":"","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Grav Vehicles","Summary":"The individual has training and experience in the use and operation of the air/raft, floater, flier, and all types of grav vehicles.","Description":"The air/raft is the major transportation vehicle on most worlds with high enough tech levels. Most people are aware of the basics of operation for such vehicles. The air/raft can be dangerous to operate in high speed situations or in bad weather. A basic throw of 5\u002B to avoid an accident or mishap in bad weather, chases, or high speed maneuvers should be used. DMs to be applied: per level of expertise, \u002B1; if weather is extremely bad, if the craft is old, or if gunfire is involved in the chase, -1.","Referee":"Generally, roll once for a short chase, twice or three times for longer flights. Book 3 provides a more complete description of the air/raft.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Ground Car","Summary":"This class includes all wheeled or tracked vehicles.","Description":"Persons with Ground Car skill may operate ATVs and AFV at their Ground Car skill level -1.","Referee":"Any character may operate any ground vehicle at slow speeds and under nondangerous conditions without possessing any skill.\n\nWhen characters use ground vehicles, the referee should note some specific throws which will govern their use. Throw 11\u002B for mechanical difficulty or failure, allowing DMs for personal expertise, terrain, and perhaps age and condition of the vehicle. Throw 11\u002B for terrain difficulty, or include such items on animal encounter tables for the current world surface. Note that local law level can be used as the throw (law level \u002B) to avoid such things as speed traps or traffic violation arrests.","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Helicoptor","Summary":"This skill includes the operation and maintenance of single engine rotary wing aircraft capable of vertical take-off and landing, as well as manoeuvrability in tight places.","Description":"This skill can also be used for any rotary wing aircraft.\n\nPersons with Helicoptor skill may operate other Winged Craft (Fixed Wing Aircraft or Primative Biplane Aircraft) and at their Helicoptor skill level -1.\n","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Hovercraft","Summary":"This skill includes the operation and maintenance of all air cushion vehicles.","Description":"This skill does not cover the operation and maintenance of other vehciles capable of operating on water.","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Primative Biplane Aircraft","Summary":"This skill includes the operation and maintenance of primative biplane aircraft which run on chemical fuel.","Description":"This skill can also be used for any early aircraft which use chemical fuel and a not jet engined.\n\nPersons with Primative Biplane Aircraft skill may operate other Winged Craft (Fixed Wing Aircraft or Helicopters) and at their Primative Biplane Aircraft skill level -1.","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Small Steamship","Summary":"This skill includes the operation and maintenance of all slower moving surface waterborne vehicles.","Description":"This skill does not cover the operation and maintenance of Hovercraft.\n\nPersons with Small Steamship skill may operate other Watercraft (Motor Boat or Submersible) and at their Small Steamship skill level -1.","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Motor Boat","Summary":"This skill includes the operation and maintenance of all small fast moving surface waterborne vehicles.\n","Description":"This skill does not cover the operation and maintenance of Hovercraft.\n\nPersons with Motor Boat skill may operate other Watercraft (Small Steamship or Submersible) and at their Motor Boat skill level -1.\n","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Submersible","Summary":"This skill includes the operation and maintenance of all underwater vehicles.","Description":"Persons with Submersible skill may operate other Watercraft (Small Steamship or Motor Boat) and at their Submersible skill level -1.\n\n","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]}]},{"Name":"Vacc Suit","Summary":"The individual has been trained and has experience in the use of the standard vacuum suit (space suit), including armoured battle dress and suits for use on various planetary surfaces in the presence of exotic, corrosive, or insidious atmospheres.","Description":"Non-breathable atmospheres or hostile environments can be easily overcome by use of protective equipment, but the danger of minor mishaps becoming fatal remains great. A basic throw of 10\u002B to avoid a dangerous situation applies whenever any non-ordinary maneuver is attempted while wearing a vacc suit (including running, jumping, hiding, jumping untethered from one ship to another, or other such activity). Allow a DM of \u002B4 per level of expertise. When such an incident occurs, it may be remedied by any character with vacc suit skill (including the character in danger) on a throw of 7\u002B; DMs: per level of expertise, \u002B2; if no expertise, -4. Battle dress and combat armour are special forms of armoured vacc suit and require at least vacc suit-1 to wear at all.","Referee":null,"Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Gun Combat","Summary":"Gun combat is a specific skill in the use of firearms.","Description":"","Referee":"","Level":0,"HasSpecialisations":true,"Specialisations":[{"Name":"Body Pistol","Summary":"Body Pistol skill is specifically relates to the use of weapons designated as Body Pistol.","Description":"A typical Body Pistol has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 7-\nWounds: 2D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Auto Pistol","Summary":"Auto Pistol skill is specifically relates to the use of weapons designated as Auto Pistol.","Description":"A typical Auto Pistol has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Revolver","Summary":"Revolver skill is specifically relates to the use of weapons designated as Revolver.","Description":"A typical Revolver has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 6-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Carbine","Summary":"Carbine skill is specifically relates to the use of weapons designated as Carbine.","Description":"A typical Carbine has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Rifle","Summary":"Rifle skill is specifically relates to the use of weapons designated as Rifle.","Description":"A typical Rifle has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 5-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Auto Rifle","Summary":"Auto Rifle skill is specifically relates to the use of weapons designated as Auto Rifle.","Description":"A typical Auto Rifle has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Shotgun","Summary":"Shotgun skill is specifically relates to the use of weapons designated as Shotgun.","Description":"A typical Shotgun has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 3-\nWounds: 4D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"SMG","Summary":"SMG skill is specifically relates to the use of weapons designated as SMG.","Description":"A typical SMG has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 6-\nWounds: 3D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Laser Carbine","Summary":"Laser Carbine skill is specifically relates to the use of weapons designated as Laser Carbine.","Description":"A typical Laser Carbine has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 4D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]},{"Name":"Laser Rifle","Summary":"Laser Rifle skill is specifically relates to the use of weapons designated as Laser Rifle.","Description":"A typical Laser Rifle has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 6-\nWounds: 5D","Referee":"","Level":0,"HasSpecialisations":false,"Specialisations":[]}]}]
+[
+  {
+    "Name": "Administration",
+    "Summary": "The individual has had experience with bureaucratic agencies, and understands the requirements of dealing with assist in dealing with them and managing them.",
+    "Description": "When contact with officials is required, and understanding their needs and motives will assist in dealing with them. A basic throw of 7\u002B will successfully resolve normal interaction without further problems (such as avoidance of police harrassment, insuring prompt issuance of licenses, approval of applications, avoidance of close inspection of papers, etc). DMs to be applied: no expertise, - 3: per level of admin expertise, \u002B2.\n\nWhen serving in a bureaucratic organization, admin expertise allows competency in the eyes of superiors. DMs to be applied: \u002B1 per level of expertise. The exact throw to be determined by the referee under the circumstances.\n",
+    "Referee": "Admin expertise should also affect the quality of work and potential of success for an organization which the character is controlling or managing.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Blade Combat",
+    "Summary": "Blade combat is a specific skill in the use of blades and polearms.",
+    "Description": "",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": true,
+    "Specialisations": [
+      {
+        "Name": "Bayonet",
+        "Summary": "Bayonet skill is specifically relates to the use of weapons designated as Bayonet.",
+        "Description": "A typical Bayonet has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Blade",
+        "Summary": "Blade skill is specifically relates to the use of weapons designated as Blade.",
+        "Description": "A typical Blade has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 2D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Broadsword",
+        "Summary": "Broadsword skill is specifically relates to the use of weapons designated as Broadsword.",
+        "Description": "A typical Broadsword has the following characteristics:\n\u002BDM : 12\u002B\n-DM: 7-\nWounds: 4D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Cudgel",
+        "Summary": "Cudgel skill is specifically relates to the use of weapons designated as Cudgel.\n",
+        "Description": "A typical Cudgel has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 4-\nWounds: 2D\n",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Cutlass",
+        "Summary": "Cutlass skill is specifically relates to the use of weapons designated as Cutlass.",
+        "Description": "A typical Cutlass has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 7-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Dagger",
+        "Summary": "Dagger skill is specifically relates to the use of weapons designated as Dagger.",
+        "Description": "A typical Dagger has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 3-\nWounds: 2D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Foil",
+        "Summary": "Foil skill is specifically relates to the use of weapons designated as Foil.",
+        "Description": "A typical Foil has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 4-\nWounds: 1D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Halberd",
+        "Summary": "Halberd skill is specifically relates to the use of weapons designated as Halberd.",
+        "Description": "A typical Halberd has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Pike",
+        "Summary": "Pike skill is specifically relates to the use of weapons designated as Pike.",
+        "Description": "A typical Pikehas the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Spear",
+        "Summary": "Spear skill is specifically relates to the use of weapons designated as Spear.",
+        "Description": "A typical Spear has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 2D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Sword",
+        "Summary": "Sword skill is specifically relates to the use of weapons designated as Sword.",
+        "Description": "A typical Sword has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 2D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      }
+    ]
+  },
+  {
+    "Name": "Brawling",
+    "Summary": "Brawling is a general skill for hand-to-hand combat. It includes the use of hands, clubs, and bottles as weapons.",
+    "Description": "",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Bribery",
+    "Summary": "The individual has experience in bribing petty and not-so-petty officials in order to circumvent regulations or ignore cumbersome laws. Bribery skill does not guarantee success but does minimize bad effects if the offer is rebuffed.\n",
+    "Description": "Petty officials can generally be bribed to ignore regulations or poor documentation, requiring a throw of the law level of the world in question or less (plus a cash offer) to do as asked. If the first offer is refused, a second roll may be made with the cash offer doubled. The character offering the bribe should first roll on the reaction table (Book 3) and should not offer to a negatively reacting official. DMs to be applied: no expertise, \u002B5; per level of expertise, -1 ; if the official reacts as a strong friend on the reaction table (a roll of 12). -2.",
+    "Referee": "Ensure that both the cash offered, and the act solicited are reasonable; if not, implement appropriate DMs. Note that the roll for accepting a bribe varies inversely with the law level of a world, the more stringent the laws, the greater the corruption. If a bribe is not accepted, roll 3- for the offer to be reported to higher authorities.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Computer",
+    "Summary": "The individual is skilled in the programming and operation of electronic and fibre optic computers, both ground and shipboard models. ",
+    "Description": "Computers perform valuable functions in human society, and individuals capable of using them find that their skill is equally valuable. Characters with computer expertise may be hired (when needed) to operate and program computers for organizations, ships, or other employers.\nComputer programs (especially starship programs as mentioned in Book 2) may be written by characters with expertise. The individual must have access to a computer which will handle the intended program, knowledge of the skill being incorporated, and no other duties or responsibilities during each week of work. Book 2 gives more details.\nDespite all good intentions, there is always the possibility that such a program will have a fatal flaw and will not function when actually used in space combat. Referee: Throw 7 exactly for a fatal error to be written in. If there is none, throw 5- for a negative DM to appear on the program when used; there is a half chance that the DM will be -1 or -2. These flaws will generally remain hidden until the program is actually used.",
+    "Referee": "When characters want to write computer programs, the general procedure shown in Book 2 should be used, with modifications for the specific purpose.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Electronics",
+    "Summary": "The individual has skill in the use, operation, and repair of electronic devices. They are considered handy in this field, with the equivalent of a green thumb talent. This skill includes the repair of energy weapons. ",
+    "Description": "An advanced technological civilization depends heavily on the use of electronic devices. The need to use, repair, and replace electronic devices is ubiquitous. Electronic expertise allows a character to use and operate electronic items; generally, the skill is a DM applied to the throw to understand, repair, assemble, or operate. Complex items would also require a certain level of education or a very high intelligence; many devices may also require some degree of dexterity.",
+    "Referee": "Specific throws for specific situations must be generated. Obviously, some throws will be harder than others, and many will be impossible without an accumulation of DMs based on expertise, education, dexterity, intelligence, and the availability of parts and tools.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Engineering",
+    "Summary": "The individual is skilled in the operation and maintenance of starship maneuver drives, jump drives, and power plants.",
+    "Description": "Engineering experience enables an individual to operate the vital drives of starships (and interplanetary craft) and to maintain the machinery against failure.\nThe engineer is essential for the proper operation of any starships. Expertise qualifies the individual for such jobs and can be used to get working passage on a ship in need of help. Greater levels of expertise enable the individual to handle problems of greater complexity and jobs with higher levels of responsibility.",
+    "Referee": "Skill level is generally a DM applied to the throw to remedy an engineering problem. In order to handle the relative value of experience, the DM may be assigned based on \u002B2 per level of expertise.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Forgery",
+    "Summary": "The individual has a skill at faking documents and papers with a view to deceiving officials, banks, patrons, or persons.",
+    "Description": "Documents necessary for cargo transfers, bank transactions, personal identification, and other many other purposes are often closely inspected by officials such as the police, customs agents, or clerks when encounters occur (such encounters happen when the law level for a world or less is thrown; generally, once or twice per day). The throw for detection of forged or fake documents is 6\u002B; DMs to be applied: -2 per level of expertise.",
+    "Referee": "Forgery is a useful skill, but control is required to prevent blatant misuse (to provide a bottomless checking account, for example). Note that administration and bribery may also be used to determine whether documents are actually examined by the individuals involved.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Forward Observer",
+    "Summary": "The individual has been trained (in military service) to call on and adjust artillery (projectile, missile, and laser) fire from distant batteries and from ships in orbit. ",
+    "Description": "Modern fire support can be a tremendously effective weapon, when available, but is virtually useless unless the technique of its application and adjustment is known. If artillery of any form (including communication with the firing battery) is available, the first shots fired will invariably miss the target. On each subsequent turn in which such fire is delivered, a basic throw of 11\u002B to hit is required. DMs to be applied: \u002B4 per level of expertise; per turn of adjustment (two-minute turns): \u002B1; if adjusting person has no expertise: -4.",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Gambling",
+    "Summary": "The individual is well informed on games of chance, and wise in their play. He or she has an advantage over non-experts and is generally capable of winning when engaged in such games. Gambling, however, should not be confused with general risk-taking.",
+    "Description": "Organized games (as at casinos) allow bets of up to Cr5000 and require a throw of 9\u002B to win. Private games allow bets ranging from Cr50 to Cr5000 and require a throw of 8\u002B to win. Gambling skill allows a DM of \u002B1 per level, but the house will always win on a throw of 2 exactly.\nGames may be crooked (throw 10\u002B to be dishonest) in which case the referee will stack the odds against the players. Gambling-3 or better will usually detect crooked games (throw 7\u002B to detect).\nGambling-4 or better may be suspected of cheating and ejected (or worse) due to the finesse of the skill involved (throw 9\u002B to be suspected; DM -1 per level over 4). Characters may elect to use a lower expertise level in some cases in order to avoid detection of true skill level.",
+    "Referee": "Characters\u0027 die rolls should not be divulged when gambling; instead merely inform the individual of wins and losses. This will serve to conceal any manipulation of the throws.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Gunnery",
+    "Summary": "The individual is trained and competent in the use of weapons mounted on board spacecraft and starships, such as beam and pulse lasers, sandcasters, and missile launchers.",
+    "Description": "Defensive and offensive weapons are mounted on a variety of interplanetary and interstellar vessels. Gunnery expertise qualifies an individual to operate such weaponry, and to be hired on a ship\u0027s crew with the title of gunner. Gunnery expertise provides DMs in space combat. Gunnery may also be used for similar weapons mounted on ATVs or air/rafts.",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Jack of all Trades",
+    "Summary": "The individual is proven capable of handling a wide variety of situations and is resourceful in finding solutions and remedies.",
+    "Description": "The well-rounded individual (the renaissance man, so to speak) is uncommon in all societies, but is naturally proficient when he or she occurs.\nThis skill is a general ability which may be applied to nearly any endeavour at the discretion of the referee. The jack of all trades can attempt activity which is not normally possible due to the absence of skills or expertise. Unskilled people have no idea how to even start many projects; jack of all trades can apply this skill to such a project as if he or she has the skill. Jack of all trades can be considered to confer skill level-0 in every other skill (but never level-1).\nFor example: one of a group of adventurers arrives at an aging crisis (page 8) while on an expedition into the wilds of an unsettled planet. No one has medical expertise. Jack of all trades can be applied as a substitute for medical skill in this situation; the referee should assume that the person has studied independently at some time or has seen such a crisis previously and knows something of what to do. When using jack of all trades skill, the referee should also consider appropriate personal characteristics (intelligence, education), availability of equipment (drugs, medical instruments), and other factors (weather, shelter, the specific situation).\nJack of all trades, however, is never sufficient for an individual to achieve standing in another skill. Use of the skill in medical situations does not imply medic skill. Use of the skill to pilot a ship in an emergency does not imply pilot skill.",
+    "Referee": null,
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Leader",
+    "Summary": "The individual has led troops in battle (or on adventures) and is possessed of a knowledge and self-assurance which will make for a capable emergent or appointed leader.",
+    "Description": "Leadership is a required ability to control a group of more than six non-player hirelings or soldiers. Such a group will tend to obey the general orders of the character with the highest leader expertise. Reaction throws are necessary when the leader and the group first meet. DMs may be applied: \u002B1 per level of leader expertise when consulting the reaction table (Book 3). Leader-3 or better is sufficient to allow soldiers to obey orders without hesitation. Leader4 or better will allow a positive DM when recruiting soldiers or hirelings for adventures. The throws for such hirelings, and DMs, depend on the situation.",
+    "Referee": null,
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Mechanical",
+    "Summary": "The individual has skill in the use, operation, and repair of mechanical devices. The person is considered to be handy in this field, with a talent similar to that of a green thumb. This skill specifically excludes the field of engineering; it does include non-energy weapon repair.",
+    "Description": "Many of the devices of civilization are strictly mechanical in nature, and the need to repair, replace, or simply use them pervades life. Mechanical expertise allows a character the ability to operate mechanical devices easily, as well as to repair them quickly and efficiently.\nAny situation requiring a knowledge of mechanical aspects of devices or equipment can be affected by mechanical skill.",
+    "Referee": "Specific throws for specific situations must be generated. Obviously, the throw to fabricate a new main drive bearing as a starship plunges into a flaming sun would be harder than the throw to repair a broken air lock hatch while in port. Success in any mechanical enterprise is also affected by such variables as tool availability, personal strength and dexterity, education, and situation.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Medical",
+    "Summary": "The individual has training and skill in the medical arts and sciences. ",
+    "Description": "Medical science is capable of great feats in preserving and maintaining the health and welfare of individuals. The services of medically trained individuals are in great demand. The levels of medical skill represent steps in increasingly better ability and knowledge.\nMedical-1 is sufficient to qualify a character for the position of medic on a starship crew. An expertise of medic-2 or better allows a DM of \u002B1 when reviving low passengers (each normally throws 5\u002B to revive after a trip; otherwise, the passenger dies.\nMedical-3 is sufficient for a character to be called doctor, and assumes a license to practice medicine, including writing prescriptions, handling most ailments, and dealing with other doctors on a professional level. A dexterity of 8\u002B is required for a doctor to also be a surgeon.",
+    "Referee": "Xeno-Medicine: Normally, medical expertise is considered to apply to humans, and to a limited extent to the animals which live on human worlds. Anyone with medical expertise can apply that expertise (with a reduction of -2) to non-human aliens. For example, a human doctor (medical-3) may find herself in a situation which calls for treatment of an alien, with anatomy and physiology unfamiliar to her. She could provide treatment with the equivalent of medical-1. Obvious encumbrances such as strange environment or unfamiliar chemistry should also be considered by the referee.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Navigation",
+    "Summary": "The individual has training and expertise in the art and science of interplanetary and interstellar navigation.",
+    "Description": "Travel between worlds depends on the starships and their crews; the navigator is relied upon to plot the course and to ensure that correct information is made available to the pilot and crew as they need it. The navigator interprets the long-range data provided by the ship\u0027s scanners and detectors.\nNavigation expertise qualifies a character for the job position of navigator on a starship or interplanetary vessel.",
+    "Referee": "In general, navigation skill allows a character to perform in a starship crew position which requires this type of skill. On exploratory missions, or when venturing into unexplored territory, navigation skill may be used to assist in the speedy computation of courses, in the accurate determination of courses, and in the determination of position when lost or strayed.\nNavigation expertise can assist an individual in land or sea navigation as well. In any situation where directions need to be known or location must be determined, navigation expertise can be used as a DM of \u002B1 per level on a throw to determine the needed information.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Pilot",
+    "Summary": "The individual has training and experience in the operation of starships and large interplanetary ships. This skill encompasses both the interplanetary and the interstellar aspects of large ship operation.",
+    "Description": "Interstellar travel depends on starships and their crews; the single most important crew position is that of the pilot, responsible for control of the starship\u0027s lift-offs, landings, and routine flight.\nPilot expertise qualifies a character for the job of pilot on a starship or interplanetary vessel over 100 tons.",
+    "Referee": "Pilot expertise is usable as a DM in handling of starships as they move from world to world. Pilot expertise generally refers to interstellar ships; much of the ordinary operation, however, is similar to that of interplanetary craft and pilot expertise also applies to large interplanetary craft (100 tons and up). Small interplanetary craft (under 100 tons) handle somewhat differently; pilot expertise minus 1 may be used as ship\u0027s boat expertise as applied to interplanetary vessels under 100 tons; thus, an individual with pilot-3 could also operate a small craft interplanetary vessel as if he or she had a skill of ship\u0027s boat-2. The reverse is not true.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Ship\u0027s Boat",
+    "Summary": "The individual is familiar with the function and operation of small interplanetary craft collectively known as ship\u0027s boats. These craft range in size from five to 100 tons, and include shuttles, lifeboats, launches, ship\u0027s boats, and fighters.",
+    "Description": "The small interplanetary craft carried as auxiliaries or boats on larger ships, or serving the needs of bases and stations, are distinctly different from the large vessels which ply the space lanes. Ship\u0027s boat expertise reflects a distinct experience and training in the operation of these craft. Pilot expertise minus 1 can be used as the equivalent level of ship\u0027s boat expertise.",
+    "Referee": "Ship\u0027s boat skill is used as a DM in handling throws to determine various operations and their results. The following examples should illustrate this concept. Assume a hostile attack on a pinnace (small craft) flown by a character with ship\u0027s boat-2. Throw 10\u002B for the pinnace to escape on contact and avoid the attack; DM \u002B2 based on the skill. Throw 8\u002B to avoid being hit by enemy fire if the escape attempt fails; DM \u002B2, again based on the skill. Alternate these throws until either escape succeeds of the craft is hit. If the pinnace is hit, throw 5\u002B for it to be crippled and boarded; 4- for the craft to be destroyed; no DMs apply to this throw for damage type.\nSimilarly, assuming bad weather (storms, wind, etc) at a planetary surface landing point, throw 9\u002B to land safely; \u002B2 per level of expertise above 1.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Steward",
+    "Summary": "The individual is experienced and capable in the care and feeding of passengers: the duties of the ship\u0027s steward. ",
+    "Description": "The responsibility for the welfare of passengers aboard a starship falls on the ship\u0027s steward. Although anyone can be hired as a ship\u0027s steward, this skill represents training in the various duties necessary, and serves as an advantage when attempting to get such a job.",
+    "Referee": "Steward skill represents a general awareness of cooking, personal care and attention, and other areas of experience which will make passengers and crew happy and content with their conditions of passage.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Streetwise",
+    "Summary": "The individual is acquainted with the ways of local subcultures (which tend to be the same everywhere in human society), and thus can deal with strangers without alienating them. This skill is not the same as alien contact experience.",
+    "Description": "Close-knit subcultures (such as some portions of the lower classes, trade groups such as workers, and the underworld) generally reject contact with strangers or unknown elements. Streetwise expertise allows contact for the purposes of obtaining information, hiring persons, purchasing or selling contraband or stolen goods, and other shady or borderline activities.",
+    "Referee": "After establishing throws for various activities desired by the characters (such as the name of an official willing to issue licenses without hassle: 5\u002B; the location of high quality guns at low prices: 9\u002B), allow streetwise as a DM on the throw. If no streetwise expertise is used, impose a DM of -5.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Tactics",
+    "Summary": "The individual has training and experience in small unit tactics (up to and including units of 1000 troops or individual spaceships). This skill is not to be confused with strategy, which deals with the reasons for the encounter and the intended results of encounter; strategy is the realm of the players, rather than the characters.",
+    "Description": "When small units encounter hostile forces (in battle, by ambush, or while adventuring), tactical skill can provide an advantage in gaining victory or reducing the disaster of defeat.",
+    "Referee": "Because tactical skill is an in the tangible, the exact results in battle are left to the referee to implement as necessary or prudent. It might influence the type and amount of information available to the character in the miniature figure resolution of a battle which uses hidden movement or could be applied as a DM in crucial situations. Tactical skill should be considered by the referee when the character is applying for employment which might find such skill useful.",
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Vehicle",
+    "Summary": "The individual is skilled in the operation, use, and maintenance of a specific type of vehicle commonly available in society.",
+    "Description": "The individual immediately selects one vehicle from one of the following groups and gains one level of skill in that specific type. The groups available are: ground car, watercraft, winged craft (including helicopters), hovercraft, and grav belt. Individual vehicles within a class may be found in Book 3, beginning on page 20. In the case of ground car, winged craft, and watercraft, other similar vehicles may be operated by the individual at skill level minus 1 (the ground car class includes ATV). Vehicle skill is used for operation and as a DM against accident and may also be used for assistance in repairing and maintaining a vehicle.",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": true,
+    "Specialisations": [
+      {
+        "Name": "ATV",
+        "Summary": "The individual is acquainted with modern all-terrain vehicles, and has been trained in, or has experience with, their operation. The term ATV (all-terrain vehicle) includes AFV (armoured fighting vehicle) within its meaning.",
+        "Description": "The ATV is used, in varying forms, on frontier and airless worlds. or in situations where weather, atmosphere, or players\u0027 intent preclude the use of air/rafts or aircraft. ATVs are quite reliable (throw 11\u002B per day for mechanical breakdowns) but are susceptible to off-road difficulties such as becoming bogged down in mud or sand, or trapped by jungle growth. Generally, driver expertise will serve as a DM (\u002B1 per level) to help avoid such difficulty.\n\nPersons with ATV skill may operate Ground Cars at their ATV skill level -1.",
+        "Referee": "ATV skill will also serve to allow increased speed and greater manoeuvrability. It will also allow the individual to diagnose malfunctions within the vehicle, to help repair them and to perform preventive maintenance on the ATV.\n",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Fixed Winged Aircraft",
+        "Summary": "This skill includes the operation and maintenance of fixed wing aircraft which are jet engined.\n",
+        "Description": "Persons with Fixed Winged Aircraft skill may operate other Winged Craft (Primative Biplane Aircraft or Helicopters) and at their Fixed Wing Aircraft skill level -1.\n",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Grav Belt",
+        "Summary": "This skill includes the operation and maintenance of grav belts.\n",
+        "Description": "",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Grav Vehicles",
+        "Summary": "The individual has training and experience in the use and operation of the air/raft, floater, flier, and all types of grav vehicles.",
+        "Description": "The air/raft is the major transportation vehicle on most worlds with high enough tech levels. Most people are aware of the basics of operation for such vehicles. The air/raft can be dangerous to operate in high speed situations or in bad weather. A basic throw of 5\u002B to avoid an accident or mishap in bad weather, chases, or high speed maneuvers should be used. DMs to be applied: per level of expertise, \u002B1; if weather is extremely bad, if the craft is old, or if gunfire is involved in the chase, -1.",
+        "Referee": "Generally, roll once for a short chase, twice or three times for longer flights. Book 3 provides a more complete description of the air/raft.",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Ground Car",
+        "Summary": "This class includes all wheeled or tracked vehicles.",
+        "Description": "Persons with Ground Car skill may operate ATVs and AFV at their Ground Car skill level -1.",
+        "Referee": "Any character may operate any ground vehicle at slow speeds and under nondangerous conditions without possessing any skill.\n\nWhen characters use ground vehicles, the referee should note some specific throws which will govern their use. Throw 11\u002B for mechanical difficulty or failure, allowing DMs for personal expertise, terrain, and perhaps age and condition of the vehicle. Throw 11\u002B for terrain difficulty, or include such items on animal encounter tables for the current world surface. Note that local law level can be used as the throw (law level \u002B) to avoid such things as speed traps or traffic violation arrests.",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Helicoptor",
+        "Summary": "This skill includes the operation and maintenance of single engine rotary wing aircraft capable of vertical take-off and landing, as well as manoeuvrability in tight places.",
+        "Description": "This skill can also be used for any rotary wing aircraft.\n\nPersons with Helicoptor skill may operate other Winged Craft (Fixed Wing Aircraft or Primative Biplane Aircraft) and at their Helicoptor skill level -1.\n",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Hovercraft",
+        "Summary": "This skill includes the operation and maintenance of all air cushion vehicles.",
+        "Description": "This skill does not cover the operation and maintenance of other vehciles capable of operating on water.",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Primative Biplane Aircraft",
+        "Summary": "This skill includes the operation and maintenance of primative biplane aircraft which run on chemical fuel.",
+        "Description": "This skill can also be used for any early aircraft which use chemical fuel and a not jet engined.\n\nPersons with Primative Biplane Aircraft skill may operate other Winged Craft (Fixed Wing Aircraft or Helicopters) and at their Primative Biplane Aircraft skill level -1.",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Small Steamship",
+        "Summary": "This skill includes the operation and maintenance of all slower moving surface waterborne vehicles.",
+        "Description": "This skill does not cover the operation and maintenance of Hovercraft.\n\nPersons with Small Steamship skill may operate other Watercraft (Motor Boat or Submersible) and at their Small Steamship skill level -1.",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Motor Boat",
+        "Summary": "This skill includes the operation and maintenance of all small fast moving surface waterborne vehicles.\n",
+        "Description": "This skill does not cover the operation and maintenance of Hovercraft.\n\nPersons with Motor Boat skill may operate other Watercraft (Small Steamship or Submersible) and at their Motor Boat skill level -1.\n",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Submersible",
+        "Summary": "This skill includes the operation and maintenance of all underwater vehicles.",
+        "Description": "Persons with Submersible skill may operate other Watercraft (Small Steamship or Motor Boat) and at their Submersible skill level -1.\n\n",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      }
+    ]
+  },
+  {
+    "Name": "Vacc Suit",
+    "Summary": "The individual has been trained and has experience in the use of the standard vacuum suit (space suit), including armoured battle dress and suits for use on various planetary surfaces in the presence of exotic, corrosive, or insidious atmospheres.",
+    "Description": "Non-breathable atmospheres or hostile environments can be easily overcome by use of protective equipment, but the danger of minor mishaps becoming fatal remains great. A basic throw of 10\u002B to avoid a dangerous situation applies whenever any non-ordinary maneuver is attempted while wearing a vacc suit (including running, jumping, hiding, jumping untethered from one ship to another, or other such activity). Allow a DM of \u002B4 per level of expertise. When such an incident occurs, it may be remedied by any character with vacc suit skill (including the character in danger) on a throw of 7\u002B; DMs: per level of expertise, \u002B2; if no expertise, -4. Battle dress and combat armour are special forms of armoured vacc suit and require at least vacc suit-1 to wear at all.",
+    "Referee": null,
+    "Level": 0,
+    "HasSpecialisations": false,
+    "Specialisations": []
+  },
+  {
+    "Name": "Gun Combat",
+    "Summary": "Gun combat is a specific skill in the use of firearms.",
+    "Description": "",
+    "Referee": "",
+    "Level": 0,
+    "HasSpecialisations": true,
+    "Specialisations": [
+      {
+        "Name": "Body Pistol",
+        "Summary": "Body Pistol skill is specifically relates to the use of weapons designated as Body Pistol.",
+        "Description": "A typical Body Pistol has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 7-\nWounds: 2D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Auto Pistol",
+        "Summary": "Auto Pistol skill is specifically relates to the use of weapons designated as Auto Pistol.",
+        "Description": "A typical Auto Pistol has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Revolver",
+        "Summary": "Revolver skill is specifically relates to the use of weapons designated as Revolver.",
+        "Description": "A typical Revolver has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 6-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Carbine",
+        "Summary": "Carbine skill is specifically relates to the use of weapons designated as Carbine.",
+        "Description": "A typical Carbine has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 4-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Rifle",
+        "Summary": "Rifle skill is specifically relates to the use of weapons designated as Rifle.",
+        "Description": "A typical Rifle has the following characteristics:\n\u002BDM : 8\u002B\n-DM: 5-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Auto Rifle",
+        "Summary": "Auto Rifle skill is specifically relates to the use of weapons designated as Auto Rifle.",
+        "Description": "A typical Auto Rifle has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 6-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Shotgun",
+        "Summary": "Shotgun skill is specifically relates to the use of weapons designated as Shotgun.",
+        "Description": "A typical Shotgun has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 3-\nWounds: 4D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "SMG",
+        "Summary": "SMG skill is specifically relates to the use of weapons designated as SMG.",
+        "Description": "A typical SMG has the following characteristics:\n\u002BDM : 9\u002B\n-DM: 6-\nWounds: 3D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Laser Carbine",
+        "Summary": "Laser Carbine skill is specifically relates to the use of weapons designated as Laser Carbine.",
+        "Description": "A typical Laser Carbine has the following characteristics:\n\u002BDM : 10\u002B\n-DM: 5-\nWounds: 4D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      },
+      {
+        "Name": "Laser Rifle",
+        "Summary": "Laser Rifle skill is specifically relates to the use of weapons designated as Laser Rifle.",
+        "Description": "A typical Laser Rifle has the following characteristics:\n\u002BDM : 11\u002B\n-DM: 6-\nWounds: 5D",
+        "Referee": "",
+        "Level": 0,
+        "HasSpecialisations": false,
+        "Specialisations": []
+      }
+    ]
+  }
+]

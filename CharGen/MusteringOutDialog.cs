@@ -35,6 +35,8 @@ namespace TravellerTools.CharGen
         protected decimal m_cashRollsCount;
         protected decimal m_benefitRollsCount;
 
+        protected bool m_gamblingBonus;
+
         // Public Constructors
 
         public MusteringOutDialog(TravellerService service, TravellerCharacter character, decimal rollsCount)
@@ -44,6 +46,24 @@ namespace TravellerTools.CharGen
             m_rollsCount = rollsCount;
             m_cashRollsCount = 0;
             m_benefitRollsCount = 0;
+
+            TravellerSkill gamblingSkill = null;
+            foreach (TravellerSkill skill in m_character.Skills)
+            {
+                if (skill.Name == "Gambling")
+                {
+                    gamblingSkill = skill;
+                    break;
+                }
+            }
+            if (gamblingSkill != null && gamblingSkill.Level > 0)
+            {
+                m_gamblingBonus = true;
+            }
+            else
+            {
+                m_gamblingBonus = false;
+            }
 
             InitializeComponent();
 
@@ -69,8 +89,7 @@ namespace TravellerTools.CharGen
                 benefitsRollLabel.Text = string.Format(BENEFIT_ROLLS_MADE_LABEL, m_benefitRollsCount);
                 cashRollsLabel.Text = string.Format(CASH_ROLLS_MADE_LABEL, m_cashRollsCount);
                 bonusToBenefitsLabel.Visible = m_character.RankNumber > 4;
-                bonusToCashLabel.Visible = m_character.HasSkill("Gambling");
-
+                
                 characterDisplay.Text = m_character.ShortStringFormat();
                 benefitsTableButton.Text = m_service.BenefitsTableText();
                 cashTableButton.Text = m_service.CashTableText();
@@ -79,6 +98,8 @@ namespace TravellerTools.CharGen
 
                 closeButton.Enabled = false;
             }
+
+            bonusToCashLabel.Visible = m_gamblingBonus;
         }
 
         protected void ProcessBenefitSelection(List<KeyValuePair<int, TravellerMusteringOutBenefit>> table)
@@ -86,6 +107,10 @@ namespace TravellerTools.CharGen
             object resultForReporting = null;
 
             int roll = DiceTools.RollOneDie(6);
+            if( m_character.RankNumber > 4 )
+            {
+                roll++;
+            }
             TravellerMusteringOutBenefit rolledBenefit = null;
             foreach (KeyValuePair<int, TravellerMusteringOutBenefit> item in table)
             {
@@ -140,6 +165,10 @@ namespace TravellerTools.CharGen
         protected void ProcessCashSelection(List<KeyValuePair<int, decimal>> table)
         {
             int roll = DiceTools.RollOneDie(6);
+            if( m_gamblingBonus )
+            {
+                roll++;
+            }
             int cashValue = 0;
             foreach (KeyValuePair<int, decimal> item in table)
             {

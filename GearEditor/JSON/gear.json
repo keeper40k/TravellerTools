@@ -1,0 +1,16 @@
+[
+  {
+    "Type": "TravellerGear",
+    "Name": "Blade",
+    "Count": 1,
+    "WeaponType": "Blade",
+    "Value": 50
+  },
+  {
+    "Type": "TravellerGear",
+    "Name": "Dagger",
+    "Count": 1,
+    "WeaponType": "Blade",
+    "Value": 10
+  }
+]

@@ -38,7 +38,7 @@ namespace SkillEditor
             this.skillDescriptionLabel = new System.Windows.Forms.Label();
             this.skillDescriptionBox = new System.Windows.Forms.RichTextBox();
             this.skillsBox = new System.Windows.Forms.ListBox();
-            this.LoadButton = new System.Windows.Forms.Button();
+            this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.skillSummaryBox = new System.Windows.Forms.RichTextBox();
             this.skillSummaryLabel = new System.Windows.Forms.Label();
@@ -136,15 +136,15 @@ namespace SkillEditor
             this.skillsBox.TabIndex = 8;
             this.skillsBox.SelectedIndexChanged += new System.EventHandler(this.skillsBox_SelectedIndexChanged);
             // 
-            // LoadButton
+            // loadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(3, 4);
-            this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(75, 23);
-            this.LoadButton.TabIndex = 10;
-            this.LoadButton.Text = "Load";
-            this.LoadButton.UseVisualStyleBackColor = true;
-            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            this.loadButton.Location = new System.Drawing.Point(3, 4);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(75, 23);
+            this.loadButton.TabIndex = 10;
+            this.loadButton.Text = "Load";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // saveButton
             // 
@@ -378,7 +378,7 @@ namespace SkillEditor
             this.Controls.Add(this.skillRefereeLabel);
             this.Controls.Add(this.skillSummaryBox);
             this.Controls.Add(this.skillSummaryLabel);
-            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.loadButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.skillsBox);
             this.Controls.Add(this.skillDescriptionBox);
@@ -405,7 +405,7 @@ namespace SkillEditor
         private System.Windows.Forms.Label skillDescriptionLabel;
         private System.Windows.Forms.RichTextBox skillDescriptionBox;
         private System.Windows.Forms.ListBox skillsBox;
-        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.RichTextBox skillSummaryBox;
         private System.Windows.Forms.Label skillSummaryLabel;

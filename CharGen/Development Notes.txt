@@ -3,11 +3,10 @@
 Data for Character:
   Need to add:
 	Work on Careers
-      Enlistment Complete.
-	  Working on Processing the deatils of each Term of Service now.
-	  Then it will be onto Aging, then Mustering Out.
 	  - Currently writing
-			Nothing.
+			Gear Editor Tool
+			  ... Need to add Gear editing boxes next.
+			  ... Will support Gear Specialisation
 	  - Plan to write next
 			Saving & Exporting a Character
 	 - Needs to come soon ...

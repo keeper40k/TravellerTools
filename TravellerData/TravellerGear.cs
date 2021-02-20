@@ -18,6 +18,7 @@ namespace TravellerTools.TravellerData
             Description = string.Empty;
             Count = 1;
             WeaponType = string.Empty;
+            Value = 0;
         }
 
         // Public override methods
@@ -35,11 +36,24 @@ namespace TravellerTools.TravellerData
 
         // Public Properties
 
+        public string Type
+        {
+            get
+            {
+                return this.GetType().Name;
+            }
+            set
+            {
+                // Do nothing, except ensure it is serialised by having both get and set.
+            }
+        }
         public string Name { get; set; }
         public string Description { get; set; }
 
         public decimal Count { get; set; }
 
         public string WeaponType { get; set; }
+
+        public int Value { get; set; }
     }
 }

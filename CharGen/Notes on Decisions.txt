@@ -1,0 +1,1 @@
+Mustering out benefits always add +1 if Rank 5+ for skills table, and +1 if Gambling-1 or higher for cash table. It isn't a choice.
