@@ -176,7 +176,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)JSON\services.json $(TargetDir)\services.json
+    <PostBuildEvent>copy $(ProjectDir)JSON\gear.json $(TargetDir)\gear.json
+copy $(ProjectDir)JSON\services.json $(TargetDir)\services.json
 copy $(ProjectDir)JSON\settings.json $(Targetdir)\settings.json
 copy $(ProjectDir)JSON\skills.json $(Targetdir)\skills.json
 </PostBuildEvent>

@@ -152,7 +152,7 @@ namespace GearEditor
                     JsonElement root = document.RootElement;
                     foreach( JsonElement o in root.EnumerateArray( ) )
                     {
-                        string rawText = o.GetProperty("Type").ToString();
+                        string rawText = o.GetProperty("ClassType").ToString();
                         if (rawText == "TravellerGear" )
                         {
                             Gear.Add(JsonSerializer.Deserialize<TravellerGear>(o.GetRawText()));
@@ -247,6 +247,7 @@ namespace GearEditor
         private void nameBox_TextChanged(object sender, EventArgs e)
         {
             SelectedGear.Name = nameBox.Text;
+            UpdateBoxes();
         }
 
         private void descriptionBox_TextChanged(object sender, EventArgs e)

@@ -17,6 +17,8 @@ namespace TravellerTools.CharGen
 
         private const string CHOICE_LABEL = "You have rolled {0}. Please choose on option:";
 
+        private const string COMBAT_EXTENSION = " Combat";
+
         // Protected Memebers
 
         protected TravellerSkill m_weapon = null;
@@ -58,7 +60,8 @@ namespace TravellerTools.CharGen
             {
                 foreach( TravellerGear gear in m_currentGear )
                 {
-                    if( gear.GearType == m_weapon.Name )
+                    string gearToSkill = gear.GearType + COMBAT_EXTENSION;
+                    if (gearToSkill == m_weapon.Name)
                     {
                         choicesBox.Items.Add(gear);
                     }
@@ -90,7 +93,8 @@ namespace TravellerTools.CharGen
             bool found = false;
             foreach (TravellerGear gear in m_currentGear)
             {
-                if (gear.GearType == m_weapon.Name)
+                string gearToSkill = gear.GearType + COMBAT_EXTENSION;
+                if (gearToSkill == m_weapon.Name)
                 {
                     found = true;
                     // Once we've found one, that is enough to know
