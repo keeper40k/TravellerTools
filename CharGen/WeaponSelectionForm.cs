@@ -58,7 +58,7 @@ namespace TravellerTools.CharGen
             {
                 foreach( TravellerGear gear in m_currentGear )
                 {
-                    if( gear.WeaponType == m_weapon.Name )
+                    if( gear.GearType == m_weapon.Name )
                     {
                         choicesBox.Items.Add(gear);
                     }
@@ -90,7 +90,7 @@ namespace TravellerTools.CharGen
             bool found = false;
             foreach (TravellerGear gear in m_currentGear)
             {
-                if (gear.WeaponType == m_weapon.Name)
+                if (gear.GearType == m_weapon.Name)
                 {
                     found = true;
                     // Once we've found one, that is enough to know

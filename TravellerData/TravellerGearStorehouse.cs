@@ -21,7 +21,7 @@ namespace TravellerTools.TravellerData
             // TO DO - this should work better than this!
             TravellerGear result = new TravellerGear();
             result.Name = Name;
-            result.WeaponType = weaponType;
+            result.GearType = weaponType;
             return result;
         }
 

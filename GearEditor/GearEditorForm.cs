@@ -23,6 +23,8 @@ namespace GearEditor
 
         private const string NEW_GEAR = "New Gear";
 
+        private const string GEAR_TYPES_JSON_FILE = "gearTypes.json";
+
         // Public Constructors
 
         public GearEditorForm()
@@ -30,6 +32,7 @@ namespace GearEditor
             Gear = new List<TravellerGear>();
 
             InitializeComponent();
+            LoadGearTypes();
             UpdateBoxes();
         }
 
@@ -76,12 +79,60 @@ namespace GearEditor
                 gearDownButton.Enabled = false;
                 removeGearButton.Enabled = false;
             }
+
+            if( gearBox.SelectedItem != null )
+            {
+                TravellerGear gear = gearBox.SelectedItem as TravellerGear;
+
+                gearTypeBox.Enabled = true;
+                nameBox.Enabled = true;
+                descriptionBox.Enabled = true;
+                techLevelBox.Enabled = true;
+                weightBox.Enabled = true;
+                valueBox.Enabled = true;
+
+                gearTypeBox.Text = gear.GearType;
+                nameBox.Text = gear.Name;
+                descriptionBox.Text = gear.Description;
+                techLevelBox.Value = gear.TechLevel;
+                weightBox.Value = gear.Weight;
+                valueBox.Value = gear.Value;
+            }
+            else
+            {
+                gearTypeBox.Enabled = false;
+                nameBox.Enabled = false;
+                descriptionBox.Enabled = false;
+                techLevelBox.Enabled = false;
+                weightBox.Enabled = false;
+                valueBox.Enabled = false;
+
+                gearTypeBox.Text = string.Empty;
+                nameBox.Text = string.Empty;
+                descriptionBox.Text = string.Empty;
+                techLevelBox.Value = 0;
+                weightBox.Value = 0;
+                valueBox.Value = 0;
+            }
+        }
+
+        protected void LoadGearTypes()
+        {
+            gearTypeBox.Items.Clear();
+            string json = File.ReadAllText(GEAR_TYPES_JSON_FILE);
+            List<string> types = JsonSerializer.Deserialize<List<string>>(json);
+            foreach( string type in types )
+            {
+                gearTypeBox.Items.Add(type);
+            }
         }
 
 
         // Public Properties
 
         public List<TravellerGear> Gear { get; set; }
+
+        public TravellerGear SelectedGear { get; set; }
 
         // private events
 
@@ -167,6 +218,7 @@ namespace GearEditor
         bool m_suppressReselection = false;
         private void gearBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SelectedGear = gearBox.SelectedItem as TravellerGear;
             if (!m_suppressReselection)
             {
                 UpdateBoxes();
@@ -185,6 +237,36 @@ namespace GearEditor
         {
             Gear.Remove(gearBox.SelectedItem as TravellerGear);
             UpdateBoxes();
+        }
+
+        private void gearTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedGear.GearType = gearTypeBox.Text;
+        }
+
+        private void nameBox_TextChanged(object sender, EventArgs e)
+        {
+            SelectedGear.Name = nameBox.Text;
+        }
+
+        private void descriptionBox_TextChanged(object sender, EventArgs e)
+        {
+            SelectedGear.Description = descriptionBox.Text;
+        }
+
+        private void techLevelBox_ValueChanged(object sender, EventArgs e)
+        {
+            SelectedGear.TechLevel = (int)techLevelBox.Value;
+        }
+
+        private void weightBox_ValueChanged(object sender, EventArgs e)
+        {
+            SelectedGear.Weight = (int)weightBox.Value;
+        }
+
+        private void valueBox_ValueChanged(object sender, EventArgs e)
+        {
+            SelectedGear.Value = (int)valueBox.Value;
         }
     }
 }

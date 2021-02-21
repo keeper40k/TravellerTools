@@ -1,16 +1,1 @@
-[
-  {
-    "Type": "TravellerGear",
-    "Name": "Blade",
-    "Count": 1,
-    "WeaponType": "Blade",
-    "Value": 50
-  },
-  {
-    "Type": "TravellerGear",
-    "Name": "Dagger",
-    "Count": 1,
-    "WeaponType": "Blade",
-    "Value": 10
-  }
-]
+[{"ClassType":"TravellerGear","GearType":"Blade","Name":"Blade","Description":"A hybrid knife weapon with a heavy, flat two-edged blade nearly 300mm in length, and a semi-basket handguard. Because of the bulk of the handguard, it is generally carried in a belt scabbard. ","Count":1,"Value":50,"Weight":350,"TechLevel":3},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Dagger","Description":"A small knife weapon with a flat, two-edged blade approximately 200mm in length. Daggers are usually carried in a belt sheath, and less frequently are concealed in a boot sheath or strapped to the forearm. Daggers are usually the last weapon of defence and worn constantly. Each weigh 250 grams; that weight, however, does not count against the weight load of the character as the weapon is worn constantly and comfortably. \n","Count":1,"Value":10,"Weight":250,"TechLevel":1}]
