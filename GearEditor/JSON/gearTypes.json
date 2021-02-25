@@ -1,3 +1,20 @@
 [
-  "Ammunition", "Armour", "Blade", "Food and Overhead", "Gun", "Gun Accessories", "Personal Devices", "Personal Equipment", "Shelters", "Spaceship", "Starship", "Small Craft", "Tools", "Vehicle", "Vision Aids"
+  "Allowance",
+  "Ammunition",
+  "Armour",
+  "Blade",
+  "Food and Overhead",
+  "Gun",
+  "Gun Accessories",
+  "Passage",
+  "Personal Devices",
+  "Personal Equipment",
+  "Shelters",
+  "Spaceship",
+  "Special",
+  "Starship",
+  "Small Craft",
+  "Tools",
+  "Vehicle",
+  "Vision Aids"
 ]

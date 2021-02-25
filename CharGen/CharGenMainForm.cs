@@ -692,7 +692,7 @@ namespace TravellerTools.CharGen
             MusteringOutDialog form = new MusteringOutDialog(Service, Character, rolls);
             form.ShowDialog();
 
-            if (Character.TermsOfService > 4)
+            if ( Service.HasRetirementPay && Character.TermsOfService > 4)
             {
                 TravellerRetirementPay retirementPay = new TravellerRetirementPay();
                 // Cr4000 for 5 Terms, Cr6000 for 6 Terms, Cr8000 for 7 Terms, +Cr2000 per term above.

@@ -25,6 +25,9 @@ namespace GearEditor
 
         private const string GEAR_TYPES_JSON_FILE = "gearTypes.json";
 
+        private const string PAY_VALUE_LABEL = "Amount";
+        private const string NORMAL_VALUE_LABEL = "Value        Cr";
+
         // Public Constructors
 
         public GearEditorForm()
@@ -114,6 +117,37 @@ namespace GearEditor
                 weightBox.Value = 0;
                 valueBox.Value = 0;
             }
+
+            if ( SelectedGear != null  )
+            {
+                switch( SelectedGear.ClassType )
+                {
+                    case "TravellerRetirementPay":
+                    {
+                        techLevelBox.Enabled = false;
+                        weightBox.Enabled = false;
+                        valueBox.Enabled = true;
+                        valueLabel.Text = PAY_VALUE_LABEL;
+                        break;
+                    }
+                    case "TravellerStarshipBenefit":
+                        {
+                        techLevelBox.Enabled = false;
+                        weightBox.Enabled = false;
+                        valueBox.Enabled = false;
+                        valueLabel.Text = NORMAL_VALUE_LABEL;
+                        break;
+                        }
+                    default:
+                    {
+                        techLevelBox.Enabled = true;
+                        weightBox.Enabled = true;
+                        valueBox.Enabled = true;
+                        valueLabel.Text = NORMAL_VALUE_LABEL;
+                        break;
+                    }
+                }
+            }
         }
 
         protected void LoadGearTypes()
@@ -150,12 +184,20 @@ namespace GearEditor
                 using (JsonDocument document = JsonDocument.Parse(json))
                 {
                     JsonElement root = document.RootElement;
-                    foreach( JsonElement o in root.EnumerateArray( ) )
+                    foreach (JsonElement o in root.EnumerateArray())
                     {
                         string rawText = o.GetProperty("ClassType").ToString();
-                        if (rawText == "TravellerGear" )
+                        if (rawText == "TravellerGear")
                         {
                             Gear.Add(JsonSerializer.Deserialize<TravellerGear>(o.GetRawText()));
+                        }
+                        else if (rawText == "TravellerRetirementPay")
+                        {
+                            Gear.Add(JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText()));
+                        }
+                        else if (rawText == "TravellerStarshipBenefit")
+                        {
+                            Gear.Add(JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText()));
                         }
                     }
                 }
@@ -175,7 +217,17 @@ namespace GearEditor
                 string json = JSON_ARRAY_START;
                 for( int i = 0; i < Gear.Count; i++ )
                 {
-                    if (Gear[i] is TravellerGear)
+                    if (Gear[i] is TravellerRetirementPay)
+                    {
+                        TravellerRetirementPay gear = Gear[i] as TravellerRetirementPay;
+                        json += JsonSerializer.Serialize(gear);
+                    }
+                    else if (Gear[i] is TravellerStarshipBenefit)
+                    {
+                        TravellerStarshipBenefit gear = Gear[i] as TravellerStarshipBenefit;
+                        json += JsonSerializer.Serialize(gear);
+                    }
+                    else if (Gear[i] is TravellerGear)
                     {
                         TravellerGear gear = Gear[i] as TravellerGear;
                         json += JsonSerializer.Serialize(gear);

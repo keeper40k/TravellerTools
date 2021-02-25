@@ -4,20 +4,11 @@ Data for Character:
   Need to add:
 	Work on Careers
 	  - Currently writing
-			Gear Editor Tool
-			  ... Need to add Gear editing boxes next.
-			  ... Will support Gear Specialisation
 	  - Plan to write next
 			Fix Surviving characters not eligible for mustering out.
 			Saving & Exporting a Character
 	 - Needs to come soon ...
-			TravellerGear class feels like it needs more work
-			 - definately needs more subclasses.
 			Weapons profiles
-			Flesh out TravellerGearStorehouse
-
-	- Gear notes
-			Need to consider how to handle the variability of Brawling weapons (book 1, p.37)
 
 Other ...
 
@@ -34,6 +25,9 @@ Features:
 
 String Usage:
   Need to add resources and remove strings from being embedded in classes.
+
+Gear notes:
+  Need to consider how to handle the variability of Brawling weapons (book 1, p.37)
 
 Future
   When expanding to 18 services in the future, Draft probably needs to be an option.

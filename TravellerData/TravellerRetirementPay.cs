@@ -17,14 +17,21 @@ namespace TravellerTools.TravellerData
         public TravellerRetirementPay()
         {
             Name = RETIREMENT_PAY_NAME;
+            Amount = 0;
         }
 
         // Public Override Methods
 
         public override string ToString()
         {
+            return Name;
+        }
+
+        public override string DisplayString()
+        {
             return Name + TOSTRING_SEPARATOR + Amount;
         }
+
 
         // Public Properties
 

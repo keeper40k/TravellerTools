@@ -36,6 +36,13 @@ namespace TravellerTools.TravellerData
             return result;
         }
 
+        // Public Methods
+
+        public virtual string DisplayString()
+        {
+            return ToString();
+        }
+
         // Public Properties
 
         public string ClassType

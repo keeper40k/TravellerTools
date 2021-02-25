@@ -37,6 +37,14 @@ namespace TravellerTools.TravellerData
                     {
                         Gear.Add(JsonSerializer.Deserialize<TravellerGear>(o.GetRawText()));
                     }
+                    else if (rawText == "TravellerRetirementPay")
+                    {
+                        Gear.Add(JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText()));
+                    }
+                    else if (rawText == "TravellerStarshipBenefit")
+                    {
+                        Gear.Add(JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText()));
+                    }
                 }
             }
         }

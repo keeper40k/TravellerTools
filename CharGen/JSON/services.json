@@ -275,6 +275,7 @@
           }
         }
       ],
+      "HasRetirementPay": true,
       "CashTable": [
         {
           "Key": 1,
@@ -309,7 +310,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -349,7 +350,7 @@
         {
           "Key": 6,
           "Value": {
-            "Name": "High Passgage",
+            "Name": "High Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -639,6 +640,7 @@
           }
         }
       ],
+      "HasRetirementPay": true,
       "CashTable": [
         {
           "Key": 1,
@@ -673,7 +675,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -713,7 +715,7 @@
         {
           "Key": 6,
           "Value": {
-            "Name": "High Passgage",
+            "Name": "High Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1003,6 +1005,7 @@
           }
         }
       ],
+      "HasRetirementPay": true,
       "CashTable": [
         {
           "Key": 1,
@@ -1037,7 +1040,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1077,7 +1080,7 @@
         {
           "Key": 6,
           "Value": {
-            "Name": "Middle Passgage",
+            "Name": "Middle Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1358,6 +1361,7 @@
           }
         }
       ],
+      "HasRetirementPay": false,
       "CashTable": [
         {
           "Key": 1,
@@ -1392,7 +1396,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1705,6 +1709,7 @@
           }
         }
       ],
+      "HasRetirementPay": true,
       "CashTable": [
         {
           "Key": 1,
@@ -1739,7 +1744,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1779,7 +1784,7 @@
         {
           "Key": 6,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -1788,8 +1793,8 @@
           "Key": 7,
           "Value": {
             "Name": "Free Trader",
-            "IsAtt": true,
-            "IsGear": false
+            "IsAtt": false,
+            "IsGear": true
           }
         }
       ]
@@ -2048,6 +2053,7 @@
           }
         }
       ],
+      "HasRetirementPay": false,
       "CashTable": [
         {
           "Key": 1,
@@ -2082,7 +2088,7 @@
         {
           "Key": 1,
           "Value": {
-            "Name": "Low Passgage",
+            "Name": "Low Passage",
             "IsAtt": false,
             "IsGear": true
           }
@@ -2114,7 +2120,7 @@
         {
           "Key": 5,
           "Value": {
-            "Name": "High Passgage",
+            "Name": "High Passage",
             "IsAtt": false,
             "IsGear": true
           }

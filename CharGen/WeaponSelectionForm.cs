@@ -139,14 +139,31 @@ namespace TravellerTools.CharGen
             if(IsWeaponSelected)
             {
                 TravellerSkill selection = choicesBox.SelectedItem as TravellerSkill;
-                SelectedGear = TravellerGearStorehouse.GetGear(selection.Name, m_weapon.Name);
+                if (selection != null)
+                {
+                    SelectedGear = TravellerGearStorehouse.GetGear(selection.Name, m_weapon.Name);
+                }
+                else // let's try it as gear instead!
+                {
+                    SelectedGear = choicesBox.SelectedItem as TravellerGear;
+                }
             }
             // So, a skill instead!
             else
             {
                 TravellerGear selected = choicesBox.SelectedItem as TravellerGear;
-                SelectedSkill = TravellerSkills.MatchSkill(selected.Name);
-                SelectedSkill.Level = 1;
+                if (selected != null) 
+                {
+                    SelectedSkill = TravellerSkills.MatchSkill(selected.Name);
+                }
+                else // let's try it as a skill instead!
+                {
+                    SelectedSkill = choicesBox.SelectedItem as TravellerSkill;
+                }
+                if (selected != null)
+                {
+                    SelectedSkill.Level = 1;
+                }
             }
             Close();
         }

@@ -522,7 +522,7 @@ namespace TravellerTools.TravellerData
 
             for (int i = 0; i < Gear.Count; i++)
             {
-                result += Gear[i];
+                result += Gear[i].DisplayString();
                 if (i < Gear.Count - 1)
                 {
                     result += ", ";

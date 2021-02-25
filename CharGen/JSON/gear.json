@@ -1,1 +1,523 @@
-[{"ClassType":"TravellerGear","GearType":"Armour","Name":"Ablat","Description":"Ablat is a cheap alternative to Reflec and is fashioned from a material which will ablate (vaporize) when hit by laser fire. The ablation of the material carries away the energy of the laser and protects the wearer. Continued fire against Ablat degrades its effectiveness, but the armour is cheap and easily replaceable. Ablat also has some value against other forms of attack.","Count":1,"Value":75,"Weight":0,"TechLevel":9},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Automatic Pistol","Description":"The basic repeating handgun, firing 9mm calibre bullets (each weighing approximately 10 grams) at velocities from 400 to 500 meters per second. A magazine containing 15 cartridges fits into the handle of the pistol, and one cartridge is fired for each pull of the trigger. Automatic pistol ammunition is interchangeable with submachinegun ammunition (although magazines are not). Preloaded pistol magazines may be inserted into an empty pistol, requiring one combat round for this reloading procedure to occur.\nLength : 175mm. Weight, unloaded : 750 grams (loaded magazine weighs 250 grams). Base price: Cr200 (loaded magazine: Cr 10).\n","Count":1,"Value":210,"Weight":750,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Automatic Pistol Ammunition","Description":"An Automatic Pistol magazine contains 15 cartridges and is designed to fit into the handle of an Automatic Pistol, and one cartridge is fired for each pull of the trigger.\nPreloaded Automatic Pistol magazines may be inserted into an empty pistol, requiring one combat round for this reloading procedure to occur.\nAutomatic Pistol ammunition is interchangeable with Submachinegun ammunition, although the magazines themselves are not.","Count":1,"Value":10,"Weight":250,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Automatic Rifle","Description":"A highly refined and tuned version of the rifle, capable of fully automatic fire as well as semi-automatic shots. Normally, the automatic rifle fires in bursts of four bullets for each pull of the trigger. It may be switched to semi-automatic fire at the end of a combat round, after all firing, in which case it is treated as a rifle until switched back. Ammunition and magazines are identical to those used for the rifle.\nThe automatic rifle is equipped with a sling (which allows the weapon to be slung from the shoulder while carried in the ready to fire position), a bipod, and a muzzle brake to steady the gun while firing.\nSome versions of the automatic rifle are available which use 100 round belts of ammunition (not usable in rifles, however). Such belts cost the equivalent of six loaded magazines and weigh 2500 grams. Reloading with a new belt requires three combat rounds.\nLength: 1000mm. Weight, unloaded: 5000 grams (loaded magazine: 500 grams).","Count":1,"Value":1020,"Weight":5500,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Automatic Rifle Ammunition","Description":"A twenty-round Automatic Rifle magazine is attached in the front of the Automatic Rifle\u0027s trigger guard, and one round is fired with each pull of the trigger.\nReplacement of the empty magazine takes one combat round. Automatic Rifle ammunition may also be used in Rifles; Rifle and Automatic Rifle magazines are interchangeable and weigh the same.\n","Count":1,"Value":20,"Weight":500,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Automatic Rifle Ammunition Belt","Description":"A 100-round belt of ammunition for the Automatic Rifle.\nReloading with a new belt requires three combat rounds.\nAuotmatic Rifle Ammunition Belts are not usable in a Rifles. ","Count":1,"Value":120,"Weight":2500,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Battle Dress","Description":"The ultimate in individual protection, battle dress is an advanced and powered version of combat armour. Battle dress enhances the strength and senses of individuals wearing it with variable feedback personal controls, servo-powered limbs, and various kinds of electronic assistance.\nThe individual wearing battle dress is effectively doubled in strength and given unlimited endurance (for lifting, carrying, and fighting purposes; not for wounds received) and receives a DM of \u002B2 for surprise.\nBefore Battle Dress can be worn, the user must have skill of Vacc Suit-1 or better.\n","Count":1,"Value":200000,"Weight":0,"TechLevel":13},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Bayonet","Description":"A knife-like weapon similar to a dagger or blade. When not attached to a rifle, a bayonet is treated as a dagger (or blade), carried in a belt scabbard, and requires dagger (or blade) skill for use to advantage. When attached to the muzzle of a rifle (only, not carbine or auto rifle), it transforms the gun into a polearm, and increases the length of the arm by 200mm.","Count":1,"Value":10,"Weight":250,"TechLevel":3},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Blade","Description":"A hybrid knife weapon with a heavy, flat two-edged blade nearly 300mm in length, and a semi-basket handguard. Because of the bulk of the handguard, it is generally carried in a belt scabbard. ","Count":1,"Value":50,"Weight":350,"TechLevel":3},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Body Pistol","Description":"A small, non-metallic semiautomatic pistol designed to evade detection by most weapon detectors. It fires 5 gram projectiles at a velocity of 500 to 600 meters per second. A magazine containing six cartridges is inserted into the pistol handle; one cartridge is fired for each pull of the trigger. Pre-loaded magazines may be inserted into the pistol when it is empty, taking one combat round to do so. Body pistol ammunition is not interchangeable with the ammunition for any other types of guns.\nLength: 100mm. Weight, unloaded: 250 grams (a loaded magazine weighs 50 grams). Base price: Cr500 (one loaded magazine: Cr20). ","Count":1,"Value":520,"Weight":300,"TechLevel":7},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Body Pistol Ammunition","Description":"A magazine containing six 5-gram projectile cartridges to be inserted into the handle of a Body Pistol.\nPre-loaded magazines may be inserted into the pistol when it is empty, taking one combat round to do so. Body pistol ammunition is not interchangeable with the ammunition for any other types of guns.","Count":1,"Value":20,"Weight":50,"TechLevel":7},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Broadsword","Description":"The largest of the sword weapons, also called the two-handed sword because it requires both hands to swing. The blade is extremely heavy, two-edged, and about 1000 to 1200mm in length. The hilt is relatively simple, generally a cross-piece only, with little basketwork or protection. When carried, the broadsword is worn in a metal scabbard attached to the belt; less frequently, the scabbard is worn on the back, and the broadsword is drawn over the shoulder.","Count":1,"Value":300,"Weight":2500,"TechLevel":1},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Carbine","Description":"A short type of rifle firing a small calibre round (a 6mm bullet, weighing 5 grams, at a velocity of 900 meters per second). A magazine containing ten rounds is inserted into the underside of the carbine, ahead of the trigger guard, and one round is fired with each pull of the trigger. Replacement of empty magazines takes one combat round. Carbine ammunition is not interchangeable with any other type of ammunition.\nIn essence, a carbine is a short rifle, firing a cartridge of smaller, lighter calibre. A sling usually allows the carbine to be carried on the shoulder, out of the way.\nLength: 750mm. Weight, unloaded: 3000 grams (loaded magazine weighs 125 grams). Base price: Cr200 (loaded magazine: Cr10).","Count":1,"Value":210,"Weight":3125,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Carbine Ammunition","Description":"A Carbine magazine contains ten rounds and is inserted into the underside of the Carbine, ahead of the trigger guard, and one round is fired with each pull of the trigger.\nReplacement of empty magazines takes one combat round.\nCarbine ammunition is not interchangeable with any other type of ammunition.\n","Count":1,"Value":10,"Weight":125,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Cloth","Description":"A heavy-duty body suit tailored from ballistic cloth. The fabric absorbs impact energy, distributing the blow over the body of the target and possibly resulting in bruising. Nevertheless, cloth armour is almost the best and the most versatile available.","Count":1,"Value":250,"Weight":0,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Combat Armour","Description":"Combat armour is a complete Vacc Suit-like array of metal and synthetic armour. Combat Armour is strictly military and not available on the open market; it is issued to troop units and elite mercenary battalions.\nBefore Combat Armour can be worn, the user must have skill of Vacc Suit-1 or better.","Count":1,"Value":20000,"Weight":0,"TechLevel":11},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Cudgel","Description":"A basic stick used as a weapon. Easily obtained from standing trees or through the use of an unloaded long gun such as a rifle or carbine (laser weapons are too delicate to be used as cudgels). Length: 1000 to 2000mm.","Count":1,"Value":10,"Weight":1000,"TechLevel":0},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Cutlass","Description":"A heavy, flat-bladed, single-edged weapon featuring a full basket hilt to protect the hand. The cutlass is the standard shipboard blade weapon and usually kept in brackets on the bulkhead near important locations; when worn, a belt scabbard is used. Blade length varies from 600 to 900mm.","Count":1,"Value":100,"Weight":1250,"TechLevel":3},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Dagger","Description":"A small knife weapon with a flat, two-edged blade approximately 200mm in length. Daggers are usually carried in a belt sheath, and less frequently are concealed in a boot sheath or strapped to the forearm. Daggers are usually the last weapon of defence and worn constantly. Each weigh 250 grams; that weight, however, does not count against the weight load of the character as the weapon is worn constantly and comfortably. \n","Count":1,"Value":10,"Weight":250,"TechLevel":1},{"ClassType":"TravellerGear","GearType":"Gun Accessories","Name":"Electronic Sights","Description":"Electronic sights with image enhancement and low-light capabilities are available to provide the capability to see and hit in the dark. Electronics are treated like telescopic sights for damage and reliability, and function similarly.","Count":1,"Value":2000,"Weight":1500,"TechLevel":9},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Foil","Description":"Also known as the rapier, this weapon is a light, sword-like weapon with a pointed, edged blade 800mm in length, and a basket or cup hilt to protect the hand. Foils are worn in scabbards attached to the belt.\n","Count":1,"Value":100,"Weight":500,"TechLevel":2},{"ClassType":"TravellerGear","GearType":"Gun Accessories","Name":"Folding Stock","Description":"Carbines, rifles, and shotguns can be equipped with folding stocks which make it possible to reduce the overall length of the weapon by 300mm.\nWeight: adds 500 grams to the weapon weight. Base price: Cr100.","Count":1,"Value":100,"Weight":500,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Halberd","Description":"A quite elaborate polearm featuring a pointed, bladed tip. This weapon may be considered as a combination between a battle axe and a spear. Length: 2500mm","Count":1,"Value":75,"Weight":2500,"TechLevel":2},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Jack","Description":"A natural or synthetic leather jacket or body suit covering the torso and upper arms and legs. Jack is somewhat better than ordinary clothing or bare skin when defending against blades; it is worthless against guns.","Count":1,"Value":50,"Weight":0,"TechLevel":1},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Laser Carbine","Description":"A lightweight version of the Laser Rifle, firing high energy bolts using current from a backpack battery/power pack. The Laser Carbine fires a 2mm beam of energy, aimed by integrated optic sights. The power pack can produce 50 shots before it requires recharging. Recharging requires at least eight hours connected to a high energy source. The Laser Carbine is connected to the power pack by a heavy-duty cable.\nLength: 800mm. Weight of carbine: 5000 grams. Weight of power pack: 3000 grams. Base price: Cr2500 (extra power pack: Cr1000). Cost of recharge, at commercial rates: Cr200.","Count":1,"Value":3500,"Weight":8000,"TechLevel":8},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Laser Carbine Power Pack","Description":"A backpack/power pack that is the energy source for a Laser Carbine.\nThe power pack can produce 50 shots before it requires recharging.\nRecharging requires at least eight hours connected to a high energy source.\nThe Laser Carbine is connected to the power pack by a heavy-duty cable.\nPower packs are not interchangeable between the Laser Carbines and Laser Rifles.\nCost of recharge, at commercial rates: Cr200.","Count":1,"Value":1000,"Weight":3000,"TechLevel":8},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Laser Rifle","Description":"The standard high energy weapon, firing high energy bolts in the same manner as the laser carbine. Heavier, the laser rifle is also capable of longer sustained action, and is somewhat sturdier. The power pack can provide 100 shots before recharging.\nThe laser rifle is connected to the power pack by a heavy duty cable.\nPower packs are not interchangeable between the Laser Rifles and Laser Carbines.\nLength: 1000mm. Weight of rifle: 6000 grams. Weight of power pack: 4000 grams. Base price: Cr3500 (extra power packs: Cr1500). Cost of recharge, at commercial rates: Cr300.","Count":1,"Value":3500,"Weight":6000,"TechLevel":9},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Laser Rifle Power Pack","Description":"A backpack/power pack that is the energy source for a Laser Rifle.\nThe power pack can produce 100 shots before it requires recharging.\nRecharging requires at least eight hours connected to a high energy source.\nThe Laser Rifle is connected to the power pack by a heavy-duty cable.\nPower packs are not interchangeable between the Laser Rifles and Laser Carbines.\nCost of recharge, at commercial rates: Cr300.","Count":1,"Value":1500,"Weight":4000,"TechLevel":9},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Mesh","Description":"A, jacket or body suit made of natural or synthetic leather and reinforced with a lining of flexible metal mesh, similar to chain mail but lighter and stronger. Mesh reduces or stops penetration by blades and has some effectiveness against guns; it is ineffective against laser fire.","Count":1,"Value":150,"Weight":0,"TechLevel":7},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Pike","Description":"A long (3000 to 4000mm) polearm with some form of flat blade tip.","Count":1,"Value":40,"Weight":3000,"TechLevel":1},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Reflec","Description":"Reflective material on a plastic base can be tailored into a body suit which is ineffective against most weapons, but superior in defence against laser fire. Unlike other forms of armour, Reflec is worn under other clothing. Reflec is expensive and often difficult to obtain.","Count":1,"Value":1500,"Weight":0,"TechLevel":10},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Revolver","Description":"An older variety of handgun, the revolver fires 9mm bullets with characteristics similar to those fired by the automatic pistol, but not interchangeable with them. No magazine is used: six cartridges are inserted into the revolver individually. Reloading takes two combat rounds, or one combat round if the individual foregoes the benefit of evasion.\nLength: 200mm (some versions may be shorter or longer). Weight, unloaded: 900 grams (weight of six cartridges: 100 grams). Base price: Cr150 (six cartridges cost Cr5).","Count":1,"Value":155,"Weight":1000,"TechLevel":4},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Revolver Ammunition","Description":"Six 9mm bullets with characteristics similar to those fired by the automatic pistol, but not interchangeable with them.  No magazine is used: six cartridges are inserted into the revolver individually.\nReloading takes two combat rounds, or one combat round if the individual foregoes the benefit of evasion.\n","Count":1,"Value":5,"Weight":100,"TechLevel":4},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Rifle","Description":"The standard military arm, firing a 7mm, 10-gram bullet at a velocity of approximately 900 meters per second. Longer and heavier than a carbine, it is also more effective. Standard equipment includes provisions for attaching a bayonet and telescopic sights, and a shoulder sling.\nA twenty-round magazine is attached to the front of the trigger guard, and one round is fired with each pull of the trigger. Replacement of the empty magazine takes one combat round. Rifle ammunition may also be used in automatic rifles; rifle and auto rifle magazines are interchangeable and weigh the same.\nLength: 1000mm. Weight, unloaded: 4000 grams (loaded magazine weighs 500 grams). Base price: Cr200 (loaded magazine: Cr20).","Count":1,"Value":220,"Weight":4500,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Rifle Ammunition","Description":"A twenty-round Rifle magazine is attached in the front of the Rifle\u0027s trigger guard, and one round is fired with each pull of the trigger.\nReplacement of the empty magazine takes one combat round. Rifle ammunition may also be used in Automatic Rifles; Rifle and Automatic Rifle magazines are interchangeable and weigh the same.","Count":1,"Value":20,"Weight":500,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Shotgun","Description":"The basic weapon for maximum shock effect without regard to accuracy. The shotgun has an 18mm diameter barrel and fires shells containing either six 7mm bullets, or one hundred and thirty 3mm pellets. In each case, the projectiles weigh a total of 30 grams. Velocity for the projectiles is about 350 meters per second.\nA cylindrical magazine containing 10 shells is inserted under the barrel and parallel to it; cartridges are then fed automatically into the shotgun for firing.\nReloading consists of replacing the cylindrical magazine and takes two combat rounds.\nOne shot is fired for each pull of the trigger.\nMagazines measure approximately 350mm long by 20mm in diameter and are quite clumsy to carry.\nShotguns are equipped with a sling for carrying.\nLength: 1000mm. Weight, unloaded: 3750 grams (loaded magazine: 750 grams).\nBase price: Cr150 (loaded magazine: Cr10).","Count":1,"Value":160,"Weight":4500,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Shotgun Ammunition","Description":"A cylindrical Shotgun magazine contains 10 shells is inserted under the barrel and parallel to it; cartridges are then fed automatically into the shotgun for firing.\nReloading consists of replacing the cylindrical magazine and takes two combat rounds.\nMagazines measure approximately 350mm long by 20mm in diameter and are quite clumsy to carry.","Count":1,"Value":10,"Weight":750,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Gun Accessories","Name":"Shoulder Stock","Description":"It is possible to produce a shoulder stock which may be attached temporarily to a pistol or revolver, resulting in a crude carbine arrangement and some greater accuracy at longer ranger. The overall length of the pistol is increased by the length of the stock, and the pistol cannot be holstered.\nAttaching the stock (or detaching it) requires five combat rounds.\nLength: 350mm. Weight: 1000 grams. Base price: Cr75.","Count":1,"Value":75,"Weight":1000,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Gun Accessories","Name":"Silencer","Description":"Devices are available which will muffle or eliminate the sound of guns firing, but so far, they have proven practical only when applied to body pistols, revolvers, and automatic pistols. A silencer attaches to the muzzle of the pistol, increasing its total length, and making it impossible to holster until the silencer is removed. Silencers are not interchangeable; one must be purchased for each specific model of pistol used.\nLength: 100 to 300mm. Weight: 500 to 700 grams. Base price: Cr200.","Count":1,"Value":200,"Weight":600,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Spear","Description":"A long (3000mm) polearm with a pointed tip, usually of metal. Often made by the person who carries the weapon, the spear is quite inexpensive.","Count":1,"Value":10,"Weight":2000,"TechLevel":0},{"ClassType":"TravellerGear","GearType":"Gun","Name":"Submachinegun","Description":"A small automatic weapon designed to fire pistol ammunition. Magazines holding 30 cartridges are inserted into the weapon forward of the trigger guard or in the pistol grip, depending on the design. The Submachinegun fires four rounds per pull of the trigger. Replacement of an empty magazine requires one combat round.\nSubmachinegun ammunition (but not magazines) is interchangeable with Automatic Pistol ammunition.\nMost Submachineguns are equipped with slings to allow ease of carrying.","Count":1,"Value":520,"Weight":3000,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Ammunition","Name":"Submachinegun Ammunition","Description":"Submachinegun magazines hold 30 cartridges and are inserted into a Submachinegun forward of the trigger guard, or in the pistol grip, depending on the design\nThe Submachinegun fires four rounds per pull of the trigger.\nReplacement of an empty magazine requires one combat round.\nSubmachinegun ammunition (but not magazines) is interchangeable with Automatic Pistol ammunition.\n","Count":1,"Value":20,"Weight":500,"TechLevel":5},{"ClassType":"TravellerGear","GearType":"Blade","Name":"Sword","Description":"The standard long-edged weapon, featuring a flat, two-edged blade. It may or may not have a basket hilt or hand protector. A scabbard to carry the sword may be attached to the belt, or to straps (or a sash) over the shoulder. Blade length may vary from 700 to 950mm.\n","Count":1,"Value":150,"Weight":1000,"TechLevel":1},{"ClassType":"TravellerGear","GearType":"Gun Accessories","Name":"Telescopic Sights","Description":"High-quality telescopic sights for attachment to rifles and carbines, for increasing their accuracy, especially at longer ranges. A rifle equipped with such sights has a DM of \u002B4 to hit at long and very long ranges. Note that this DM is in addition to other allowed and required DMs.\nTelescopic sights are delicate, however, and may be jarred out of alignment by any violent action (such as being left untended in a moving truck, a close explosion, or being dropped) on a throw of 7\u002B. When the sights go out of adjustment, the basic throw to hit should not be revealed to the firer, and he or she will always miss.","Count":1,"Value":200,"Weight":800,"TechLevel":6},{"ClassType":"TravellerGear","GearType":"Armour","Name":"Vacc Suit","Description":"The personal vacuum or space suit is designed to protect the individual from vacuum, tainted or noxious atmospheres, and some radiation situations. It carries its own communicators, oxygen tanks for six hours, and other basic survival appurtenances. Use of a Vacc suit requires Vacc suit-0 or better. It acts as cloth armour when subject to attacks. Vacc suits are relatively bulky and weigh 10 kilograms; the weight counts against personal weight allowances. This weight is reduced 2 kilograms per tech level as the suit gains increasing sophistication. For example, a TL 10 Vacc suit weighs 6 kilograms, and a Vacc suit at tech level 13\u002B adds no apparent weight.","Count":1,"Value":10000,"Weight":10000,"TechLevel":8}]
+[
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Ablat",
+    "Description": "Ablat is a cheap alternative to Reflec and is fashioned from a material which will ablate (vaporize) when hit by laser fire. The ablation of the material carries away the energy of the laser and protects the wearer. Continued fire against Ablat degrades its effectiveness, but the armour is cheap and easily replaceable. Ablat also has some value against other forms of attack.",
+    "Count": 1,
+    "Value": 75,
+    "Weight": 0,
+    "TechLevel": 9
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Automatic Pistol",
+    "Description": "The basic repeating handgun, firing 9mm calibre bullets (each weighing approximately 10 grams) at velocities from 400 to 500 meters per second. A magazine containing 15 cartridges fits into the handle of the pistol, and one cartridge is fired for each pull of the trigger. Automatic pistol ammunition is interchangeable with submachinegun ammunition (although magazines are not). Preloaded pistol magazines may be inserted into an empty pistol, requiring one combat round for this reloading procedure to occur.\nLength : 175mm. Weight, unloaded : 750 grams (loaded magazine weighs 250 grams). Base price: Cr200 (loaded magazine: Cr 10).\n",
+    "Count": 1,
+    "Value": 210,
+    "Weight": 750,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Automatic Pistol Ammunition",
+    "Description": "An Automatic Pistol magazine contains 15 cartridges and is designed to fit into the handle of an Automatic Pistol, and one cartridge is fired for each pull of the trigger.\nPreloaded Automatic Pistol magazines may be inserted into an empty pistol, requiring one combat round for this reloading procedure to occur.\nAutomatic Pistol ammunition is interchangeable with Submachinegun ammunition, although the magazines themselves are not.",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 250,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Automatic Rifle",
+    "Description": "A highly refined and tuned version of the rifle, capable of fully automatic fire as well as semi-automatic shots. Normally, the automatic rifle fires in bursts of four bullets for each pull of the trigger. It may be switched to semi-automatic fire at the end of a combat round, after all firing, in which case it is treated as a rifle until switched back. Ammunition and magazines are identical to those used for the rifle.\nThe automatic rifle is equipped with a sling (which allows the weapon to be slung from the shoulder while carried in the ready to fire position), a bipod, and a muzzle brake to steady the gun while firing.\nSome versions of the automatic rifle are available which use 100 round belts of ammunition (not usable in rifles, however). Such belts cost the equivalent of six loaded magazines and weigh 2500 grams. Reloading with a new belt requires three combat rounds.\nLength: 1000mm. Weight, unloaded: 5000 grams (loaded magazine: 500 grams).",
+    "Count": 1,
+    "Value": 1020,
+    "Weight": 5500,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Automatic Rifle Ammunition",
+    "Description": "A twenty-round Automatic Rifle magazine is attached in the front of the Automatic Rifle\u0027s trigger guard, and one round is fired with each pull of the trigger.\nReplacement of the empty magazine takes one combat round. Automatic Rifle ammunition may also be used in Rifles; Rifle and Automatic Rifle magazines are interchangeable and weigh the same.\n",
+    "Count": 1,
+    "Value": 20,
+    "Weight": 500,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Automatic Rifle Ammunition Belt",
+    "Description": "A 100-round belt of ammunition for the Automatic Rifle.\nReloading with a new belt requires three combat rounds.\nAuotmatic Rifle Ammunition Belts are not usable in a Rifles. ",
+    "Count": 1,
+    "Value": 120,
+    "Weight": 2500,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Battle Dress",
+    "Description": "The ultimate in individual protection, battle dress is an advanced and powered version of combat armour. Battle dress enhances the strength and senses of individuals wearing it with variable feedback personal controls, servo-powered limbs, and various kinds of electronic assistance.\nThe individual wearing battle dress is effectively doubled in strength and given unlimited endurance (for lifting, carrying, and fighting purposes; not for wounds received) and receives a DM of \u002B2 for surprise.\nBefore Battle Dress can be worn, the user must have skill of Vacc Suit-1 or better.\n",
+    "Count": 1,
+    "Value": 200000,
+    "Weight": 0,
+    "TechLevel": 13
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Bayonet",
+    "Description": "A knife-like weapon similar to a dagger or blade. When not attached to a rifle, a bayonet is treated as a dagger (or blade), carried in a belt scabbard, and requires dagger (or blade) skill for use to advantage. When attached to the muzzle of a rifle (only, not carbine or auto rifle), it transforms the gun into a polearm, and increases the length of the arm by 200mm.",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 250,
+    "TechLevel": 3
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Blade",
+    "Description": "A hybrid knife weapon with a heavy, flat two-edged blade nearly 300mm in length, and a semi-basket handguard. Because of the bulk of the handguard, it is generally carried in a belt scabbard. ",
+    "Count": 1,
+    "Value": 50,
+    "Weight": 350,
+    "TechLevel": 3
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Body Pistol",
+    "Description": "A small, non-metallic semiautomatic pistol designed to evade detection by most weapon detectors. It fires 5 gram projectiles at a velocity of 500 to 600 meters per second. A magazine containing six cartridges is inserted into the pistol handle; one cartridge is fired for each pull of the trigger. Pre-loaded magazines may be inserted into the pistol when it is empty, taking one combat round to do so. Body pistol ammunition is not interchangeable with the ammunition for any other types of guns.\nLength: 100mm. Weight, unloaded: 250 grams (a loaded magazine weighs 50 grams). Base price: Cr500 (one loaded magazine: Cr20). ",
+    "Count": 1,
+    "Value": 520,
+    "Weight": 300,
+    "TechLevel": 7
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Body Pistol Ammunition",
+    "Description": "A magazine containing six 5-gram projectile cartridges to be inserted into the handle of a Body Pistol.\nPre-loaded magazines may be inserted into the pistol when it is empty, taking one combat round to do so. Body pistol ammunition is not interchangeable with the ammunition for any other types of guns.",
+    "Count": 1,
+    "Value": 20,
+    "Weight": 50,
+    "TechLevel": 7
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Broadsword",
+    "Description": "The largest of the sword weapons, also called the two-handed sword because it requires both hands to swing. The blade is extremely heavy, two-edged, and about 1000 to 1200mm in length. The hilt is relatively simple, generally a cross-piece only, with little basketwork or protection. When carried, the broadsword is worn in a metal scabbard attached to the belt; less frequently, the scabbard is worn on the back, and the broadsword is drawn over the shoulder.",
+    "Count": 1,
+    "Value": 300,
+    "Weight": 2500,
+    "TechLevel": 1
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Carbine",
+    "Description": "A short type of rifle firing a small calibre round (a 6mm bullet, weighing 5 grams, at a velocity of 900 meters per second). A magazine containing ten rounds is inserted into the underside of the carbine, ahead of the trigger guard, and one round is fired with each pull of the trigger. Replacement of empty magazines takes one combat round. Carbine ammunition is not interchangeable with any other type of ammunition.\nIn essence, a carbine is a short rifle, firing a cartridge of smaller, lighter calibre. A sling usually allows the carbine to be carried on the shoulder, out of the way.\nLength: 750mm. Weight, unloaded: 3000 grams (loaded magazine weighs 125 grams). Base price: Cr200 (loaded magazine: Cr10).",
+    "Count": 1,
+    "Value": 210,
+    "Weight": 3125,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Carbine Ammunition",
+    "Description": "A Carbine magazine contains ten rounds and is inserted into the underside of the Carbine, ahead of the trigger guard, and one round is fired with each pull of the trigger.\nReplacement of empty magazines takes one combat round.\nCarbine ammunition is not interchangeable with any other type of ammunition.\n",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 125,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Cloth",
+    "Description": "A heavy-duty body suit tailored from ballistic cloth. The fabric absorbs impact energy, distributing the blow over the body of the target and possibly resulting in bruising. Nevertheless, cloth armour is almost the best and the most versatile available.",
+    "Count": 1,
+    "Value": 250,
+    "Weight": 0,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Combat Armour",
+    "Description": "Combat armour is a complete Vacc Suit-like array of metal and synthetic armour. Combat Armour is strictly military and not available on the open market; it is issued to troop units and elite mercenary battalions.\nBefore Combat Armour can be worn, the user must have skill of Vacc Suit-1 or better.",
+    "Count": 1,
+    "Value": 20000,
+    "Weight": 0,
+    "TechLevel": 11
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Cudgel",
+    "Description": "A basic stick used as a weapon. Easily obtained from standing trees or through the use of an unloaded long gun such as a rifle or carbine (laser weapons are too delicate to be used as cudgels). Length: 1000 to 2000mm.",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 1000,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Cutlass",
+    "Description": "A heavy, flat-bladed, single-edged weapon featuring a full basket hilt to protect the hand. The cutlass is the standard shipboard blade weapon and usually kept in brackets on the bulkhead near important locations; when worn, a belt scabbard is used. Blade length varies from 600 to 900mm.",
+    "Count": 1,
+    "Value": 100,
+    "Weight": 1250,
+    "TechLevel": 3
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Dagger",
+    "Description": "A small knife weapon with a flat, two-edged blade approximately 200mm in length. Daggers are usually carried in a belt sheath, and less frequently are concealed in a boot sheath or strapped to the forearm. Daggers are usually the last weapon of defence and worn constantly. Each weigh 250 grams; that weight, however, does not count against the weight load of the character as the weapon is worn constantly and comfortably. \n",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 250,
+    "TechLevel": 1
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun Accessories",
+    "Name": "Electronic Sights",
+    "Description": "Electronic sights with image enhancement and low-light capabilities are available to provide the capability to see and hit in the dark. Electronics are treated like telescopic sights for damage and reliability, and function similarly.",
+    "Count": 1,
+    "Value": 2000,
+    "Weight": 1500,
+    "TechLevel": 9
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Foil",
+    "Description": "Also known as the rapier, this weapon is a light, sword-like weapon with a pointed, edged blade 800mm in length, and a basket or cup hilt to protect the hand. Foils are worn in scabbards attached to the belt.\n",
+    "Count": 1,
+    "Value": 100,
+    "Weight": 500,
+    "TechLevel": 2
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun Accessories",
+    "Name": "Folding Stock",
+    "Description": "Carbines, rifles, and shotguns can be equipped with folding stocks which make it possible to reduce the overall length of the weapon by 300mm.\nWeight: adds 500 grams to the weapon weight. Base price: Cr100.",
+    "Count": 1,
+    "Value": 100,
+    "Weight": 500,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerStarshipBenefit",
+    "GearType": "Starship",
+    "Name": "Free Trader",
+    "Description": "The type A free trader is a 200-ton cargo vessel equipped to handle both freight and passengers. The ship and details on the financial circumstances noted below are fully described in Book 2. Receipt of this ship as a benefit confers possession of the ship, but also liability for the monthly payments (about Cr150,000) for the next forty years. Fuel, crew, and other expenses must also be handled by the character.\nIf the ship benefit is received more than once, each additional receipt is considered to represent actual possession of the ship for a ten-year period. The ship is thus ten years older, and the total payment term is reduced by ten years. It is possible for a character to own a ship, free and clear, by successively rolling the ship benefit five times (once to obtain it, and four times to pay off the four 10-year sequences of payment). The ship is also forty years old.",
+    "Count": 1,
+    "Value": 0,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Halberd",
+    "Description": "A quite elaborate polearm featuring a pointed, bladed tip. This weapon may be considered as a combination between a battle axe and a spear. Length: 2500mm",
+    "Count": 1,
+    "Value": 75,
+    "Weight": 2500,
+    "TechLevel": 2
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Passage",
+    "Name": "High Passage",
+    "Description": "High Passage is a kind of passage, or ticket, for travel. They are acquired in blank, and represent one passage, or trip, between one world and the next world visited by the starship. High Passage includes first class accommodations and excellent cuisine and allows up to one ton of baggage.\nHigh passage costs Cr10,000 when purchased and Passages may be retained and used as needed, or they may be cashed in at 90% of their face value.",
+    "Count": 1,
+    "Value": 10000,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Jack",
+    "Description": "A natural or synthetic leather jacket or body suit covering the torso and upper arms and legs. Jack is somewhat better than ordinary clothing or bare skin when defending against blades; it is worthless against guns.",
+    "Count": 1,
+    "Value": 50,
+    "Weight": 0,
+    "TechLevel": 1
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Laser Carbine",
+    "Description": "A lightweight version of the Laser Rifle, firing high energy bolts using current from a backpack battery/power pack. The Laser Carbine fires a 2mm beam of energy, aimed by integrated optic sights. The power pack can produce 50 shots before it requires recharging. Recharging requires at least eight hours connected to a high energy source. The Laser Carbine is connected to the power pack by a heavy-duty cable.\nLength: 800mm. Weight of carbine: 5000 grams. Weight of power pack: 3000 grams. Base price: Cr2500 (extra power pack: Cr1000). Cost of recharge, at commercial rates: Cr200.",
+    "Count": 1,
+    "Value": 3500,
+    "Weight": 8000,
+    "TechLevel": 8
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Laser Carbine Power Pack",
+    "Description": "A backpack/power pack that is the energy source for a Laser Carbine.\nThe power pack can produce 50 shots before it requires recharging.\nRecharging requires at least eight hours connected to a high energy source.\nThe Laser Carbine is connected to the power pack by a heavy-duty cable.\nPower packs are not interchangeable between the Laser Carbines and Laser Rifles.\nCost of recharge, at commercial rates: Cr200.",
+    "Count": 1,
+    "Value": 1000,
+    "Weight": 3000,
+    "TechLevel": 8
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Laser Rifle",
+    "Description": "The standard high energy weapon, firing high energy bolts in the same manner as the laser carbine. Heavier, the laser rifle is also capable of longer sustained action, and is somewhat sturdier. The power pack can provide 100 shots before recharging.\nThe laser rifle is connected to the power pack by a heavy duty cable.\nPower packs are not interchangeable between the Laser Rifles and Laser Carbines.\nLength: 1000mm. Weight of rifle: 6000 grams. Weight of power pack: 4000 grams. Base price: Cr3500 (extra power packs: Cr1500). Cost of recharge, at commercial rates: Cr300.",
+    "Count": 1,
+    "Value": 3500,
+    "Weight": 6000,
+    "TechLevel": 9
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Laser Rifle Power Pack",
+    "Description": "A backpack/power pack that is the energy source for a Laser Rifle.\nThe power pack can produce 100 shots before it requires recharging.\nRecharging requires at least eight hours connected to a high energy source.\nThe Laser Rifle is connected to the power pack by a heavy-duty cable.\nPower packs are not interchangeable between the Laser Rifles and Laser Carbines.\nCost of recharge, at commercial rates: Cr300.",
+    "Count": 1,
+    "Value": 1500,
+    "Weight": 4000,
+    "TechLevel": 9
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Passage",
+    "Name": "Low Passage",
+    "Description": "Low Passage is a kind of passage, or ticket, for travel. They are acquired in blank, and represent one passage, or trip, between one world and the next world visited by the starship. Low Passage involves travel in cryogenic capsules (cold sleep or suspended animation), and the traveller is unconscious for the course of the journey. A character does not age while in cold sleep. Because of the intrinsic dangers of this method of travel, a basic throw of 5\u002B applies when the journey is over, and the low passenger is revived. Failure of the throw results in death; a DM of \u002B1 is allowed if there is an attending medic-2 or better, DM -1 if the low passenger has endurance of 6 or less.\nLow Passage costs Cr1000 if purchased and includes a baggage allowance of 10 kilograms. Low Passages may be retained and used as needed, or they may be cashed in at 90% of their face value.",
+    "Count": 1,
+    "Value": 1000,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Mesh",
+    "Description": "A, jacket or body suit made of natural or synthetic leather and reinforced with a lining of flexible metal mesh, similar to chain mail but lighter and stronger. Mesh reduces or stops penetration by blades and has some effectiveness against guns; it is ineffective against laser fire.",
+    "Count": 1,
+    "Value": 150,
+    "Weight": 0,
+    "TechLevel": 7
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Passage",
+    "Name": "Middle Passage",
+    "Description": "Middle Passage is a kind of passage, or ticket, for travel. They are acquired in blank, and represent one passage, or trip, between one world and the next world visited by the starship.\nMiddle Passage includes second class accommodations (although still of reasonably good quality) and passable food and drink, and allows up to 100 kilograms of baggage. The passenger is expected to tend to his or her own affairs (maid service, laundry, cleaning, etc) during the voyage.\nMiddle Passage costs Cr8000 when purchased and is subject to stand-by conditions; the ticket holder may be bumped if a high passenger appears (the middle passage ticket being returned in such cases). Middle Passages may be retained and used as needed, or they may be cashed in at 90% of their face value.",
+    "Count": 1,
+    "Value": 8000,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Pike",
+    "Description": "A long (3000 to 4000mm) polearm with some form of flat blade tip.",
+    "Count": 1,
+    "Value": 40,
+    "Weight": 3000,
+    "TechLevel": 1
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Reflec",
+    "Description": "Reflective material on a plastic base can be tailored into a body suit which is ineffective against most weapons, but superior in defence against laser fire. Unlike other forms of armour, Reflec is worn under other clothing. Reflec is expensive and often difficult to obtain.",
+    "Count": 1,
+    "Value": 1500,
+    "Weight": 0,
+    "TechLevel": 10
+  },
+  {
+    "Amount": 0,
+    "ClassType": "TravellerRetirementPay",
+    "GearType": "Allowance",
+    "Name": "Retirement Pay",
+    "Description": "Any character who leaves the service at the end of the fifth or later term of service is considered to have retired, and receives retirement pay. This pension is paid at the beginning of each year, effective upon leaving the service, and may be collected at any class A or B starport. The table indicates the rate of pay, which is dependent on the character\u0027s total terms of service. Service beyond the eighth term adds Cr2000 per additional term. Retirement pay is not available to characters who have served in the scout or the other service.\n\nRETIREMENT PAY\n5 terms Cr4000\n6 terms Cr6000\n7 terms Cr8000\n8 terms Cr10.000",
+    "Count": 1,
+    "Value": 2000,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Revolver",
+    "Description": "An older variety of handgun, the revolver fires 9mm bullets with characteristics similar to those fired by the automatic pistol, but not interchangeable with them. No magazine is used: six cartridges are inserted into the revolver individually. Reloading takes two combat rounds, or one combat round if the individual foregoes the benefit of evasion.\nLength: 200mm (some versions may be shorter or longer). Weight, unloaded: 900 grams (weight of six cartridges: 100 grams). Base price: Cr150 (six cartridges cost Cr5).",
+    "Count": 1,
+    "Value": 155,
+    "Weight": 1000,
+    "TechLevel": 4
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Revolver Ammunition",
+    "Description": "Six 9mm bullets with characteristics similar to those fired by the automatic pistol, but not interchangeable with them.  No magazine is used: six cartridges are inserted into the revolver individually.\nReloading takes two combat rounds, or one combat round if the individual foregoes the benefit of evasion.\n",
+    "Count": 1,
+    "Value": 5,
+    "Weight": 100,
+    "TechLevel": 4
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Rifle",
+    "Description": "The standard military arm, firing a 7mm, 10-gram bullet at a velocity of approximately 900 meters per second. Longer and heavier than a carbine, it is also more effective. Standard equipment includes provisions for attaching a bayonet and telescopic sights, and a shoulder sling.\nA twenty-round magazine is attached to the front of the trigger guard, and one round is fired with each pull of the trigger. Replacement of the empty magazine takes one combat round. Rifle ammunition may also be used in automatic rifles; rifle and auto rifle magazines are interchangeable and weigh the same.\nLength: 1000mm. Weight, unloaded: 4000 grams (loaded magazine weighs 500 grams). Base price: Cr200 (loaded magazine: Cr20).",
+    "Count": 1,
+    "Value": 220,
+    "Weight": 4500,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Rifle Ammunition",
+    "Description": "A twenty-round Rifle magazine is attached in the front of the Rifle\u0027s trigger guard, and one round is fired with each pull of the trigger.\nReplacement of the empty magazine takes one combat round. Rifle ammunition may also be used in Automatic Rifles; Rifle and Automatic Rifle magazines are interchangeable and weigh the same.",
+    "Count": 1,
+    "Value": 20,
+    "Weight": 500,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerStarshipBenefit",
+    "GearType": "Starship",
+    "Name": "Scout Ship",
+    "Description": "The type S scout/courier is a 100-ton dispatch vessel of a type common within human space and fully described in Book 2. It is the policy of the scout service to make available such surplus scout ships to selected individuals on a reserve basis. The vessels are (hopefully) put to good use while they are not required in service, and both the ship and its pilot are available for recall to duty when needed. Only one scout ship may be acquired by a character; further receipt of this benefit results in no further effect. Possession of the scout ship is at the pleasure of the scout service, and it cannot be sold by the character. The ship may be used as desired. Fuel is free at scout bases. Maintenance is free at the scout bases at class B starports. The character is responsible for both upkeep and crew costs.",
+    "Count": 1,
+    "Value": 0,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Shotgun",
+    "Description": "The basic weapon for maximum shock effect without regard to accuracy. The shotgun has an 18mm diameter barrel and fires shells containing either six 7mm bullets, or one hundred and thirty 3mm pellets. In each case, the projectiles weigh a total of 30 grams. Velocity for the projectiles is about 350 meters per second.\nA cylindrical magazine containing 10 shells is inserted under the barrel and parallel to it; cartridges are then fed automatically into the shotgun for firing.\nReloading consists of replacing the cylindrical magazine and takes two combat rounds.\nOne shot is fired for each pull of the trigger.\nMagazines measure approximately 350mm long by 20mm in diameter and are quite clumsy to carry.\nShotguns are equipped with a sling for carrying.\nLength: 1000mm. Weight, unloaded: 3750 grams (loaded magazine: 750 grams).\nBase price: Cr150 (loaded magazine: Cr10).",
+    "Count": 1,
+    "Value": 160,
+    "Weight": 4500,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Shotgun Ammunition",
+    "Description": "A cylindrical Shotgun magazine contains 10 shells is inserted under the barrel and parallel to it; cartridges are then fed automatically into the shotgun for firing.\nReloading consists of replacing the cylindrical magazine and takes two combat rounds.\nMagazines measure approximately 350mm long by 20mm in diameter and are quite clumsy to carry.",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 750,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun Accessories",
+    "Name": "Shoulder Stock",
+    "Description": "It is possible to produce a shoulder stock which may be attached temporarily to a pistol or revolver, resulting in a crude carbine arrangement and some greater accuracy at longer ranger. The overall length of the pistol is increased by the length of the stock, and the pistol cannot be holstered.\nAttaching the stock (or detaching it) requires five combat rounds.\nLength: 350mm. Weight: 1000 grams. Base price: Cr75.",
+    "Count": 1,
+    "Value": 75,
+    "Weight": 1000,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun Accessories",
+    "Name": "Silencer",
+    "Description": "Devices are available which will muffle or eliminate the sound of guns firing, but so far, they have proven practical only when applied to body pistols, revolvers, and automatic pistols. A silencer attaches to the muzzle of the pistol, increasing its total length, and making it impossible to holster until the silencer is removed. Silencers are not interchangeable; one must be purchased for each specific model of pistol used.\nLength: 100 to 300mm. Weight: 500 to 700 grams. Base price: Cr200.",
+    "Count": 1,
+    "Value": 200,
+    "Weight": 600,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Spear",
+    "Description": "A long (3000mm) polearm with a pointed tip, usually of metal. Often made by the person who carries the weapon, the spear is quite inexpensive.",
+    "Count": 1,
+    "Value": 10,
+    "Weight": 2000,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun",
+    "Name": "Submachinegun",
+    "Description": "A small automatic weapon designed to fire pistol ammunition. Magazines holding 30 cartridges are inserted into the weapon forward of the trigger guard or in the pistol grip, depending on the design. The Submachinegun fires four rounds per pull of the trigger. Replacement of an empty magazine requires one combat round.\nSubmachinegun ammunition (but not magazines) is interchangeable with Automatic Pistol ammunition.\nMost Submachineguns are equipped with slings to allow ease of carrying.",
+    "Count": 1,
+    "Value": 520,
+    "Weight": 3000,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Ammunition",
+    "Name": "Submachinegun Ammunition",
+    "Description": "Submachinegun magazines hold 30 cartridges and are inserted into a Submachinegun forward of the trigger guard, or in the pistol grip, depending on the design\nThe Submachinegun fires four rounds per pull of the trigger.\nReplacement of an empty magazine requires one combat round.\nSubmachinegun ammunition (but not magazines) is interchangeable with Automatic Pistol ammunition.\n",
+    "Count": 1,
+    "Value": 20,
+    "Weight": 500,
+    "TechLevel": 5
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Blade",
+    "Name": "Sword",
+    "Description": "The standard long-edged weapon, featuring a flat, two-edged blade. It may or may not have a basket hilt or hand protector. A scabbard to carry the sword may be attached to the belt, or to straps (or a sash) over the shoulder. Blade length may vary from 700 to 950mm.\n",
+    "Count": 1,
+    "Value": 150,
+    "Weight": 1000,
+    "TechLevel": 1
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Gun Accessories",
+    "Name": "Telescopic Sights",
+    "Description": "High-quality telescopic sights for attachment to rifles and carbines, for increasing their accuracy, especially at longer ranges. A rifle equipped with such sights has a DM of \u002B4 to hit at long and very long ranges. Note that this DM is in addition to other allowed and required DMs.\nTelescopic sights are delicate, however, and may be jarred out of alignment by any violent action (such as being left untended in a moving truck, a close explosion, or being dropped) on a throw of 7\u002B. When the sights go out of adjustment, the basic throw to hit should not be revealed to the firer, and he or she will always miss.",
+    "Count": 1,
+    "Value": 200,
+    "Weight": 800,
+    "TechLevel": 6
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Special",
+    "Name": "Travellers\u0027 Aid",
+    "Description": "The Travellers\u0027 Aid Society is a private organization which maintains hostels and facilities at all class A and B starports in human space. Such facilities are available (at reasonable cost) to members and their guests.\nTravellers\u0027 Aid Society membership may be acquired upon mustering out while using the skills and benefits table. Once this benefit is achieved, further receipt of the benefit has no effect; membership may be achieved only once per character. Receipt of membership in the Travellers\u0027 Aid Society upon mustering out may be construed as a reward for heroism or extraordinary service to the Society, rather than an official benefit of the service.\nMembership in the Society may also be purchased. Such purchase involves avoidance of a \u0022blackball\u0022 (throw 4\u002B to avoid), and (if accepted) payment of an initiation fee of Cr1,000,000. Only one application per person is allowed. Membership is for the life of a character and is not transferrable. The Travellers\u0027 Aid Society invests its membership fees and other income; it uses its capital and return to provide benefits to its members. Every two months, it pays dividends in the form of one high passage to each member. This passage may be used, retained, or sold.",
+    "Count": 1,
+    "Value": 1000000,
+    "Weight": 0,
+    "TechLevel": 0
+  },
+  {
+    "ClassType": "TravellerGear",
+    "GearType": "Armour",
+    "Name": "Vacc Suit",
+    "Description": "The personal vacuum or space suit is designed to protect the individual from vacuum, tainted or noxious atmospheres, and some radiation situations. It carries its own communicators, oxygen tanks for six hours, and other basic survival appurtenances. Use of a Vacc suit requires Vacc suit-0 or better. It acts as cloth armour when subject to attacks. Vacc suits are relatively bulky and weigh 10 kilograms; the weight counts against personal weight allowances. This weight is reduced 2 kilograms per tech level as the suit gains increasing sophistication. For example, a TL 10 Vacc suit weighs 6 kilograms, and a Vacc suit at tech level 13\u002B adds no apparent weight.",
+    "Count": 1,
+    "Value": 10000,
+    "Weight": 10000,
+    "TechLevel": 8
+  }
+]

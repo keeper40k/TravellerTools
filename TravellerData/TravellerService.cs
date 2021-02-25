@@ -33,6 +33,7 @@ namespace TravellerTools.TravellerData
             Ranks = new List<string>();
             AutomaticSkills = new List<KeyValuePair<int, TravellerSkillModifier>>();
             SkillsPerTerm = 0;
+            HasRetirementPay = true;
             CashTable = new List<KeyValuePair<int, decimal>>();
             BenefitsTable = new List<KeyValuePair<int, TravellerMusteringOutBenefit>>();
         }
@@ -174,5 +175,6 @@ namespace TravellerTools.TravellerData
         public List<KeyValuePair<int, TravellerSkillModifier>> AdvancedEducationTable2 { get; set; }
         public List<KeyValuePair<int, decimal>> CashTable { get; set; }
         public List<KeyValuePair<int, TravellerMusteringOutBenefit>> BenefitsTable { get; set; }
+        public bool HasRetirementPay { get; set; }
     }
 }

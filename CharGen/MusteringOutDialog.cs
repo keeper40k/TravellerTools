@@ -24,6 +24,7 @@ namespace TravellerTools.CharGen
 
         private const string GUN_NAME = "Gun";
         private const string BLADE_NAME = "Blade";
+        private const string FREE_TRADER_NAME = "Free Trader";
 
         private const string GEAR_TO_SKILL_SUFFIX = " Combat";
 
@@ -130,10 +131,9 @@ namespace TravellerTools.CharGen
                 }
                 else if( rolledBenefit.IsGear )
                 {
-                    TravellerGear gear = BenefitGearLookup(rolledBenefit.Name);
-                    if( gear.Name == GUN_NAME || gear.Name == BLADE_NAME )
+                    if(rolledBenefit.Name == GUN_NAME || rolledBenefit.Name == BLADE_NAME )
                     {
-                        TravellerSkill weaponSkill = TravellerSkills.MatchSkill(gear.Name + GEAR_TO_SKILL_SUFFIX);
+                        TravellerSkill weaponSkill = TravellerSkills.MatchSkill(rolledBenefit.Name + GEAR_TO_SKILL_SUFFIX);
                         WeaponSelectionForm form = new WeaponSelectionForm(weaponSkill, m_character.Gear);
                         form.ShowDialog();
                         if (form.IsWeaponSelected)
@@ -149,8 +149,27 @@ namespace TravellerTools.CharGen
                     }
                     else
                     {
-                        m_character.AddGear(gear);
-                        resultForReporting = gear;
+                        bool found = false;
+                        TravellerGear gear = BenefitGearLookup(rolledBenefit.Name);
+                        if( gear is TravellerStarshipBenefit && gear.Name == FREE_TRADER_NAME )
+                        {
+                            TravellerStarshipBenefit starship = gear as TravellerStarshipBenefit;
+                            foreach( TravellerGear charGear in m_character.Gear )
+                            {
+                                if( charGear is TravellerStarshipBenefit && charGear.Name == FREE_TRADER_NAME )
+                                {
+                                    found = true;
+                                    TravellerStarshipBenefit charStarship = charGear as TravellerStarshipBenefit;
+                                    charStarship.MortgageDuration -= 10;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!found)
+                        {
+                            m_character.AddGear(gear);
+                            resultForReporting = gear;
+                        }
                     }
                 }
                 m_rollsCount--;
@@ -252,9 +271,7 @@ namespace TravellerTools.CharGen
 
         protected TravellerGear BenefitGearLookup( string name )
         {
-            TravellerGear gear = new TravellerGear();
-            gear.Name = name;
-            return gear;
+            return TravellerGearStorehouse.GetGear(name, string.Empty);
         }
 
         // Implementation of ISkillSpecialisationCollection
