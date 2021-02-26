@@ -143,6 +143,7 @@
     <EmbeddedResource Include="WeaponSelectionForm.resx">
       <DependentUpon>WeaponSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="JSON\gear.json" />
     <None Include="JSON\services.json" />
     <None Include="JSON\settings.json" />
     <None Include="JSON\skills.json" />
