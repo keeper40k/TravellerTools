@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravellerTools.Fundamentals;
@@ -488,10 +491,37 @@ namespace TravellerTools.CharGen
             }
         }
 
+        protected void SaveJsonCharacter( string filename )
+        {
+            string json = JsonSerializer.Serialize(Character);
+            File.WriteAllText(filename, json);
+        }
+
+        protected void SaveTextCharacter( string filename )
+        {
+            string text = Character.ToString();
+            File.WriteAllText(filename, text);
+        }
+
+        // Implementation of ISkillSpecialisationCollection
+
+        public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
+        {
+            SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
+            form.ShowDialog();
+            TravellerSkill selectedSkill = form.SelectedSkill;
+            if (selectedSkill != null && selectedSkill.HasSpecialisations)
+            {
+                SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
+            }
+
+            return selectedSkill;
+        }
+
         // Protected Properaties
         protected CreationProcessState CurrentState;
 
-        // Events
+        // Event Handlers
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -659,21 +689,6 @@ namespace TravellerTools.CharGen
             UpdateInputBoxes();
         }
 
-        // Implementation of ISkillSpecialisationCollection
-
-        public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
-        {
-            SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
-            form.ShowDialog();
-            TravellerSkill selectedSkill = form.SelectedSkill;
-            if (selectedSkill != null && selectedSkill.HasSpecialisations)
-            {
-                SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
-            }
-
-            return selectedSkill;
-        }
-
         private void musterOutButton_Click(object sender, EventArgs e)
         {
             decimal rolls = Character.TermsOfService;
@@ -704,6 +719,25 @@ namespace TravellerTools.CharGen
             CurrentState = CreationProcessState.MUSTERED_OUT;
             UpdateInputBoxes();
             RefreshCharacterDisplay();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Json files (*.json)|*.json|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveDialog.FilterIndex = 1;
+
+            if( saveDialog.ShowDialog() == DialogResult.OK )
+            {
+                if( saveDialog.FileName.EndsWith( ".json" ) )
+                {
+                    SaveJsonCharacter(saveDialog.FileName);
+                }
+                else if( saveDialog.FileName.EndsWith( ".txt") )
+                {
+                    SaveTextCharacter(saveDialog.FileName);
+                }
+            }
         }
     }
 }

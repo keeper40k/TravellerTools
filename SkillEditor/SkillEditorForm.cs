@@ -245,7 +245,7 @@ namespace SkillEditor
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Filter = "Json files (*.json)|*.json|All files (*.*)|*.*";
-            saveDialog.FilterIndex = 2;
+            saveDialog.FilterIndex = 1;
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {

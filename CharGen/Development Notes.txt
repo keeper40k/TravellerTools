@@ -5,9 +5,11 @@ Data for Character:
 	Work on Careers
 	  - Currently writing
 	  - Plan to write next
+			Combat Tool
+	  - Needs to come soon ...
+	    CharGen
 			Fix Surviving characters not eligible for mustering out.
-			Saving & Exporting a Character
-	 - Needs to come soon ...
+		Other
 			Weapons profiles
 
 Other ...
