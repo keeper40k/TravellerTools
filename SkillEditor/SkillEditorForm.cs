@@ -229,7 +229,7 @@ namespace SkillEditor
         {
             OpenFileDialog openDialog = new OpenFileDialog();
             openDialog.Filter = "Json files (*.json)|*.json|All files (*.*)|*.*";
-            openDialog.FilterIndex = 2;
+            openDialog.FilterIndex = 1;
             openDialog.Multiselect = false;
 
             if (openDialog.ShowDialog() == DialogResult.OK)

@@ -6,7 +6,9 @@ Data for Character:
 	  - Currently writing
 	  - Plan to write next
 			Combat Tool
-	  - Needs to come soon ...
+				Need more assurance that closing and re-opening the window will work.
+				Started on loading a PNG file as a terrain map.
+- Needs to come soon ...
 	    CharGen
 			Fix Surviving characters not eligible for mustering out.
 		Other

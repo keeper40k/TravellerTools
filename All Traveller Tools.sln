@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearEditor", "GearEditor\Ge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharGen", "CharGen\CharGen.csproj", "{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravellerCombatTool", "TravellerCombatTool\TravellerCombatTool.csproj", "{B7B6D0E5-75FE-4214-BB58-A973F9BEB7AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B6D0E5-75FE-4214-BB58-A973F9BEB7AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B6D0E5-75FE-4214-BB58-A973F9BEB7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B6D0E5-75FE-4214-BB58-A973F9BEB7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B6D0E5-75FE-4214-BB58-A973F9BEB7AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
