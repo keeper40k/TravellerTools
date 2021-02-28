@@ -24,9 +24,6 @@ Settings:
   Need to add a "Do you want to save this character?" check when existing the application. (OnFormClosing event?)
   Need to store the settings file in a user data folder! (Need an active directory concept?)
 
-Features: 
-  Also, actually saving characters ... JSON format, and human readable format
-
 String Usage:
   Need to add resources and remove strings from being embedded in classes.
 
@@ -36,3 +33,23 @@ Gear notes:
 Future
   When expanding to 18 services in the future, Draft probably needs to be an option.
   Fixed most issues with WeaponSelectionForm.  It still loses the enable on Select when switching between choices, but reselection in the combo box does sort it out.
+
+----
+
+Observed Defects:
+  Gun selection (skill?) in Mustering out
+  Alignment of suggestion label under Service on the left-hand side
+  Can Edit Traveller output
+  Label on second output window is odd
+  Can Close skill selection dialog with (X) button before finished.
+    (Is same for mustering out?)
+  Look at rolling a 6 for Other service.  It waits for a new roll.
+  In File menu - File is spelt with a capital I (FIle)
+  Army - one musting roll of middle passing is given two middle passages?
+    (Same for Low passage, actually, give 4!)
+  Title resets when you chose a service.
+  Can Resize Weapon Choice Dialog. Should be fixed.
+
+Observed Enhancements:
+  Make default file suggestion on Save equal to the character name
+   Change Save to Export ?
