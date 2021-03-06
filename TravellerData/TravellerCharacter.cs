@@ -467,20 +467,28 @@ namespace TravellerTools.TravellerData
             }
         }
 
+        // Assumes gear is not null.  Will throw ArgumentOutOfRangeException if it is null
         public void AddGear( TravellerGear gear )
         {
-            bool found = false;
-            foreach( TravellerGear item in Gear )
+            if (gear != null)
             {
-                if( gear.Name == item.Name )
+                bool found = false;
+                foreach (TravellerGear item in Gear)
                 {
-                    found = true;
-                    item.Count += gear.Count;
+                    if (gear.Name == item.Name)
+                    {
+                        found = true;
+                        item.Count += gear.Count;
+                    }
+                }
+                if ( !found )
+                {
+                    Gear.Add(gear);
                 }
             }
-            if( !found )
+            else
             {
-                Gear.Add(gear);
+                throw new ArgumentOutOfRangeException("gear", "gear parameter cannot be null");
             }
         }
 

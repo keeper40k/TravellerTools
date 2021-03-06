@@ -37,19 +37,14 @@ Future
 ----
 
 Observed Defects:
-  Gun selection (skill?) in Mustering out
-  Alignment of suggestion label under Service on the left-hand side
-  Can Edit Traveller output
-  Label on second output window is odd
+  Gun selection (skill?) in Mustering out  - Perhpas Fixed?  Needs more testing
+
   Can Close skill selection dialog with (X) button before finished.
     (Is same for mustering out?)
   Look at rolling a 6 for Other service.  It waits for a new roll.
-  In File menu - File is spelt with a capital I (FIle)
   Army - one musting roll of middle passing is given two middle passages?
     (Same for Low passage, actually, give 4!)
-  Title resets when you chose a service.
   Can Resize Weapon Choice Dialog. Should be fixed.
 
 Observed Enhancements:
-  Make default file suggestion on Save equal to the character name
-   Change Save to Export ?
+   None at this time.

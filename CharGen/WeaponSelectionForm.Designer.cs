@@ -132,6 +132,7 @@ namespace TravellerTools.CharGen
             this.Controls.Add(this.promptLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WeaponSelectionForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Weapon Choice";
             this.ResumeLayout(false);

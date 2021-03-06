@@ -34,7 +34,7 @@ namespace TravellerTools.CharGen
         private static string NEW_CHAR_SURE_TITLE = "Create New Character";
 
         private static string RECOMMENDATIONS_LABEL = "Service Recommendations";
-        private static string CHARACTER_HISTORY_LABEL = "Current Traveller Character";
+        private static string CHARACTER_HISTORY_LABEL = "Traveller Creation History";
 
         private static string ENLIST_LABEL = "{0} needs {1}+ on 2d6 to Enlist. You will get a +{2} modifier.";
         private static string ENLIST_SUCCESS = "{0} successfully enlisted in the {1}, with a total roll of {2}.";
@@ -726,6 +726,7 @@ namespace TravellerTools.CharGen
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Filter = "Json files (*.json)|*.json|Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveDialog.FilterIndex = 1;
+            saveDialog.FileName = Character.Name;
 
             if( saveDialog.ShowDialog() == DialogResult.OK )
             {

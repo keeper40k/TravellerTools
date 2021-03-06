@@ -66,6 +66,7 @@ namespace TravellerTools.CharGen
             this.enlistmentChoiceBox = new System.Windows.Forms.ComboBox();
             this.enlistmentChoiceLabel = new System.Windows.Forms.Label();
             this.enlistTargetLabel = new System.Windows.Forms.Label();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageNumberBox)).BeginInit();
             this.SuspendLayout();
@@ -89,12 +90,13 @@ namespace TravellerTools.CharGen
             this.fIleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.toolStripSeparator2,
             this.saveToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fIleToolStripMenuItem.Name = "fIleToolStripMenuItem";
             this.fIleToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fIleToolStripMenuItem.Text = "FIle";
+            this.fIleToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
@@ -106,6 +108,7 @@ namespace TravellerTools.CharGen
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Enabled = false;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
@@ -114,7 +117,7 @@ namespace TravellerTools.CharGen
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Text = "Export";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -331,9 +334,9 @@ namespace TravellerTools.CharGen
             this.characterHistoryLabel.AutoSize = true;
             this.characterHistoryLabel.Location = new System.Drawing.Point(800, 9);
             this.characterHistoryLabel.Name = "characterHistoryLabel";
-            this.characterHistoryLabel.Size = new System.Drawing.Size(134, 13);
+            this.characterHistoryLabel.Size = new System.Drawing.Size(125, 13);
             this.characterHistoryLabel.TabIndex = 24;
-            this.characterHistoryLabel.Text = "Current Traveller Character";
+            this.characterHistoryLabel.Text = "Traveller Creation History";
             // 
             // musterOutButton
             // 
@@ -347,20 +350,24 @@ namespace TravellerTools.CharGen
             // 
             // characterDisplay
             // 
-            this.characterDisplay.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.characterDisplay.BackColor = System.Drawing.SystemColors.Control;
             this.characterDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.characterDisplay.ForeColor = System.Drawing.SystemColors.WindowText;
             this.characterDisplay.Location = new System.Drawing.Point(407, 32);
             this.characterDisplay.Name = "characterDisplay";
+            this.characterDisplay.ReadOnly = true;
             this.characterDisplay.Size = new System.Drawing.Size(389, 406);
             this.characterDisplay.TabIndex = 26;
             this.characterDisplay.Text = "";
             // 
             // characterHistory
             // 
-            this.characterHistory.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.characterHistory.BackColor = System.Drawing.SystemColors.Control;
             this.characterHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.characterHistory.ForeColor = System.Drawing.SystemColors.WindowText;
             this.characterHistory.Location = new System.Drawing.Point(803, 32);
             this.characterHistory.Name = "characterHistory";
+            this.characterHistory.ReadOnly = true;
             this.characterHistory.Size = new System.Drawing.Size(389, 406);
             this.characterHistory.TabIndex = 27;
             this.characterHistory.Text = "";
@@ -386,11 +393,16 @@ namespace TravellerTools.CharGen
             // enlistTargetLabel
             // 
             this.enlistTargetLabel.AutoSize = true;
-            this.enlistTargetLabel.Location = new System.Drawing.Point(129, 159);
+            this.enlistTargetLabel.Location = new System.Drawing.Point(15, 159);
             this.enlistTargetLabel.Name = "enlistTargetLabel";
             this.enlistTargetLabel.Size = new System.Drawing.Size(272, 13);
             this.enlistTargetLabel.TabIndex = 30;
             this.enlistTargetLabel.Text = "You need X+ on 2d6 to Enlist. You will get a +Y modifier.";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // CharGenMainForm
             // 
@@ -472,6 +484,7 @@ namespace TravellerTools.CharGen
         private System.Windows.Forms.ComboBox enlistmentChoiceBox;
         private System.Windows.Forms.Label enlistmentChoiceLabel;
         private System.Windows.Forms.Label enlistTargetLabel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
