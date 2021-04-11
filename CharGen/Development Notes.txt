@@ -1,4 +1,4 @@
-﻿NEXT STEPS: (Updated 18th Jan 2021)
+﻿NEXT STEPS: 
 
 Data for Character:
   Need to add:
@@ -47,4 +47,4 @@ Observed Defects:
   Can Resize Weapon Choice Dialog. Should be fixed.
 
 Observed Enhancements:
-   None at this time.
+   Export TXT to clipboard option

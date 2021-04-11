@@ -1,0 +1,17 @@
+﻿NEXT STEPS: 
+  Consider a different class than string for TravellerCreature.Armour property
+  Consider a different class than string for TravellerCreature.Weapons property
+
+
+String Usage:
+  Need to add resources and remove strings from being embedded in classes.
+
+Investigate:
+  Should I break CreatureType and all of its associated functions into a different class?
+
+
+----
+
+Observed Defects:
+
+Onserved Enhancements:
