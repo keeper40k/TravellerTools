@@ -9,14 +9,14 @@ namespace TravellerTools.TravellerData
 
         // private const strings
 
-        private const string RETIREMENT_PAY_NAME = "Retirement Pay";
-        private const string TOSTRING_SEPARATOR = ": Cr";
+        private const string RetirementPayName = "Retirement Pay";
+        private const string ToStringSeparator = ": Cr";
 
         // Public constructors
 
         public TravellerRetirementPay()
         {
-            Name = RETIREMENT_PAY_NAME;
+            Name = RetirementPayName;
             Amount = 0;
         }
 
@@ -29,7 +29,7 @@ namespace TravellerTools.TravellerData
 
         public override string DisplayString()
         {
-            return Name + TOSTRING_SEPARATOR + Amount;
+            return Name + ToStringSeparator + Amount;
         }
 
 

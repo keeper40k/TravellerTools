@@ -12,7 +12,7 @@ namespace TravellerTools.Fundamentals
 		private List<TableRow> rows;
 
 		//Constructor
-		RPGTable()
+		public RPGTable()
 		{
 			rows = new List<TableRow>();
 		}
@@ -24,24 +24,20 @@ namespace TravellerTools.Fundamentals
 		//   This is checked my matching the UID
 		public bool AddRow(TableRow row)
 		{
-			bool exists = false;
-			foreach (TableRow tableRow in rows)
-			{
-				exists = exists && (row.UID == tableRow.UID);
-			}
+			bool exists = rows.Exists(tableRow => row.UID == tableRow.UID);
 
 			if (!exists)
 			{
 				rows.Add(row);
 			}
 
-			return exists;
+			return !exists;
 		}
 
 		// Returns the row that matches diceRoll, or null if no matches are found
-		public TableRow RollOnTable(int diceRoll)
+		public TableRow? RollOnTable(int diceRoll)
 		{
-			TableRow result = null;
+			TableRow? result = null;
 			foreach (TableRow row in rows)
 			{
 				if (row.Matches(diceRoll))
@@ -69,12 +65,14 @@ namespace TravellerTools.Fundamentals
 			}
 			fullRange.Sort();
 
-			bool result = true;
-			for (int i = 0; (i < (fullRange.Count - 1)) && (result = true); i++)
+			for (int i = 0; i < fullRange.Count - 1; i++)
 			{
-				result = result && (fullRange[i] == fullRange[i + 1]);
+				if (fullRange[i + 1] != fullRange[i] + 1)
+				{
+					return false;
+				}
 			}
-			return result;
+			return true;
 		}
 
 	}

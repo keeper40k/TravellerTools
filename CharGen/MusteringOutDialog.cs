@@ -30,26 +30,26 @@ namespace TravellerTools.CharGen
 
         // protected members
 
-        protected TravellerService m_service;
-        protected TravellerCharacter m_character;
-        protected decimal m_rollsCount;
-        protected decimal m_cashRollsCount;
-        protected decimal m_benefitRollsCount;
+        protected TravellerService service;
+        protected TravellerCharacter character;
+        protected decimal rollsCount;
+        protected decimal cashRollsCount;
+        protected decimal benefitRollsCount;
 
-        protected bool m_gamblingBonus;
+        protected bool gamblingBonus;
 
         // Public Constructors
 
         public MusteringOutDialog(TravellerService service, TravellerCharacter character, decimal rollsCount)
         {
-            m_service = service;
-            m_character = character;
-            m_rollsCount = rollsCount;
-            m_cashRollsCount = 0;
-            m_benefitRollsCount = 0;
+            this.service = service;
+            this.character = character;
+            this.rollsCount = rollsCount;
+            cashRollsCount = 0;
+            benefitRollsCount = 0;
 
-            TravellerSkill gamblingSkill = null;
-            foreach (TravellerSkill skill in m_character.Skills)
+            TravellerSkill? gamblingSkill = null;
+            foreach (TravellerSkill skill in this.character.Skills)
             {
                 if (skill.Name == "Gambling")
                 {
@@ -59,11 +59,11 @@ namespace TravellerTools.CharGen
             }
             if (gamblingSkill != null && gamblingSkill.Level > 0)
             {
-                m_gamblingBonus = true;
+                gamblingBonus = true;
             }
             else
             {
-                m_gamblingBonus = false;
+                gamblingBonus = false;
             }
 
             InitializeComponent();
@@ -75,44 +75,44 @@ namespace TravellerTools.CharGen
 
         protected void UpdateButtons()
         {
-            if (m_rollsCount == 0)
+            if (rollsCount == 0)
             {
                 benefitsTableButton.Enabled = false;
                 cashTableButton.Enabled = false;
 
-                characterDisplay.Text = m_character.ShortStringFormat();
+                characterDisplay.Text = character.ShortStringFormat();
 
                 closeButton.Enabled = true;
             }
             else
             {
-                rollsRemainingLabel.Text = string.Format(ROLLS_REMAINING_LABEL, m_rollsCount);
-                benefitsRollLabel.Text = string.Format(BENEFIT_ROLLS_MADE_LABEL, m_benefitRollsCount);
-                cashRollsLabel.Text = string.Format(CASH_ROLLS_MADE_LABEL, m_cashRollsCount);
-                bonusToBenefitsLabel.Visible = m_character.RankNumber > 4;
+                rollsRemainingLabel.Text = string.Format(ROLLS_REMAINING_LABEL, rollsCount);
+                benefitsRollLabel.Text = string.Format(BENEFIT_ROLLS_MADE_LABEL, benefitRollsCount);
+                cashRollsLabel.Text = string.Format(CASH_ROLLS_MADE_LABEL, cashRollsCount);
+                bonusToBenefitsLabel.Visible = character.RankNumber > 4;
                 
-                characterDisplay.Text = m_character.ShortStringFormat();
-                benefitsTableButton.Text = m_service.BenefitsTableText();
-                cashTableButton.Text = m_service.CashTableText();
+                characterDisplay.Text = character.ShortStringFormat();
+                benefitsTableButton.Text = service.BenefitsTableText();
+                cashTableButton.Text = service.CashTableText();
 
-                cashTableButton.Enabled = m_cashRollsCount < 3;
+                cashTableButton.Enabled = cashRollsCount < 3;
 
                 closeButton.Enabled = false;
             }
 
-            bonusToCashLabel.Visible = m_gamblingBonus;
+            bonusToCashLabel.Visible = gamblingBonus;
         }
 
         protected void ProcessBenefitSelection(List<KeyValuePair<int, TravellerMusteringOutBenefit>> table)
         {
-            object resultForReporting = null;
+            object? resultForReporting = null;
 
             int roll = DiceTools.RollOneDie(6);
-            if( m_character.RankNumber > 4 )
+            if( character.RankNumber > 4 )
             {
                 roll++;
             }
-            TravellerMusteringOutBenefit rolledBenefit = null;
+            TravellerMusteringOutBenefit? rolledBenefit = null;
             foreach (KeyValuePair<int, TravellerMusteringOutBenefit> item in table)
             {
                 if (roll == item.Key)
@@ -126,57 +126,68 @@ namespace TravellerTools.CharGen
                 if (rolledBenefit.IsAtt)
                 {
                     TravellerSkillModifier att = BenefitAttLookup(rolledBenefit.Name);
-                    m_character.AddSkill(att, this);
+                    character.AddSkill(att, this);
                     resultForReporting = att;
                 }
                 else if( rolledBenefit.IsGear )
                 {
                     if(rolledBenefit.Name == GUN_NAME || rolledBenefit.Name == BLADE_NAME )
                     {
-                        TravellerSkill weaponSkill = TravellerSkills.MatchSkill(rolledBenefit.Name + GEAR_TO_SKILL_SUFFIX);
-                        WeaponSelectionForm form = new WeaponSelectionForm(weaponSkill, m_character.Gear);
+                        TravellerSkill? weaponSkill = TravellerSkills.MatchSkill(rolledBenefit.Name + GEAR_TO_SKILL_SUFFIX);
+                        if (weaponSkill == null)
+                        {
+                            return;
+                        }
+                        WeaponSelectionForm form = new WeaponSelectionForm(weaponSkill, character.Gear);
                         form.ShowDialog();
                         if (form.IsWeaponSelected)
                         {
-                            m_character.AddGear(form.SelectedGear);
-                            resultForReporting = form.SelectedGear;
+                            if (form.SelectedGear != null)
+                            {
+                                character.AddGear(form.SelectedGear);
+                                resultForReporting = form.SelectedGear;
+                            }
                         }
                         else
                         {
-                            m_character.AddSkill(form.SelectedSkill);
-                            resultForReporting = form.SelectedSkill;
+                            if (form.SelectedSkill != null)
+                            {
+                                character.AddSkill(form.SelectedSkill);
+                                resultForReporting = form.SelectedSkill;
+                            }
                         }
                     }
                     else
                     {
                         bool found = false;
-                        TravellerGear gear = BenefitGearLookup(rolledBenefit.Name);
+                        TravellerGear? gear = BenefitGearLookup(rolledBenefit.Name);
                         if( gear is TravellerStarshipBenefit && gear.Name == FREE_TRADER_NAME )
                         {
-                            TravellerStarshipBenefit starship = gear as TravellerStarshipBenefit;
-                            foreach( TravellerGear charGear in m_character.Gear )
+                            foreach( TravellerGear charGear in character.Gear )
                             {
                                 if( charGear is TravellerStarshipBenefit && charGear.Name == FREE_TRADER_NAME )
                                 {
                                     found = true;
-                                    TravellerStarshipBenefit charStarship = charGear as TravellerStarshipBenefit;
-                                    charStarship.MortgageDuration -= 10;
+                                    ((TravellerStarshipBenefit)charGear).MortgageDuration -= 10;
                                     break;
                                 }
                             }
                         }
                         if (!found)
                         {
-                            m_character.AddGear(gear);
-                            resultForReporting = gear;
+                            if (gear != null)
+                            {
+                                character.AddGear(gear);
+                                resultForReporting = gear;
+                            }
                         }
                     }
                 }
-                m_rollsCount--;
-                m_benefitRollsCount++;
+                rollsCount--;
+                benefitRollsCount++;
             }
             string benefitString = rolledBenefit == null ? string.Empty : rolledBenefit.ToString();
-            resultsBox.Text += string.Format( ROLL_RESULT_GEAR, m_cashRollsCount+m_benefitRollsCount, benefitString );
+            resultsBox.Text += string.Format( ROLL_RESULT_GEAR, cashRollsCount+benefitRollsCount, benefitString );
 
             UpdateButtons();
         }
@@ -184,7 +195,7 @@ namespace TravellerTools.CharGen
         protected void ProcessCashSelection(List<KeyValuePair<int, decimal>> table)
         {
             int roll = DiceTools.RollOneDie(6);
-            if( m_gamblingBonus )
+            if( gamblingBonus )
             {
                 roll++;
             }
@@ -198,11 +209,11 @@ namespace TravellerTools.CharGen
                 }
             }
 
-            m_character.Cash += cashValue;
-            m_rollsCount--;
-            m_cashRollsCount++;
+            character.Cash += cashValue;
+            rollsCount--;
+            cashRollsCount++;
 
-            resultsBox.Text += string.Format(ROLL_RESULT_CASH, m_cashRollsCount + m_benefitRollsCount, cashValue);
+            resultsBox.Text += string.Format(ROLL_RESULT_CASH, cashRollsCount + benefitRollsCount, cashValue);
 
             UpdateButtons();
         }
@@ -269,18 +280,18 @@ namespace TravellerTools.CharGen
             return skill;
         }
 
-        protected TravellerGear BenefitGearLookup( string name )
+        protected TravellerGear? BenefitGearLookup( string name )
         {
             return TravellerGearStorehouse.GetGear(name, string.Empty);
         }
 
         // Implementation of ISkillSpecialisationCollection
 
-        public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
+        public TravellerSkill? SelectSpecialisation(string skillName, List<TravellerSkill> list)
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
             form.ShowDialog();
-            TravellerSkill selectedSkill = form.SelectedSkill;
+            TravellerSkill? selectedSkill = form.SelectedSkill;
             if (selectedSkill != null && selectedSkill.HasSpecialisations)
             {
                 SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
@@ -293,12 +304,12 @@ namespace TravellerTools.CharGen
 
         private void benefitsTableButton_Click(object sender, EventArgs e)
         {
-            ProcessBenefitSelection( m_service.BenefitsTable );
+            ProcessBenefitSelection( service.BenefitsTable );
     }
 
     private void cashTableButton_Click(object sender, EventArgs e)
         {
-            ProcessCashSelection( m_service.CashTable );
+            ProcessCashSelection( service.CashTable );
         }
 
         private void closeButton_Click(object sender, EventArgs e)

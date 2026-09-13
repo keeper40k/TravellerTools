@@ -53,21 +53,21 @@ namespace GearEditor
 
             if (oldIndex < gearBox.Items.Count)
             {
-                m_suppressReselection = true;
+                suppressReselection = true;
                 gearBox.SelectedIndex = oldIndex;
-                m_suppressReselection = false;
+                suppressReselection = false;
             }
             else if (oldIndex >= gearBox.Items.Count && gearBox.Items.Count > 0)
             {
-                m_suppressReselection = true;
+                suppressReselection = true;
                 gearBox.SelectedIndex = gearBox.Items.Count - 1;
-                m_suppressReselection = false;
+                suppressReselection = false;
             }
             else if (gearBox.Items.Count > 0)
             {
-                m_suppressReselection = true;
+                suppressReselection = true;
                 gearBox.SelectedIndex = 0;
-                m_suppressReselection = false;
+                suppressReselection = false;
             }
 
             if ( gearBox.Items.Count > 0 )
@@ -85,7 +85,12 @@ namespace GearEditor
 
             if( gearBox.SelectedItem != null )
             {
-                TravellerGear gear = gearBox.SelectedItem as TravellerGear;
+                TravellerGear? gear = gearBox.SelectedItem as TravellerGear;
+
+                if (gear == null)
+                {
+                    return;
+                }
 
                 gearTypeBox.Enabled = true;
                 nameBox.Enabled = true;
@@ -154,7 +159,7 @@ namespace GearEditor
         {
             gearTypeBox.Items.Clear();
             string json = File.ReadAllText(GEAR_TYPES_JSON_FILE);
-            List<string> types = JsonSerializer.Deserialize<List<string>>(json);
+            List<string> types = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
             foreach( string type in types )
             {
                 gearTypeBox.Items.Add(type);
@@ -164,9 +169,11 @@ namespace GearEditor
 
         // Public Properties
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<TravellerGear> Gear { get; set; }
 
-        public TravellerGear SelectedGear { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public TravellerGear? SelectedGear { get; set; }
 
         // private events
 
@@ -189,15 +196,27 @@ namespace GearEditor
                         string rawText = o.GetProperty("ClassType").ToString();
                         if (rawText == "TravellerGear")
                         {
-                            Gear.Add(JsonSerializer.Deserialize<TravellerGear>(o.GetRawText()));
+                            TravellerGear? gear = JsonSerializer.Deserialize<TravellerGear>(o.GetRawText());
+                            if (gear != null)
+                            {
+                                Gear.Add(gear);
+                            }
                         }
                         else if (rawText == "TravellerRetirementPay")
                         {
-                            Gear.Add(JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText()));
+                            TravellerRetirementPay? retirementPay = JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText());
+                            if (retirementPay != null)
+                            {
+                                Gear.Add(retirementPay);
+                            }
                         }
                         else if (rawText == "TravellerStarshipBenefit")
                         {
-                            Gear.Add(JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText()));
+                            TravellerStarshipBenefit? starshipBenefit = JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText());
+                            if (starshipBenefit != null)
+                            {
+                                Gear.Add(starshipBenefit);
+                            }
                         }
                     }
                 }
@@ -219,17 +238,17 @@ namespace GearEditor
                 {
                     if (Gear[i] is TravellerRetirementPay)
                     {
-                        TravellerRetirementPay gear = Gear[i] as TravellerRetirementPay;
+                        TravellerRetirementPay? gear = Gear[i] as TravellerRetirementPay;
                         json += JsonSerializer.Serialize(gear);
                     }
                     else if (Gear[i] is TravellerStarshipBenefit)
                     {
-                        TravellerStarshipBenefit gear = Gear[i] as TravellerStarshipBenefit;
+                        TravellerStarshipBenefit? gear = Gear[i] as TravellerStarshipBenefit;
                         json += JsonSerializer.Serialize(gear);
                     }
                     else if (Gear[i] is TravellerGear)
                     {
-                        TravellerGear gear = Gear[i] as TravellerGear;
+                        TravellerGear? gear = Gear[i] as TravellerGear;
                         json += JsonSerializer.Serialize(gear);
                     }
 
@@ -267,11 +286,11 @@ namespace GearEditor
             }
         }
 
-        bool m_suppressReselection = false;
+        bool suppressReselection = false;
         private void gearBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedGear = gearBox.SelectedItem as TravellerGear;
-            if (!m_suppressReselection)
+            if (!suppressReselection)
             {
                 UpdateBoxes();
             }
@@ -287,39 +306,61 @@ namespace GearEditor
 
         private void removeGearButton_Click(object sender, EventArgs e)
         {
-            Gear.Remove(gearBox.SelectedItem as TravellerGear);
+            TravellerGear? selectedGear = gearBox.SelectedItem as TravellerGear;
+            if (selectedGear != null)
+            {
+                Gear.Remove(selectedGear);
+            }
             UpdateBoxes();
         }
 
         private void gearTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedGear.GearType = gearTypeBox.Text;
+            if (SelectedGear != null)
+            {
+                SelectedGear.GearType = gearTypeBox.Text;
+            }
         }
 
         private void nameBox_TextChanged(object sender, EventArgs e)
         {
-            SelectedGear.Name = nameBox.Text;
+            if (SelectedGear != null)
+            {
+                SelectedGear.Name = nameBox.Text;
+            }
             UpdateBoxes();
         }
 
         private void descriptionBox_TextChanged(object sender, EventArgs e)
         {
-            SelectedGear.Description = descriptionBox.Text;
+            if (SelectedGear != null)
+            {
+                SelectedGear.Description = descriptionBox.Text;
+            }
         }
 
         private void techLevelBox_ValueChanged(object sender, EventArgs e)
         {
-            SelectedGear.TechLevel = (int)techLevelBox.Value;
+            if (SelectedGear != null)
+            {
+                SelectedGear.TechLevel = (int)techLevelBox.Value;
+            }
         }
 
         private void weightBox_ValueChanged(object sender, EventArgs e)
         {
-            SelectedGear.Weight = (int)weightBox.Value;
+            if (SelectedGear != null)
+            {
+                SelectedGear.Weight = (int)weightBox.Value;
+            }
         }
 
         private void valueBox_ValueChanged(object sender, EventArgs e)
         {
-            SelectedGear.Value = (int)valueBox.Value;
+            if (SelectedGear != null)
+            {
+                SelectedGear.Value = (int)valueBox.Value;
+            }
         }
     }
 }

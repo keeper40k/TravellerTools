@@ -10,7 +10,7 @@ namespace TravellerTools.Fundamentals
 		// Constructors
 
 		// sides must be 2 or more. If not, it will default to 6.
-		Dice(int sides)
+		public Dice(int sides)
 		{
 			Sides = sides;
 			Count = 1;
@@ -25,7 +25,7 @@ namespace TravellerTools.Fundamentals
 
 		// sides must be 2 or more. If not, it will default to 6.
 		// count must be 1 or more. If not, it will default to 1.
-		Dice(int count, int sides)
+		public Dice(int count, int sides)
 		{
 			Sides = sides;
 			Count = count;

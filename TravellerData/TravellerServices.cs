@@ -18,12 +18,12 @@ namespace TravellerTools.TravellerData
 
         // Private members
 
-        private List<TravellerService> m_services;
+        private List<TravellerService> services;
 
         // Constructor
         public TravellerServices()
         {
-            m_services = new List<TravellerService>();
+            services = new List<TravellerService>();
         }
 
         // Public Methods
@@ -32,8 +32,11 @@ namespace TravellerTools.TravellerData
             if (File.Exists(SERVICES_FILE))
             {
                 string json = File.ReadAllText(SERVICES_FILE);
-                TravellerServices services = JsonSerializer.Deserialize<TravellerServices>(json);
-                Duplicate(services);
+                TravellerServices? loadedServices = JsonSerializer.Deserialize<TravellerServices>(json);
+                if (loadedServices != null)
+                {
+                    Duplicate(loadedServices);
+                }
             }
         }
 
@@ -93,7 +96,7 @@ namespace TravellerTools.TravellerData
             services.Services.CopyTo(sourceServices);
             foreach (TravellerService service in sourceServices)
             {
-                m_services.Add(service);
+                this.services.Add(service);
             }
         }
 
@@ -103,12 +106,12 @@ namespace TravellerTools.TravellerData
         {
             get
             {
-                return m_services;
+                return services;
             }
             // Unsure right now if I need a setter or a loader.  I am tending towards a loader ...
             set
             {
-                m_services = value;
+                services = value;
             }
         }
     }

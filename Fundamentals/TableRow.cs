@@ -11,15 +11,15 @@ namespace TravellerTools.Fundamentals
 		public abstract List<int> FullRange();
 
 		// Properties
-		public string Text;
-		public string UID;
+		public string Text = string.Empty;
+		public string UID = string.Empty;
 	}
 
 	// A single entry table row
 	public class TableRowSingle : TableRow
 	{
 		// Constructor
-		TableRowSingle(int number, string text, string uid)
+		public TableRowSingle(int number, string text, string uid)
 		{
 			Number = number;
 			Text = text;
@@ -46,11 +46,11 @@ namespace TravellerTools.Fundamentals
 	//A table row with a value range
 	public class TableRowRange : TableRow
 	{
-		private string INVALID_RANGE = "The Start of the range is greater than the End.";
+		private const string InvalidRangeMessage = "The Start of the range is greater than the End.";
 
 		// Constructor
 		// Assumes that start must be <= end
-		TableRowRange(int start, int end, string text, string uid)
+		public TableRowRange(int start, int end, string text, string uid)
 		{
 			Start = start;
 			End = end;
@@ -65,7 +65,7 @@ namespace TravellerTools.Fundamentals
 		{
 			if (Start > End)
 			{
-				throw new ArgumentOutOfRangeException(INVALID_RANGE);
+				throw new ArgumentOutOfRangeException(InvalidRangeMessage);
 			}
 
 			return ((Start <= result) && (result <= End));
@@ -76,7 +76,7 @@ namespace TravellerTools.Fundamentals
 		{
 			if (Start > End)
 			{
-				throw new ArgumentOutOfRangeException(INVALID_RANGE);
+				throw new ArgumentOutOfRangeException(InvalidRangeMessage);
 			}
 
 			List<int> result = new List<int>();

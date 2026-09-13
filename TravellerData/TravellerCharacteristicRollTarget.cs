@@ -9,7 +9,7 @@ namespace TravellerTools.TravellerData
     public class TravellerCharacteristicRollTarget
     {
         // Constructor
-        public TravellerCharacteristicRollTarget(string stat, decimal target )
+        public TravellerCharacteristicRollTarget(string stat, decimal target)
         {
             Stat = stat;
             Target = target;

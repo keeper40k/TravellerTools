@@ -8,6 +8,6 @@ namespace TravellerTools.TravellerData
 {
     public interface ISkillSpecialisationCollection
     {
-        TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list);
+        TravellerSkill? SelectSpecialisation(string skillName, List<TravellerSkill> list);
     }
 }

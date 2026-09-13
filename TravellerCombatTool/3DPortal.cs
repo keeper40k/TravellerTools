@@ -1,22 +1,23 @@
-﻿using Blotch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TravellerTools.TravellerCombatTool
-{
-    public class _3DPortal : BlWindow3D
-    {
-        protected override void Setup()
-        {
-            base.Setup();
-        }
-
-        public new void Dispose()
-        {
-            base.Dispose();
-        }
-    }
-}
+﻿// TODO: Restore the 3D portal only after selecting a supported rendering dependency.
+// using Blotch;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Text;
+// using System.Threading.Tasks;
+//
+// namespace TravellerTools.TravellerCombatTool
+// {
+//     public class _3DPortal : BlWindow3D
+//     {
+//         protected override void Setup()
+//         {
+//             base.Setup();
+//         }
+//
+//         public new void Dispose()
+//         {
+//             base.Dispose();
+//         }
+//     }
+// }

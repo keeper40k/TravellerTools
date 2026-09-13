@@ -44,7 +44,7 @@ namespace TravellerTools.CharGen
         {
             if (skillSpecialisationsBox.SelectedItem is TravellerSkill )
             {
-                specialisationSummaryBox.Text = (skillSpecialisationsBox.SelectedItem as TravellerSkill).Summary;
+                specialisationSummaryBox.Text = ((TravellerSkill)skillSpecialisationsBox.SelectedItem).Summary;
             }
             else
             {
@@ -54,7 +54,7 @@ namespace TravellerTools.CharGen
 
         // public properties
 
-        public TravellerSkill SelectedSkill;
+        public TravellerSkill? SelectedSkill;
 
         // Private events handlers
 

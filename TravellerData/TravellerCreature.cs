@@ -193,18 +193,18 @@ namespace TravellerTools.TravellerData
             }
         }
 
-        // Creture weight is given in kg
+        // Creature weight is given in kg
         public int Weight;
 
-        // HitsToUnconcious and TotalHits are the capacity of the creature to take damage
-        public int HitsToUnconcious;
+        // HitsToUnconscious and TotalHits are the capacity of the creature to take damage
+        public int HitsToUnconscious;
         public int TotalHits;
 
-        public string Armour;
+        public string Armour = string.Empty;
 
         // This is the caracity of the create to deal out damage
         public int Wounds;
-        public string Weapons;
+        public string Weapons = string.Empty;
 
         public decimal AttackPredisposition;
         public decimal FleeDisposition;

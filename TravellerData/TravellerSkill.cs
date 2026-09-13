@@ -20,7 +20,8 @@ namespace TravellerTools.TravellerData
             Description = source.Description;
             Referee = source.Referee;
             HasSpecialisations = source.HasSpecialisations;
-            foreach( TravellerSkill specialisation in Specialisations )
+            Level = source.Level;
+            foreach( TravellerSkill specialisation in source.Specialisations )
             {
                 Specialisations.Add(new TravellerSkill(specialisation));
             }
@@ -49,12 +50,12 @@ namespace TravellerTools.TravellerData
 
         // Public Properties
 
-        public string Name { get; set; }
-        public string Summary { get; set; }
-        public string Description { get; set; }
-        public string Referee { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Summary { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string Referee { get; set; } = string.Empty;
         public decimal Level { get; set; }
         public bool HasSpecialisations { get; set; }
-        public List<TravellerSkill> Specialisations { get; set; }
+        public List<TravellerSkill> Specialisations { get; set; } = new();
     }
 }

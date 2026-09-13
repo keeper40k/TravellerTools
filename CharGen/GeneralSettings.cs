@@ -43,7 +43,7 @@ namespace TravellerTools.CharGen
 
         // Public Properties
 
-        public CharGenSettings Settings = null;
+        public CharGenSettings Settings = null!;
 
         private void promptOnNewCheckBox_CheckedChanged(object sender, EventArgs e)
         {

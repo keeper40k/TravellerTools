@@ -23,8 +23,11 @@ namespace TravellerTools.CharGen
             if (File.Exists(SETTINGS_FILE))
             {
                 string json = File.ReadAllText(SETTINGS_FILE);
-                CharGenSettings settings = JsonSerializer.Deserialize<CharGenSettings>(json);
-                Duplicate( settings );
+                CharGenSettings? settings = JsonSerializer.Deserialize<CharGenSettings>(json);
+                if (settings != null)
+                {
+                    Duplicate(settings);
+                }
             }
         }
 

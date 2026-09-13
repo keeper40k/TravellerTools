@@ -21,9 +21,9 @@ namespace SkillEditor
 
         // Form Data
 
-        protected List<TravellerSkill> Skills = null;
-        protected TravellerSkill CurrentSkill = null;
-        protected TravellerSkill CurrentSpecialisationSkill = null;
+        protected List<TravellerSkill> Skills = new();
+        protected TravellerSkill? CurrentSkill;
+        protected TravellerSkill? CurrentSpecialisationSkill;
 
         // Public Constructors
 
@@ -62,7 +62,7 @@ namespace SkillEditor
                 skillDescriptionBox.Enabled = true;
                 skillRefereeBox.Enabled = true;
 
-                skillNameBox.Text = CurrentSkill.Name;
+                skillNameBox.Text = CurrentSkill!.Name;
                 skillHasSpecialisationsBox.Checked = CurrentSkill.HasSpecialisations;
                 skillSummaryBox.Text = CurrentSkill.Summary;
                 skillDescriptionBox.Text = CurrentSkill.Description;
@@ -70,9 +70,9 @@ namespace SkillEditor
 
                 if (index != -1)
                 {
-                    m_suppressSkillSelectionUpdate = true;
+                    suppressSkillSelectionUpdate = true;
                     skillsBox.SelectedIndex = index;
-                    m_suppressSkillSelectionUpdate = false;
+                    suppressSkillSelectionUpdate = false;
                 }
 
                 skillsBox.Enabled = true;
@@ -115,9 +115,9 @@ namespace SkillEditor
                     }
                     if (index != -1)
                     {
-                        m_suppressSpecialistSkillSelectionUpdate = true;
+                        suppressSpecialistSkillSelectionUpdate = true;
                         specialisationSkillsBox.SelectedIndex = index;
-                        m_suppressSpecialistSkillSelectionUpdate = false;
+                        suppressSpecialistSkillSelectionUpdate = false;
                     }
 
                     specialisationSkillsBox.Enabled = true;
@@ -180,19 +180,22 @@ namespace SkillEditor
 
         private void removeSkillButton_Click(object sender, EventArgs e)
         {
-            Skills.Remove( CurrentSkill );
+            if (CurrentSkill != null)
+            {
+                Skills.Remove(CurrentSkill);
+            }
             CurrentSkill = null;
             UpdateBoxes();
         }
 
-        private bool m_suppressSkillSelectionUpdate = false;
+        private bool suppressSkillSelectionUpdate = false;
 
         private void skillsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (skillsBox.SelectedItem is TravellerSkill && !m_suppressSkillSelectionUpdate )
+            if (skillsBox.SelectedItem is TravellerSkill && !suppressSkillSelectionUpdate )
             {
                 CurrentSkill = (skillsBox.SelectedItem as TravellerSkill);
-                if( ! CurrentSkill.HasSpecialisations )
+                if( !CurrentSkill!.HasSpecialisations )
                 {
                     CurrentSpecialisationSkill = null;
                 }
@@ -206,23 +209,23 @@ namespace SkillEditor
 
         private void skillNameBox_TextChanged(object sender, EventArgs e)
         {
-            CurrentSkill.Name = skillNameBox.Text;
+            CurrentSkill!.Name = skillNameBox.Text;
             UpdateBoxes();
         }
 
         private void skillSummaryBox_TextChanged(object sender, EventArgs e)
         {
-            CurrentSkill.Summary = skillSummaryBox.Text;
+            CurrentSkill!.Summary = skillSummaryBox.Text;
         }
 
         private void skillDescriptionBox_TextChanged(object sender, EventArgs e)
         {
-            CurrentSkill.Description = skillDescriptionBox.Text;
+            CurrentSkill!.Description = skillDescriptionBox.Text;
         }
 
         private void skillRefereeBox_TextChanged(object sender, EventArgs e)
         {
-            CurrentSkill.Referee = skillRefereeBox.Text;
+            CurrentSkill!.Referee = skillRefereeBox.Text;
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -235,7 +238,7 @@ namespace SkillEditor
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
                 string json = File.ReadAllText(openDialog.FileName);
-                Skills = JsonSerializer.Deserialize<List<TravellerSkill>>(json);
+                Skills = JsonSerializer.Deserialize<List<TravellerSkill>>(json) ?? new List<TravellerSkill>();
             }
 
             UpdateBoxes();
@@ -278,7 +281,7 @@ namespace SkillEditor
 
         private void hasSpecialisationsBox_CheckedChanged(object sender, EventArgs e)
         {
-            CurrentSkill.HasSpecialisations = skillHasSpecialisationsBox.Checked;
+            CurrentSkill!.HasSpecialisations = skillHasSpecialisationsBox.Checked;
             UpdateBoxes();
         }
 
@@ -286,14 +289,17 @@ namespace SkillEditor
         {
             TravellerSkill newSkill = new TravellerSkill();
             newSkill.Name = NEW_SKILL;
-            CurrentSkill.Specialisations.Add(newSkill);
+            CurrentSkill!.Specialisations.Add(newSkill);
             CurrentSpecialisationSkill = newSkill;
             UpdateBoxes();
         }
 
         private void removeSpecialistSkillButton_Click(object sender, EventArgs e)
         {
-            CurrentSkill.Specialisations.Remove(CurrentSpecialisationSkill);
+            if (CurrentSkill != null && CurrentSpecialisationSkill != null)
+            {
+                CurrentSkill.Specialisations.Remove(CurrentSpecialisationSkill);
+            }
             CurrentSpecialisationSkill = null;
             UpdateBoxes();
         }
@@ -304,7 +310,7 @@ namespace SkillEditor
             // Don't do anything if this is index 0 (top item)
             if (currentIndex > 0)
             {
-                CurrentSkill.Specialisations.Reverse(currentIndex - 1, 2);
+                CurrentSkill!.Specialisations.Reverse(currentIndex - 1, 2);
                 UpdateBoxes();
             }
         }
@@ -313,18 +319,18 @@ namespace SkillEditor
         {
             int currentIndex = specialisationSkillsBox.SelectedIndex;
             // Don't do anything if this is the last item
-            if (currentIndex < CurrentSkill.Specialisations.Count - 1)
+            if (currentIndex < CurrentSkill!.Specialisations.Count - 1)
             {
                 CurrentSkill.Specialisations.Reverse(currentIndex, 2);
                 UpdateBoxes();
             }
         }
 
-        private bool m_suppressSpecialistSkillSelectionUpdate = false;
+        private bool suppressSpecialistSkillSelectionUpdate = false;
 
         private void specialisationSkillsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (specialisationSkillsBox.SelectedItem is TravellerSkill && !m_suppressSpecialistSkillSelectionUpdate)
+            if (specialisationSkillsBox.SelectedItem is TravellerSkill && !suppressSpecialistSkillSelectionUpdate)
             {
                 CurrentSpecialisationSkill = (specialisationSkillsBox.SelectedItem as TravellerSkill);
                 UpdateBoxes();
@@ -335,7 +341,7 @@ namespace SkillEditor
         private void specialisationSkillNameBox_TextChanged(object sender, EventArgs e)
         {
             // Don't update when we're switching away from specialisation
-            TravellerSkill targetSkill = skillsBox.SelectedItem as TravellerSkill;
+            TravellerSkill? targetSkill = skillsBox.SelectedItem as TravellerSkill;
             if (targetSkill != null && CurrentSpecialisationSkill != null && targetSkill == CurrentSkill)
             {
                 CurrentSpecialisationSkill.Name = specialisationSkillNameBox.Text;
@@ -346,7 +352,7 @@ namespace SkillEditor
         private void specialisationSkillSummaryBox_TextChanged(object sender, EventArgs e)
         {
             // Don't update when we're switching away from specialisation
-            TravellerSkill targetSkill = skillsBox.SelectedItem as TravellerSkill;
+            TravellerSkill? targetSkill = skillsBox.SelectedItem as TravellerSkill;
             if (targetSkill != null && CurrentSpecialisationSkill != null && targetSkill == CurrentSkill)
             {
                 CurrentSpecialisationSkill.Summary = specialisationSkillSummaryBox.Text;
@@ -356,7 +362,7 @@ namespace SkillEditor
         private void specialisationSkillDescriptionBox_TextChanged(object sender, EventArgs e)
         {
             // Don't update when we're switching away from specialisation
-            TravellerSkill targetSkill = skillsBox.SelectedItem as TravellerSkill;
+            TravellerSkill? targetSkill = skillsBox.SelectedItem as TravellerSkill;
             if (targetSkill != null && CurrentSpecialisationSkill != null && targetSkill == CurrentSkill)
             {
                 CurrentSpecialisationSkill.Description = specialisationSkillDescriptionBox.Text;
@@ -366,7 +372,7 @@ namespace SkillEditor
         private void specialisationSkillRefereeBox_TextChanged(object sender, EventArgs e)
         {
             // Don't update when we're switching away from specialisation
-            TravellerSkill targetSkill = skillsBox.SelectedItem as TravellerSkill;
+            TravellerSkill? targetSkill = skillsBox.SelectedItem as TravellerSkill;
             if (targetSkill != null && CurrentSpecialisationSkill != null && targetSkill == CurrentSkill)
             {
                 CurrentSpecialisationSkill.Referee = specialisationSkillRefereeBox.Text;

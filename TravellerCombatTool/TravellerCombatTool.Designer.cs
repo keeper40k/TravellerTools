@@ -77,7 +77,8 @@ namespace TravellerTools.TravellerCombatTool
             this.open3DButton.TabIndex = 3;
             this.open3DButton.Text = "Open 3D";
             this.open3DButton.UseVisualStyleBackColor = true;
-            this.open3DButton.Click += new System.EventHandler(this.open3DButton_Click);
+            // TODO: Restore this event hookup with a supported rendering dependency.
+            // this.open3DButton.Click += new System.EventHandler(this.open3DButton_Click);
             // 
             // close3DButton
             // 
@@ -87,7 +88,8 @@ namespace TravellerTools.TravellerCombatTool
             this.close3DButton.TabIndex = 4;
             this.close3DButton.Text = "Close 3D";
             this.close3DButton.UseVisualStyleBackColor = true;
-            this.close3DButton.Click += new System.EventHandler(this.close3DButton_Click);
+            // TODO: Restore this event hookup with a supported rendering dependency.
+            // this.close3DButton.Click += new System.EventHandler(this.close3DButton_Click);
             // 
             // TravellerCombatTool
             // 

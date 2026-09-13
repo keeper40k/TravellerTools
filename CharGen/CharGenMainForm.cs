@@ -63,10 +63,10 @@ namespace TravellerTools.CharGen
         private static string ENOUGH_TERMS = "{0} must now retire after serving {1} terms.";
 
         // Protected member variables
-        protected CharGenSettings Settings = null;
-        protected TravellerServices Services = null;
-        protected TravellerService Service = null;
-        protected TravellerCharacter Character = null;
+        protected CharGenSettings Settings = null!;
+        protected TravellerServices Services = null!;
+        protected TravellerService Service = null!;
+        protected TravellerCharacter Character = null!;
         protected bool ForceReenlistment = false;
 
         public CharGenMainForm()
@@ -274,7 +274,7 @@ namespace TravellerTools.CharGen
             Character.Drafted = true;
             if (enlistmentChoiceBox.SelectedItem is TravellerService)
             {
-                Character.FailedService = (enlistmentChoiceBox.SelectedItem as TravellerService).Name;
+                Character.FailedService = ((TravellerService)enlistmentChoiceBox.SelectedItem).Name;
             }
 
             decimal draftResult = DiceTools.RollOneDie(6);
@@ -509,13 +509,13 @@ namespace TravellerTools.CharGen
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
             form.ShowDialog();
-            TravellerSkill selectedSkill = form.SelectedSkill;
+            TravellerSkill? selectedSkill = form.SelectedSkill;
             if (selectedSkill != null && selectedSkill.HasSpecialisations)
             {
                 SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
             }
 
-            return selectedSkill;
+            return selectedSkill!;
         }
 
         // Protected Properaties
@@ -665,7 +665,7 @@ namespace TravellerTools.CharGen
             // SelctedService should revert to null
             if (enlistmentChoiceBox.SelectedItem is TravellerService)
             {
-                Service = enlistmentChoiceBox.SelectedItem as TravellerService;
+                Service = (TravellerService)enlistmentChoiceBox.SelectedItem;
                 decimal target = Service.Enlistment.Target;
                 decimal bonus = 0;
                 if (Service.EnlistmentPlusTwo.Pass(Character))
@@ -682,7 +682,7 @@ namespace TravellerTools.CharGen
             }
             else
             {
-                Service = null;
+                Service = null!;
                 enlistButton.Enabled = false;
             }
 

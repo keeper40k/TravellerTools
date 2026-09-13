@@ -10,21 +10,21 @@ namespace TravellerTools.TravellerData
     {
         // String constants
 
-        private const string SKILLS_FILENAME = "skills.json";
+        private const string SkillsFileName = "skills.json";
 
         // Public Static Constructors
 
         static TravellerSkills()
         {
-            string json = File.ReadAllText(SKILLS_FILENAME);
-            Skills = JsonSerializer.Deserialize<List<TravellerSkill>>(json);
+            string json = File.ReadAllText(SkillsFileName);
+            Skills = JsonSerializer.Deserialize<List<TravellerSkill>>(json) ?? new List<TravellerSkill>();
         }
 
         // ProtectedMethods
 
-        protected static TravellerSkill InternalMatch(string name, List<TravellerSkill> skills)
+        protected static TravellerSkill? InternalMatch(string name, List<TravellerSkill> skills)
         {
-            TravellerSkill result = null;
+            TravellerSkill? result = null;
             foreach (TravellerSkill skill in skills)
             {
                 if (name.CompareTo(skill.Name) == 0)
@@ -46,13 +46,13 @@ namespace TravellerTools.TravellerData
 
         // Public methods
 
-        public static TravellerSkill MatchSkill(string name)
+        public static TravellerSkill? MatchSkill(string name)
         {
             return InternalMatch(name, Skills);
         }
 
         // Public static Properties
 
-        static List<TravellerSkill> Skills { get; set; }
+        static List<TravellerSkill> Skills { get; set; } = new();
     }
 }

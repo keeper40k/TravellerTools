@@ -1,186 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4D63DBB-8A00-4BA4-8DC1-3B05DBC3D5DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>TravellerTools.CharGen</RootNamespace>
     <AssemblyName>TravellerTools.CharGen</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Json.5.0.1\lib\net461\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\Fundamentals\Fundamentals.csproj" />
+    <ProjectReference Include="..\TravellerData\TravellerData.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="CharGenMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CharGenMainForm.Designer.cs">
-      <DependentUpon>CharGenMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CharGenSettings.cs" />
-    <Compile Include="GeneralSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GeneralSettings.Designer.cs">
-      <DependentUpon>GeneralSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MusteringOutDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MusteringOutDialog.Designer.cs">
-      <DependentUpon>MusteringOutDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <CustomToolNamespace>TravellerTools.Chargen</CustomToolNamespace>
-    </Compile>
-    <Compile Include="SelectSkillSpecialisationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectSkillSpecialisationForm.Designer.cs">
-      <DependentUpon>SelectSkillSpecialisationForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SkillSelectionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SkillSelectionDialog.Designer.cs">
-      <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WeaponSelectionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WeaponSelectionForm.Designer.cs">
-      <DependentUpon>WeaponSelectionForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="CharGenMainForm.resx">
-      <DependentUpon>CharGenMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralSettings.resx">
-      <DependentUpon>GeneralSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MusteringOutDialog.resx">
-      <DependentUpon>MusteringOutDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="SelectSkillSpecialisationForm.resx">
-      <DependentUpon>SelectSkillSpecialisationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SkillSelectionDialog.resx">
-      <DependentUpon>SkillSelectionDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WeaponSelectionForm.resx">
-      <DependentUpon>WeaponSelectionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="JSON\gear.json" />
-    <None Include="JSON\services.json" />
-    <None Include="JSON\settings.json" />
-    <None Include="JSON\skills.json" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Content Update="JSON\gear.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Update="JSON\services.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Update="JSON\settings.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Update="JSON\skills.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Update="Development Notes.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Development Notes.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fundamentals\Fundamentals.csproj">
-      <Project>{0be6638e-98ee-43a3-9566-2fc6dc34da4f}</Project>
-      <Name>Fundamentals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TravellerData\TravellerData.csproj">
-      <Project>{e697dd9f-6b6f-4b79-9806-9a68bc9c14b1}</Project>
-      <Name>TravellerData</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)JSON\gear.json $(TargetDir)\gear.json
-copy $(ProjectDir)JSON\services.json $(TargetDir)\services.json
-copy $(ProjectDir)JSON\settings.json $(Targetdir)\settings.json
-copy $(ProjectDir)JSON\skills.json $(Targetdir)\skills.json
-</PostBuildEvent>
-  </PropertyGroup>
+
 </Project>

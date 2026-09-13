@@ -8,7 +8,7 @@ namespace TravellerTools.TravellerData
     {
         // private const strings
 
-        private const string COUNT_PREFIX = "{0}x ";
+        private const string CountPrefix = "{0}x ";
 
         // Public Constructors
 
@@ -29,7 +29,7 @@ namespace TravellerTools.TravellerData
             string result = string.Empty;
             if( Count > 1 )
             {
-                result += string.Format(COUNT_PREFIX, Count);
+                result += string.Format(CountPrefix, Count);
             }
             result += Name;
 

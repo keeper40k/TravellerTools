@@ -18,18 +18,18 @@ namespace TravellerTools.TravellerData
 
         // Assumes only one of isSkill or isAttribute is set to true.
         // Skill will be set by default if both or neither are set.
-        public TravellerSkillModifier( string name, int level, bool isSkill, bool isAttrubute )
+        public TravellerSkillModifier(string name, int level, bool isSkill, bool isAttribute)
         {
             Name = name;
             Level = level;
-            IsAttribute = isAttrubute;
-            IsSkill = isSkill || (isSkill == false && isAttrubute == false);
+            IsAttribute = isAttribute;
+            IsSkill = isSkill || (isSkill == false && isAttribute == false);
         }
 
         // Protected member variables backing properties
 
-        protected bool m_isSkill;
-        protected bool m_isAttribute;
+        protected bool isSkill;
+        protected bool isAttribute;
 
         // Public Properties
 
@@ -40,12 +40,12 @@ namespace TravellerTools.TravellerData
         {
             get
             {
-                return m_isSkill;
+                return isSkill;
             }
             set
             {
-                m_isSkill = value;
-                m_isAttribute = !value;
+                isSkill = value;
+                isAttribute = !value;
             }
         }
         // Only one of IsSkill or IsAttribute should be set and one should be true
@@ -53,12 +53,12 @@ namespace TravellerTools.TravellerData
         {
             get
             {
-                return m_isAttribute;
+                return isAttribute;
             }
             set
             {
-                m_isAttribute = value;
-                m_isSkill = !value;
+                isAttribute = value;
+                isSkill = !value;
             }
         }
     }

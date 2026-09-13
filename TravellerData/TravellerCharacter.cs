@@ -408,13 +408,17 @@ namespace TravellerTools.TravellerData
             }
             if( newSkill.IsSkill )
             {
-                TravellerSkill fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
+                TravellerSkill? fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
                 if (fullSkill != null)
                 {
                     // Resolve Specialisation. While loop for nesting
                     while( fullSkill.HasSpecialisations )
                     {
                         fullSkill = ChooseSpecialisation(fullSkill.Name, fullSkill.Specialisations);
+                        if (fullSkill == null)
+                        {
+                            return;
+                        }
                     }
 
                     bool found = false;
@@ -569,17 +573,17 @@ namespace TravellerTools.TravellerData
 
         // Property Backers complex properties
 
-        private int m_SOC;
-        private decimal m_age;
+        private int socialStanding;
+        private decimal age;
 
         // Public Properties
 
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
         // Doesn't need to be serialised
         public bool UseTitle; 
-        public string Rank { get; set; }
+        public string Rank { get; set; } = string.Empty;
         public bool UseRank { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public int STR { get; set; }
         public int DEX { get; set; }
         public int END { get; set; }
@@ -589,11 +593,11 @@ namespace TravellerTools.TravellerData
         {
             get
             {
-                return m_SOC;
+                return socialStanding;
             }
             set
             {
-                m_SOC = value;
+                socialStanding = value;
                 if (value >= 11)
                 {
                     UseTitle = true;
@@ -632,37 +636,37 @@ namespace TravellerTools.TravellerData
         {
             get
             {
-                return m_age;
+                return age;
             }
             set
             {
-                ProcessAging(m_age, value);
-                m_age = value;
+                ProcessAging(age, value);
+                age = value;
             }
         }
-        public string Service { get; set; }
+        public string Service { get; set; } = string.Empty;
         public bool Drafted { get; set; }
-        public string FailedService { get; set; }
+        public string FailedService { get; set; } = string.Empty;
         public decimal TermsOfService { get; set; }
         public bool InjuredDuringCreation { get; set; }
         public decimal RankNumber { get; set; }
-        public List<TravellerSkill> Skills { get; set; }
+        public List<TravellerSkill> Skills { get; set; } = new();
 
-        public string CreationHistory { get; set; }
+        public string CreationHistory { get; set; } = string.Empty;
 
         public bool IsDead { get; set; }
 
         public int Cash { get; set; }
-        public List<TravellerGear> Gear { get; set; }
+        public List<TravellerGear> Gear { get; set; } = new();
 
         // Event Management
 
         // Not using { get; set; } here as this data is not for serialisation. Should only be one at once.
-        public ISkillSpecialisationCollection SpecialisationSelectionCallback;
+        public ISkillSpecialisationCollection? SpecialisationSelectionCallback;
 
-        protected TravellerSkill ChooseSpecialisation( string skillName, List<TravellerSkill> list )
+        protected TravellerSkill? ChooseSpecialisation( string skillName, List<TravellerSkill> list )
         {
-            return SpecialisationSelectionCallback.SelectSpecialisation(skillName, list);
+            return SpecialisationSelectionCallback!.SelectSpecialisation(skillName, list);
         }
     }
 }

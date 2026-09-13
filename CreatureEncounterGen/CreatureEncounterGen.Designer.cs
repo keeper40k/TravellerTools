@@ -1,5 +1,5 @@
 ﻿
-namespace CreatureEncounterGenen
+namespace CreatureEncounterGen
 {
     partial class CreatureEncounterGen
     {

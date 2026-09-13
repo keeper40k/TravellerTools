@@ -21,16 +21,16 @@ namespace TravellerTools.CharGen
 
         // Protected Memebers
 
-        protected TravellerSkill m_weapon = null;
-        protected List<TravellerGear> m_currentGear;
+        protected TravellerSkill weapon;
+        protected List<TravellerGear> currentGear;
 
         // Public Constructors
 
         public WeaponSelectionForm( TravellerSkill weapon, List<TravellerGear> gear )
         {
-            m_weapon = weapon;
+            this.weapon = weapon;
             IsWeaponSelected = true;
-            m_currentGear = gear;
+            currentGear = gear;
 
             SelectedGear = null;
             SelectedSkill = null;
@@ -43,7 +43,7 @@ namespace TravellerTools.CharGen
 
         protected void UpdateBoxes()
         {
-            promptLabel.Text = string.Format(CHOICE_LABEL, m_weapon.Name);
+            promptLabel.Text = string.Format(CHOICE_LABEL, weapon.Name);
 
             selectButton.Enabled = choicesBox.SelectedItem != null;
 
@@ -51,17 +51,17 @@ namespace TravellerTools.CharGen
             choicesBox.Items.Clear();
             if (IsWeaponSelected)
             {
-                foreach (TravellerSkill skill in m_weapon.Specialisations)
+                foreach (TravellerSkill skill in weapon.Specialisations)
                 {
                     choicesBox.Items.Add(skill);
                 }
             }
             else
             {
-                foreach( TravellerGear gear in m_currentGear )
+                foreach( TravellerGear gear in currentGear )
                 {
                     string gearToSkill = gear.GearType + COMBAT_EXTENSION;
-                    if (gearToSkill == m_weapon.Name)
+                    if (gearToSkill == weapon.Name)
                     {
                         choicesBox.Items.Add(gear);
                     }
@@ -69,7 +69,7 @@ namespace TravellerTools.CharGen
                 }
             }
 
-            if (m_currentGear.Count == 0 || ! GearContainsWeaponType() )
+            if (currentGear.Count == 0 || ! GearContainsWeaponType() )
             {
                 IsWeaponSelected = true;
                 skillChoiceBox.Enabled = false;
@@ -82,19 +82,19 @@ namespace TravellerTools.CharGen
 
         protected void UpdateCheckBoxes()
         {
-            m_suppressCheckChange = true;
+            suppressCheckChange = true;
             weaponChoiceBox.Checked = IsWeaponSelected;
             skillChoiceBox.Checked = !IsWeaponSelected;
-            m_suppressCheckChange = false;
+            suppressCheckChange = false;
         }
 
         protected bool GearContainsWeaponType()
         {
             bool found = false;
-            foreach (TravellerGear gear in m_currentGear)
+            foreach (TravellerGear gear in currentGear)
             {
                 string gearToSkill = gear.GearType + COMBAT_EXTENSION;
-                if (gearToSkill == m_weapon.Name)
+                if (gearToSkill == weapon.Name)
                 {
                     found = true;
                     // Once we've found one, that is enough to know
@@ -107,17 +107,20 @@ namespace TravellerTools.CharGen
 
         // Public properties
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsWeaponSelected { get; set; }
-        public TravellerGear SelectedGear { get; set; }
-        public TravellerSkill SelectedSkill { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public TravellerGear? SelectedGear { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public TravellerSkill? SelectedSkill { get; set; }
 
         // Private events
 
-        private bool m_suppressCheckChange = false;
+        private bool suppressCheckChange = false;
 
         private void weaponChoiceBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!m_suppressCheckChange)
+            if (!suppressCheckChange)
             {
                 IsWeaponSelected = true;
                 UpdateBoxes();
@@ -126,7 +129,7 @@ namespace TravellerTools.CharGen
 
         private void skillChoiceBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!m_suppressCheckChange)
+            if (!suppressCheckChange)
             {
                 IsWeaponSelected = false;
                 UpdateBoxes();
@@ -138,10 +141,10 @@ namespace TravellerTools.CharGen
         {
             if(IsWeaponSelected)
             {
-                TravellerSkill selection = choicesBox.SelectedItem as TravellerSkill;
+                TravellerSkill? selection = choicesBox.SelectedItem as TravellerSkill;
                 if (selection != null)
                 {
-                    SelectedGear = TravellerGearStorehouse.GetGear(selection.Name, m_weapon.Name);
+                    SelectedGear = TravellerGearStorehouse.GetGear(selection.Name, weapon.Name);
                 }
                 else // let's try it as gear instead!
                 {
@@ -151,7 +154,7 @@ namespace TravellerTools.CharGen
             // So, a skill instead!
             else
             {
-                TravellerGear selected = choicesBox.SelectedItem as TravellerGear;
+                TravellerGear? selected = choicesBox.SelectedItem as TravellerGear;
                 if (selected != null) 
                 {
                     SelectedSkill = TravellerSkills.MatchSkill(selected.Name);
@@ -162,22 +165,25 @@ namespace TravellerTools.CharGen
                 }
                 if (selected != null)
                 {
-                    SelectedSkill.Level = 1;
+                    if (SelectedSkill != null)
+                    {
+                        SelectedSkill.Level = 1;
+                    }
                 }
             }
             Close();
         }
 
-        bool m_preventSelectionLoop = false;
+        bool preventSelectionLoop = false;
         private void choicesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            object selection = choicesBox.SelectedItem;
-            if( choicesBox.Items.Contains( selection ) && !m_preventSelectionLoop )
+            object? selection = choicesBox.SelectedItem;
+            if( choicesBox.Items.Contains( selection ) && !preventSelectionLoop )
             {
                 UpdateBoxes();
-                m_preventSelectionLoop = true;
+                preventSelectionLoop = true;
                 choicesBox.SelectedItem = selection;
-                m_preventSelectionLoop = false;
+                preventSelectionLoop = false;
             }
         }
     }

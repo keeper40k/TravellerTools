@@ -8,7 +8,7 @@ namespace TravellerTools.TravellerData
     {
         // Private Const Strings
 
-        private const string MORTGAGE_STRING = " ({0} year mortgage remaining)";
+        private const string MortgageFormat = " ({0} year mortgage remaining)";
 
         // Public Constructor
 
@@ -24,7 +24,7 @@ namespace TravellerTools.TravellerData
             string result = Name;
             if( Name != "Scout Ship" )
             {
-                result += string.Format(MORTGAGE_STRING, MortgageDuration);
+                result += string.Format(MortgageFormat, MortgageDuration);
             }
             return result;
         }

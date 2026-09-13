@@ -19,7 +19,7 @@ namespace TravellerTools.TravellerCombatTool
         {
             InitializeComponent();
 
-            Portal = null;
+            // TODO: Restore 3D portal initialization with a supported rendering dependency.
         }
 
         // Protected Methods
@@ -42,33 +42,37 @@ namespace TravellerTools.TravellerCombatTool
 
         // Public Properties
 
-        public _3DPortal Portal { get; set; }
+        // TODO: Restore the 3D portal property with a supported rendering dependency.
+        // public _3DPortal Portal { get; set; }
 
-        public string TerrainFilename { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string TerrainFilename { get; set; } = string.Empty;
 
         // Private Event Handlers
 
-        private void open3DButton_Click(object sender, EventArgs e)
-        {
-            if (Portal == null)
-            {
-                Portal = new _3DPortal();
-                if (Portal != null)
-                {
-                    Portal.Run();
-                }
-            }
-        }
+        // TODO: Restore the Open 3D action with a supported rendering dependency.
+        // private void open3DButton_Click(object sender, EventArgs e)
+        // {
+        //     if (Portal == null)
+        //     {
+        //         Portal = new _3DPortal();
+        //         if (Portal != null)
+        //         {
+        //             Portal.Run();
+        //         }
+        //     }
+        // }
 
-        private void close3DButton_Click(object sender, EventArgs e)
-        {
-            if (Portal != null)
-            {
-                Portal.Exit();
-                Portal.Dispose();
-                Portal = null;
-            }
-        }
+        // TODO: Restore the Close 3D action with a supported rendering dependency.
+        // private void close3DButton_Click(object sender, EventArgs e)
+        // {
+        //     if (Portal != null)
+        //     {
+        //         Portal.Exit();
+        //         Portal.Dispose();
+        //         Portal = null;
+        //     }
+        // }
 
         private void selectHeightMapButton_Click(object sender, EventArgs e)
         {

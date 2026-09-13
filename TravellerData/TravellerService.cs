@@ -10,10 +10,10 @@ namespace TravellerTools.TravellerData
     {
         // private constant strings
 
-        private const string SKILL_ROW = "{0}    {1}\n";
-        private const string ATT_ROW = "{0}    {1}{2} {3}\n";
-        private const string BENEFIT_ROW = "{0}    {1}\n";
-        private const string CASH_ROW = "{0}    Cr{1}\n";
+        private const string SkillRowFormat = "{0}    {1}\n";
+        private const string AttributeRowFormat = "{0}    {1}{2} {3}\n";
+        private const string BenefitRowFormat = "{0}    {1}\n";
+        private const string CashRowFormat = "{0}    Cr{1}\n";
 
         // Constructor
         public TravellerService()
@@ -34,6 +34,10 @@ namespace TravellerTools.TravellerData
             AutomaticSkills = new List<KeyValuePair<int, TravellerSkillModifier>>();
             SkillsPerTerm = 0;
             HasRetirementPay = true;
+            PersonalDevelopmentTable = new List<KeyValuePair<int, TravellerSkillModifier>>();
+            ServiceSkillsTable = new List<KeyValuePair<int, TravellerSkillModifier>>();
+            AdvancedEducationTable = new List<KeyValuePair<int, TravellerSkillModifier>>();
+            AdvancedEducationTable2 = new List<KeyValuePair<int, TravellerSkillModifier>>();
             CashTable = new List<KeyValuePair<int, decimal>>();
             BenefitsTable = new List<KeyValuePair<int, TravellerMusteringOutBenefit>>();
         }
@@ -50,7 +54,7 @@ namespace TravellerTools.TravellerData
                 {
                     if (thisSkill.IsSkill)
                     {
-                        result += string.Format(SKILL_ROW, row.Key, thisSkill.Name);
+                        result += string.Format(SkillRowFormat, row.Key, thisSkill.Name);
                     }
                     else if (thisSkill.IsAttribute)
                     {
@@ -59,12 +63,15 @@ namespace TravellerTools.TravellerData
                         {
                             modifier = "-";
                         }
-                        result += string.Format(ATT_ROW, row.Key, modifier, thisSkill.Level, thisSkill.Name);
+                        result += string.Format(AttributeRowFormat, row.Key, modifier, thisSkill.Level, thisSkill.Name);
                     }
                 }
             }
             // Remove the last \n character
-            result = result.Substring(0, result.Length - 1);
+            if (result.Length > 0)
+            {
+                result = result.Substring(0, result.Length - 1);
+            }
             return result;
         }
 
@@ -132,10 +139,13 @@ namespace TravellerTools.TravellerData
             string result = string.Empty;
             foreach( KeyValuePair<int, decimal> item in CashTable )
             {
-                result += string.Format(CASH_ROW, item.Key, item.Value);
+                result += string.Format(CashRowFormat, item.Key, item.Value);
             }
             // Remove the last \n character
-            result = result.Substring(0, result.Length - 1);
+            if (result.Length > 0)
+            {
+                result = result.Substring(0, result.Length - 1);
+            }
             return result;
         }
 
@@ -144,10 +154,13 @@ namespace TravellerTools.TravellerData
             string result = string.Empty;
             foreach ( KeyValuePair<int, TravellerMusteringOutBenefit> item in BenefitsTable )
             {
-                result += string.Format(BENEFIT_ROW, item.Key, item.Value.Name);
+                result += string.Format(BenefitRowFormat, item.Key, item.Value.Name);
             }
             // Remove the last \n character
-            result = result.Substring(0, result.Length - 1);
+            if (result.Length > 0)
+            {
+                result = result.Substring(0, result.Length - 1);
+            }
             return result;
         }
 

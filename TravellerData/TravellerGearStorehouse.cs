@@ -10,7 +10,7 @@ namespace TravellerTools.TravellerData
     {
         // private const strings
 
-        private const string GEAR_JSON_FILE = "gear.json";
+        private const string GearJsonFile = "gear.json";
 
         // static Constructors
 
@@ -25,7 +25,7 @@ namespace TravellerTools.TravellerData
         static protected void LoadGear()
         {
             Gear.Clear();
-            string json = File.ReadAllText(GEAR_JSON_FILE);
+            string json = File.ReadAllText(GearJsonFile);
 
             using (JsonDocument document = JsonDocument.Parse(json))
             {
@@ -35,15 +35,27 @@ namespace TravellerTools.TravellerData
                     string rawText = o.GetProperty("ClassType").ToString();
                     if (rawText == "TravellerGear")
                     {
-                        Gear.Add(JsonSerializer.Deserialize<TravellerGear>(o.GetRawText()));
+                        TravellerGear? gear = JsonSerializer.Deserialize<TravellerGear>(o.GetRawText());
+                        if (gear != null)
+                        {
+                            Gear.Add(gear);
+                        }
                     }
                     else if (rawText == "TravellerRetirementPay")
                     {
-                        Gear.Add(JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText()));
+                        TravellerRetirementPay? retirementPay = JsonSerializer.Deserialize<TravellerRetirementPay>(o.GetRawText());
+                        if (retirementPay != null)
+                        {
+                            Gear.Add(retirementPay);
+                        }
                     }
                     else if (rawText == "TravellerStarshipBenefit")
                     {
-                        Gear.Add(JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText()));
+                        TravellerStarshipBenefit? starshipBenefit = JsonSerializer.Deserialize<TravellerStarshipBenefit>(o.GetRawText());
+                        if (starshipBenefit != null)
+                        {
+                            Gear.Add(starshipBenefit);
+                        }
                     }
                 }
             }
@@ -51,13 +63,14 @@ namespace TravellerTools.TravellerData
 
         // static Public Methods
 
-        public static TravellerGear GetGear( string Name, string weaponType )
+        public static TravellerGear? GetGear( string Name, string weaponType )
         {
-            // TO DO - this should work better than this!
-            TravellerGear result = null;
+            TravellerGear? result = null;
             foreach( TravellerGear gear in Gear )
             {
-                if( gear.Name == Name )
+                bool matchesName = gear.Name == Name;
+                bool matchesWeaponType = string.IsNullOrEmpty(weaponType) || gear.GearType + " Combat" == weaponType;
+                if( matchesName && matchesWeaponType )
                 {
                     result = gear;
                     break;

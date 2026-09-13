@@ -19,46 +19,46 @@ namespace TravellerTools.CharGen
 
         // protected members
 
-        protected TravellerService m_service;
-        protected TravellerCharacter m_character;
-        protected decimal m_skillCount;
+        protected TravellerService service;
+        protected TravellerCharacter character;
+        protected decimal skillCount;
 
         // Public Constructors
 
         public SkillSelectionDialog( TravellerService service, TravellerCharacter character, decimal skillCount )
         {
-            m_service = service;
-            m_character = character;
-            m_skillCount = skillCount;
+            this.service = service;
+            this.character = character;
+            this.skillCount = skillCount;
             InitializeComponent();
             UpdateButtons();
         }
 
         protected void UpdateButtons()
         {
-            if (m_skillCount == 0)
+            if (skillCount == 0)
             {
                 // If nothing left to do, close the form
                 Close();
             }
             else
             {
-                skillsRemainingLabel.Text = string.Format(SKILL_LABEL, m_skillCount);
-                characterDisplay.Text = m_character.ShortStringFormat();
-                skillTable1Button.Text = m_service.PersonalDevelopmentTableText();
-                skillTable2Button.Text = m_service.ServiceSkillsTableText();
-                skillTable3Button.Text = m_service.AdvancedEducationTableText();
-                skillTable4Button.Text = m_service.AdvancedEducationTable2Text();
+                skillsRemainingLabel.Text = string.Format(SKILL_LABEL, skillCount);
+                characterDisplay.Text = character.ShortStringFormat();
+                skillTable1Button.Text = service.PersonalDevelopmentTableText();
+                skillTable2Button.Text = service.ServiceSkillsTableText();
+                skillTable3Button.Text = service.AdvancedEducationTableText();
+                skillTable4Button.Text = service.AdvancedEducationTable2Text();
 
                 // Only enabled the 2nd Advanced Education Table, if the character's education is 8 or more
-                skillTable4Button.Enabled = m_character.EDU > 7;
+                skillTable4Button.Enabled = character.EDU > 7;
             }
         }
 
         protected void ProcessSkillSelection(List<KeyValuePair<int, TravellerSkillModifier>> table)
         {
             int roll = DiceTools.RollOneDie(6);
-            TravellerSkillModifier rolledSkill = null;
+            TravellerSkillModifier? rolledSkill = null;
             foreach( KeyValuePair<int, TravellerSkillModifier> item in table )
             {
                 if( roll == item.Key )
@@ -69,8 +69,8 @@ namespace TravellerTools.CharGen
             }
             if( rolledSkill != null )
             {
-                m_character.AddSkill(rolledSkill, this);
-                m_skillCount--;
+                character.AddSkill(rolledSkill, this);
+                skillCount--;
             }
             UpdateButtons();
         }
@@ -81,35 +81,35 @@ namespace TravellerTools.CharGen
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
             form.ShowDialog();
-            TravellerSkill selectedSkill = form.SelectedSkill;
+            TravellerSkill? selectedSkill = form.SelectedSkill;
             if( selectedSkill != null && selectedSkill.HasSpecialisations )
             {
                 SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
             }
 
-            return selectedSkill;
+            return selectedSkill!;
         }
 
         // Private Event Handlers
 
         private void skillTable1Button_Click(object sender, EventArgs e)
         {
-            ProcessSkillSelection( m_service.PersonalDevelopmentTable );
+            ProcessSkillSelection( service.PersonalDevelopmentTable );
         }
 
         private void skillTable2Button_Click(object sender, EventArgs e)
         {
-            ProcessSkillSelection( m_service.ServiceSkillsTable );
+            ProcessSkillSelection( service.ServiceSkillsTable );
         }
 
         private void skillTable3Button_Click(object sender, EventArgs e)
         {
-            ProcessSkillSelection( m_service.AdvancedEducationTable );
+            ProcessSkillSelection( service.AdvancedEducationTable );
         }
 
         private void skillTable4Button_Click(object sender, EventArgs e)
         {
-            ProcessSkillSelection( m_service.AdvancedEducationTable2 );
+            ProcessSkillSelection( service.AdvancedEducationTable2 );
         }
     }
 }
