@@ -1,4 +1,4 @@
-﻿
+
 namespace TravellerTools.CharGen
 {
     partial class SelectSkillSpecialisationForm

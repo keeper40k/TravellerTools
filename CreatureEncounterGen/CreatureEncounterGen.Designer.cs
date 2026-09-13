@@ -1,4 +1,4 @@
-﻿
+
 namespace CreatureEncounterGen
 {
     partial class CreatureEncounterGen

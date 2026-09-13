@@ -1,4 +1,4 @@
-﻿// TODO: Restore the 3D portal only after selecting a supported rendering dependency.
+// TODO: Restore the 3D portal only after selecting a supported rendering dependency.
 // using Blotch;
 // using System;
 // using System.Collections.Generic;

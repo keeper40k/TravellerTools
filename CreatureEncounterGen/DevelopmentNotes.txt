@@ -1,4 +1,4 @@
-﻿NEXT STEPS: 
+NEXT STEPS: 
   Consider a different class than string for TravellerCreature.Armour property
   Consider a different class than string for TravellerCreature.Weapons property
 

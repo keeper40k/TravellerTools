@@ -1,4 +1,4 @@
-﻿
+
 namespace SkillEditor
 {
     partial class SkillEditorForm

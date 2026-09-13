@@ -1,4 +1,4 @@
-﻿
+
 namespace TravellerTools.TravellerCombatTool
 {
     partial class TravellerCombatTool

@@ -1,4 +1,4 @@
-﻿
+
 namespace GearEditor
 {
     partial class GearEditorForm
