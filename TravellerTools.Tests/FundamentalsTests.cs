@@ -4,34 +4,165 @@ using TravellerTools.Fundamentals;
 namespace TravellerTools.Tests;
 
 [TestClass]
+[TestCategory("Unit")]
 public class FundamentalsTests
 {
-    private sealed class FixedRandomSource : IRandomSource
+
+    /// <summary>Verifies supported die endpoints, including percentile 100.</summary>
+    [TestMethod]
+    [DataRow(2, 1)]
+    [DataRow(2, 2)]
+    [DataRow(100, 100)]
+    [DataRow(int.MaxValue - 1, int.MaxValue - 1)]
+    public void DieSupportsBoundaryValues(int sides, int value)
     {
-        private readonly Queue<int> values;
-
-        public FixedRandomSource(params int[] values)
-        {
-            this.values = new Queue<int>(values);
-        }
-
-        public int Next(int minimumValue, int maximumValue)
-        {
-            int value = values.Dequeue();
-            Assert.IsTrue(value >= minimumValue && value < maximumValue);
-            return value;
-        }
+        Assert.AreEqual(value, DiceTools.RollOneDie(sides, new FixedRandomSource(value)));
     }
 
+    /// <summary>Rejects unsupported side counts before requesting randomness.</summary>
+    [TestMethod]
+    [DataRow(int.MinValue)]
+    [DataRow(0)]
+    [DataRow(1)]
+    [DataRow(int.MaxValue)]
+    public void DiceRejectUnsupportedSides(int sides)
+    {
+        FixedRandomSource source = new();
+        Assert.AreEqual("sides", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => DiceTools.RollOneDie(sides, source)).ParamName);
+        Assert.AreEqual("sides", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => DiceTools.RollDice(1, sides, source)).ParamName);
+        Dice group = new(6) { Sides = sides };
+        Assert.AreEqual("handful", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => DiceTools.RollManyDice(new[] { new Dice(6), group }, source)).ParamName);
+    }
+
+    /// <summary>Rejects invalid counts even when preceded by a valid group.</summary>
+    [TestMethod]
+    [DataRow(int.MinValue)]
+    [DataRow(-1)]
+    [DataRow(0)]
+    public void DiceRejectInvalidCountsBeforeRolling(int count)
+    {
+        FixedRandomSource source = new();
+        Assert.AreEqual("number", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => DiceTools.RollDice(count, 6, source)).ParamName);
+        Dice group = new(6) { Count = count };
+        Assert.AreEqual("handful", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => DiceTools.RollManyDice(new[] { new Dice(6), group }, source)).ParamName);
+    }
+
+    /// <summary>Deliberately passes null to verify runtime argument contracts.</summary>
+    [TestMethod]
+    public void DiceRejectNullArguments()
+    {
+        Assert.AreEqual("source", Assert.ThrowsException<ArgumentNullException>(
+            () => DiceTools.RollOneDie(6, null!)).ParamName);
+        Assert.AreEqual("source", Assert.ThrowsException<ArgumentNullException>(
+            () => DiceTools.RollDice(2, 6, null!)).ParamName);
+        Assert.AreEqual("source", Assert.ThrowsException<ArgumentNullException>(
+            () => DiceTools.RollManyDice(Array.Empty<Dice>(), null!)).ParamName);
+        Assert.AreEqual("handful", Assert.ThrowsException<ArgumentNullException>(
+            () => DiceTools.RollManyDice(null!, new FixedRandomSource())).ParamName);
+        Assert.AreEqual("handful", Assert.ThrowsException<ArgumentException>(
+            () => DiceTools.RollManyDice(new[] { new Dice(6), null! }, new FixedRandomSource())).ParamName);
+    }
+
+    /// <summary>An empty handful has zero total and consumes no randomness.</summary>
+    [TestMethod]
+    public void EmptyHandfulReturnsZero()
+    {
+        Assert.AreEqual(0, DiceTools.RollManyDice(Array.Empty<Dice>(), new FixedRandomSource()));
+    }
+
+    /// <summary>Allows a representable total even if other possible outcomes could overflow.</summary>
+    [TestMethod]
+    public void DiceAllowMaximumRepresentableTotal()
+    {
+        Assert.AreEqual(int.MaxValue, DiceTools.RollDice(
+            2, int.MaxValue - 1, new FixedRandomSource(int.MaxValue - 1, 1)));
+        Assert.AreEqual(int.MaxValue, DiceTools.RollManyDice(
+            new[] { new Dice(int.MaxValue - 1), new Dice(2) },
+            new FixedRandomSource(int.MaxValue - 1, 1)));
+    }
+
+    /// <summary>Detects overflow within a group, between groups, and with a maximum count.</summary>
+    [TestMethod]
+    public void DiceThrowWhenRolledTotalOverflows()
+    {
+        Assert.ThrowsException<OverflowException>(() => DiceTools.RollDice(
+            2, int.MaxValue - 1, new FixedRandomSource(int.MaxValue - 1, 2)));
+        Assert.ThrowsException<OverflowException>(() => DiceTools.RollManyDice(
+            new[] { new Dice(2, int.MaxValue - 1) },
+            new FixedRandomSource(int.MaxValue - 1, 2)));
+        Assert.ThrowsException<OverflowException>(() => DiceTools.RollManyDice(
+            new[] { new Dice(int.MaxValue - 1), new Dice(2) },
+            new FixedRandomSource(int.MaxValue - 1, 2)));
+        Assert.ThrowsException<OverflowException>(() => DiceTools.RollDice(
+            int.MaxValue, int.MaxValue - 1, new FixedRandomSource(int.MaxValue - 1, 2)));
+    }
+
+    /// <summary>Enumerates short ranges at both integer boundaries without counter wraparound.</summary>
+    [TestMethod]
+    [DataRow(int.MaxValue, int.MaxValue)]
+    [DataRow(int.MaxValue - 1, int.MaxValue)]
+    [DataRow(int.MinValue, int.MinValue + 1)]
+    public void TableRangeSupportsIntegerEndpoints(int start, int end)
+    {
+        TableRowRange row = new(start, end, "boundary", "boundary");
+        List<int> values = row.FullRange();
+        Assert.AreEqual((int)((long)end - start + 1), values.Count);
+        Assert.AreEqual(start, values[0]);
+        Assert.AreEqual(end, values[^1]);
+        Assert.IsTrue(row.Matches(start));
+        Assert.IsTrue(row.Matches(end));
+        RPGTable table = new();
+        table.AddRow(row);
+        Assert.IsTrue(table.IsUniqueAndContiguous());
+    }
+
+    /// <summary>Rejects a range that cannot be represented by the list return type.</summary>
+    [TestMethod]
+    public void TableRangeRejectsUnrepresentableLength()
+    {
+        TableRowRange row = new(int.MinValue, int.MaxValue, "wide", "wide");
+        Assert.AreEqual("End", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => row.FullRange()).ParamName);
+    }
+
+    /// <summary>Retains delayed range validation while identifying the invalid bound.</summary>
+    [TestMethod]
+    public void InvalidTableRangeIdentifiesStart()
+    {
+        TableRowRange row = new(2, 1, "invalid", "invalid");
+        Assert.AreEqual("Start", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => row.Matches(1)).ParamName);
+        Assert.AreEqual("Start", Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => row.FullRange()).ParamName);
+    }
+
+    /// <summary>Null rejection leaves both empty and populated tables usable.</summary>
+    [TestMethod]
+    public void TableRejectsNullWithoutChangingItsRows()
+    {
+        RPGTable table = new();
+        // Deliberately violate the non-null API contract.
+        Assert.AreEqual("row", Assert.ThrowsException<ArgumentNullException>(
+            () => table.AddRow(null!)).ParamName);
+        Assert.IsNull(table.RollOnTable(1));
+        TableRowSingle row = new(1, "one", "one");
+        Assert.IsTrue(table.AddRow(row));
+        Assert.AreEqual("row", Assert.ThrowsException<ArgumentNullException>(
+            () => table.AddRow(null!)).ParamName);
+        Assert.AreSame(row, table.RollOnTable(1));
+        Assert.IsTrue(table.IsUniqueAndContiguous());
+    }
+    /// <summary>Verifies both endpoints without relying on random sampling.</summary>
     [TestMethod]
     public void RollOneDieReturnsValuesWithinRequestedRange()
     {
-        for (int i = 0; i < 100; i++)
-        {
-            int result = DiceTools.RollOneDie(6);
-
-            Assert.IsTrue(result >= 1 && result <= 6);
-        }
+        Assert.AreEqual(1, DiceTools.RollOneDie(6, new FixedRandomSource(1)));
+        Assert.AreEqual(6, DiceTools.RollOneDie(6, new FixedRandomSource(6)));
     }
 
     [TestMethod]
@@ -43,12 +174,8 @@ public class FundamentalsTests
     [TestMethod]
     public void RollDiceReturnsValuesWithinRequestedRange()
     {
-        for (int i = 0; i < 100; i++)
-        {
-            int result = DiceTools.RollDice(3, 6);
-
-            Assert.IsTrue(result >= 3 && result <= 18);
-        }
+        Assert.AreEqual(3, DiceTools.RollDice(3, 6, new FixedRandomSource(1, 1, 1)));
+        Assert.AreEqual(18, DiceTools.RollDice(3, 6, new FixedRandomSource(6, 6, 6)));
     }
 
     [TestMethod]

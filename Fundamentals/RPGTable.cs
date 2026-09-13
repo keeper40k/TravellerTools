@@ -19,11 +19,13 @@ namespace TravellerTools.Fundamentals
 
 		// Methods
 
-		// Returns true if the row is added
-		// Returns false if the row already existings in the table.
-		//   This is checked my matching the UID
+		/// <summary>Adds a row unless its UID is already present.</summary>
+		/// <param name="row">The row to add.</param>
+		/// <returns>True if added; false if the UID already exists.</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="row"/> is null.</exception>
 		public bool AddRow(TableRow row)
 		{
+			ArgumentNullException.ThrowIfNull(row);
 			bool exists = rows.Exists(tableRow => row.UID == tableRow.UID);
 
 			if (!exists)

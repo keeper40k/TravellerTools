@@ -60,29 +60,41 @@ namespace TravellerTools.Fundamentals
 
 		// Methods
 
-		// Can throw ArgumentOutOfRangeException if the table row has a Start > End
+		/// <summary>Checks whether a value lies within the inclusive row range.</summary>
+		/// <param name="result">The value to match.</param>
+		/// <returns>True if the value is between Start and End, inclusive.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">Start exceeds End.</exception>
 		public override bool Matches(int result)
 		{
 			if (Start > End)
 			{
-				throw new ArgumentOutOfRangeException(InvalidRangeMessage);
+				throw new ArgumentOutOfRangeException(nameof(Start), Start, InvalidRangeMessage);
 			}
 
 			return ((Start <= result) && (result <= End));
 		}
 
-		// Can throw ArgumentOutOfRangeException if the table row has a Start > End
+		/// <summary>Enumerates the inclusive row range into a new list.</summary>
+		/// <returns>Every integer from Start through End in ascending order.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">Start exceeds End, or the range contains more than <see cref="int.MaxValue"/> values.</exception>
+		/// <remarks>Large ranges require memory proportional to their number of values.</remarks>
 		public override List<int> FullRange()
 		{
 			if (Start > End)
 			{
-				throw new ArgumentOutOfRangeException(InvalidRangeMessage);
+				throw new ArgumentOutOfRangeException(nameof(Start), Start, InvalidRangeMessage);
+			}
+
+			if ((long)End - Start + 1 > int.MaxValue)
+			{
+				throw new ArgumentOutOfRangeException(nameof(End), End, "The range contains too many values for a list.");
 			}
 
 			List<int> result = new List<int>();
-			for (int i = Start; i <= End; i++)
+			// A wider counter can advance beyond Int32.MaxValue without wrapping.
+			for (long i = Start; i <= End; i++)
 			{
-				result.Add(i);
+				result.Add((int)i);
 			}
 			return result;
 		}

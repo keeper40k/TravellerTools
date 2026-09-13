@@ -7,12 +7,24 @@ namespace TravellerTools.Tests;
 [TestClass]
 public class SmokeTests
 {
+    /// <summary>Resolves a representative 2d6 encounter through a complete table.</summary>
     [TestMethod]
-    public void RollOneDieReturnsValueWithinRequestedRange()
+    [TestCategory("Functional")]
+    public void DiceRollResolvesAnEncounterTable()
     {
-        int result = DiceTools.RollOneDie(6);
+        RPGTable table = new();
+        table.AddRow(new TableRowRange(2, 5, "Quiet journey", "quiet"));
+        TableRowRange encounter = new(6, 8, "Merchant convoy", "merchants");
+        table.AddRow(encounter);
+        table.AddRow(new TableRowRange(9, 12, "Patrol", "patrol"));
+        FixedRandomSource source = new(3, 4);
 
-        Assert.IsTrue(result >= 1 && result <= 6);
+        Assert.IsTrue(table.IsUniqueAndContiguous());
+        int result = DiceTools.RollDice(2, 6, source);
+
+        Assert.AreEqual(7, result);
+        Assert.AreSame(encounter, table.RollOnTable(result));
+        Assert.AreEqual(0, source.RemainingCount);
     }
 
     [TestMethod]
