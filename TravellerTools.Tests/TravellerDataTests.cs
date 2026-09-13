@@ -3,9 +3,11 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.Tests;
 
+/// <summary>Verifies Traveller data models, display formats, and repository JSON integration.</summary>
 [TestClass]
 public class TravellerDataTests
 {
+    /// <summary>Verifies inventory defaults and quantity-aware display formatting.</summary>
     [TestMethod]
     public void TravellerGearDefaultsAndFormatsAsItsName()
     {
@@ -21,6 +23,7 @@ public class TravellerDataTests
         Assert.AreEqual("2x Rations", gear.ToString());
     }
 
+    /// <summary>Verifies retirement pay displays its default name and credit amount.</summary>
     [TestMethod]
     public void RetirementPayUsesFixedNameAndDisplayFormat()
     {
@@ -30,6 +33,7 @@ public class TravellerDataTests
         Assert.AreEqual("Retirement Pay: Cr5000", benefit.DisplayString());
     }
 
+    /// <summary>Verifies mortgage text is omitted for a Scout Ship.</summary>
     [TestMethod]
     public void StarshipBenefitUsesMortgageTextExceptForScoutShip()
     {
@@ -41,6 +45,7 @@ public class TravellerDataTests
         Assert.AreEqual("Scout Ship", benefit.DisplayString());
     }
 
+    /// <summary>Verifies new benefit flags and name-only display.</summary>
     [TestMethod]
     public void MusteringOutBenefitDefaultsAndFormatsAsItsName()
     {
@@ -54,6 +59,7 @@ public class TravellerDataTests
         Assert.AreEqual("Weapon", benefit.ToString());
     }
 
+    /// <summary>Verifies adjustment mode setters keep skill and characteristic flags opposite.</summary>
     [TestMethod]
     public void SkillModifierDefaultsToSkillAndPropertiesRemainExclusive()
     {
@@ -71,6 +77,7 @@ public class TravellerDataTests
         Assert.IsFalse(modifier.IsAttribute);
     }
 
+    /// <summary>Verifies neither constructor flag selects skill mode by default.</summary>
     [TestMethod]
     public void SkillModifierConstructorDefaultsToSkillWhenNeitherFlagIsSet()
     {
@@ -82,6 +89,7 @@ public class TravellerDataTests
         Assert.IsFalse(modifier.IsAttribute);
     }
 
+    /// <summary>Verifies representative behaviours fall into their feeding groups.</summary>
     [TestMethod]
     public void TravellerCreatureClassifiesCreatureTypes()
     {
@@ -98,6 +106,7 @@ public class TravellerDataTests
         Assert.IsTrue(creature.IsScavenger());
     }
 
+    /// <summary>Verifies labels for undefined, carrion-eater, and siren behaviours.</summary>
     [TestMethod]
     public void TravellerCreatureProvidesNamesForTypes()
     {
@@ -108,6 +117,7 @@ public class TravellerDataTests
         Assert.AreEqual("Siren", creature.TypeName);
     }
 
+    /// <summary>Verifies initial collections and ordered extended-hexadecimal characteristic output.</summary>
     [TestMethod]
     public void CharacterInitialisesCollectionsAndFormatsCharacteristics()
     {
@@ -125,6 +135,7 @@ public class TravellerDataTests
         Assert.AreEqual(18m, character.Age);
     }
 
+    /// <summary>Verifies title choices for noble and non-noble social standing.</summary>
     [TestMethod]
     public void CharacterTitlesDependOnSocialStanding()
     {
@@ -137,6 +148,7 @@ public class TravellerDataTests
         CollectionAssert.AreEqual(new[] { string.Empty }, character.AvailableTitles());
     }
 
+    /// <summary>Verifies repeated skill names combine levels into one entry.</summary>
     [TestMethod]
     public void CharacterAddsAndCombinesSkillsByName()
     {
@@ -150,6 +162,7 @@ public class TravellerDataTests
         Assert.IsTrue(character.HasSkill("Pilot"));
     }
 
+    /// <summary>Verifies repeated gear names combine quantities into one entry.</summary>
     [TestMethod]
     public void CharacterAddsAndCombinesGearByName()
     {
@@ -162,6 +175,7 @@ public class TravellerDataTests
         Assert.AreEqual(5m, character.Gear[0].Count);
     }
 
+    /// <summary>Verifies the legacy null-gear exception contract.</summary>
     [TestMethod]
     public void CharacterRejectsNullGear()
     {
@@ -171,6 +185,7 @@ public class TravellerDataTests
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => character.AddGear(null!));
     }
 
+    /// <summary>Verifies threshold comparison and rejection of an unknown characteristic code.</summary>
     [TestMethod]
     public void CharacteristicRollTargetPassesAgainstSelectedCharacteristic()
     {
@@ -181,6 +196,7 @@ public class TravellerDataTests
         Assert.IsFalse(new TravellerCharacteristicRollTarget("UNKNOWN", 0).Pass(character));
     }
 
+    /// <summary>Verifies reset clears career gains and restores age eighteen.</summary>
     [TestMethod]
     public void CharacterReinitialiseRestoresCreationState()
     {
@@ -197,6 +213,7 @@ public class TravellerDataTests
         Assert.AreEqual(18m, character.Age);
     }
 
+    /// <summary>Verifies extended-hexadecimal boundaries, skipped letters, and saturation at Z.</summary>
     [TestMethod]
     public void CharacterEHexFormattingUsesTravellerDigitsAndCapsAtZ()
     {
@@ -212,6 +229,7 @@ public class TravellerDataTests
         Assert.AreEqual("Z", character.EHexCharacteristic(99));
     }
 
+    /// <summary>Verifies a characteristic adjustment changes the value and adds a history entry.</summary>
     [TestMethod]
     public void CharacterAddsAttributeSkillAndRecordsHistory()
     {
@@ -224,6 +242,7 @@ public class TravellerDataTests
         StringAssert.Contains(character.CreationHistory, "Alex gained 2 STR");
     }
 
+    /// <summary>Verifies displayed table keys, adjustments, and credit amounts.</summary>
     [TestMethod]
     public void ServiceFormatsSkillAndCashTables()
     {
@@ -235,6 +254,7 @@ public class TravellerDataTests
         Assert.AreEqual("6    Cr10000", service.CashTableText());
     }
 
+    /// <summary>Verifies every new service table formats as empty text.</summary>
     [TestMethod]
     public void NewServiceHasSafeEmptyTables()
     {
@@ -248,6 +268,7 @@ public class TravellerDataTests
         Assert.AreEqual(string.Empty, service.BenefitsTableText());
     }
 
+    /// <summary>Verifies rank-index lookup, bounds validation, and automatic adjustments.</summary>
     [TestMethod]
     public void ServiceRankAndAutomaticSkillLookupUseRankIndex()
     {
@@ -262,6 +283,7 @@ public class TravellerDataTests
         CollectionAssert.AreEqual(new[] { modifier }, service.AutomaticSkillsAtRank(0));
     }
 
+    /// <summary>Verifies a qualifying characteristic produces a service recommendation.</summary>
     [TestMethod]
     public void ServiceRecommendationsIncludePassingCharacteristicBonuses()
     {
@@ -275,6 +297,7 @@ public class TravellerDataTests
         Assert.AreEqual("Navy\nDM+1 Enlistment 8\n\n", services.RecommendText(character));
     }
 
+    /// <summary>Verifies copying preserves skill data while cloning child definitions.</summary>
     [TestMethod]
     public void SkillCopyIncludesNestedSpecialisations()
     {
@@ -289,6 +312,7 @@ public class TravellerDataTests
         Assert.AreNotSame(source.Specialisations[0], copy.Specialisations[0]);
     }
 
+    /// <summary>Verifies repository gear lookup respects the optional combat category.</summary>
     [TestMethod]
     public void GearStorehouseFiltersWeaponGearByWeaponType()
     {
@@ -315,6 +339,7 @@ public class TravellerDataTests
         }
     }
 
+    /// <summary>Verifies service definitions and ranks load from the repository data.</summary>
     [TestMethod]
     public void ServicesLoadFromRepositoryJson()
     {
@@ -340,6 +365,7 @@ public class TravellerDataTests
         }
     }
 
+    /// <summary>Verifies shared skill definitions include their nested choices.</summary>
     [TestMethod]
     public void SkillsLoadFromRepositoryJsonWithSpecialisations()
     {

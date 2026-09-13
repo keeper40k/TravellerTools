@@ -11,10 +11,13 @@ using System.Windows.Forms;
 
 namespace TravellerTools.TravellerCombatTool
 {
+    /// <summary>Displays a selected terrain height-map image; 3D rendering is currently disabled.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class TravellerCombatTool : Form
     {
         // Public Constructors
 
+        /// <summary>Initializes the terrain-image interface without starting a 3D renderer.</summary>
         public TravellerCombatTool()
         {
             InitializeComponent();
@@ -24,6 +27,8 @@ namespace TravellerTools.TravellerCombatTool
 
         // Protected Methods
 
+        /// <summary>Loads the terrain image when the selected file exists, otherwise clears the preview.</summary>
+        /// <remarks>Image-loading errors propagate. A loaded image may keep its source file locked until disposed.</remarks>
         protected void UpdateBoxes()
         {
             if( File.Exists( TerrainFilename ) )
@@ -45,6 +50,7 @@ namespace TravellerTools.TravellerCombatTool
         // TODO: Restore the 3D portal property with a supported rendering dependency.
         // public _3DPortal Portal { get; set; }
 
+        /// <summary>Gets or sets the height-map image path used when the preview is refreshed.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string TerrainFilename { get; set; } = string.Empty;
 

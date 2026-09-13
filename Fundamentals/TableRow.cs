@@ -4,21 +4,36 @@ using System.Collections.Generic;
 namespace TravellerTools.Fundamentals
 {
 	// A table row definition
+	/// <summary>Defines matching and value enumeration for an outcome in a roll table.</summary>
+	/// <remarks>Implementations should enumerate exactly the integer values accepted by Matches. Rows and their identifiers remain mutable after insertion.</remarks>
 	public abstract class TableRow
 	{
 		// Methods
+		/// <summary>Determines whether this row accepts a resolved roll total.</summary>
+		/// <param name="result">The integer total to match.</param>
+		/// <returns>True when this row accepts the value; otherwise false.</returns>
 		public abstract bool Matches(int result);
+		/// <summary>Enumerates the integer values represented by this row.</summary>
+		/// <returns>A list of values accepted by the row's matching rule.</returns>
 		public abstract List<int> FullRange();
 
 		// Properties
+		/// <summary>The outcome text associated with a matching roll; initially empty.</summary>
 		public string Text = string.Empty;
+		/// <summary>The identifier used by RPGTable to detect duplicates when adding a row; initially empty.</summary>
+		/// <remarks>Changing the identifier after insertion does not trigger duplicate validation.</remarks>
 		public string UID = string.Empty;
 	}
 
 	// A single entry table row
+	/// <summary>Represents a table outcome matched by exactly one integer.</summary>
 	public class TableRowSingle : TableRow
 	{
 		// Constructor
+		/// <summary>Creates an outcome for one integer roll total.</summary>
+		/// <param name="number">The matching value; any integer is supported.</param>
+		/// <param name="text">The outcome text.</param>
+		/// <param name="uid">The identifier used for duplicate detection when inserted into a table.</param>
 		public TableRowSingle(int number, string text, string uid)
 		{
 			Number = number;
@@ -27,11 +42,16 @@ namespace TravellerTools.Fundamentals
 		}
 
 		// Methods
+		/// <summary>Checks equality with the row's current Number.</summary>
+		/// <param name="result">The resolved roll total.</param>
+		/// <returns>True if the value equals Number; otherwise false.</returns>
 		public override bool Matches(int result)
 		{
 			return (result == Number);
 		}
 
+		/// <summary>Creates a list containing the row's matching value.</summary>
+		/// <returns>A new single-element list containing Number.</returns>
 		public override List<int> FullRange()
 		{
 			List<int> result = new List<int>();
@@ -40,16 +60,24 @@ namespace TravellerTools.Fundamentals
 		}
 
 		// Properties
+		/// <summary>The integer roll total that matches this row.</summary>
 		public int Number;
 	}
 
 	//A table row with a value range
+	/// <summary>Represents a table outcome matched by an inclusive integer range.</summary>
+	/// <remarks>Bounds are mutable and validated when matching or enumerating, rather than during construction.</remarks>
 	public class TableRowRange : TableRow
 	{
 		private const string InvalidRangeMessage = "The Start of the range is greater than the End.";
 
 		// Constructor
 		// Assumes that start must be <= end
+		/// <summary>Creates an outcome for an inclusive range without immediately validating its bounds.</summary>
+		/// <param name="start">The inclusive lower bound; must not exceed end when the row is used.</param>
+		/// <param name="end">The inclusive upper bound.</param>
+		/// <param name="text">The outcome text.</param>
+		/// <param name="uid">The identifier used for duplicate detection when inserted into a table.</param>
 		public TableRowRange(int start, int end, string text, string uid)
 		{
 			Start = start;
@@ -100,7 +128,9 @@ namespace TravellerTools.Fundamentals
 		}
 
 		// Properties
+		/// <summary>The inclusive lower bound; must not exceed End when matching or enumerating.</summary>
 		public int Start;
+		/// <summary>The inclusive upper bound; enumeration additionally requires a representable list length.</summary>
 		public int End;
 	}
 }

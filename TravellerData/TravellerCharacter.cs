@@ -7,6 +7,8 @@ using TravellerTools.Fundamentals;
 
 namespace TravellerTools.TravellerData
 {
+    /// <summary>Stores character characteristics, career history, skills, and inventory.</summary>
+    /// <remarks>This mutable model uses default dice randomness for initial characteristics and aging. Collections and callbacks must remain valid for the operations that use them; instances are not synchronized for concurrent mutation.</remarks>
     public class TravellerCharacter
     {
         // Static Strings
@@ -42,6 +44,7 @@ namespace TravellerTools.TravellerData
 
         // Constructors
 
+        /// <summary>Creates a character named Bob at age eighteen and rolls all six characteristics on 2d6.</summary>
         public TravellerCharacter()
         {
             // Temporary Name
@@ -52,6 +55,10 @@ namespace TravellerTools.TravellerData
 
         // Protected Methods
 
+        /// <summary>Applies aging checks at eligible ages while advancing in one-year increments.</summary>
+        /// <param name="start">The previous age in years.</param>
+        /// <param name="end">The requested age in years.</param>
+        /// <remarks>An end age no greater than the start performs no checks. Eligible increments exceed age 33 and have remainder two when divided by four; fractional ages are not rounded.</remarks>
         protected void ProcessAging(decimal start, decimal end)
         {
             // Doesn't handle negative aging at this time!
@@ -62,7 +69,7 @@ namespace TravellerTools.TravellerData
 
             for( decimal i = start+1; i <= end; i++ )
             {
-                // i mod 4 remainder 2 gives us aging years of 34, 28, 42, etc.
+                // i mod 4 remainder 2 gives us aging years of 34, 38, 42, etc.
                 if ( (i > 33) && (i % 4 == 2) )
                 {
                     if( i < 50 )
@@ -81,7 +88,10 @@ namespace TravellerTools.TravellerData
             }
         }
 
-        // STR, DEX and INT save on (8+, 7+, 8+)
+        // STR, DEX and END save on (8+, 7+, 8+)
+        /// <summary>Applies STR, DEX, and END aging saves of 8+, 7+, and 8+, losing one point on failure.</summary>
+        /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
+        /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
         protected void Phase1AgeCheck(decimal currentAge)
         {
             int strRoll = DiceTools.RollDice(2, 6);
@@ -105,7 +115,10 @@ namespace TravellerTools.TravellerData
             AgingCrisis(currentAge);
         }
 
-        // STR, DEX and INT save on (9+, 8+, 9+)
+        // STR, DEX and END save on (9+, 8+, 9+)
+        /// <summary>Applies STR, DEX, and END aging saves of 9+, 8+, and 9+, losing one point on failure.</summary>
+        /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
+        /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
         protected void Phase2AgeCheck(decimal currentAge)
         {
             int strRoll = DiceTools.RollDice(2, 6);
@@ -129,7 +142,10 @@ namespace TravellerTools.TravellerData
             AgingCrisis(currentAge);
         }
 
-        // STR, DEX, INT and INT save on (9+, 9+, 9+. 9+)
+        // STR, DEX, END and INT save on (9+, 9+, 9+, 9+)
+        /// <summary>Applies 9+ aging saves, losing two STR, DEX, or END points and one INT point on failure.</summary>
+        /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
+        /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
         protected void Phase3AgeCheck(decimal currentAge)
         {
             int strRoll = DiceTools.RollDice(2, 6);
@@ -159,6 +175,9 @@ namespace TravellerTools.TravellerData
             AgingCrisis(currentAge);
         }
 
+        /// <summary>Resolves 8+ survival saves for STR, DEX, END, or INT that are exactly zero.</summary>
+        /// <param name="currentAge">The age reported in the creation history.</param>
+        /// <remarks>Failure marks the character dead. A successful save restores the characteristic to one and rolls recovery months for the history entry; those months are not added to Age.</remarks>
         protected void AgingCrisis(decimal currentAge)
         {
             int slowDrugAging = 0;
@@ -226,6 +245,9 @@ namespace TravellerTools.TravellerData
 
         // Public Methods
 
+        /// <summary>Formats a characteristic as one Traveller extended-hexadecimal digit.</summary>
+        /// <param name="value">The characteristic value.</param>
+        /// <returns>A digit from 0 through Z, skipping I and O; non-positive values become 0 and values above 33 become Z.</returns>
         public string EHexCharacteristic(int value)
         {
             string result = "";
@@ -257,6 +279,8 @@ namespace TravellerTools.TravellerData
             return result;
         }
 
+        /// <summary>Resets career, inventory, cash, history, and survival state for creation at age eighteen.</summary>
+        /// <remarks>Replaces Skills and Gear with new lists. Preserves Name, the six characteristic values, and the specialisation callback; does not reroll characteristics.</remarks>
         public void Reinitialise()
         {
             Age = 18;
@@ -280,6 +304,8 @@ namespace TravellerTools.TravellerData
             Gear = new List<TravellerGear>();
         }
 
+        /// <summary>Replaces STR, DEX, END, INT, EDU, and SOC with separate default-source 2d6 totals.</summary>
+        /// <remarks>Assigning SOC also updates UseTitle.</remarks>
         public void RollRandomCharacteristics()
         {
             STR = DiceTools.RollDice(2, 6);
@@ -290,6 +316,8 @@ namespace TravellerTools.TravellerData
             SOC = DiceTools.RollDice(2, 6);
         }
 
+        /// <summary>Creates the title choices for the current social standing.</summary>
+        /// <returns>A new list for SOC 11 through 17, or a single empty string for any other value.</returns>
         public List<string> AvailableTitles()
         {
             List<string> titles = new List<string>();
@@ -354,6 +382,11 @@ namespace TravellerTools.TravellerData
             return titles;
         }
 
+        /// <summary>Applies a characteristic or skill adjustment and records any gain in the creation history.</summary>
+        /// <param name="newSkill">The non-null adjustment; characteristic names must use uppercase Traveller codes.</param>
+        /// <param name="callback">The selector used when a matched skill has specialisations; not consulted for characteristic adjustments.</param>
+        /// <remarks>Unknown characteristics or missing skill definitions have no effect. Existing skills are matched by name and incremented; new skills are copied from the shared definitions. A null selection cancels the skill gain. The callback field is assigned for the operation and cleared on normal completion, but an early cancellation or exception can leave it assigned.</remarks>
+        /// <exception cref="TypeInitializationException">Loading shared skill definitions fails during a skill adjustment.</exception>
         public void AddSkill( TravellerSkillModifier newSkill, ISkillSpecialisationCollection callback )
         {
             SpecialisationSelectionCallback = callback;
@@ -447,6 +480,9 @@ namespace TravellerTools.TravellerData
         }
 
         // Should only be used when the newSkill does not have further specialisation
+        /// <summary>Adds an already-resolved skill or increases the level of the first skill with the same name.</summary>
+        /// <param name="newSkill">The skill to add; resolve any specialisations before calling.</param>
+        /// <remarks>A new entry retains the supplied object by reference. Existing entries gain its Level. Legacy null input is ignored.</remarks>
         public void AddSkill(TravellerSkill newSkill)
         {
             if (newSkill != null)
@@ -472,6 +508,10 @@ namespace TravellerTools.TravellerData
         }
 
         // Assumes gear is not null.  Will throw ArgumentOutOfRangeException if it is null
+        /// <summary>Adds inventory gear or increases the counts of existing entries with the same name.</summary>
+        /// <param name="gear">The inventory entry to add; must not be null.</param>
+        /// <remarks>A new entry retains the supplied object by reference. If duplicate names already exist, all matching entries gain its Count.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The gear argument is null.</exception>
         public void AddGear( TravellerGear gear )
         {
             if (gear != null)
@@ -498,6 +538,8 @@ namespace TravellerTools.TravellerData
 
         // Public Override Methods
 
+        /// <summary>Formats the character summary followed by service and creation history.</summary>
+        /// <returns>The summary and history separated by a line-feed character.</returns>
         public override string ToString()
         {
             return ShortStringFormat() + "\n" + CharacterHistory();
@@ -505,6 +547,8 @@ namespace TravellerTools.TravellerData
 
         // Public Methods
 
+        /// <summary>Formats the character identity, UPP, age, cash, skills, and gear.</summary>
+        /// <returns>Display text using tabs and line feeds; title and rank are included when their flags are enabled.</returns>
         public string ShortStringFormat()
         {
             string result = "";
@@ -543,6 +587,8 @@ namespace TravellerTools.TravellerData
             return result;
         }
 
+        /// <summary>Formats the service name and recorded creation events.</summary>
+        /// <returns>The service and history text, or an empty string when both are empty.</returns>
         public string CharacterHistory()
         {
             string result = string.Empty;
@@ -557,6 +603,9 @@ namespace TravellerTools.TravellerData
             return result;
         }
 
+        /// <summary>Checks the character's top-level skill entries for an exact name.</summary>
+        /// <param name="name">The case-sensitive name to find.</param>
+        /// <returns>True if any skill name matches, regardless of its level; otherwise false.</returns>
         public bool HasSkill( string name )
         {
             bool result = false;
@@ -578,17 +627,28 @@ namespace TravellerTools.TravellerData
 
         // Public Properties
 
+        /// <summary>Gets or sets the chosen social title.</summary>
         public string Title { get; set; } = string.Empty;
         // Doesn't need to be serialised
+        /// <summary>Controls whether the title is included in the character summary; assigning SOC also updates this flag.</summary>
         public bool UseTitle; 
+        /// <summary>Gets or sets the displayed service-rank name.</summary>
         public string Rank { get; set; } = string.Empty;
+        /// <summary>Gets or sets whether the service rank appears in the character summary.</summary>
         public bool UseRank { get; set; }
+        /// <summary>Gets or sets the character's display name.</summary>
         public string Name { get; set; } = string.Empty;
+        /// <summary>Gets or sets Strength.</summary>
         public int STR { get; set; }
+        /// <summary>Gets or sets Dexterity.</summary>
         public int DEX { get; set; }
+        /// <summary>Gets or sets Endurance.</summary>
         public int END { get; set; }
+        /// <summary>Gets or sets Intelligence.</summary>
         public int INT { get; set; }
+        /// <summary>Gets or sets Education.</summary>
         public int EDU { get; set; }
+        /// <summary>Gets or sets Social Standing; setting a value of at least eleven enables UseTitle and lower values disable it.</summary>
         public int SOC
         {
             get
@@ -610,6 +670,7 @@ namespace TravellerTools.TravellerData
         }
 
         // Doesn't need to be serialised
+        /// <summary>Gets the six-digit extended-hexadecimal profile in STR, DEX, END, INT, EDU, SOC order.</summary>
         public string UPP
         {
             get
@@ -624,6 +685,7 @@ namespace TravellerTools.TravellerData
             }
         }
 
+        /// <summary>Gets whether RankNumber is greater than zero.</summary>
         public bool Commissioned
         {
             get
@@ -632,6 +694,7 @@ namespace TravellerTools.TravellerData
             }
         }
 
+        /// <summary>Gets or sets age in years; increasing the value may roll aging checks and mutate characteristics, history, and death status.</summary>
         public decimal Age
         {
             get
@@ -644,26 +707,43 @@ namespace TravellerTools.TravellerData
                 age = value;
             }
         }
+        /// <summary>Gets or sets the current or former service name.</summary>
         public string Service { get; set; } = string.Empty;
+        /// <summary>Gets or sets whether the character entered service through the draft.</summary>
         public bool Drafted { get; set; }
+        /// <summary>Gets or sets the service whose enlistment attempt failed.</summary>
         public string FailedService { get; set; } = string.Empty;
+        /// <summary>Gets or sets the recorded number of service terms.</summary>
         public decimal TermsOfService { get; set; }
+        /// <summary>Gets or sets whether an injury ended service during character creation.</summary>
         public bool InjuredDuringCreation { get; set; }
+        /// <summary>Gets or sets the service-rank index; positive values indicate a commission.</summary>
         public decimal RankNumber { get; set; }
+        /// <summary>Gets or sets the mutable list of character skills; consumers require a non-null list.</summary>
         public List<TravellerSkill> Skills { get; set; } = new();
 
+        /// <summary>Gets or sets the accumulated character-creation narrative.</summary>
         public string CreationHistory { get; set; } = string.Empty;
 
+        /// <summary>Gets or sets whether the character has died.</summary>
         public bool IsDead { get; set; }
 
+        /// <summary>Gets or sets available cash in credits.</summary>
         public int Cash { get; set; }
+        /// <summary>Gets or sets the mutable inventory; consumers require a non-null list.</summary>
         public List<TravellerGear> Gear { get; set; } = new();
 
         // Event Management
 
         // Not using { get; set; } here as this data is not for serialisation. Should only be one at once.
+        /// <summary>The callback currently used to choose skill specialisations; may be null outside a selection operation.</summary>
         public ISkillSpecialisationCollection? SpecialisationSelectionCallback;
 
+        /// <summary>Delegates a skill choice to the currently assigned specialisation callback.</summary>
+        /// <param name="skillName">The parent skill name.</param>
+        /// <param name="list">The available child skills.</param>
+        /// <returns>The callback's selection, or null when it declines.</returns>
+        /// <remarks>SpecialisationSelectionCallback must be assigned before calling.</remarks>
         protected TravellerSkill? ChooseSpecialisation( string skillName, List<TravellerSkill> list )
         {
             return SpecialisationSelectionCallback!.SelectSpecialisation(skillName, list);

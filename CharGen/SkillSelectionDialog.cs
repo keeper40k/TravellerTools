@@ -12,6 +12,8 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Resolves skill selections from a character's service tables.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class SkillSelectionDialog : Form, ISkillSpecialisationCollection
     {
         // static constant strings
@@ -19,12 +21,19 @@ namespace TravellerTools.CharGen
 
         // protected members
 
+        /// <summary>The service whose tables supply the available outcomes.</summary>
         protected TravellerService service;
+        /// <summary>The character mutated when a selection is resolved.</summary>
         protected TravellerCharacter character;
+        /// <summary>The number of skill selections still available.</summary>
         protected decimal skillCount;
 
         // Public Constructors
 
+        /// <summary>Initializes service-table choices for a character.</summary>
+        /// <param name="service">The non-null career supplying skill tables.</param>
+        /// <param name="character">The non-null character to receive skills or characteristic adjustments.</param>
+        /// <param name="skillCount">The number of selections to resolve; zero closes the dialog.</param>
         public SkillSelectionDialog( TravellerService service, TravellerCharacter character, decimal skillCount )
         {
             this.service = service;
@@ -34,6 +43,8 @@ namespace TravellerTools.CharGen
             UpdateButtons();
         }
 
+        /// <summary>Refreshes table choices and remaining selections, closing when none remain.</summary>
+        /// <remarks>The second advanced-education table is enabled only for EDU of at least eight.</remarks>
         protected void UpdateButtons()
         {
             if (skillCount == 0)
@@ -55,6 +66,9 @@ namespace TravellerTools.CharGen
             }
         }
 
+        /// <summary>Rolls 1d6 and applies the first matching table adjustment to the character.</summary>
+        /// <param name="table">The non-null list mapping roll totals to adjustments.</param>
+        /// <remarks>Consumes one selection only when a table entry matches.</remarks>
         protected void ProcessSkillSelection(List<KeyValuePair<int, TravellerSkillModifier>> table)
         {
             int roll = DiceTools.RollOneDie(6);
@@ -77,6 +91,12 @@ namespace TravellerTools.CharGen
 
         // Implementation of ISkillSpecialisationCollection
 
+        /// <summary>Displays a modal choice of specialisations.</summary>
+        /// <param name="skillName">The parent skill name shown in the prompt.</param>
+        /// <param name="list">The non-null, non-empty list of available choices.</param>
+        /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
+        /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
         public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);

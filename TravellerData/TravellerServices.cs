@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace TravellerTools.TravellerData
 {
+    /// <summary>Stores a mutable collection of career definitions and persists it as services.json.</summary>
     public class TravellerServices
     {
 
@@ -21,12 +22,17 @@ namespace TravellerTools.TravellerData
         private List<TravellerService> services;
 
         // Constructor
+        /// <summary>Creates an empty career collection.</summary>
         public TravellerServices()
         {
             services = new List<TravellerService>();
         }
 
         // Public Methods
+        /// <summary>Appends career definitions loaded from services.json in the current working directory.</summary>
+        /// <remarks>A missing file or JSON null leaves the current collection unchanged. Repeated loads append duplicates rather than replacing existing entries.</remarks>
+        /// <exception cref="System.IO.IOException">The existing file cannot be read.</exception>
+        /// <exception cref="System.Text.Json.JsonException">The file cannot be deserialized.</exception>
         public void LoadSettings()
         {
             if (File.Exists(SERVICES_FILE))
@@ -40,12 +46,18 @@ namespace TravellerTools.TravellerData
             }
         }
 
+        /// <summary>Writes this collection to services.json in the current working directory, replacing an existing file.</summary>
+        /// <remarks>File-system and serialization errors propagate.</remarks>
+        /// <exception cref="System.IO.IOException">The file cannot be written.</exception>
         public void SaveSettings()
         {
             string json = JsonSerializer.Serialize(this);
             File.WriteAllText(SERVICES_FILE, json);
         }
 
+        /// <summary>Lists services offering characteristic-based bonuses to the supplied character.</summary>
+        /// <param name="character">The non-null character whose characteristics are checked.</param>
+        /// <returns>Service names, applicable die modifiers, and targets separated by line feeds; empty when no bonuses apply.</returns>
         public string RecommendText(TravellerCharacter character)
         {
             string result = string.Empty;
@@ -90,6 +102,9 @@ namespace TravellerTools.TravellerData
 
         // Protected Methods
 
+        /// <summary>Appends the source collection's service objects by reference.</summary>
+        /// <param name="services">The non-null collection to copy from.</param>
+        /// <remarks>The destination is not cleared and individual services are not cloned.</remarks>
         protected void Duplicate(TravellerServices services)
         {
             TravellerService[] sourceServices = new TravellerService[services.Services.Count];
@@ -102,6 +117,7 @@ namespace TravellerTools.TravellerData
 
         // Public Properties
 
+        /// <summary>Gets or sets the mutable career list; consumers require a non-null list.</summary>
         public List<TravellerService> Services
         {
             get

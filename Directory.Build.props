@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
+    <!-- Emit API documentation and check public XML comments during builds. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
     <Nullable>enable</Nullable>

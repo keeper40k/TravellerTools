@@ -4,6 +4,7 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.Tests;
 
+/// <summary>Verifies representative workflows spanning reusable Traveller components.</summary>
 [TestClass]
 public class SmokeTests
 {
@@ -27,6 +28,7 @@ public class SmokeTests
         Assert.AreEqual(0, source.RemainingCount);
     }
 
+    /// <summary>Verifies a fractional target survives construction unchanged.</summary>
     [TestMethod]
     public void TravellerRollTargetStoresTarget()
     {

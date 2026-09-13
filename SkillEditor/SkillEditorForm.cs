@@ -14,19 +14,26 @@ using System.Text.Json.Serialization;
 
 namespace SkillEditor
 {
+    /// <summary>Edits skill definitions and their nested specialisations.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class SkillEditorForm : Form
     {
         // static strings
+        /// <summary>The initial name assigned to a newly inserted skill.</summary>
         protected static string NEW_SKILL = "New Skill";
 
         // Form Data
 
+        /// <summary>The mutable list of top-level skill definitions being edited.</summary>
         protected List<TravellerSkill> Skills = new();
+        /// <summary>The selected top-level skill, or null when none is selected.</summary>
         protected TravellerSkill? CurrentSkill;
+        /// <summary>The selected child skill, or null when none is selected.</summary>
         protected TravellerSkill? CurrentSpecialisationSkill;
 
         // Public Constructors
 
+        /// <summary>Initializes the skill editor and its selection controls.</summary>
         public SkillEditorForm()
         {
             InitializeComponent();
@@ -36,6 +43,7 @@ namespace SkillEditor
 
         // Protected Methods
 
+        /// <summary>Refreshes skill and specialisation fields and enables valid list operations.</summary>
         protected void UpdateBoxes()
         {
             skillsBox.Items.Clear();
@@ -190,6 +198,9 @@ namespace SkillEditor
 
         private bool suppressSkillSelectionUpdate = false;
 
+        /// <summary>Switches the active skill and initializes its child selection without responding to internal list refreshes.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void skillsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (skillsBox.SelectedItem is TravellerSkill && !suppressSkillSelectionUpdate )
@@ -328,6 +339,9 @@ namespace SkillEditor
 
         private bool suppressSpecialistSkillSelectionUpdate = false;
 
+        /// <summary>Updates the active child skill without responding to internal list refreshes.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void specialisationSkillsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (specialisationSkillsBox.SelectedItem is TravellerSkill && !suppressSpecialistSkillSelectionUpdate)

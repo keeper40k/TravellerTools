@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace SkillEditor
 {
+    /// <summary>Starts the application's Windows Forms message loop.</summary>
     static class Program
     {
         /// <summary>

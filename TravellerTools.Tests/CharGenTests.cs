@@ -3,9 +3,11 @@ using TravellerTools.CharGen;
 
 namespace TravellerTools.Tests;
 
+/// <summary>Verifies character-generation preferences and JSON persistence.</summary>
 [TestClass]
 public class CharGenTests
 {
+    /// <summary>Verifies confirmation is enabled while optional age editing and survival overrides are disabled.</summary>
     [TestMethod]
     public void CharacterGenerationSettingsHaveExpectedDefaults()
     {
@@ -16,6 +18,7 @@ public class CharGenTests
         Assert.IsFalse(settings.AllowCharacterSurvival);
     }
 
+    /// <summary>Verifies settings survive a save and load in an isolated working directory.</summary>
     [TestMethod]
     public void CharacterGenerationSettingsRoundTripThroughJson()
     {

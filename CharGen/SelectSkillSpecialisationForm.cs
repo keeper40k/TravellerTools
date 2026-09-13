@@ -11,12 +11,19 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Presents a modal choice among a skill's specialisations.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class SelectSkillSpecialisationForm : Form
     {
         private static string SELECTION_LABEL = "Choose Skill Specialisation for {0}";
 
         // Public constructors
 
+        /// <summary>Creates a specialisation chooser with its first item selected.</summary>
+        /// <param name="skillName">The parent skill name shown in the prompt.</param>
+        /// <param name="list">The non-null, non-empty list of choices retained by reference in the control.</param>
+        /// <remarks>This constructor selects index zero and does not support an empty list.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The list is empty.</exception>
         public SelectSkillSpecialisationForm( string skillName, List<TravellerSkill> list )
         {
             InitializeComponent();
@@ -40,6 +47,7 @@ namespace TravellerTools.CharGen
         }
 
         // Protected methods
+        /// <summary>Displays the selected specialisation's summary, or clears it when nothing is selected.</summary>
         protected void UpdateBoxes()
         {
             if (skillSpecialisationsBox.SelectedItem is TravellerSkill )
@@ -54,6 +62,7 @@ namespace TravellerTools.CharGen
 
         // public properties
 
+        /// <summary>The current selected skill by reference, or null when the control has no skill selected.</summary>
         public TravellerSkill? SelectedSkill;
 
         // Private events handlers

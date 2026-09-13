@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace TravellerTools.TravellerCombatTool
 {
+    /// <summary>Starts the application's Windows Forms message loop.</summary>
     static class Program
     {
         /// <summary>

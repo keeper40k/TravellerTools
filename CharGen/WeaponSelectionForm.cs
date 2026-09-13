@@ -11,6 +11,8 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Offers a weapon benefit or a related skill benefit based on the character's inventory.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class WeaponSelectionForm : Form
     {
         // private constant strings
@@ -21,11 +23,16 @@ namespace TravellerTools.CharGen
 
         // Protected Memebers
 
+        /// <summary>The combat skill whose specialisations define the weapon choices.</summary>
         protected TravellerSkill weapon;
+        /// <summary>The character inventory used to determine eligibility for a skill benefit.</summary>
         protected List<TravellerGear> currentGear;
 
         // Public Constructors
 
+        /// <summary>Initializes a chooser for a weapon or related skill benefit.</summary>
+        /// <param name="weapon">The non-null combat skill containing available weapon specialisations.</param>
+        /// <param name="gear">The non-null character inventory, retained by reference.</param>
         public WeaponSelectionForm( TravellerSkill weapon, List<TravellerGear> gear )
         {
             this.weapon = weapon;
@@ -41,6 +48,7 @@ namespace TravellerTools.CharGen
 
         // Protected methods
 
+        /// <summary>Rebuilds benefit choices from weapon specialisations or the matching inventory.</summary>
         protected void UpdateBoxes()
         {
             promptLabel.Text = string.Format(CHOICE_LABEL, weapon.Name);
@@ -80,6 +88,7 @@ namespace TravellerTools.CharGen
             UpdateCheckBoxes();
         }
 
+        /// <summary>Synchronizes the two exclusive benefit modes without re-entering their change handlers.</summary>
         protected void UpdateCheckBoxes()
         {
             suppressCheckChange = true;
@@ -88,6 +97,8 @@ namespace TravellerTools.CharGen
             suppressCheckChange = false;
         }
 
+        /// <summary>Checks whether the inventory contains gear matching the combat skill category.</summary>
+        /// <returns>True when a GearType plus ' Combat' exactly matches the weapon skill name.</returns>
         protected bool GearContainsWeaponType()
         {
             bool found = false;
@@ -107,10 +118,13 @@ namespace TravellerTools.CharGen
 
         // Public properties
 
+        /// <summary>Gets or sets whether the chooser awards gear rather than a skill.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsWeaponSelected { get; set; }
+        /// <summary>Gets or sets the resolved gear benefit, or null when no gear was resolved.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TravellerGear? SelectedGear { get; set; }
+        /// <summary>Gets or sets the resolved skill benefit, or null when no skill was resolved.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TravellerSkill? SelectedSkill { get; set; }
 
@@ -175,6 +189,9 @@ namespace TravellerTools.CharGen
         }
 
         bool preventSelectionLoop = false;
+        /// <summary>Preserves the selected benefit while rebuilding choices, guarding against recursive selection events.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void choicesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             object? selection = choicesBox.SelectedItem;

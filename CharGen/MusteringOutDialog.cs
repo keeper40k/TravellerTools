@@ -12,6 +12,8 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Resolves a character's remaining cash and non-cash mustering-out selections.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class MusteringOutDialog : Form, ISkillSpecialisationCollection
     {
         // static constant strings
@@ -30,16 +32,26 @@ namespace TravellerTools.CharGen
 
         // protected members
 
+        /// <summary>The service whose tables supply the available outcomes.</summary>
         protected TravellerService service;
+        /// <summary>The character mutated when a selection is resolved.</summary>
         protected TravellerCharacter character;
+        /// <summary>The number of mustering-out rolls initially available.</summary>
         protected decimal rollsCount;
+        /// <summary>The number of cash-table rolls already taken.</summary>
         protected decimal cashRollsCount;
+        /// <summary>The number of non-cash benefit rolls already taken.</summary>
         protected decimal benefitRollsCount;
 
+        /// <summary>Whether the character qualifies for the Gambling skill cash modifier.</summary>
         protected bool gamblingBonus;
 
         // Public Constructors
 
+        /// <summary>Initializes mustering-out choices for a character leaving service.</summary>
+        /// <param name="service">The non-null service supplying cash and benefit tables.</param>
+        /// <param name="character">The non-null character to receive the awards.</param>
+        /// <param name="rollsCount">The available mustering-out roll allowance.</param>
         public MusteringOutDialog(TravellerService service, TravellerCharacter character, decimal rollsCount)
         {
             this.service = service;
@@ -73,6 +85,7 @@ namespace TravellerTools.CharGen
             UpdateButtons();
         }
 
+        /// <summary>Refreshes remaining-roll labels, table choices, and cash-roll availability.</summary>
         protected void UpdateButtons()
         {
             if (rollsCount == 0)
@@ -103,6 +116,8 @@ namespace TravellerTools.CharGen
             bonusToCashLabel.Visible = gamblingBonus;
         }
 
+        /// <summary>Rolls a non-cash benefit, applies it to the character, and refreshes the remaining choices.</summary>
+        /// <param name="table">The non-null list mapping die results to benefits.</param>
         protected void ProcessBenefitSelection(List<KeyValuePair<int, TravellerMusteringOutBenefit>> table)
         {
             object? resultForReporting = null;
@@ -192,6 +207,8 @@ namespace TravellerTools.CharGen
             UpdateButtons();
         }
 
+        /// <summary>Rolls a cash award, updates the character's cash, and records the selection.</summary>
+        /// <param name="table">The non-null list mapping die results to credit awards.</param>
         protected void ProcessCashSelection(List<KeyValuePair<int, decimal>> table)
         {
             int roll = DiceTools.RollOneDie(6);
@@ -218,6 +235,9 @@ namespace TravellerTools.CharGen
             UpdateButtons();
         }
 
+        /// <summary>Translates supported characteristic benefit labels into adjustments.</summary>
+        /// <param name="name">A label such as '+1 INT'; recognized increases are +1 or +2 INT, EDU, and SOC.</param>
+        /// <returns>The corresponding characteristic adjustment, or an unnamed zero-level skill adjustment for an unknown label.</returns>
         protected TravellerSkillModifier BenefitAttLookup( string name )
         {
             TravellerSkillModifier skill = new TravellerSkillModifier();
@@ -280,6 +300,9 @@ namespace TravellerTools.CharGen
             return skill;
         }
 
+        /// <summary>Looks up a named gear benefit without filtering by weapon type.</summary>
+        /// <param name="name">The exact gear name.</param>
+        /// <returns>The shared gear definition, or null.</returns>
         protected TravellerGear? BenefitGearLookup( string name )
         {
             return TravellerGearStorehouse.GetGear(name, string.Empty);
@@ -287,6 +310,12 @@ namespace TravellerTools.CharGen
 
         // Implementation of ISkillSpecialisationCollection
 
+        /// <summary>Displays a modal choice of specialisations.</summary>
+        /// <param name="skillName">The parent skill name shown in the prompt.</param>
+        /// <param name="list">The non-null, non-empty list of available choices.</param>
+        /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
+        /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
         public TravellerSkill? SelectSpecialisation(string skillName, List<TravellerSkill> list)
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);

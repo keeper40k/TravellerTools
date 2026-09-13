@@ -6,6 +6,8 @@ namespace TravellerTools.Fundamentals
 {
 
 	// A class for providing all dice-rolling needs
+	/// <summary>Rolls individual dice or groups and returns their integer totals.</summary>
+	/// <remarks>Default overloads use thread-safe system randomness. Overloads accepting IRandomSource support deterministic sources; callers manage those sources' concurrency. Percentile dice return 100 rather than zero. Dice-expression parsing and modifiers are not supported.</remarks>
 	public class DiceTools
 	{
 		private static readonly IRandomSource randomSource = new SystemRandomSource();

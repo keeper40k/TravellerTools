@@ -6,6 +6,8 @@ using System.Text.Json;
 
 namespace TravellerTools.TravellerData
 {
+    /// <summary>Provides shared gear definitions loaded from gear.json in the current working directory.</summary>
+    /// <remarks>The initial load occurs once during type initialization. Lookups return mutable shared objects. The loader recognizes TravellerGear, TravellerRetirementPay, and TravellerStarshipBenefit ClassType values and skips other types.</remarks>
     public class TravellerGearStorehouse
     {
         // private const strings
@@ -22,6 +24,11 @@ namespace TravellerTools.TravellerData
 
         // static Protected Methods
 
+        /// <summary>Clears and reloads gear definitions from gear.json in the current working directory.</summary>
+        /// <remarks>Each JSON entry must provide ClassType. Read or parse failures propagate and may leave the collection empty or partially populated.</remarks>
+        /// <exception cref="System.IO.IOException">The file cannot be read.</exception>
+        /// <exception cref="System.Text.Json.JsonException">The JSON cannot be parsed or converted.</exception>
+        /// <exception cref="System.Collections.Generic.KeyNotFoundException">An entry has no ClassType property.</exception>
         static protected void LoadGear()
         {
             Gear.Clear();
@@ -63,6 +70,12 @@ namespace TravellerTools.TravellerData
 
         // static Public Methods
 
+        /// <summary>Finds the first gear definition matching a name and optional weapon category.</summary>
+        /// <param name="Name">The exact, case-sensitive gear name.</param>
+        /// <param name="weaponType">The required GearType followed by ' Combat'; an empty or null string disables this filter.</param>
+        /// <returns>The matching shared gear object, or null.</returns>
+        /// <remarks>No copy is made.</remarks>
+        /// <exception cref="TypeInitializationException">The initial gear.json load failed.</exception>
         public static TravellerGear? GetGear( string Name, string weaponType )
         {
             TravellerGear? result = null;

@@ -13,6 +13,8 @@ using System.Text.Json;
 
 namespace GearEditor
 {
+    /// <summary>Edits gear definitions and loads or saves their JSON representation.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class GearEditorForm : Form
     {
         // private const strings
@@ -30,6 +32,7 @@ namespace GearEditor
 
         // Public Constructors
 
+        /// <summary>Initializes the gear editor, its empty inventory, and gear-type choices.</summary>
         public GearEditorForm()
         {
             Gear = new List<TravellerGear>();
@@ -41,6 +44,7 @@ namespace GearEditor
 
         // Protected methods
 
+        /// <summary>Refreshes controls for the selected gear subtype and available list operations.</summary>
         protected void UpdateBoxes()
         {
             int oldIndex = gearBox.SelectedIndex;
@@ -155,6 +159,8 @@ namespace GearEditor
             }
         }
 
+        /// <summary>Populates category choices from gearTypes.json in the current working directory.</summary>
+        /// <remarks>The file is required; missing-file, read, and JSON errors propagate.</remarks>
         protected void LoadGearTypes()
         {
             gearTypeBox.Items.Clear();
@@ -169,9 +175,11 @@ namespace GearEditor
 
         // Public Properties
 
+        /// <summary>Gets or sets the mutable list of gear definitions being edited.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<TravellerGear> Gear { get; set; }
 
+        /// <summary>Gets or sets the item currently displayed by the editor, or null for no selection.</summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TravellerGear? SelectedGear { get; set; }
 
@@ -225,6 +233,9 @@ namespace GearEditor
             UpdateBoxes();
         }
 
+        /// <summary>Serializes each gear item using its runtime benefit subtype so subtype-specific properties survive export.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void saveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
@@ -287,6 +298,9 @@ namespace GearEditor
         }
 
         bool suppressReselection = false;
+        /// <summary>Updates the active gear item while avoiding a recursive refresh during programmatic reselection.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void gearBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedGear = gearBox.SelectedItem as TravellerGear;

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TravellerTools.TravellerData
 {
+    /// <summary>Represents a retirement-pay benefit in a character's inventory.</summary>
     public class TravellerRetirementPay : TravellerGear
     {
 
@@ -14,6 +15,7 @@ namespace TravellerTools.TravellerData
 
         // Public constructors
 
+        /// <summary>Creates a benefit named Retirement Pay with an amount of zero.</summary>
         public TravellerRetirementPay()
         {
             Name = RetirementPayName;
@@ -22,11 +24,15 @@ namespace TravellerTools.TravellerData
 
         // Public Override Methods
 
+        /// <summary>Formats the benefit's name without its payment amount.</summary>
+        /// <returns>The current Name.</returns>
         public override string ToString()
         {
             return Name;
         }
 
+        /// <summary>Formats the benefit name and credit amount.</summary>
+        /// <returns>The name followed by ': Cr' and Amount using the current culture.</returns>
         public override string DisplayString()
         {
             return Name + ToStringSeparator + Amount;
@@ -35,6 +41,7 @@ namespace TravellerTools.TravellerData
 
         // Public Properties
 
+        /// <summary>Gets or sets the retirement payment amount in credits.</summary>
         public decimal Amount { get; set; }
     }
 }

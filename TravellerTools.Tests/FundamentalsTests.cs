@@ -3,6 +3,7 @@ using TravellerTools.Fundamentals;
 
 namespace TravellerTools.Tests;
 
+/// <summary>Verifies dice and roll-table contracts with deterministic inputs.</summary>
 [TestClass]
 [TestCategory("Unit")]
 public class FundamentalsTests
@@ -165,12 +166,14 @@ public class FundamentalsTests
         Assert.AreEqual(6, DiceTools.RollOneDie(6, new FixedRandomSource(6)));
     }
 
+    /// <summary>Verifies a one-sided die is rejected by the default overload.</summary>
     [TestMethod]
     public void RollOneDieRejectsFewerThanTwoSides()
     {
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceTools.RollOneDie(1));
     }
 
+    /// <summary>Verifies minimum and maximum totals for three six-sided dice.</summary>
     [TestMethod]
     public void RollDiceReturnsValuesWithinRequestedRange()
     {
@@ -178,18 +181,21 @@ public class FundamentalsTests
         Assert.AreEqual(18, DiceTools.RollDice(3, 6, new FixedRandomSource(6, 6, 6)));
     }
 
+    /// <summary>Verifies the default dice overload rejects an empty group.</summary>
     [TestMethod]
     public void RollDiceRejectsZeroDice()
     {
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceTools.RollDice(0, 6));
     }
 
+    /// <summary>Verifies the default group roller rejects an unsupported side count.</summary>
     [TestMethod]
     public void RollDiceRejectsFewerThanTwoSides()
     {
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceTools.RollDice(1, 1));
     }
 
+    /// <summary>Verifies supplied individual outcomes are summed in order.</summary>
     [TestMethod]
     public void RollDiceUsesSuppliedRandomSource()
     {
@@ -198,6 +204,7 @@ public class FundamentalsTests
         Assert.AreEqual(9, result);
     }
 
+    /// <summary>Verifies mixed die types consume the expected outcomes and produce one total.</summary>
     [TestMethod]
     public void RollManyDiceUsesEachGroupCountAndSides()
     {
@@ -208,6 +215,7 @@ public class FundamentalsTests
         Assert.AreEqual(6, result);
     }
 
+    /// <summary>Verifies mutation to an invalid group count is detected before rolling.</summary>
     [TestMethod]
     public void RollManyDiceRejectsInvalidGroups()
     {
@@ -218,6 +226,7 @@ public class FundamentalsTests
             DiceTools.RollManyDice(new[] { invalidDice }, new FixedRandomSource()));
     }
 
+    /// <summary>Verifies the single-die constructor preserves its six-sided fallback.</summary>
     [TestMethod]
     public void DiceWithInvalidSidesDefaultsToSixSidedSingleDie()
     {
@@ -227,6 +236,7 @@ public class FundamentalsTests
         Assert.AreEqual(1, dice.Count);
     }
 
+    /// <summary>Verifies an invalid count falls back to one while preserving valid sides.</summary>
     [TestMethod]
     public void DiceWithInvalidCountDefaultsToOneDie()
     {
@@ -236,6 +246,7 @@ public class FundamentalsTests
         Assert.AreEqual(1, dice.Count);
     }
 
+    /// <summary>Verifies exact matching and single-value enumeration.</summary>
     [TestMethod]
     public void SingleTableRowMatchesOnlyItsNumber()
     {
@@ -246,6 +257,7 @@ public class FundamentalsTests
         CollectionAssert.AreEqual(new[] { 7 }, row.FullRange());
     }
 
+    /// <summary>Verifies both range endpoints match and adjacent values do not.</summary>
     [TestMethod]
     public void RangeTableRowMatchesInclusiveRange()
     {
@@ -259,6 +271,7 @@ public class FundamentalsTests
         CollectionAssert.AreEqual(new[] { 2, 3, 4 }, row.FullRange());
     }
 
+    /// <summary>Verifies reversed bounds fail during matching and enumeration.</summary>
     [TestMethod]
     public void InvalidRangeTableRowIsRejectedWhenUsed()
     {
@@ -268,6 +281,7 @@ public class FundamentalsTests
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => row.FullRange());
     }
 
+    /// <summary>Verifies insertion order resolves overlaps and unmatched totals return null.</summary>
     [TestMethod]
     public void TableReturnsTheFirstMatchingRow()
     {
@@ -281,6 +295,7 @@ public class FundamentalsTests
         Assert.IsNull(table.RollOnTable(4));
     }
 
+    /// <summary>Verifies duplicate identifiers prevent insertion.</summary>
     [TestMethod]
     public void TableRejectsRowsWithDuplicateUid()
     {
@@ -290,6 +305,7 @@ public class FundamentalsTests
         Assert.IsFalse(table.AddRow(new TableRowSingle(2, "second", "same")));
     }
 
+    /// <summary>Verifies adjacent non-overlapping ranges form a continuous table.</summary>
     [TestMethod]
     public void TableRecognisesUniqueContiguousRanges()
     {
@@ -300,6 +316,7 @@ public class FundamentalsTests
         Assert.IsTrue(table.IsUniqueAndContiguous());
     }
 
+    /// <summary>Verifies missing and duplicated roll values fail table validation.</summary>
     [TestMethod]
     public void TableRejectsGapsAndOverlaps()
     {

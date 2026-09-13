@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Starts the application's Windows Forms message loop.</summary>
     static class Program
     {
         /// <summary>

@@ -15,16 +15,24 @@ using TravellerTools.TravellerData;
 
 namespace TravellerTools.CharGen
 {
+    /// <summary>Hosts character creation, service terms, and mustering-out workflows.</summary>
+    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
     public partial class CharGenMainForm : Form, ISkillSpecialisationCollection
     {
         // Protected enums
 
+        /// <summary>Tracks which actions are available during character creation.</summary>
         protected enum CreationProcessState
         {
+            /// <summary>The character must enlist or enter the draft.</summary>
             SELECT_SERVICE = 1,
+            /// <summary>The character can resolve another service term.</summary>
             TERMS = 2,
+            /// <summary>The character must leave service and muster out.</summary>
             MUST_RETIRE = 3,
+            /// <summary>Mustering out has completed.</summary>
             MUSTERED_OUT = 4,
+            /// <summary>The character died during creation.</summary>
             DEAD = 5
         }
         
@@ -63,12 +71,18 @@ namespace TravellerTools.CharGen
         private static string ENOUGH_TERMS = "{0} must now retire after serving {1} terms.";
 
         // Protected member variables
+        /// <summary>The preferences controlling the current creation session.</summary>
         protected CharGenSettings Settings = null!;
+        /// <summary>The available career definitions.</summary>
         protected TravellerServices Services = null!;
+        /// <summary>The career selected for the current character.</summary>
         protected TravellerService Service = null!;
+        /// <summary>The character being created and edited.</summary>
         protected TravellerCharacter Character = null!;
+        /// <summary>Whether the current term result requires another term.</summary>
         protected bool ForceReenlistment = false;
 
+        /// <summary>Initializes the character-creation interface and its settings and career data.</summary>
         public CharGenMainForm()
         {
             InitializeComponent();
@@ -86,6 +100,7 @@ namespace TravellerTools.CharGen
 
         // Protected Methods
 
+        /// <summary>Resets creation-session state and refreshes the controls for a new character.</summary>
         protected void ResetState()
         {
             Service = new TravellerService();
@@ -103,6 +118,7 @@ namespace TravellerTools.CharGen
         }
 
         // Some of the input boxes won't change content, so they only need initialising once.
+        /// <summary>Populates the career-selection controls from the available services.</summary>
         protected void InitialiseServiceSelectionBoxes()
         {
             enlistmentChoiceBox.Items.Clear();
@@ -116,6 +132,7 @@ namespace TravellerTools.CharGen
             enlistButton.Enabled = false;
         }
 
+        /// <summary>Refreshes character details and history shown in the interface.</summary>
         protected void RefreshCharacterDisplay()
         {
             characterDisplay.Text = Character.ShortStringFormat();
@@ -138,6 +155,7 @@ namespace TravellerTools.CharGen
             }            
         }
 
+        /// <summary>Synchronizes editable character controls with the current model.</summary>
         protected void UpdateInputBoxes()
         {
             // Title Combo and Use Title
@@ -184,6 +202,7 @@ namespace TravellerTools.CharGen
             UpdateTermBoxes();
         }
 
+        /// <summary>Refreshes career controls and their availability for the current creation stage.</summary>
         protected void UpdateTermBoxes()
         {
             switch( CurrentState )
@@ -269,6 +288,7 @@ namespace TravellerTools.CharGen
             }
         }
 
+        /// <summary>Rolls the draft and assigns the character to the matching service.</summary>
         protected void ExecuteDraft()
         {
             Character.Drafted = true;
@@ -289,6 +309,7 @@ namespace TravellerTools.CharGen
             }
         }
 
+        /// <summary>Resolves survival, commission, promotion, skills, and reenlistment for a service term.</summary>
         protected void ProcessTerm()
         {
             ForceReenlistment = false;
@@ -482,6 +503,7 @@ namespace TravellerTools.CharGen
             }
         }
 
+        /// <summary>Applies all automatic skill adjustments for the character's current rank.</summary>
         protected void AddAutomaticSkills()
         {
             List<TravellerSkillModifier> autoSkills = Service.AutomaticSkillsAtRank((int)Character.RankNumber);
@@ -491,12 +513,20 @@ namespace TravellerTools.CharGen
             }
         }
 
+        /// <summary>Writes the current character as JSON, replacing an existing file.</summary>
+        /// <param name="filename">The destination path.</param>
+        /// <remarks>File-system errors propagate.</remarks>
+        /// <exception cref="System.IO.IOException">The destination cannot be written.</exception>
         protected void SaveJsonCharacter( string filename )
         {
             string json = JsonSerializer.Serialize(Character);
             File.WriteAllText(filename, json);
         }
 
+        /// <summary>Writes the current character as display text, replacing an existing file.</summary>
+        /// <param name="filename">The destination path.</param>
+        /// <remarks>File-system errors propagate.</remarks>
+        /// <exception cref="System.IO.IOException">The destination cannot be written.</exception>
         protected void SaveTextCharacter( string filename )
         {
             string text = Character.ToString();
@@ -505,6 +535,12 @@ namespace TravellerTools.CharGen
 
         // Implementation of ISkillSpecialisationCollection
 
+        /// <summary>Displays a modal choice of specialisations.</summary>
+        /// <param name="skillName">The parent skill name shown in the prompt.</param>
+        /// <param name="list">The non-null, non-empty list of available choices.</param>
+        /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
+        /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
         public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
         {
             SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
@@ -519,6 +555,7 @@ namespace TravellerTools.CharGen
         }
 
         // Protected Properaties
+        /// <summary>The current creation stage used to enable UI actions.</summary>
         protected CreationProcessState CurrentState;
 
         // Event Handlers
@@ -576,6 +613,9 @@ namespace TravellerTools.CharGen
             RefreshCharacterDisplay();
         }
 
+        /// <summary>Edits shared preferences in a modal dialog and refreshes controls affected by those preferences.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneralSettings settingsForm = new GeneralSettings( Settings );
@@ -589,6 +629,9 @@ namespace TravellerTools.CharGen
             this.Close();
         }
 
+        /// <summary>Applies manual age changes through the model's aging setter, then refreshes any resulting characteristic or history changes.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void ageNumberBox_ValueChanged(object sender, EventArgs e)
         {
             Character.Age = ageNumberBox.Value;
@@ -602,6 +645,9 @@ namespace TravellerTools.CharGen
         }
 
 
+        /// <summary>Resolves enlistment or a fallback draft, awards rank-zero skills, and automatically processes the first term.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void enlistButton_Click(object sender, EventArgs e)
         {
             decimal target = Service.Enlistment.Target;
@@ -659,6 +705,9 @@ namespace TravellerTools.CharGen
             RefreshCharacterDisplay();
         }
 
+        /// <summary>Displays characteristic-based enlistment modifiers, disabling enlistment for the placeholder choice.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void enlistmentChoiceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // There is a string in the list, if this is chosen, then the
@@ -689,6 +738,9 @@ namespace TravellerTools.CharGen
             UpdateInputBoxes();
         }
 
+        /// <summary>Computes term and rank-based benefit rolls, resolves awards, and adds eligible retirement pay.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void musterOutButton_Click(object sender, EventArgs e)
         {
             decimal rolls = Character.TermsOfService;
@@ -721,6 +773,9 @@ namespace TravellerTools.CharGen
             RefreshCharacterDisplay();
         }
 
+        /// <summary>Prompts for an export path and chooses JSON or text output from its filename extension.</summary>
+        /// <param name="sender">The control raising the event.</param>
+        /// <param name="e">The event data.</param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
