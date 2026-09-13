@@ -382,7 +382,7 @@ namespace TravellerTools.TravellerData
             return titles;
         }
 
-        /// <summary>Applies a characteristic or skill adjustment and records any gain in the creation history.</summary>
+        /// <summary>Applies a characteristic or skill adjustment and records the characteristic or resolved skill name in the creation history.</summary>
         /// <param name="newSkill">The non-null adjustment; characteristic names must use uppercase Traveller codes.</param>
         /// <param name="callback">The selector used when a matched skill has specialisations; not consulted for characteristic adjustments.</param>
         /// <remarks>Unknown characteristics or missing skill definitions have no effect. Existing skills are matched by name and incremented; new skills are copied from the shared definitions. A null selection cancels the skill gain. The callback field is assigned for the operation and cleared on normal completion, but an early cancellation or exception can leave it assigned.</remarks>
@@ -461,7 +461,7 @@ namespace TravellerTools.TravellerData
                         {
                             found = true;
                             existingSkill.Level += newSkill.Level;
-                            CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
+                            CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, fullSkill.Name);
                             break;
                         }
                     }
@@ -471,7 +471,7 @@ namespace TravellerTools.TravellerData
                         TravellerSkill localSkill = new TravellerSkill(fullSkill);
                         localSkill.Level = newSkill.Level;
                         Skills.Add( localSkill );
-                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, newSkill.Name);
+                        CreationHistory += string.Format(ATT_SKILL_GAIN, Name, newSkill.Level, fullSkill.Name);
                     }
                 }
             }

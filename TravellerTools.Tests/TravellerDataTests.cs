@@ -7,6 +7,75 @@ namespace TravellerTools.Tests;
 [TestClass]
 public class TravellerDataTests
 {
+    /// <summary>Chooses a named skill without displaying a dialog.</summary>
+    private sealed class NamedSkillSelection : ISkillSpecialisationCollection
+    {
+        private readonly string selectedName;
+
+        /// <summary>Stores the exact child skill to select.</summary>
+        public NamedSkillSelection(string selectedName)
+        {
+            this.selectedName = selectedName;
+        }
+
+        /// <summary>Gets how many specialisation choices were requested.</summary>
+        public int SelectionCount { get; private set; }
+
+        /// <summary>Returns the requested definition from the supplied choices.</summary>
+        public TravellerSkill? SelectSpecialisation(string skillName, List<TravellerSkill> list)
+        {
+            SelectionCount++;
+            return list.Single(skill => skill.Name == selectedName);
+        }
+    }
+
+    /// <summary>Verifies history names the awarded skill for both new and existing entries.</summary>
+    /// <param name="awardName">The skill category or unspecialised skill awarded.</param>
+    /// <param name="resolvedName">The specific skill expected in the character and history.</param>
+    /// <param name="initialLevel">Zero for a new entry; otherwise the existing skill level.</param>
+    [TestMethod]
+    [DataRow("Blade Combat", "Cutlass", 0)]
+    [DataRow("Blade Combat", "Cutlass", 1)]
+    [DataRow("Gun Combat", "Rifle", 0)]
+    [DataRow("Gun Combat", "Rifle", 1)]
+    [DataRow("Vehicle", "ATV", 0)]
+    [DataRow("Vehicle", "ATV", 1)]
+    [DataRow("Engineering", "Engineering", 0)]
+    [DataRow("Engineering", "Engineering", 1)]
+    [DataRow("Pilot", "Pilot", 0)]
+    [DataRow("Pilot", "Pilot", 1)]
+    public void SkillGainHistoryRecordsResolvedSkill(string awardName, string resolvedName, int initialLevel)
+    {
+        string previousDirectory = Directory.GetCurrentDirectory();
+        string dataDirectory = Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..", "CharGen", "JSON"));
+
+        try
+        {
+            // Shared definitions load relative to the working directory on first use.
+            Directory.SetCurrentDirectory(dataDirectory);
+            TravellerCharacter character = new() { Name = "Alex", CreationHistory = "Earlier event\n" };
+            if (initialLevel > 0)
+            {
+                character.Skills.Add(new TravellerSkill { Name = resolvedName, Level = initialLevel });
+            }
+            NamedSkillSelection selection = new(resolvedName);
+
+            character.AddSkill(new TravellerSkillModifier(awardName, 1, true, false), selection);
+
+            Assert.AreEqual(1, character.Skills.Count);
+            Assert.AreEqual(resolvedName, character.Skills[0].Name);
+            Assert.AreEqual((decimal)initialLevel + 1, character.Skills[0].Level);
+            Assert.AreEqual($"Earlier event\nAlex gained 1 {resolvedName}\n", character.CreationHistory);
+            Assert.AreEqual(awardName == resolvedName ? 0 : 1, selection.SelectionCount);
+        }
+        finally
+        {
+            Directory.SetCurrentDirectory(previousDirectory);
+        }
+    }
+
     /// <summary>Verifies inventory defaults and quantity-aware display formatting.</summary>
     [TestMethod]
     public void TravellerGearDefaultsAndFormatsAsItsName()
