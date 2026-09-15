@@ -5,6 +5,8 @@ namespace TravellerTools.Tests;
 
 /// <summary>Verifies character-generation preferences and JSON persistence.</summary>
 [TestClass]
+[TestCategory("Unit")]
+[DoNotParallelize]
 public class CharGenTests
 {
     /// <summary>Verifies confirmation is enabled while optional age editing and survival overrides are disabled.</summary>

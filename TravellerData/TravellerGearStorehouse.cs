@@ -21,7 +21,7 @@ public class TravellerGearStorehouse
 
     /// <summary>Clears and reloads gear definitions from gear.json in the current working directory.</summary>
     /// <remarks>Each JSON entry must provide ClassType. Read or parse failures propagate and may leave the collection empty or partially populated.</remarks>
-    /// <exception cref="System.UnauthorizedAccessException">Access to the settings file is denied.</exception>
+    /// <exception cref="System.UnauthorizedAccessException">Access to the gear file is denied.</exception>
     /// <exception cref="System.IO.IOException">The file cannot be read.</exception>
     /// <exception cref="System.Text.Json.JsonException">The JSON cannot be parsed or converted.</exception>
     /// <exception cref="System.Collections.Generic.KeyNotFoundException">An entry has no ClassType property.</exception>

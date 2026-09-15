@@ -11,7 +11,7 @@ internal sealed class FixedRandomSource : IRandomSource
     /// <summary>Stores the values in the order they should be consumed.</summary>
     public FixedRandomSource(params int[] values)
     {
-        this.values = new Queue<int>(values);
+        this.values = new(values);
     }
 
     /// <summary>Gets the number of values still available.</summary>

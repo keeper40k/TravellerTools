@@ -1,31 +1,23 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CreatureEncounterGen
+namespace CreatureEncounterGen;
+
+/// <summary>Hosts the creature encounter generator's Windows Forms interface.</summary>
+/// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
+public partial class CreatureEncounterGen : Form
 {
-    /// <summary>Hosts the creature encounter generator's Windows Forms interface.</summary>
-    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
-    public partial class CreatureEncounterGen : Form
+    /// <summary>Initializes the encounter-generator form and its controls.</summary>
+    public CreatureEncounterGen()
     {
-        /// <summary>Initializes the encounter-generator form and its controls.</summary>
-        public CreatureEncounterGen()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        /// <summary>Receives the form-load event; encounter initialization is not implemented here.</summary>
-        /// <param name="sender">The control raising the event.</param>
-        /// <param name="e">The event data.</param>
-        private void CreatureEncounterGen_Load(object sender, EventArgs e)
-        {
+    /// <summary>Receives the form-load event; encounter initialization is not implemented here.</summary>
+    /// <param name="sender">The control raising the event.</param>
+    /// <param name="e">The event data.</param>
+    private void CreatureEncounterGen_Load(object sender, EventArgs e)
+    {
 
-        }
     }
 }

@@ -5,6 +5,7 @@ namespace TravellerTools.Tests;
 
 /// <summary>Verifies Traveller data models, display formats, and repository JSON integration.</summary>
 [TestClass]
+[DoNotParallelize]
 public class TravellerDataTests
 {
     /// <summary>Chooses a named skill without displaying a dialog.</summary>
@@ -34,6 +35,7 @@ public class TravellerDataTests
     /// <param name="resolvedName">The specific skill expected in the character and history.</param>
     /// <param name="initialLevel">Zero for a new entry; otherwise the existing skill level.</param>
     [TestMethod]
+    [TestCategory("Unit")]
     [DataRow("Blade Combat", "Cutlass", 0)]
     [DataRow("Blade Combat", "Cutlass", 1)]
     [DataRow("Gun Combat", "Rifle", 0)]
@@ -78,6 +80,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies inventory defaults and quantity-aware display formatting.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void TravellerGearDefaultsAndFormatsAsItsName()
     {
         TravellerGear gear = new();
@@ -94,6 +97,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies retirement pay displays its default name and credit amount.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void RetirementPayUsesFixedNameAndDisplayFormat()
     {
         TravellerRetirementPay benefit = new() { Amount = 5000 };
@@ -104,6 +108,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies mortgage text is omitted for a Scout Ship.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void StarshipBenefitUsesMortgageTextExceptForScoutShip()
     {
         TravellerStarshipBenefit benefit = new() { Name = "Free Trader", MortgageDuration = 12 };
@@ -116,6 +121,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies new benefit flags and name-only display.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void MusteringOutBenefitDefaultsAndFormatsAsItsName()
     {
         TravellerMusteringOutBenefit benefit = new();
@@ -130,6 +136,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies adjustment mode setters keep skill and characteristic flags opposite.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void SkillModifierDefaultsToSkillAndPropertiesRemainExclusive()
     {
         TravellerSkillModifier modifier = new();
@@ -148,6 +155,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies neither constructor flag selects skill mode by default.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void SkillModifierConstructorDefaultsToSkillWhenNeitherFlagIsSet()
     {
         TravellerSkillModifier modifier = new("Pilot", 1, false, false);
@@ -160,6 +168,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies representative behaviours fall into their feeding groups.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void TravellerCreatureClassifiesCreatureTypes()
     {
         TravellerCreature creature = new();
@@ -177,6 +186,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies labels for undefined, carrion-eater, and siren behaviours.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void TravellerCreatureProvidesNamesForTypes()
     {
         Assert.AreEqual("Undefined", TravellerCreature.NameOfType(TravellerCreature.CreatureType.Undefined));
@@ -188,6 +198,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies initial collections and ordered extended-hexadecimal characteristic output.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterInitialisesCollectionsAndFormatsCharacteristics()
     {
         TravellerCharacter character = new();
@@ -206,6 +217,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies title choices for noble and non-noble social standing.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterTitlesDependOnSocialStanding()
     {
         TravellerCharacter character = new();
@@ -219,6 +231,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies repeated skill names combine levels into one entry.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterAddsAndCombinesSkillsByName()
     {
         TravellerCharacter character = new();
@@ -233,6 +246,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies repeated gear names combine quantities into one entry.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterAddsAndCombinesGearByName()
     {
         TravellerCharacter character = new();
@@ -246,6 +260,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies the legacy null-gear exception contract.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterRejectsNullGear()
     {
         TravellerCharacter character = new();
@@ -256,6 +271,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies threshold comparison and rejection of an unknown characteristic code.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacteristicRollTargetPassesAgainstSelectedCharacteristic()
     {
         TravellerCharacter character = new() { STR = 8, DEX = 3 };
@@ -267,6 +283,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies reset clears career gains and restores age eighteen.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterReinitialiseRestoresCreationState()
     {
         TravellerCharacter character = new();
@@ -284,6 +301,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies extended-hexadecimal boundaries, skipped letters, and saturation at Z.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterEHexFormattingUsesTravellerDigitsAndCapsAtZ()
     {
         TravellerCharacter character = new();
@@ -300,6 +318,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies a characteristic adjustment changes the value and adds a history entry.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void CharacterAddsAttributeSkillAndRecordsHistory()
     {
         TravellerCharacter character = new() { Name = "Alex", STR = 7 };
@@ -313,6 +332,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies displayed table keys, adjustments, and credit amounts.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void ServiceFormatsSkillAndCashTables()
     {
         TravellerService service = new();
@@ -325,6 +345,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies every new service table formats as empty text.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void NewServiceHasSafeEmptyTables()
     {
         TravellerService service = new();
@@ -339,6 +360,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies rank-index lookup, bounds validation, and automatic adjustments.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void ServiceRankAndAutomaticSkillLookupUseRankIndex()
     {
         TravellerService service = new();
@@ -354,11 +376,12 @@ public class TravellerDataTests
 
     /// <summary>Verifies a qualifying characteristic produces a service recommendation.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void ServiceRecommendationsIncludePassingCharacteristicBonuses()
     {
         TravellerService service = new() { Name = "Navy" };
-        service.Enlistment = new TravellerRollTarget(8);
-        service.EnlistmentPlusOne = new TravellerCharacteristicRollTarget("STR", 8);
+        service.Enlistment = new(8);
+        service.EnlistmentPlusOne = new("STR", 8);
         TravellerServices services = new();
         services.Services.Add(service);
         TravellerCharacter character = new() { STR = 8 };
@@ -368,6 +391,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies copying preserves skill data while cloning child definitions.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void SkillCopyIncludesNestedSpecialisations()
     {
         TravellerSkill source = new() { Name = "Pilot", HasSpecialisations = true, Level = 2 };
@@ -383,6 +407,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies repository gear lookup respects the optional combat category.</summary>
     [TestMethod]
+    [TestCategory("Functional")]
     public void GearStorehouseFiltersWeaponGearByWeaponType()
     {
         string previousDirectory = Directory.GetCurrentDirectory();
@@ -410,6 +435,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies service definitions and ranks load from the repository data.</summary>
     [TestMethod]
+    [TestCategory("Functional")]
     public void ServicesLoadFromRepositoryJson()
     {
         string previousDirectory = Directory.GetCurrentDirectory();
@@ -436,6 +462,7 @@ public class TravellerDataTests
 
     /// <summary>Verifies shared skill definitions include their nested choices.</summary>
     [TestMethod]
+    [TestCategory("Functional")]
     public void SkillsLoadFromRepositoryJsonWithSpecialisations()
     {
         string previousDirectory = Directory.GetCurrentDirectory();

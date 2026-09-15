@@ -1,135 +1,132 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravellerTools.Fundamentals;
 using TravellerTools.TravellerData;
 
-namespace TravellerTools.CharGen
+namespace TravellerTools.CharGen;
+
+/// <summary>Resolves skill selections from a character's service tables.</summary>
+/// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
+public partial class SkillSelectionDialog : Form, ISkillSpecialisationCollection
 {
-    /// <summary>Resolves skill selections from a character's service tables.</summary>
-    /// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
-    public partial class SkillSelectionDialog : Form, ISkillSpecialisationCollection
+    // The prompt displays the number of unspent skill selections.
+    private const string SkillsRemainingFormat = "Skill Selections Remaining ... {0}";
+
+    // protected members
+
+    /// <summary>The service whose tables supply the available outcomes.</summary>
+    protected TravellerService service;
+    /// <summary>The character mutated when a selection is resolved.</summary>
+    protected TravellerCharacter character;
+    /// <summary>The number of skill selections still available.</summary>
+    protected decimal skillCount;
+
+    // Public Constructors
+
+    /// <summary>Initializes service-table choices for a character.</summary>
+    /// <param name="service">The non-null career supplying skill tables.</param>
+    /// <param name="character">The non-null character to receive skills or characteristic adjustments.</param>
+    /// <param name="skillCount">The number of selections to resolve; zero closes the dialog.</param>
+    public SkillSelectionDialog(TravellerService service, TravellerCharacter character, decimal skillCount)
     {
-        // static constant strings
-        private string SKILL_LABEL = "Skill Selections Remaining ... {0}";
+        this.service = service;
+        this.character = character;
+        this.skillCount = skillCount;
+        InitializeComponent();
+        UpdateButtons();
+    }
 
-        // protected members
-
-        /// <summary>The service whose tables supply the available outcomes.</summary>
-        protected TravellerService service;
-        /// <summary>The character mutated when a selection is resolved.</summary>
-        protected TravellerCharacter character;
-        /// <summary>The number of skill selections still available.</summary>
-        protected decimal skillCount;
-
-        // Public Constructors
-
-        /// <summary>Initializes service-table choices for a character.</summary>
-        /// <param name="service">The non-null career supplying skill tables.</param>
-        /// <param name="character">The non-null character to receive skills or characteristic adjustments.</param>
-        /// <param name="skillCount">The number of selections to resolve; zero closes the dialog.</param>
-        public SkillSelectionDialog( TravellerService service, TravellerCharacter character, decimal skillCount )
+    /// <summary>Refreshes table choices and remaining selections, closing when none remain.</summary>
+    /// <remarks>The second advanced-education table is enabled only for EDU of at least eight.</remarks>
+    protected void UpdateButtons()
+    {
+        if (skillCount == 0)
         {
-            this.service = service;
-            this.character = character;
-            this.skillCount = skillCount;
-            InitializeComponent();
-            UpdateButtons();
+            // If nothing left to do, close the form
+            Close();
         }
-
-        /// <summary>Refreshes table choices and remaining selections, closing when none remain.</summary>
-        /// <remarks>The second advanced-education table is enabled only for EDU of at least eight.</remarks>
-        protected void UpdateButtons()
+        else
         {
-            if (skillCount == 0)
-            {
-                // If nothing left to do, close the form
-                Close();
-            }
-            else
-            {
-                skillsRemainingLabel.Text = string.Format(SKILL_LABEL, skillCount);
-                characterDisplay.Text = character.ShortStringFormat();
-                skillTable1Button.Text = service.PersonalDevelopmentTableText();
-                skillTable2Button.Text = service.ServiceSkillsTableText();
-                skillTable3Button.Text = service.AdvancedEducationTableText();
-                skillTable4Button.Text = service.AdvancedEducationTable2Text();
+            skillsRemainingLabel.Text = string.Format(SkillsRemainingFormat, skillCount);
+            characterDisplay.Text = character.ShortStringFormat();
+            skillTable1Button.Text = service.PersonalDevelopmentTableText();
+            skillTable2Button.Text = service.ServiceSkillsTableText();
+            skillTable3Button.Text = service.AdvancedEducationTableText();
+            skillTable4Button.Text = service.AdvancedEducationTable2Text();
 
-                // Only enabled the 2nd Advanced Education Table, if the character's education is 8 or more
-                skillTable4Button.Enabled = character.EDU > 7;
+            // Only enabled the 2nd Advanced Education Table, if the character's education is 8 or more
+            skillTable4Button.Enabled = character.EDU > 7;
+        }
+    }
+
+    /// <summary>Rolls 1d6 and applies the first matching table adjustment to the character.</summary>
+    /// <param name="table">The non-null list mapping roll totals to adjustments.</param>
+    /// <remarks>Consumes one selection only when a table entry matches.</remarks>
+    protected void ProcessSkillSelection(List<KeyValuePair<int, TravellerSkillModifier>> table)
+    {
+        int roll = DiceTools.RollOneDie(6);
+        TravellerSkillModifier? rolledSkill = null;
+        foreach (KeyValuePair<int, TravellerSkillModifier> item in table)
+        {
+            if (roll == item.Key)
+            {
+                rolledSkill = item.Value;
+                break;
             }
         }
-
-        /// <summary>Rolls 1d6 and applies the first matching table adjustment to the character.</summary>
-        /// <param name="table">The non-null list mapping roll totals to adjustments.</param>
-        /// <remarks>Consumes one selection only when a table entry matches.</remarks>
-        protected void ProcessSkillSelection(List<KeyValuePair<int, TravellerSkillModifier>> table)
+        if (rolledSkill != null)
         {
-            int roll = DiceTools.RollOneDie(6);
-            TravellerSkillModifier? rolledSkill = null;
-            foreach( KeyValuePair<int, TravellerSkillModifier> item in table )
-            {
-                if( roll == item.Key )
-                {
-                    rolledSkill = item.Value;
-                    break;
-                }
-            }
-            if( rolledSkill != null )
-            {
-                character.AddSkill(rolledSkill, this);
-                skillCount--;
-            }
-            UpdateButtons();
+            character.AddSkill(rolledSkill, this);
+            skillCount--;
+        }
+        UpdateButtons();
+    }
+
+    // Implementation of ISkillSpecialisationCollection
+
+    /// <summary>Displays a modal choice of specialisations.</summary>
+    /// <param name="skillName">The parent skill name shown in the prompt.</param>
+    /// <param name="list">The non-null, non-empty list of available choices.</param>
+    /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
+    /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
+    /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
+    public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
+    {
+        using SelectSkillSpecialisationForm form = new(skillName, list);
+        form.ShowDialog();
+        TravellerSkill? selectedSkill = form.SelectedSkill;
+        if (selectedSkill != null && selectedSkill.HasSpecialisations)
+        {
+            SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
         }
 
-        // Implementation of ISkillSpecialisationCollection
+        return selectedSkill!;
+    }
 
-        /// <summary>Displays a modal choice of specialisations.</summary>
-        /// <param name="skillName">The parent skill name shown in the prompt.</param>
-        /// <param name="list">The non-null, non-empty list of available choices.</param>
-        /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
-        /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
-        /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
-        public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
-        {
-            SelectSkillSpecialisationForm form = new SelectSkillSpecialisationForm(skillName, list);
-            form.ShowDialog();
-            TravellerSkill? selectedSkill = form.SelectedSkill;
-            if( selectedSkill != null && selectedSkill.HasSpecialisations )
-            {
-                SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
-            }
+    // Private Event Handlers
 
-            return selectedSkill!;
-        }
+    // Resolves one selection from the personal-development table.
+    private void skillTable1Button_Click(object sender, EventArgs e)
+    {
+        ProcessSkillSelection(service.PersonalDevelopmentTable);
+    }
 
-        // Private Event Handlers
+    // Resolves one selection from the service-skills table.
+    private void skillTable2Button_Click(object sender, EventArgs e)
+    {
+        ProcessSkillSelection(service.ServiceSkillsTable);
+    }
 
-        private void skillTable1Button_Click(object sender, EventArgs e)
-        {
-            ProcessSkillSelection( service.PersonalDevelopmentTable );
-        }
+    // Resolves one selection from the first advanced-education table.
+    private void skillTable3Button_Click(object sender, EventArgs e)
+    {
+        ProcessSkillSelection(service.AdvancedEducationTable);
+    }
 
-        private void skillTable2Button_Click(object sender, EventArgs e)
-        {
-            ProcessSkillSelection( service.ServiceSkillsTable );
-        }
-
-        private void skillTable3Button_Click(object sender, EventArgs e)
-        {
-            ProcessSkillSelection( service.AdvancedEducationTable );
-        }
-
-        private void skillTable4Button_Click(object sender, EventArgs e)
-        {
-            ProcessSkillSelection( service.AdvancedEducationTable2 );
-        }
+    // Resolves one selection from the education-gated advanced table.
+    private void skillTable4Button_Click(object sender, EventArgs e)
+    {
+        ProcessSkillSelection(service.AdvancedEducationTable2);
     }
 }

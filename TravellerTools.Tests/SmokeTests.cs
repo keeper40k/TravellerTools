@@ -30,6 +30,7 @@ public class SmokeTests
 
     /// <summary>Verifies a fractional target survives construction unchanged.</summary>
     [TestMethod]
+    [TestCategory("Unit")]
     public void TravellerRollTargetStoresTarget()
     {
         TravellerRollTarget target = new(8.5m);

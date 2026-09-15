@@ -8,6 +8,7 @@ namespace TravellerTools.Fundamentals;
 /// <remarks>Instances may be used concurrently. This source does not provide a reproducible seeded sequence.</remarks>
 public sealed class SystemRandomSource : IRandomSource
 {
+    // Sharing the platform generator keeps all instances safe for concurrent callers.
     private readonly Random random;
 
     /// <summary>
