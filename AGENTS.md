@@ -194,3 +194,30 @@ After completing a substantive implementation task, report:
 - any known limitations or deliberately deferred functionality.
 
 Do not commit or push unless explicitly instructed.
+
+## Terminal command policy
+
+For routine read-only inspection, issue simple commands directly wherever
+possible so that they match the user's persistent Codex execution rules.
+
+Preferred read-only commands include:
+
+- `Get-Content`
+- `Get-ChildItem`
+- `Get-Item`
+- `Get-Location`
+- `rg`
+- `git status`
+- `git diff`
+- `git log`
+- `git show`
+- `git ls-files`
+
+Do not unnecessarily combine multiple read-only operations into a single
+`pwsh -Command` invocation.
+
+Prefer several simple inspection commands over one compound PowerShell
+command when this allows the commands to match existing execution rules.
+
+Commands that modify source files, repository contents, Git state, or Git
+history should continue to use the normal approval mechanism.
