@@ -22,5 +22,7 @@
     <Content Update="JSON\skills.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Update="Development Notes.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-
+   <Target Name="PostBuild" AfterTargets="Build">
+    <Exec Command="copy .\JSON\*.json $(OutputPath)" />
+  </Target>
 </Project>
