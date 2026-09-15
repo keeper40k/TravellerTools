@@ -117,9 +117,11 @@ public partial class WeaponSelectionForm : Form
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public bool IsWeaponSelected { get; set; }
     /// <summary>Gets or sets the resolved gear benefit, or null when no gear was resolved.</summary>
+    /// <remarks>Selection copies the chosen definition or inventory entry into an independent award.</remarks>
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public TravellerGear? SelectedGear { get; set; }
     /// <summary>Gets or sets the resolved skill benefit, or null when no skill was resolved.</summary>
+    /// <remarks>Selection creates an independent level-one award without modifying the shared definition.</remarks>
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public TravellerSkill? SelectedSkill { get; set; }
 
@@ -162,6 +164,10 @@ public partial class WeaponSelectionForm : Form
             {
                 SelectedGear = choicesBox.SelectedItem as TravellerGear;
             }
+            if (SelectedGear != null)
+            {
+                SelectedGear = BenefitAwards.CreateGear(SelectedGear);
+            }
         }
         // So, a skill instead!
         else
@@ -175,12 +181,9 @@ public partial class WeaponSelectionForm : Form
             {
                 SelectedSkill = choicesBox.SelectedItem as TravellerSkill;
             }
-            if (selected != null)
+            if (SelectedSkill != null)
             {
-                if (SelectedSkill != null)
-                {
-                    SelectedSkill.Level = 1;
-                }
+                SelectedSkill = BenefitAwards.CreateSkill(SelectedSkill);
             }
         }
         Close();

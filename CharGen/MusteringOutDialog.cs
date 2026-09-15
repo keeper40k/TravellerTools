@@ -181,7 +181,7 @@ public partial class MusteringOutDialog : Form, ISkillSpecialisationCollection
                     {
                         if (gear != null)
                         {
-                            character.AddGear(gear);
+                            character.AddGear(BenefitAwards.CreateGear(gear));
                         }
                     }
                 }
