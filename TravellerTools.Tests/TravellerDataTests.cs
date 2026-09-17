@@ -57,7 +57,7 @@ public class TravellerDataTests
         {
             // Shared definitions load relative to the working directory on first use.
             Directory.SetCurrentDirectory(dataDirectory);
-            TravellerCharacter character = new() { Name = "Alex", CreationHistory = "Earlier event\n" };
+            TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { Name = "Alex", CreationHistory = "Earlier event\n" };
             if (initialLevel > 0)
             {
                 character.Skills.Add(new TravellerSkill { Name = resolvedName, Level = initialLevel });
@@ -201,7 +201,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterInitialisesCollectionsAndFormatsCharacteristics()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
         character.STR = 10;
         character.DEX = 11;
         character.END = 12;
@@ -220,7 +220,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterTitlesDependOnSocialStanding()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         character.SOC = 11;
         CollectionAssert.AreEqual(new[] { "Knight", "Knightess", "Dame", "Sir", "Lady" }, character.AvailableTitles());
@@ -234,7 +234,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterAddsAndCombinesSkillsByName()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         character.AddSkill(new TravellerSkill { Name = "Pilot", Level = 1 });
         character.AddSkill(new TravellerSkill { Name = "Pilot", Level = 2 });
@@ -249,7 +249,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterAddsAndCombinesGearByName()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         character.AddGear(new TravellerGear { Name = "Rations", Count = 2 });
         character.AddGear(new TravellerGear { Name = "Rations", Count = 3 });
@@ -263,7 +263,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterRejectsNullGear()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         // Deliberately violate the non-null contract to verify runtime validation.
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => character.AddGear(null!));
@@ -274,7 +274,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacteristicRollTargetPassesAgainstSelectedCharacteristic()
     {
-        TravellerCharacter character = new() { STR = 8, DEX = 3 };
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { STR = 8, DEX = 3 };
 
         Assert.IsTrue(new TravellerCharacteristicRollTarget("STR", 8).Pass(character));
         Assert.IsFalse(new TravellerCharacteristicRollTarget("DEX", 4).Pass(character));
@@ -286,7 +286,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterReinitialiseRestoresCreationState()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
         character.Name = "Alex";
         character.Cash = 100;
         character.AddSkill(new TravellerSkill { Name = "Pilot", Level = 1 });
@@ -304,7 +304,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterEHexFormattingUsesTravellerDigitsAndCapsAtZ()
     {
-        TravellerCharacter character = new();
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         Assert.AreEqual("0", character.EHexCharacteristic(0));
         Assert.AreEqual("9", character.EHexCharacteristic(9));
@@ -321,7 +321,7 @@ public class TravellerDataTests
     [TestCategory("Unit")]
     public void CharacterAddsAttributeSkillAndRecordsHistory()
     {
-        TravellerCharacter character = new() { Name = "Alex", STR = 7 };
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { Name = "Alex", STR = 7 };
 
         // Attribute increases do not use the specialisation callback.
         character.AddSkill(new TravellerSkillModifier("STR", 2, false, true), null!);
@@ -384,7 +384,7 @@ public class TravellerDataTests
         service.EnlistmentPlusOne = new("STR", 8);
         TravellerServices services = new();
         services.Services.Add(service);
-        TravellerCharacter character = new() { STR = 8 };
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { STR = 8 };
 
         Assert.AreEqual("Navy\nDM+1 Enlistment 8\n\n", services.RecommendText(character));
     }

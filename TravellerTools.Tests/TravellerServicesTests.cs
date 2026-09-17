@@ -125,7 +125,7 @@ public class TravellerServicesTests
         services.Services.Add(navy);
         services.Services.Add(new() { Name = "No bonuses" });
 
-        string result = services.RecommendText(new() { STR = 8 });
+        string result = services.RecommendText(new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { STR = 8 });
 
         Assert.AreEqual("Navy\nDM+2 Enlistment 8\nDM+1 Enlistment 8\nDM+2 Survival 5\nDM+1 Commission 10\nDM+1 Promotion 8\n\n", result);
     }
@@ -135,7 +135,7 @@ public class TravellerServicesTests
     public void RecommendationsAreEmptyWithoutPassingBonuses()
     {
         TravellerServices services = new();
-        TravellerCharacter character = new() { STR = 7 };
+        TravellerCharacter character = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray())) { STR = 7 };
         Assert.AreEqual(string.Empty, services.RecommendText(character));
         services.Services.Add(new() { Name = "Navy", EnlistmentPlusOne = new("STR", 8) });
 

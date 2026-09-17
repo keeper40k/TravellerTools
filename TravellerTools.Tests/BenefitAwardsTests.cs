@@ -17,8 +17,8 @@ public class BenefitAwardsTests
         {
             Name = "Rifle", Level = 4, Summary = "Summary", Description = "Description", Referee = "Referee"
         };
-        TravellerCharacter first = new();
-        TravellerCharacter second = new();
+        TravellerCharacter first = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
+        TravellerCharacter second = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
 
         first.AddSkill(BenefitAwards.CreateSkill(definition));
         second.AddSkill(BenefitAwards.CreateSkill(definition));
@@ -80,8 +80,8 @@ public class BenefitAwardsTests
         definition.Weight = 750;
         definition.TechLevel = 9;
 
-        TravellerCharacter first = new();
-        TravellerCharacter second = new();
+        TravellerCharacter first = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
+        TravellerCharacter second = new(new FixedRandomSource(Enumerable.Repeat(3, 12).ToArray()));
         TravellerGear firstAward = BenefitAwards.CreateGear(definition);
         TravellerGear secondAward = BenefitAwards.CreateGear(definition);
         first.AddGear(firstAward);
