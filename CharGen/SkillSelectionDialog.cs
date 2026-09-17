@@ -89,19 +89,13 @@ public partial class SkillSelectionDialog : Form, ISkillSpecialisationCollection
     /// <param name="skillName">The parent skill name shown in the prompt.</param>
     /// <param name="list">The non-null, non-empty list of available choices.</param>
     /// <returns>The initially selected child, or null if the dialog has no selected skill.</returns>
-    /// <remarks>A selected child with further specialisations opens another dialog, but this method returns the original child rather than the deeper result. Some implementations retain a non-nullable return annotation for compatibility.</remarks>
+    /// <remarks>Returns one choice only; the character requests any further specialisations. The non-nullable return annotation is retained for source compatibility.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">The choice list is empty, so the dialog cannot select its first item.</exception>
     public TravellerSkill SelectSpecialisation(string skillName, List<TravellerSkill> list)
     {
         using SelectSkillSpecialisationForm form = new(skillName, list);
         form.ShowDialog();
-        TravellerSkill? selectedSkill = form.SelectedSkill;
-        if (selectedSkill != null && selectedSkill.HasSpecialisations)
-        {
-            SelectSpecialisation(selectedSkill.Name, selectedSkill.Specialisations);
-        }
-
-        return selectedSkill!;
+        return form.SelectedSkill!;
     }
 
     // Private Event Handlers

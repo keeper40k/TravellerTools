@@ -5,7 +5,7 @@ using TravellerTools.Fundamentals;
 namespace TravellerTools.TravellerData;
 
 /// <summary>Stores character characteristics, career history, skills, and inventory.</summary>
-/// <remarks>This mutable model uses default dice randomness for initial characteristics and aging. Collections and callbacks must remain valid for the operations that use them; instances are not synchronized for concurrent mutation.</remarks>
+/// <remarks>This mutable model retains its constructor-supplied random source for initial characteristics, rerolls, and aging. The parameterless constructor uses SystemRandomSource. Collections and callbacks must remain valid for the operations that use them; instances are not synchronized for concurrent mutation.</remarks>
 public class TravellerCharacter
 {
     // Noble title choices and character-history formats.
@@ -39,11 +39,25 @@ public class TravellerCharacter
     private const string CharacteristicOrSkillLossFormat = "{0} lost {1} {2}\n";
     private const string CharacteristicOrSkillGainFormat = "{0} gained {1} {2}\n";
 
+    // Keep randomness private so persistence contains character data rather than generator state.
+    private readonly IRandomSource randomSource;
+
     // Constructors
 
     /// <summary>Creates a character named Bob at age eighteen and rolls all six characteristics on 2d6.</summary>
-    public TravellerCharacter()
+    public TravellerCharacter() : this(new SystemRandomSource())
     {
+    }
+
+    /// <summary>Creates a character named Bob at age eighteen and rolls all six characteristics using the supplied source.</summary>
+    /// <param name="randomSource">The non-null source retained for all characteristic rolls and aging checks.</param>
+    /// <remarks>Construction consumes twelve d6 results in STR, DEX, END, INT, EDU, SOC order. Reinitialising preserves the source and its position.</remarks>
+    /// <exception cref="ArgumentNullException">The random source is null.</exception>
+    public TravellerCharacter(IRandomSource randomSource)
+    {
+        ArgumentNullException.ThrowIfNull(randomSource);
+        this.randomSource = randomSource;
+
         // Temporary Name
         Name = "Bob";
         Reinitialise();
@@ -88,22 +102,22 @@ public class TravellerCharacter
     // STR, DEX and END save on (8+, 7+, 8+)
     /// <summary>Applies STR, DEX, and END aging saves of 8+, 7+, and 8+, losing one point on failure.</summary>
     /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
-    /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
+    /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase1AgeCheck(decimal currentAge)
     {
-        int strRoll = DiceTools.RollDice(2, 6);
+        int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 8)
         {
             STR = STR - 1;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 1, "STR");
         }
-        int dexRoll = DiceTools.RollDice(2, 6);
+        int dexRoll = DiceTools.RollDice(2, 6, randomSource);
         if (dexRoll < 7)
         {
             DEX = DEX - 1;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 1, "DEX");
         }
-        int endRoll = DiceTools.RollDice(2, 6);
+        int endRoll = DiceTools.RollDice(2, 6, randomSource);
         if (endRoll < 8)
         {
             END = END - 1;
@@ -115,22 +129,22 @@ public class TravellerCharacter
     // STR, DEX and END save on (9+, 8+, 9+)
     /// <summary>Applies STR, DEX, and END aging saves of 9+, 8+, and 9+, losing one point on failure.</summary>
     /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
-    /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
+    /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase2AgeCheck(decimal currentAge)
     {
-        int strRoll = DiceTools.RollDice(2, 6);
+        int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 9)
         {
             STR = STR - 1;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 1, "STR");
         }
-        int dexRoll = DiceTools.RollDice(2, 6);
+        int dexRoll = DiceTools.RollDice(2, 6, randomSource);
         if (dexRoll < 8)
         {
             DEX = DEX - 1;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 1, "DEX");
         }
-        int endRoll = DiceTools.RollDice(2, 6);
+        int endRoll = DiceTools.RollDice(2, 6, randomSource);
         if (endRoll < 9)
         {
             END = END - 1;
@@ -142,28 +156,28 @@ public class TravellerCharacter
     // STR, DEX, END and INT save on (9+, 9+, 9+, 9+)
     /// <summary>Applies 9+ aging saves, losing two STR, DEX, or END points and one INT point on failure.</summary>
     /// <param name="currentAge">The age used in any aging-crisis history entry.</param>
-    /// <remarks>Uses default 2d6 randomness and then checks for an aging crisis.</remarks>
+    /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase3AgeCheck(decimal currentAge)
     {
-        int strRoll = DiceTools.RollDice(2, 6);
+        int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 9)
         {
             STR = STR - 2;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 2, "STR");
         }
-        int dexRoll = DiceTools.RollDice(2, 6);
+        int dexRoll = DiceTools.RollDice(2, 6, randomSource);
         if (dexRoll < 9)
         {
             DEX = DEX - 2;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 2, "DEX");
         }
-        int endRoll = DiceTools.RollDice(2, 6);
+        int endRoll = DiceTools.RollDice(2, 6, randomSource);
         if (endRoll < 9)
         {
             END = END - 2;
             CreationHistory += string.Format(CharacteristicOrSkillLossFormat, Name, 2, "END");
         }
-        int intRoll = DiceTools.RollDice(2, 6);
+        int intRoll = DiceTools.RollDice(2, 6, randomSource);
         if (intRoll < 9)
         {
             INT = INT - 1;
@@ -180,7 +194,7 @@ public class TravellerCharacter
         int slowDrugAging = 0;
         if (STR == 0)
         {
-            int saveRoll = DiceTools.RollDice(2, 6);
+            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
             if (saveRoll < 8)
             {
                 IsDead = true;
@@ -188,12 +202,12 @@ public class TravellerCharacter
             else
             {
                 STR = 1;
-                slowDrugAging += DiceTools.RollOneDie(6);
+                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
             }
         }
         if (DEX == 0)
         {
-            int saveRoll = DiceTools.RollDice(2, 6);
+            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
             if (saveRoll < 8)
             {
                 IsDead = true;
@@ -201,12 +215,12 @@ public class TravellerCharacter
             else
             {
                 DEX = 1;
-                slowDrugAging += DiceTools.RollOneDie(6);
+                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
             }
         }
         if (END == 0)
         {
-            int saveRoll = DiceTools.RollDice(2, 6);
+            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
             if (saveRoll < 8)
             {
                 IsDead = true;
@@ -214,12 +228,12 @@ public class TravellerCharacter
             else
             {
                 END = 1;
-                slowDrugAging += DiceTools.RollOneDie(6);
+                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
             }
         }
         if (INT == 0)
         {
-            int saveRoll = DiceTools.RollDice(2, 6);
+            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
             if (saveRoll < 8)
             {
                 IsDead = true;
@@ -227,7 +241,7 @@ public class TravellerCharacter
             else
             {
                 INT = 1;
-                slowDrugAging += DiceTools.RollOneDie(6);
+                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
             }
         }
         if (IsDead)
@@ -301,16 +315,16 @@ public class TravellerCharacter
         Gear = new();
     }
 
-    /// <summary>Replaces STR, DEX, END, INT, EDU, and SOC with separate default-source 2d6 totals.</summary>
+    /// <summary>Replaces STR, DEX, END, INT, EDU, and SOC with separate 2d6 totals from the retained random source.</summary>
     /// <remarks>Assigning SOC also updates UseTitle.</remarks>
     public void RollRandomCharacteristics()
     {
-        STR = DiceTools.RollDice(2, 6);
-        DEX = DiceTools.RollDice(2, 6);
-        END = DiceTools.RollDice(2, 6);
-        INT = DiceTools.RollDice(2, 6);
-        EDU = DiceTools.RollDice(2, 6);
-        SOC = DiceTools.RollDice(2, 6);
+        STR = DiceTools.RollDice(2, 6, randomSource);
+        DEX = DiceTools.RollDice(2, 6, randomSource);
+        END = DiceTools.RollDice(2, 6, randomSource);
+        INT = DiceTools.RollDice(2, 6, randomSource);
+        EDU = DiceTools.RollDice(2, 6, randomSource);
+        SOC = DiceTools.RollDice(2, 6, randomSource);
     }
 
     /// <summary>Creates the title choices for the current social standing.</summary>
@@ -382,97 +396,103 @@ public class TravellerCharacter
     /// <summary>Applies a characteristic or skill adjustment and records the characteristic or resolved skill name in the creation history.</summary>
     /// <param name="newSkill">The non-null adjustment; characteristic names must use uppercase Traveller codes.</param>
     /// <param name="callback">The selector used when a matched skill has specialisations; not consulted for characteristic adjustments.</param>
-    /// <remarks>Unknown characteristics or missing skill definitions have no effect. Existing skills are matched by name and incremented; new skills are copied from the shared definitions. A null selection cancels the skill gain. The callback field is assigned for the operation and cleared on normal completion, but an early cancellation or exception can leave it assigned.</remarks>
+    /// <remarks>Unknown characteristics or missing skill definitions have no effect. Existing skills are matched by name and incremented; new skills are copied from the shared definitions. A null selection cancels the skill gain. The character resolves nested specialisations by requesting one choice at each level. The callback field is cleared when the operation exits, including cancellation or exceptions.</remarks>
     /// <exception cref="TypeInitializationException">Loading shared skill definitions fails during a skill adjustment.</exception>
     public void AddSkill(TravellerSkillModifier newSkill, ISkillSpecialisationCollection callback)
     {
         SpecialisationSelectionCallback = callback;
 
-        if (newSkill.IsAttribute)
+        try
         {
-            switch (newSkill.Name)
+            if (newSkill.IsAttribute)
             {
-                case "STR":
-                    {
-                        STR += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                case "DEX":
-                    {
-                        DEX += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                case "END":
-                    {
-                        END += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                case "INT":
-                    {
-                        INT += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                case "EDU":
-                    {
-                        EDU += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                case "SOC":
-                    {
-                        SOC += newSkill.Level;
-                        CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
-                        break;
-                    }
-                default:
-                    {
-                        // Do nothing
-                        break;
-                    }
-            }
-        }
-        if (newSkill.IsSkill)
-        {
-            TravellerSkill? fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
-            if (fullSkill != null)
-            {
-                // Resolve Specialisation. While loop for nesting
-                while (fullSkill.HasSpecialisations)
+                switch (newSkill.Name)
                 {
-                    fullSkill = ChooseSpecialisation(fullSkill.Name, fullSkill.Specialisations);
-                    if (fullSkill == null)
-                    {
-                        return;
-                    }
+                    case "STR":
+                        {
+                            STR += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    case "DEX":
+                        {
+                            DEX += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    case "END":
+                        {
+                            END += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    case "INT":
+                        {
+                            INT += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    case "EDU":
+                        {
+                            EDU += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    case "SOC":
+                        {
+                            SOC += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, newSkill.Name);
+                            break;
+                        }
+                    default:
+                        {
+                            // Do nothing
+                            break;
+                        }
                 }
-
-                bool found = false;
-                foreach (TravellerSkill existingSkill in Skills)
+            }
+            if (newSkill.IsSkill)
+            {
+                TravellerSkill? fullSkill = TravellerSkills.MatchSkill(newSkill.Name);
+                if (fullSkill != null)
                 {
-                    if (existingSkill.Name == fullSkill.Name)
+                    // Resolve Specialisation. While loop for nesting
+                    while (fullSkill.HasSpecialisations)
                     {
-                        found = true;
-                        existingSkill.Level += newSkill.Level;
+                        fullSkill = ChooseSpecialisation(fullSkill.Name, fullSkill.Specialisations);
+                        if (fullSkill == null)
+                        {
+                            return;
+                        }
+                    }
+
+                    bool found = false;
+                    foreach (TravellerSkill existingSkill in Skills)
+                    {
+                        if (existingSkill.Name == fullSkill.Name)
+                        {
+                            found = true;
+                            existingSkill.Level += newSkill.Level;
+                            CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, fullSkill.Name);
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        TravellerSkill localSkill = new(fullSkill);
+                        localSkill.Level = newSkill.Level;
+                        Skills.Add(localSkill);
                         CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, fullSkill.Name);
-                        break;
                     }
-                }
-
-                if (!found)
-                {
-                    TravellerSkill localSkill = new(fullSkill);
-                    localSkill.Level = newSkill.Level;
-                    Skills.Add(localSkill);
-                    CreationHistory += string.Format(CharacteristicOrSkillGainFormat, Name, newSkill.Level, fullSkill.Name);
                 }
             }
         }
-
-        SpecialisationSelectionCallback = null;
+        finally
+        {
+            // Release the selector even when a choice is cancelled or throws.
+            SpecialisationSelectionCallback = null;
+        }
     }
 
     // Should only be used when the newSkill does not have further specialisation
