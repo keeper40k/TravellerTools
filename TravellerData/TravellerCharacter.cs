@@ -66,36 +66,52 @@ public class TravellerCharacter
 
     // Protected Methods
 
-    /// <summary>Applies aging checks at eligible ages while advancing in one-year increments.</summary>
-    /// <param name="start">The previous age in years.</param>
-    /// <param name="end">The requested age in years.</param>
-    /// <remarks>An end age no greater than the start performs no checks. Eligible increments exceed age 33 and have remainder two when divided by four; fractional ages are not rounded.</remarks>
+    /// <summary>Advances chronological age and applies checks when normal elapsed time crosses ages 34, 38, 42, and every four years thereafter.</summary>
+    /// <param name="start">The previous chronological age in years.</param>
+    /// <param name="end">The requested age before adding recovery time.</param>
+    /// <remarks>Fractional ages are supported. Recovery adds chronological time without checking thresholds crossed by recovery itself. Remaining normal elapsed time continues after recovery. Death stops advancement at the age of the failed crisis save. Non-increasing requests perform no checks.</remarks>
     protected void ProcessAging(decimal start, decimal end)
     {
-        // Doesn't handle negative aging at this time!
-        if (end <= start)
+        if (IsDead || end <= start)
         {
             return;
         }
 
-        for (decimal i = start + 1; i <= end; i++)
+        age = start;
+        decimal remainingYears = end - start;
+        while (remainingYears > 0)
         {
-            // i mod 4 remainder 2 gives us aging years of 34, 38, 42, etc.
-            if ((i > 33) && (i % 4 == 2))
+            // Find the next boundary strictly after the current chronological age.
+            decimal nextCheckAge = age < 34 ? 34 : 34 + (decimal.Floor((age - 34) / 4) + 1) * 4;
+            decimal yearsUntilCheck = nextCheckAge - age;
+            if (yearsUntilCheck > remainingYears)
             {
-                if (i < 50)
-                {
-                    Phase1AgeCheck(i);
-                }
-                else if (i < 66)
-                {
-                    Phase2AgeCheck(i);
-                }
-                else
-                {
-                    Phase3AgeCheck(i);
-                }
+                age += remainingYears;
+                return;
             }
+
+            remainingYears -= yearsUntilCheck;
+            age = nextCheckAge;
+            if (nextCheckAge < 50)
+            {
+                Phase1AgeCheck(nextCheckAge);
+            }
+            else if (nextCheckAge < 66)
+            {
+                Phase2AgeCheck(nextCheckAge);
+            }
+            else
+            {
+                Phase3AgeCheck(nextCheckAge);
+            }
+
+            if (IsDead)
+            {
+                return;
+            }
+
+            // Crisis recovery has already advanced age directly. Only the remaining
+            // normal elapsed time can trigger another check.
         }
     }
 
@@ -105,6 +121,11 @@ public class TravellerCharacter
     /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase1AgeCheck(decimal currentAge)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 8)
         {
@@ -132,6 +153,11 @@ public class TravellerCharacter
     /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase2AgeCheck(decimal currentAge)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 9)
         {
@@ -159,6 +185,11 @@ public class TravellerCharacter
     /// <remarks>Uses the retained random source for 2d6 rolls and then checks for an aging crisis.</remarks>
     protected void Phase3AgeCheck(decimal currentAge)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         int strRoll = DiceTools.RollDice(2, 6, randomSource);
         if (strRoll < 9)
         {
@@ -186,72 +217,51 @@ public class TravellerCharacter
         AgingCrisis(currentAge);
     }
 
-    /// <summary>Resolves 8+ survival saves for STR, DEX, END, or INT that are exactly zero.</summary>
-    /// <param name="currentAge">The age reported in the creation history.</param>
-    /// <remarks>Failure marks the character dead. A successful save restores the characteristic to one and rolls recovery months for the history entry; those months are not added to Age.</remarks>
+    /// <summary>Resolves 8+ survival saves for STR, DEX, END, or INT at zero or below.</summary>
+    /// <param name="currentAge">The chronological age at the start of the crisis.</param>
+    /// <remarks>Successful saves restore the characteristic to one and add rolled recovery months to Age without triggering aging checks. The first failed save stops further saves and records death at the current chronological age, including any recovery already completed. Existing INT crisis handling is retained.</remarks>
     protected void AgingCrisis(decimal currentAge)
     {
-        int slowDrugAging = 0;
-        if (STR == 0)
+        if (IsDead)
         {
-            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
-            if (saveRoll < 8)
-            {
-                IsDead = true;
-            }
-            else
-            {
-                STR = 1;
-                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
-            }
+            return;
         }
-        if (DEX == 0)
+
+        int recoveryMonths = 0;
+        STR = ResolveAgingCrisis(STR, currentAge, ref recoveryMonths);
+        DEX = ResolveAgingCrisis(DEX, currentAge, ref recoveryMonths);
+        END = ResolveAgingCrisis(END, currentAge, ref recoveryMonths);
+        INT = ResolveAgingCrisis(INT, currentAge, ref recoveryMonths);
+
+        if (recoveryMonths > 0)
         {
-            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
-            if (saveRoll < 8)
-            {
-                IsDead = true;
-            }
-            else
-            {
-                DEX = 1;
-                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
-            }
-        }
-        if (END == 0)
-        {
-            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
-            if (saveRoll < 8)
-            {
-                IsDead = true;
-            }
-            else
-            {
-                END = 1;
-                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
-            }
-        }
-        if (INT == 0)
-        {
-            int saveRoll = DiceTools.RollDice(2, 6, randomSource);
-            if (saveRoll < 8)
-            {
-                IsDead = true;
-            }
-            else
-            {
-                INT = 1;
-                slowDrugAging += DiceTools.RollOneDie(6, randomSource);
-            }
+            CreationHistory += string.Format(PassedAgingCrisis, Name, currentAge, recoveryMonths) + "\n";
         }
         if (IsDead)
         {
-            CreationHistory += string.Format(FailedAgingCrisis, Name, currentAge) + "\n";
+            CreationHistory += string.Format(FailedAgingCrisis, Name, age) + "\n";
         }
-        else if (slowDrugAging != 0)
+    }
+
+    /// <summary>Resolves one endangered characteristic and tracks elapsed recovery without re-entering the Age setter.</summary>
+    private int ResolveAgingCrisis(int characteristic, decimal currentAge, ref int recoveryMonths)
+    {
+        if (IsDead || characteristic > 0)
         {
-            CreationHistory += string.Format(PassedAgingCrisis, Name, currentAge, slowDrugAging) + "\n";
+            return characteristic;
         }
+
+        if (DiceTools.RollDice(2, 6, randomSource) < 8)
+        {
+            IsDead = true;
+            age = currentAge + recoveryMonths / 12m;
+            return characteristic;
+        }
+
+        recoveryMonths += DiceTools.RollOneDie(6, randomSource);
+        // Convert the accumulated whole months once per update to limit rounding.
+        age = currentAge + recoveryMonths / 12m;
+        return 1;
     }
 
     // Public Methods
@@ -294,7 +304,8 @@ public class TravellerCharacter
     /// <remarks>Replaces Skills and Gear with new lists. Preserves Name, the six characteristic values, and the specialisation callback; does not reroll characteristics.</remarks>
     public void Reinitialise()
     {
-        Age = 18;
+        // Reset directly so a previous death does not prevent starting a new character.
+        age = 18;
         Title = string.Empty;
         UseTitle = true;
         Rank = string.Empty;
@@ -640,7 +651,7 @@ public class TravellerCharacter
 
     // The SOC setter also controls whether the title appears in summaries.
     private int socialStanding;
-    // Age changes run aging checks before updating this stored value.
+    // Chronological years; crisis recovery updates this directly to avoid additional checks.
     private decimal age;
 
     // Public Properties
@@ -713,6 +724,7 @@ public class TravellerCharacter
     }
 
     /// <summary>Gets or sets age in years; increasing the value may roll aging checks and mutate characteristics, history, and death status.</summary>
+    /// <remarks>Normal advancement checks crossed four-year thresholds from age 34. Recovery months are added as fractions of a year without checking thresholds crossed by recovery. Death preserves the age at death and subsequent assignments have no effect until the character is reinitialised or IsDead is cleared. Decreasing a living character's age performs no checks.</remarks>
     public decimal Age
     {
         get
@@ -721,8 +733,16 @@ public class TravellerCharacter
         }
         set
         {
+            if (IsDead)
+            {
+                return;
+            }
+            if (value <= age)
+            {
+                age = value;
+                return;
+            }
             ProcessAging(age, value);
-            age = value;
         }
     }
     /// <summary>Gets or sets the current or former service name.</summary>

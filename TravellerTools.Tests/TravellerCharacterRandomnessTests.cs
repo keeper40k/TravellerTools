@@ -162,6 +162,6 @@ public class TravellerCharacterRandomnessTests
         Assert.AreEqual(!survives, character.IsDead);
         Assert.AreEqual(0, source.RemainingCount);
         StringAssert.Contains(character.CreationHistory, survives ? "5 months" : "passed away at the age of 66");
-        Assert.AreEqual(18m, character.Age, "Recovery months retain their existing history-only behaviour.");
+        Assert.AreEqual(survives ? 66m + 5m / 12m : 66m, character.Age);
     }
 }
