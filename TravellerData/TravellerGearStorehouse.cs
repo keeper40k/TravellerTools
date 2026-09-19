@@ -25,8 +25,8 @@ public class TravellerGearStorehouse
         LoadGear();
     }
 
-    /// <summary>Clears and reloads gear definitions from gear.json in the current working directory.</summary>
-    /// <remarks>The root must be an array of objects, each providing ClassType. An empty array clears the catalogue; JSON null is invalid. The old catalogue is cleared before the file is read. Read or parse failures leave it empty; conversion or entry-shape failures retain only earlier successfully loaded entries. Unknown ClassType values are skipped. Other properties use the selected gear type's defaults and deserialization rules; no additional validation is performed. A later explicit reload can recover after a failed reload, provided initial type initialization succeeded.</remarks>
+    /// <summary>Replaces gear definitions after successfully loading the complete catalogue from gear.json in the current working directory.</summary>
+    /// <remarks>The root must be an array of objects, each providing ClassType. An empty array clears the catalogue; JSON null is invalid. The replacement catalogue is built separately. Read, parse, conversion, and entry-shape failures preserve the previous catalogue and its shared objects; exceptions still propagate. Successful loading replaces the catalogue, while references returned before the reload remain valid but are no longer part of it. Unknown ClassType values are skipped. Other properties use the selected gear type's defaults and deserialization rules; no additional validation is performed. A later explicit reload can recover after a failed reload, provided initial type initialization succeeded.</remarks>
     /// <exception cref="System.UnauthorizedAccessException">Access to the gear file is denied.</exception>
     /// <exception cref="System.IO.IOException">The file cannot be read.</exception>
     /// <exception cref="System.Text.Json.JsonException">The JSON cannot be parsed or converted.</exception>
@@ -34,7 +34,8 @@ public class TravellerGearStorehouse
     /// <exception cref="InvalidOperationException">The JSON root is not an array or an entry is not an object.</exception>
     protected static void LoadGear()
     {
-        Gear.Clear();
+        // Publish only after every entry has been processed successfully.
+        List<TravellerGear> loadedGear = new();
         string json = File.ReadAllText(GearFileName);
 
         using (JsonDocument document = JsonDocument.Parse(json))
@@ -48,7 +49,7 @@ public class TravellerGearStorehouse
                     TravellerGear? gear = JsonSerializer.Deserialize<TravellerGear>(entry.GetRawText());
                     if (gear != null)
                     {
-                        Gear.Add(gear);
+                        loadedGear.Add(gear);
                     }
                 }
                 else if (classType == "TravellerRetirementPay")
@@ -56,7 +57,7 @@ public class TravellerGearStorehouse
                     TravellerRetirementPay? retirementPay = JsonSerializer.Deserialize<TravellerRetirementPay>(entry.GetRawText());
                     if (retirementPay != null)
                     {
-                        Gear.Add(retirementPay);
+                        loadedGear.Add(retirementPay);
                     }
                 }
                 else if (classType == "TravellerStarshipBenefit")
@@ -64,11 +65,13 @@ public class TravellerGearStorehouse
                     TravellerStarshipBenefit? starshipBenefit = JsonSerializer.Deserialize<TravellerStarshipBenefit>(entry.GetRawText());
                     if (starshipBenefit != null)
                     {
-                        Gear.Add(starshipBenefit);
+                        loadedGear.Add(starshipBenefit);
                     }
                 }
             }
         }
+
+        Gear = loadedGear;
     }
 
     /// <summary>Finds the first gear definition matching a name and optional weapon category.</summary>

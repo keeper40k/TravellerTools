@@ -215,41 +215,62 @@ public class TravellerGearStorehouseTests
         Assert.IsInstanceOfType(failure.InnerException, errorType);
     }
 
-    /// <summary>Verifies failed reloads retain earlier new entries, discard old ones, and allow later recovery.</summary>
+    /// <summary>Verifies a failed replacement preserves old objects, exposes no partial entries, and permits retry.</summary>
+    /// <param name="invalidEntry">A later entry that makes the replacement invalid.</param>
+    /// <param name="errorType">The expected exception family.</param>
     [TestMethod]
-    public void FailedReloadLeavesPartialCatalogueAndCanBeRetried()
+    [DataRow("{}", typeof(KeyNotFoundException))]
+    [DataRow("null", typeof(InvalidOperationException))]
+    [DataRow("{\"ClassType\":\"TravellerGear\",\"Count\":\"invalid\"}", typeof(JsonException))]
+    public void FailedReloadPreservesCatalogueAndCanBeRetried(string invalidEntry, Type errorType)
     {
-        File.WriteAllText("gear.json", """[{"ClassType":"TravellerGear","Name":"Old"}]""");
+        File.WriteAllText("gear.json", """[{"ClassType":"TravellerGear","Name":"Old","Count":2}]""");
         using GearCatalogue catalogue = new();
-        Assert.IsNotNull(catalogue.Get("Old"));
-        File.WriteAllText("gear.json", """
-            [{"ClassType":"TravellerGear","Name":"Earlier"},{},{"ClassType":"TravellerGear","Name":"Later"}]
-            """);
+        object? oldGear = catalogue.Get("Old");
+        Assert.IsNotNull(oldGear);
+        File.WriteAllText("gear.json",
+            "[{\"ClassType\":\"TravellerGear\",\"Name\":\"Earlier\"}," + invalidEntry +
+            ",{\"ClassType\":\"TravellerGear\",\"Name\":\"Later\"}]");
 
-        Assert.ThrowsException<KeyNotFoundException>(() => catalogue.Reload());
-
-        Assert.IsNull(catalogue.Get("Old"));
-        Assert.IsNotNull(catalogue.Get("Earlier"));
+        Exception? failure = null;
+        try
+        {
+            catalogue.Reload();
+        }
+        catch (Exception exception)
+        {
+            // Preserve parser subclasses when checking the documented exception family.
+            failure = exception;
+        }
+        Assert.IsNotNull(failure);
+        Assert.IsInstanceOfType(failure, errorType);
+        Assert.AreSame(oldGear, catalogue.Get("Old"));
+        Assert.AreEqual(2m, Data(oldGear).GetProperty("Count").GetDecimal());
+        Assert.IsNull(catalogue.Get("Earlier"));
         Assert.IsNull(catalogue.Get("Later"));
+
         File.WriteAllText("gear.json", """[{"ClassType":"TravellerGear","Name":"Recovered"}]""");
         catalogue.Reload();
         Assert.IsNotNull(catalogue.Get("Recovered"));
+        Assert.IsNull(catalogue.Get("Old"));
         Assert.IsNull(catalogue.Get("Earlier"));
+        Assert.AreEqual("Old", Data(oldGear).GetProperty("Name").GetString());
         File.WriteAllText("gear.json", "[]");
         catalogue.Reload();
         Assert.IsNull(catalogue.Get("Recovered"));
     }
 
-    /// <summary>Verifies read and parse failures clear the old catalogue before failing.</summary>
+    /// <summary>Verifies read and parse failures preserve the old catalogue and its object identities.</summary>
     /// <param name="missing">Whether to remove the file rather than provide malformed JSON.</param>
     [TestMethod]
     [DataRow(true)]
     [DataRow(false)]
-    public void FailedReadOrParseLeavesReloadedCatalogueEmpty(bool missing)
+    public void FailedReadOrParsePreservesCatalogue(bool missing)
     {
         File.WriteAllText("gear.json", """[{"ClassType":"TravellerGear","Name":"Old"}]""");
         using GearCatalogue catalogue = new();
-        Assert.IsNotNull(catalogue.Get("Old"));
+        object? oldGear = catalogue.Get("Old");
+        Assert.IsNotNull(oldGear);
         if (missing)
         {
             File.Delete("gear.json");
@@ -269,7 +290,7 @@ public class TravellerGearStorehouseTests
             }
         }
 
-        Assert.IsNull(catalogue.Get("Old"));
+        Assert.AreSame(oldGear, catalogue.Get("Old"));
     }
 
     /// <summary>Reads gear properties across the deliberately isolated assembly boundary.</summary>
