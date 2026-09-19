@@ -9,7 +9,7 @@ using TravellerTools.TravellerData;
 namespace GearEditor;
 
 /// <summary>Edits gear definitions and loads or saves their JSON representation.</summary>
-/// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
+/// <remarks>Create and interact with the form on its owning Windows Forms UI thread. Loading appends supported gear entries, skips unknown ClassType values, and may leave partial additions if a later entry fails. Saving replaces the selected file and preserves properties of the three supported gear types. File and JSON failures propagate.</remarks>
 public partial class GearEditorForm : Form
 {
     // JSON delimiters, data-file names, and editor labels.
@@ -155,7 +155,7 @@ public partial class GearEditorForm : Form
     }
 
     /// <summary>Populates category choices from gearTypes.json in the current working directory.</summary>
-    /// <remarks>The file is required; missing-file, read, and JSON errors propagate.</remarks>
+    /// <remarks>The file is required; missing-file, read, and JSON errors propagate. Existing choices are cleared before reading. JSON null gives no choices; null entries are not supported by the control.</remarks>
     protected void LoadGearTypes()
     {
         gearTypeBox.Items.Clear();
@@ -190,40 +190,7 @@ public partial class GearEditorForm : Form
 
         if (openDialog.ShowDialog() == DialogResult.OK)
         {
-            string json = File.ReadAllText(openDialog.FileName);
-
-            using (JsonDocument document = JsonDocument.Parse(json))
-            {
-                JsonElement root = document.RootElement;
-                foreach (JsonElement entry in root.EnumerateArray())
-                {
-                    string classType = entry.GetProperty("ClassType").ToString();
-                    if (classType == "TravellerGear")
-                    {
-                        TravellerGear? gear = JsonSerializer.Deserialize<TravellerGear>(entry.GetRawText());
-                        if (gear != null)
-                        {
-                            Gear.Add(gear);
-                        }
-                    }
-                    else if (classType == "TravellerRetirementPay")
-                    {
-                        TravellerRetirementPay? retirementPay = JsonSerializer.Deserialize<TravellerRetirementPay>(entry.GetRawText());
-                        if (retirementPay != null)
-                        {
-                            Gear.Add(retirementPay);
-                        }
-                    }
-                    else if (classType == "TravellerStarshipBenefit")
-                    {
-                        TravellerStarshipBenefit? starshipBenefit = JsonSerializer.Deserialize<TravellerStarshipBenefit>(entry.GetRawText());
-                        if (starshipBenefit != null)
-                        {
-                            Gear.Add(starshipBenefit);
-                        }
-                    }
-                }
-            }
+            AppendGear(openDialog.FileName, Gear);
         }
 
         UpdateBoxes();
@@ -240,33 +207,80 @@ public partial class GearEditorForm : Form
 
         if (saveDialog.ShowDialog() == DialogResult.OK)
         {
-            string json = JsonArrayStart;
-            for (int i = 0; i < Gear.Count; i++)
-            {
-                if (Gear[i] is TravellerRetirementPay)
-                {
-                    TravellerRetirementPay? gear = Gear[i] as TravellerRetirementPay;
-                    json += JsonSerializer.Serialize(gear);
-                }
-                else if (Gear[i] is TravellerStarshipBenefit)
-                {
-                    TravellerStarshipBenefit? gear = Gear[i] as TravellerStarshipBenefit;
-                    json += JsonSerializer.Serialize(gear);
-                }
-                else if (Gear[i] is TravellerGear)
-                {
-                    TravellerGear? gear = Gear[i] as TravellerGear;
-                    json += JsonSerializer.Serialize(gear);
-                }
+            WriteGear(saveDialog.FileName, Gear);
+        }
+    }
 
-                if (i != Gear.Count - 1)
+    /// <summary>Appends supported entries in file order without clearing the supplied list.</summary>
+    /// <remarks>Requires an array of objects with ClassType. Unknown types are skipped. Read and parse failures leave the list unchanged; later entry failures retain earlier additions. JSON null is invalid.</remarks>
+    private static void AppendGear(string fileName, List<TravellerGear> gearItems)
+    {
+        string json = File.ReadAllText(fileName);
+
+        using (JsonDocument document = JsonDocument.Parse(json))
+        {
+            JsonElement root = document.RootElement;
+            foreach (JsonElement entry in root.EnumerateArray())
+            {
+                string classType = entry.GetProperty("ClassType").ToString();
+                if (classType == "TravellerGear")
                 {
-                    json += Comma;
+                    TravellerGear? gear = JsonSerializer.Deserialize<TravellerGear>(entry.GetRawText());
+                    if (gear != null)
+                    {
+                        gearItems.Add(gear);
+                    }
+                }
+                else if (classType == "TravellerRetirementPay")
+                {
+                    TravellerRetirementPay? retirementPay = JsonSerializer.Deserialize<TravellerRetirementPay>(entry.GetRawText());
+                    if (retirementPay != null)
+                    {
+                        gearItems.Add(retirementPay);
+                    }
+                }
+                else if (classType == "TravellerStarshipBenefit")
+                {
+                    TravellerStarshipBenefit? starshipBenefit = JsonSerializer.Deserialize<TravellerStarshipBenefit>(entry.GetRawText());
+                    if (starshipBenefit != null)
+                    {
+                        gearItems.Add(starshipBenefit);
+                    }
                 }
             }
-            json += JsonArrayEnd;
-            File.WriteAllText(saveDialog.FileName, json);
         }
+    }
+
+    /// <summary>Replaces a file with the current gear list, preserving the three supported types' properties.</summary>
+    /// <remarks>Serialization and write failures propagate. No additional validation or transactional write is performed.</remarks>
+    private static void WriteGear(string fileName, List<TravellerGear> gearItems)
+    {
+        string json = JsonArrayStart;
+        for (int i = 0; i < gearItems.Count; i++)
+        {
+            if (gearItems[i] is TravellerRetirementPay)
+            {
+                TravellerRetirementPay? gear = gearItems[i] as TravellerRetirementPay;
+                json += JsonSerializer.Serialize(gear);
+            }
+            else if (gearItems[i] is TravellerStarshipBenefit)
+            {
+                TravellerStarshipBenefit? gear = gearItems[i] as TravellerStarshipBenefit;
+                json += JsonSerializer.Serialize(gear);
+            }
+            else if (gearItems[i] is TravellerGear)
+            {
+                TravellerGear? gear = gearItems[i] as TravellerGear;
+                json += JsonSerializer.Serialize(gear);
+            }
+
+            if (i != gearItems.Count - 1)
+            {
+                json += Comma;
+            }
+        }
+        json += JsonArrayEnd;
+        File.WriteAllText(fileName, json);
     }
 
     // Moves the selected item earlier in the inventory's saved order.

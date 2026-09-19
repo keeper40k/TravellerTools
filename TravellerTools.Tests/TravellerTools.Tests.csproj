@@ -20,6 +20,8 @@
     <ProjectReference Include="..\Fundamentals\Fundamentals.csproj" />
     <ProjectReference Include="..\TravellerData\TravellerData.csproj" />
     <ProjectReference Include="..\CharGen\CharGen.csproj" />
+    <ProjectReference Include="..\SkillEditor\SkillEditor.csproj" />
+    <ProjectReference Include="..\GearEditor\GearEditor.csproj" />
   </ItemGroup>
 
 </Project>

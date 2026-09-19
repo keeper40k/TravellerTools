@@ -8,7 +8,7 @@ using TravellerTools.TravellerData;
 namespace SkillEditor;
 
 /// <summary>Edits skill definitions and their nested specialisations.</summary>
-/// <remarks>Create and interact with the form on its owning Windows Forms UI thread.</remarks>
+/// <remarks>Create and interact with the form on its owning Windows Forms UI thread. Loading replaces the skill list; JSON null becomes an empty list. File and JSON failures propagate. Saving replaces the selected file with the current skill tree.</remarks>
 public partial class SkillEditorForm : Form
 {
     // static strings
@@ -239,7 +239,7 @@ public partial class SkillEditorForm : Form
         CurrentSkill!.Referee = skillRefereeBox.Text;
     }
 
-    // Appends definitions from the selected JSON file to the current editing session.
+    // Replaces definitions only after the selected file has been read and deserialized.
     private void LoadButton_Click(object sender, EventArgs e)
     {
         using OpenFileDialog openDialog = new();
@@ -249,8 +249,7 @@ public partial class SkillEditorForm : Form
 
         if (openDialog.ShowDialog() == DialogResult.OK)
         {
-            string json = File.ReadAllText(openDialog.FileName);
-            Skills = JsonSerializer.Deserialize<List<TravellerSkill>>(json) ?? new List<TravellerSkill>();
+            Skills = ReadSkills(openDialog.FileName);
         }
 
         UpdateBoxes();
@@ -265,9 +264,23 @@ public partial class SkillEditorForm : Form
 
         if (saveDialog.ShowDialog() == DialogResult.OK)
         {
-            string json = JsonSerializer.Serialize(Skills);
-            File.WriteAllText(saveDialog.FileName, json);
+            WriteSkills(saveDialog.FileName, Skills);
         }
+    }
+
+    /// <summary>Reads a replacement skill tree; JSON null becomes an empty list and read or JSON errors propagate.</summary>
+    /// <remarks>Omitted properties retain model defaults. No additional validation is performed.</remarks>
+    private static List<TravellerSkill> ReadSkills(string fileName)
+    {
+        string json = File.ReadAllText(fileName);
+        return JsonSerializer.Deserialize<List<TravellerSkill>>(json) ?? new();
+    }
+
+    /// <summary>Replaces the selected file with the current skill tree; serialization and write failures propagate.</summary>
+    private static void WriteSkills(string fileName, List<TravellerSkill> skills)
+    {
+        string json = JsonSerializer.Serialize(skills);
+        File.WriteAllText(fileName, json);
     }
 
     // Moves the selected definition earlier in the saved list order.

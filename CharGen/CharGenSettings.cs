@@ -20,7 +20,8 @@ public class CharGenSettings
 
     // Public Methods
     /// <summary>Loads preferences from settings.json in the current working directory.</summary>
-    /// <remarks>A missing file or JSON null leaves current preferences unchanged; file-system and JSON errors propagate.</remarks>
+    /// <remarks>A missing file or JSON null leaves current preferences unchanged. A JSON object replaces all three flags; omitted fields use constructor defaults rather than existing values. Property names are case-sensitive and unknown properties are ignored. Read or deserialization failures propagate before any flags are copied.</remarks>
+    /// <exception cref="System.UnauthorizedAccessException">Access to the settings file is denied.</exception>
     /// <exception cref="System.IO.IOException">The file cannot be read.</exception>
     /// <exception cref="System.Text.Json.JsonException">The contents cannot be deserialized.</exception>
     public void LoadSettings()
@@ -37,7 +38,8 @@ public class CharGenSettings
     }
 
     /// <summary>Writes preferences to settings.json in the current working directory, replacing any existing file.</summary>
-    /// <remarks>File-system and serialization errors propagate.</remarks>
+    /// <remarks>Uses settings.json in the current working directory. File-system and serialization errors propagate; the write is not transactional.</remarks>
+    /// <exception cref="System.UnauthorizedAccessException">Access to the settings file is denied.</exception>
     /// <exception cref="System.IO.IOException">The file cannot be written.</exception>
     public void SaveSettings()
     {
